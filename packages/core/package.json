@@ -1,0 +1,13 @@
+{
+  "name": "@gfx-components/core",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1",
+    "styled-system": "^5.1.5",
+    "theme-ui": "^0.3.1"
+  }
+}
