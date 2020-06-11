@@ -9,7 +9,11 @@
     "module": "commonjs",
     "target": "es6",
     "lib": [ "es6" ],
-    "jsx": "react"
+    "jsx": "react",
+    "baseUrl": "./packages",
+    "paths": {
+      "@gfx-components/core": ["core/src"]
+    }
   },
   "include": ["packages/**/*"],
   "exclude": [
