@@ -4,6 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "peerDependencies": {
+    "@storybook/addon-actions": "^5.3.19",
+    "@storybook/react": "^5.3.19",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "styled-components": "^5.1.1",
