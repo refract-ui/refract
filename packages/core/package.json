@@ -12,5 +12,18 @@
     "styled-components": "^5.1.1",
     "styled-system": "^5.1.5",
     "theme-ui": "^0.3.1"
+  },
+  "dependencies": {
+    "@types/lodash": "^4.14.157",
+    "@types/tinycolor2": "^1.4.2",
+    "lodash": "^4.17.15",
+    "tinycolor2": "^1.4.1"
+  },
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.10.1",
+    "jest": "^26.1.0"
+  },
+  "scripts": {
+    "test": "jest"
   }
 }
