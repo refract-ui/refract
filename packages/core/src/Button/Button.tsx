@@ -6,10 +6,10 @@ type Props = {
   children: React.ReactNode;
 };
 
-function Button({ color, children, onClick }: Props): React.ReactNode {
+function Button({ color, children, onClick }: Props) {
   return (
     <button color={color} onClick={onClick}>
-      {children}
+      <React.Fragment>{children}</React.Fragment>
     </button>
   );
 }
