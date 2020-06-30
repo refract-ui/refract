@@ -30,7 +30,8 @@ interface ThemeProps {
 }
 
 export type Theme = Colors &
-  ThemeColors & {
+  ThemeColors &
+  ColorShades & {
     spacing: Spacing;
     breakpoints: Breakpoints;
     borders: Borders;
