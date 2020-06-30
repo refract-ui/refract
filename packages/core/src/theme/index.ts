@@ -7,6 +7,7 @@ import genThemeColors, {
   ThemeColors,
   ThemeColorOverrideProps
 } from './themeColors';
+import genSpacing, { Spacing, SpacingOverrideProps } from './spacing';
 
 interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
@@ -16,14 +17,19 @@ interface ThemeProps {
   colorShades?:
     | ((props: ColorShadeOverrideProps) => ColorShades)
     | Partial<ColorShades>;
+  spacing?: ((props: SpacingOverrideProps) => Spacing) | Partial<Spacing>;
 }
 
-export type Theme = Colors & ThemeColors;
+export type Theme = Colors &
+  ThemeColors & {
+    spacing: Spacing;
+  };
 
 export default function theme({
   colors: colorOverrides,
   themeColors: themeColorOverrides,
-  colorShades: colorShadeOverrides
+  colorShades: colorShadeOverrides,
+  spacing: spacingOverrides
 }: ThemeProps = {}): Theme {
   const colors = genColors({ overrides: colorOverrides });
   const themeColors = genThemeColors({
@@ -34,10 +40,12 @@ export default function theme({
     colors,
     overrides: colorShadeOverrides
   });
+  const spacing = genSpacing({ overrides: spacingOverrides });
 
   return {
     ...colors,
     ...themeColors,
-    ...colorShades
+    ...colorShades,
+    spacing
   };
 }

@@ -5,6 +5,7 @@ describe('theme', () => {
     const theme = genTheme();
 
     expect(theme).toEqual({
+      // basic colors
       white: '#ffffff',
       gray: '#adb5bd',
       black: '#000000',
@@ -27,6 +28,8 @@ describe('theme', () => {
       gray700: 'rgb(128, 140, 153)',
       gray800: 'rgb(107, 120, 133)',
       gray900: 'rgb(89, 99, 110)',
+
+      // theme colors
       primary: '#0d6efd',
       secondary: 'rgb(150, 161, 171)',
       success: '#28a745',
@@ -35,6 +38,8 @@ describe('theme', () => {
       danger: '#dc3545',
       light: 'rgb(255, 255, 255)',
       dark: 'rgb(107, 120, 133)',
+
+      // color shades
       blue100: 'rgb(215, 231, 255)',
       blue200: 'rgb(175, 207, 254)',
       blue300: 'rgb(134, 183, 254)',
@@ -124,7 +129,18 @@ describe('theme', () => {
       cyan600: 'rgb(18, 130, 148)',
       cyan700: 'rgb(14, 98, 111)',
       cyan800: 'rgb(9, 66, 75)',
-      cyan900: 'rgb(5, 34, 39)'
+      cyan900: 'rgb(5, 34, 39)',
+
+      // spacing
+      spacing: {
+        basis: 1,
+        '0': '0rem',
+        '0.25': '1rem',
+        '0.5': '2rem',
+        '1': '3rem',
+        '1.5': '4rem',
+        '3': '5rem'
+      }
     });
   });
 });
