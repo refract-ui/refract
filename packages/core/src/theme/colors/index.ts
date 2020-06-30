@@ -29,6 +29,19 @@ export type Colors = {
 const gray = '#adb5bd';
 const grayRamp = rampColor({ name: 'gray', startColor: gray });
 
+export const colorNames = [
+  'blue',
+  'indigo',
+  'purple',
+  'pink',
+  'red',
+  'orange',
+  'yellow',
+  'green',
+  'teal',
+  'cyan'
+];
+
 export const defaultColors: Colors = {
   white: '#ffffff',
   gray,
