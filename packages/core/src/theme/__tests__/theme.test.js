@@ -4,7 +4,7 @@ describe('theme', () => {
   test('default theme', () => {
     const theme = genTheme();
 
-    console.log('@-->theme', theme);
+    // console.log('@-->theme', theme);
 
     expect(theme).toEqual({
       // basic colors
