@@ -8,13 +8,13 @@ export type ColorRamp = {
 interface RampColorProps {
   name: string;
   startColor: string;
-  step: number;
+  step?: number;
 }
 
 export default function rampColor({
   name,
   startColor,
-  step
+  step = 8
 }: RampColorProps): ColorRamp {
   const color = tc(startColor);
 
