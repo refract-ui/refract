@@ -4,6 +4,8 @@ describe('theme', () => {
   test('default theme', () => {
     const theme = genTheme();
 
+    // console.log('@-->theme', theme);
+
     expect(theme).toEqual({
       // basic colors
       white: '#ffffff',
@@ -140,6 +142,16 @@ describe('theme', () => {
         '1': '3rem',
         '1.5': '4rem',
         '3': '5rem'
+      },
+
+      // breakpoints
+      breakpoints: {
+        xs: 0,
+        sm: 576,
+        md: 768,
+        lg: 992,
+        xl: 1200,
+        xxl: 1400
       }
     });
   });
