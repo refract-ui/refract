@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   color?: string;
@@ -6,11 +7,13 @@ type Props = {
   children: React.ReactNode;
 };
 
-function Button({ color, children, onClick }: Props): React.ReactNode {
+const StyledButton = styled.button``;
+
+function Button({ color, children, onClick }: Props) {
   return (
-    <button color={color} onClick={onClick}>
-      {children}
-    </button>
+    <StyledButton color={color} onClick={onClick}>
+      <React.Fragment>{children}</React.Fragment>
+    </StyledButton>
   );
 }
 

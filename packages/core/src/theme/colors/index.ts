@@ -29,7 +29,7 @@ export type Colors = {
 const gray = '#adb5bd';
 const grayRamp = rampColor({ name: 'gray', startColor: gray });
 
-export const colorNames = [
+export const colorNames: Array<string> = [
   'blue',
   'indigo',
   'purple',

@@ -122,7 +122,7 @@ export default function colorShades({
 }: ColorShadeProps): ColorShades {
   const defaultColorShades: ColorShades = reduce(
     colorNames,
-    (memo: ColorShades, c: string) => {
+    (memo: ColorShades, c: keyof Colors) => {
       return {
         ...memo,
         ...rampColor({ name: c, startColor: colors[c] })

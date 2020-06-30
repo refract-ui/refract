@@ -1,4 +1,6 @@
 import { map, range, reduce } from 'lodash';
+import { ColorShades } from '../../theme/colorShades';
+import { Colors } from '../../theme/colors';
 import tc from 'tinycolor2';
 
 export type ColorRamp = {
@@ -6,7 +8,7 @@ export type ColorRamp = {
 };
 
 interface RampColorProps {
-  name: string;
+  name: keyof Colors;
   startColor: string;
   step?: number;
 }
@@ -35,19 +37,21 @@ export default function rampColor({
     ...reduce(
       tints,
       (memo, val, idx) => {
-        memo[`${name}${idx + 1}00`] = val;
+        const key = `${name}${idx + 1}00` as keyof ColorShades;
+        memo[key] = val;
         return memo;
       },
-      {}
+      {} as Partial<ColorShades>
     ),
     [`${name}500`]: color.toRgbString(),
     ...reduce(
       shades,
       (memo, val, idx) => {
-        memo[`${name}${idx + 6}00`] = val;
+        const key = `${name}${idx + 6}00` as keyof ColorShades;
+        memo[key] = val;
         return memo;
       },
-      {}
+      {} as Partial<ColorShades>
     )
   };
 }
