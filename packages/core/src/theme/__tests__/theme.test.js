@@ -4,7 +4,7 @@ describe('theme', () => {
   test('default theme', () => {
     const theme = genTheme();
 
-    // console.log('@-->theme', theme);
+    console.log('@-->theme', theme);
 
     expect(theme).toEqual({
       // basic colors
@@ -152,6 +152,21 @@ describe('theme', () => {
         lg: 992,
         xl: 1200,
         xxl: 1400
+      },
+
+      // borders
+      borders: {
+        xs: {
+          borderWidth: '1px',
+          borderColor: 'rgb(241, 242, 244)',
+          borderRadius: '0.2rem'
+        },
+        md: {
+          borderRadius: '0.25rem'
+        },
+        lg: {
+          borderRadius: '0.3rem'
+        }
       }
     });
   });
