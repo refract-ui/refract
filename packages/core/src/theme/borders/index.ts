@@ -37,7 +37,7 @@ export default function borders({
   const defaultBorders: Borders = {
     xs: {
       borderWidth: '1px',
-      borderColor: colors.gray300,
+      borderColor: colorShades.gray300,
       borderRadius: '0.2rem'
     },
     md: {

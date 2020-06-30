@@ -8,7 +8,7 @@ describe('colors', () => {
 
   test('overrides specified color values', () => {
     const red = 'rgba(255, 0, 0, 0.8)';
-    const result = colors({ red });
+    const result = colors({ overrides: { red } });
     expect(result).toEqual({
       ...defaultColors,
       red

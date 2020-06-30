@@ -46,13 +46,14 @@ export default function theme({
   borders: borderOverrides
 }: ThemeProps = {}): Theme {
   const colors = genColors({ overrides: colorOverrides });
-  const themeColors = genThemeColors({
-    colors,
-    overrides: themeColorOverrides
-  });
   const colorShades = genColorShades({
     colors,
     overrides: colorShadeOverrides
+  });
+  const themeColors = genThemeColors({
+    colors,
+    colorShades,
+    overrides: themeColorOverrides
   });
   const spacing = genSpacing({ overrides: spacingOverrides });
   const breakpoints = genBreakpoints({ overrides: breakpointOverrides });

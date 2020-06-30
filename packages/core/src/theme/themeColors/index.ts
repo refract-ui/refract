@@ -1,4 +1,5 @@
 import { defaults, isFunction } from 'lodash';
+import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 
 export type ThemeColors = {
@@ -14,11 +15,13 @@ export type ThemeColors = {
 
 export interface ThemeColorOverrideProps {
   colors: Colors;
+  colorShades: ColorShades;
   defaults: ThemeColors;
 }
 
 interface ThemeColorProps {
   colors: Colors;
+  colorShades: ColorShades;
   overrides:
     | ((props: ThemeColorOverrideProps) => ThemeColors)
     | Partial<ThemeColors>;
@@ -26,21 +29,22 @@ interface ThemeColorProps {
 
 export default function themeColors({
   colors,
+  colorShades,
   overrides = {}
 }: ThemeColorProps): ThemeColors {
   const defaultThemeColors: ThemeColors = {
     primary: colors.blue,
-    secondary: colors.gray600,
+    secondary: colorShades.gray600,
     success: colors.green,
     info: colors.cyan,
     warning: colors.yellow,
     danger: colors.red,
-    light: colors.gray100,
-    dark: colors.gray800
+    light: colorShades.gray100,
+    dark: colorShades.gray800
   };
 
   if (isFunction(overrides)) {
-    return overrides({ colors, defaults: defaultThemeColors });
+    return overrides({ colors, colorShades, defaults: defaultThemeColors });
   }
 
   return defaults(overrides, defaultThemeColors);

@@ -3,6 +3,16 @@ import { colorNames, Colors } from '../colors';
 import rampColor from '../../utils/rampColor';
 
 export type ColorShades = {
+  gray100: string;
+  gray200: string;
+  gray300: string;
+  gray400: string;
+  gray500: string;
+  gray600: string;
+  gray700: string;
+  gray800: string;
+  gray900: string;
+
   blue100: string;
   blue200: string;
   blue300: string;
