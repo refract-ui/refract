@@ -167,6 +167,14 @@ describe('theme', () => {
         lg: {
           borderRadius: '0.3rem'
         }
+      },
+
+      body: {
+        xs: {
+          bodyBg: '#ffffff',
+          bodyColor: 'rgb(89, 99, 110)',
+          bodyTextAlign: null
+        }
       }
     });
   });

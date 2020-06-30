@@ -13,6 +13,7 @@ import genBreakpoints, {
   BreakpointOverrideProps
 } from './breakpoints';
 import genBorders, { Borders, BorderOverrideProps } from './borders';
+import genBody, { Body, BodyOverrideProps } from './body';
 
 interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
@@ -27,6 +28,7 @@ interface ThemeProps {
     | ((props: BreakpointOverrideProps) => Breakpoints)
     | Partial<Breakpoints>;
   borders?: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
+  body?: ((props: BodyOverrideProps) => Body) | Partial<Body>;
 }
 
 export type Theme = Colors &
@@ -35,6 +37,7 @@ export type Theme = Colors &
     spacing: Spacing;
     breakpoints: Breakpoints;
     borders: Borders;
+    body: Body;
   };
 
 export default function theme({
@@ -43,7 +46,8 @@ export default function theme({
   colorShades: colorShadeOverrides,
   spacing: spacingOverrides,
   breakpoints: breakpointOverrides,
-  borders: borderOverrides
+  borders: borderOverrides,
+  body: bodyOverrides
 }: ThemeProps = {}): Theme {
   const colors = genColors({ overrides: colorOverrides });
   const colorShades = genColorShades({
@@ -62,6 +66,7 @@ export default function theme({
     colorShades,
     overrides: borderOverrides
   });
+  const body = genBody({ colors, colorShades, overrides: bodyOverrides });
 
   return {
     ...colors,
@@ -69,6 +74,7 @@ export default function theme({
     ...colorShades,
     spacing,
     breakpoints,
-    borders
+    borders,
+    body
   };
 }
