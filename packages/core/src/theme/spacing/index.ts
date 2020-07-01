@@ -36,7 +36,7 @@ function calculateSpacing(basis: number): Spacing {
       (memo, k, v) => {
         return {
           ...memo,
-          [k]: `${v}rem`
+          [v]: `${k}rem`
         };
       },
       {} as Spacing

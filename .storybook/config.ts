@@ -1,17 +1,15 @@
 import { addDecorator, configure } from '@storybook/react';
 import { withThemesProvider } from 'themeprovider-storybook';
-import { theme } from '../packages/core/src';
+import getTheme from '../packages/core/src/theme';
+
+const theme = getTheme();
+
+console.log('theme', theme);
 
 const themes = [
     {
         name: 'default',
         ...theme
-    },
-    {
-        name: 'secondary',
-        colors: {
-            primary: 'red'
-        }
     }
 ]
 

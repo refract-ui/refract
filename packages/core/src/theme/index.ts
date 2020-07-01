@@ -33,7 +33,7 @@ export type Theme = Colors &
   ThemeColors &
   ColorShades & {
     spacing: Spacing;
-    breakpoints: Breakpoints;
+    // breakpoints: Breakpoints;
     borders: Borders;
   };
 
@@ -55,7 +55,7 @@ export default function theme({
     overrides: colorShadeOverrides
   });
   const spacing = genSpacing({ overrides: spacingOverrides });
-  const breakpoints = genBreakpoints({ overrides: breakpointOverrides });
+  // const breakpoints = genBreakpoints({ overrides: breakpointOverrides });
   const borders = genBorders({
     colors,
     colorShades,
@@ -67,7 +67,7 @@ export default function theme({
     ...themeColors,
     ...colorShades,
     spacing,
-    breakpoints,
+    // breakpoints,
     borders
   };
 }
