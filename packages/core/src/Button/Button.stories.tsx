@@ -15,5 +15,11 @@ storiesOf('Button', module).add('test', () => (
     <br />
 
     <Button extendTheme={{ backgroundColor: 'crimson' }}>extended</Button>
+
+    <br />
+
+    <Button extendTheme={{ mdOnly: { backgroundColor: 'pink' } }}>
+      pink at md
+    </Button>
   </>
 ));

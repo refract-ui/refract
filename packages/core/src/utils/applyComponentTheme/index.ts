@@ -1,7 +1,7 @@
-import { map } from 'lodash';
+import { map, sortBy, indexOf, toPairs } from 'lodash';
 import { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ThemeBreakpoints } from '../../utils/componentThemeBreakpoints';
-import { MediaQueries } from '../../theme/mediaQueries';
+import { MediaQueries, breakpointKeys } from '../../theme/mediaQueries';
 import { Theme } from '../../theme';
 
 interface ApplyComponentThemeProps<T> {
@@ -15,7 +15,13 @@ export default function applyComponentTheme<T>({
   breakpoints,
   applyThemeBreakpoint
 }: ApplyComponentThemeProps<T>): (() => FlattenSimpleInterpolation)[] {
-  return map(breakpoints, (val: T, breakpoint: keyof MediaQueries) => () =>
-    theme.mq[breakpoint]`${applyThemeBreakpoint(val)}`
+  const sortedBreakpoints = sortBy(toPairs(breakpoints), ([key]) =>
+    indexOf(breakpointKeys, key)
+  );
+
+  return map(sortedBreakpoints, ([breakpoint, val]) => () =>
+    theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
+      val as T
+    )}`
   );
 }

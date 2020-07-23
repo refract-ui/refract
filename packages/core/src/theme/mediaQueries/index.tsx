@@ -11,8 +11,8 @@ export const sizeKeys = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
 
 export const breakpointKeys = [
   ...sizeKeys,
-  ...sizeKeys.map(s => `${s}Only`),
-  ...sizeKeys.map(s => `lt${upperFirst(s)}`)
+  ...sizeKeys.map(s => `lt${upperFirst(s)}`),
+  ...sizeKeys.map(s => `${s}Only`)
 ];
 
 export type StyledCssInterpolator = (
@@ -62,17 +62,17 @@ export default function mq({
 
       if (lastSize) {
         const ltKey = `lt${upperFirst(size)}` as keyof MediaQueries;
-        const onlyKey = `${size}Only` as keyof MediaQueries;
+        const onlyKey = `${lastSize}Only` as keyof MediaQueries;
+        const ltSize = breakpoints[size] - 1;
+        const gtSize = breakpoints[lastSize];
         memo[ltKey] = ((...args) => css`
-          @media (max-width: ${breakpoints[size] - 1}px) {
+          @media (max-width: ${ltSize}px) {
             ${css(...args)}
           }
         `) as StyledCssInterpolator;
 
         memo[onlyKey] = ((...args) => css`
-          @media (min-width: ${breakpoints[
-              lastSize
-            ]}px) and (max-width: ${breakpoints[size] - 1}px) {
+          @media (min-width: ${gtSize}px) and (max-width: ${ltSize}px) {
             ${css(...args)}
           }
         `) as StyledCssInterpolator;
