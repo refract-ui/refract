@@ -3,6 +3,7 @@ import genColorShades, {
   ColorShades,
   ColorShadeOverrideProps
 } from './colorShades';
+import { FlattenSimpleInterpolation } from 'styled-components';
 import genThemeColors, {
   ThemeColors,
   ThemeColorOverrideProps
@@ -13,9 +14,10 @@ import genBreakpoints, {
   BreakpointOverrideProps
 } from './breakpoints';
 import genBorders, { Borders, BorderOverrideProps } from './borders';
-import genBody, { Body, BodyOverrideProps } from './body';
+import genMediaQueries, { MediaQueries } from './mediaQueries';
+import { ThemeBreakpoints } from '../utils/componentThemeBreakpoints';
 
-interface ThemeProps {
+export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
   themeColors?:
     | ((props: ThemeColorOverrideProps) => ThemeColors)
@@ -28,27 +30,32 @@ interface ThemeProps {
     | ((props: BreakpointOverrideProps) => Breakpoints)
     | Partial<Breakpoints>;
   borders?: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
-  body?: ((props: BodyOverrideProps) => Body) | Partial<Body>;
 }
 
 export type Theme = Colors &
   ThemeColors &
   ColorShades & {
+    settings: ThemeProps;
     spacing: Spacing;
     breakpoints: Breakpoints;
     borders: Borders;
-    body: Body;
+    mq: MediaQueries;
   };
 
-export default function theme({
-  colors: colorOverrides,
-  themeColors: themeColorOverrides,
-  colorShades: colorShadeOverrides,
-  spacing: spacingOverrides,
-  breakpoints: breakpointOverrides,
-  borders: borderOverrides,
-  body: bodyOverrides
-}: ThemeProps = {}): Theme {
+export type ThemeComponent = {
+  componentCss: (() => FlattenSimpleInterpolation)[];
+};
+
+export default function theme(settings: ThemeProps = {}): Theme {
+  const {
+    colors: colorOverrides,
+    themeColors: themeColorOverrides,
+    colorShades: colorShadeOverrides,
+    spacing: spacingOverrides,
+    breakpoints: breakpointOverrides,
+    borders: borderOverrides
+  } = settings;
+
   const colors = genColors({ overrides: colorOverrides });
   const colorShades = genColorShades({
     colors,
@@ -66,15 +73,17 @@ export default function theme({
     colorShades,
     overrides: borderOverrides
   });
-  const body = genBody({ colors, colorShades, overrides: bodyOverrides });
+
+  const mq = genMediaQueries({ breakpoints });
 
   return {
+    settings,
     ...colors,
     ...themeColors,
     ...colorShades,
     spacing,
     breakpoints,
     borders,
-    body
+    mq
   };
 }

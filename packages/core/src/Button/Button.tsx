@@ -1,20 +1,124 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useContext } from 'react';
+import styled, { css, ThemeContext } from 'styled-components';
+import { Theme, ThemeComponent } from '../theme';
+import { ThemeColors } from '../theme/themeColors';
+import {
+  ButtonThemeBase,
+  ButtonThemeBreakpoint,
+  genButtonTheme
+} from '../theme/buttons';
+import { applyBorderStyle } from '../theme/borders';
+import {
+  ExtendTheme,
+  extendComponentTheme
+} from '../utils/componentThemeBreakpoints';
+import applyComponentTheme from '../utils/applyComponentTheme';
 
-type Props = {
-  color?: string;
-  onClick?: any;
+const StyledButton = styled.button<ThemeComponent>`
+  ${({ componentCss }) => componentCss};
+`;
+
+interface ButtonProps {
+  onClick?: () => void;
   children: React.ReactNode;
-};
+  theme?: Theme;
+  extendTheme?: ExtendTheme<ButtonThemeBreakpoint>;
+  color?: keyof ThemeColors;
+}
 
-const StyledButton = styled.button``;
+function applyThemeState(props: Partial<ButtonThemeBase>) {
+  return css`
+    ${props.border && applyBorderStyle(props.border)}
 
-function Button({ color, children, onClick }: Props) {
+    ${
+      props.px &&
+      css`
+        padding-left: ${props.px};
+        padding-right: ${props.px};
+      `
+    }
+
+    ${
+      props.py &&
+      css`
+        padding-top: ${props.py};
+        padding-bottom: ${props.py};
+      `
+    }
+
+    ${
+      props.backgroundColor &&
+      css`
+        background-color: ${props.backgroundColor};
+      `
+    }
+
+    ${
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `
+    }
+  `;
+}
+
+function applyThemeBreakpoint(props: ButtonThemeBreakpoint) {
+  return css`
+    ${applyThemeState(props)};
+
+    ${props._hover &&
+    css`
+      :hover {
+        ${applyThemeState(props._hover(props))};
+      }
+    `}
+
+    ${props._active &&
+    css`
+      :active {
+        ${applyThemeState(props._active(props))};
+      }
+    `}
+  `;
+}
+
+const Button: React.FC<ButtonProps> = ({
+  children,
+  onClick,
+  theme: themeProps,
+  extendTheme,
+  color
+}) => {
+  const themeContext = useContext(ThemeContext);
+
+  // start with the global theme, either from context or passed in as a prop
+  const theme = themeProps || themeContext;
+
+  // use the global theme to generate the default theme settings
+  const defaultComponentTheme = genButtonTheme({
+    theme,
+    color
+  });
+
+  // extend the global theme settings with any component-specific overrides
+  const extendedTheme = extendComponentTheme<ButtonThemeBreakpoint>({
+    defaultComponentTheme,
+    extendTheme
+  });
+
+  // use the extended theme along with the `applyThemeBreakpoint` function
+  // specific to this method to generate the final style for this component
+  const componentCss = applyComponentTheme<ButtonThemeBreakpoint>({
+    theme,
+    breakpoints: extendedTheme,
+    applyThemeBreakpoint
+  });
+
   return (
-    <StyledButton color={color} onClick={onClick}>
-      <React.Fragment>{children}</React.Fragment>
+    <StyledButton onClick={onClick} componentCss={componentCss}>
+      {children}
     </StyledButton>
   );
-}
+};
 
 export default Button;

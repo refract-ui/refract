@@ -10,7 +10,7 @@ A monorepo component library built on typescript, styled-components, and styled-
 - [x]: set up storybook to load all components in monorepo
 - [X]: set up type for theme
 - [X]: set up theme object and storybookwrapper
-- [ ]: build out button package
+- [-]: build out button package
 - [ ]: build out pagination package (should rely on buttons)
 - [ ]: set up jest
 - [ ]: set up test runner using github actions

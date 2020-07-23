@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.10.1",
+    "babel-plugin-styled-components": "^1.10.7",
     "jest": "^26.1.0"
   },
   "scripts": {

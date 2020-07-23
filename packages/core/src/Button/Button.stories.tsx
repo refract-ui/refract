@@ -5,5 +5,15 @@ import { action } from '@storybook/addon-actions';
 import Button from './Button';
 
 storiesOf('Button', module).add('test', () => (
-  <Button onClick={action('clicked!')}>test</Button>
+  <>
+    <Button onClick={action('clicked!')}>default</Button>
+
+    <br />
+
+    <Button color="dark">warning</Button>
+
+    <br />
+
+    <Button extendTheme={{ backgroundColor: 'crimson' }}>extended</Button>
+  </>
 ));
