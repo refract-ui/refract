@@ -1,20 +1,32 @@
 import { map, sortBy, indexOf, toPairs } from 'lodash';
 import { css, FlattenSimpleInterpolation } from 'styled-components';
-import { ThemeBreakpoints } from '../../utils/componentThemeBreakpoints';
+import {
+  extendComponentTheme,
+  ExtendTheme,
+  ThemeBreakpoints
+} from '../../utils/componentThemeBreakpoints';
 import { MediaQueries, breakpointKeys } from '../../theme/mediaQueries';
 import { Theme } from '../../theme';
 
 interface ApplyComponentThemeProps<T> {
   theme: Theme;
-  breakpoints: ThemeBreakpoints<T>;
+  defaultComponentTheme: ThemeBreakpoints<T>;
+  extendTheme?: ExtendTheme<T>;
   applyThemeBreakpoint: (props: T) => FlattenSimpleInterpolation;
 }
 
 export default function applyComponentTheme<T>({
   theme,
-  breakpoints,
+  defaultComponentTheme,
+  extendTheme,
   applyThemeBreakpoint
 }: ApplyComponentThemeProps<T>): (() => FlattenSimpleInterpolation)[] {
+  // extend the global theme settings with any component-specific overrides
+  const breakpoints = extendComponentTheme<T>({
+    defaultComponentTheme,
+    extendTheme
+  });
+
   const sortedBreakpoints = sortBy(toPairs(breakpoints), ([key]) =>
     indexOf(breakpointKeys, key)
   );

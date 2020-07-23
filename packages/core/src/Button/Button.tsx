@@ -8,10 +8,7 @@ import {
   genButtonTheme
 } from '../theme/buttons';
 import { applyBorderStyle } from '../theme/borders';
-import {
-  ExtendTheme,
-  extendComponentTheme
-} from '../utils/componentThemeBreakpoints';
+import { ExtendTheme } from '../utils/componentThemeBreakpoints';
 import applyComponentTheme from '../utils/applyComponentTheme';
 
 const StyledButton = styled.button<ThemeComponent>`
@@ -100,17 +97,12 @@ const Button: React.FC<ButtonProps> = ({
     color
   });
 
-  // extend the global theme settings with any component-specific overrides
-  const extendedTheme = extendComponentTheme<ButtonThemeBreakpoint>({
-    defaultComponentTheme,
-    extendTheme
-  });
-
   // use the extended theme along with the `applyThemeBreakpoint` function
   // specific to this method to generate the final style for this component
   const componentCss = applyComponentTheme<ButtonThemeBreakpoint>({
     theme,
-    breakpoints: extendedTheme,
+    defaultComponentTheme,
+    extendTheme,
     applyThemeBreakpoint
   });
 
