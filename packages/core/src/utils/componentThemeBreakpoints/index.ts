@@ -23,10 +23,22 @@ export type ThemeBreakpoints<T> = {
   ltXxl?: Partial<T>;
 };
 
-export type ExtendTheme<T> = Partial<T> | Partial<ThemeBreakpoints<T>>;
+type ThemeExtensionHelperMethods = {
+  contrastColor: (color: string) => string;
+};
+
+export type ThemeExtension<T> = {
+  [P in keyof T]:
+    | Partial<ThemeExtension<T>>
+    | T[P]
+    | ((props: Partial<T & ThemeExtensionHelperMethods>) => T[P]);
+};
+
+export type ExtendTheme<T> = Partial<ThemeBreakpoints<ThemeExtension<T>>> &
+  Partial<T>;
 
 export type ComponentThemeProps<T> = {
-  defaultComponentTheme: ThemeBreakpoints<T>;
+  defaultComponentTheme: ExtendTheme<T>;
   extendTheme: ExtendTheme<T>;
 };
 

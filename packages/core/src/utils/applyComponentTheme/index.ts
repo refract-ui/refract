@@ -1,18 +1,17 @@
 import { map, sortBy, indexOf, toPairs } from 'lodash';
-import { css, FlattenSimpleInterpolation } from 'styled-components';
+import { FlattenSimpleInterpolation } from 'styled-components';
 import {
   extendComponentTheme,
-  ExtendTheme,
-  ThemeBreakpoints
+  ExtendTheme
 } from '../../utils/componentThemeBreakpoints';
 import { MediaQueries, breakpointKeys } from '../../theme/mediaQueries';
 import { Theme } from '../../theme';
 
 interface ApplyComponentThemeProps<T> {
   theme: Theme;
-  defaultComponentTheme: ThemeBreakpoints<T>;
+  defaultComponentTheme: ExtendTheme<T>;
   extendTheme?: ExtendTheme<T>;
-  applyThemeBreakpoint: (props: T) => FlattenSimpleInterpolation;
+  applyThemeBreakpoint: (theme: Theme, props: T) => FlattenSimpleInterpolation;
 }
 
 export default function applyComponentTheme<T>({
@@ -33,6 +32,7 @@ export default function applyComponentTheme<T>({
 
   return map(sortedBreakpoints, ([breakpoint, val]) => () =>
     theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
+      theme,
       val as T
     )}`
   );

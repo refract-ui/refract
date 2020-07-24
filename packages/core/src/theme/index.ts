@@ -15,7 +15,6 @@ import genBreakpoints, {
 } from './breakpoints';
 import genBorders, { Borders, BorderOverrideProps } from './borders';
 import genMediaQueries, { MediaQueries } from './mediaQueries';
-import { ThemeBreakpoints } from '../utils/componentThemeBreakpoints';
 
 export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;

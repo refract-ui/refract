@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled, { css, ThemeContext } from 'styled-components';
 import { Theme, ThemeComponent } from '../theme';
 import { ThemeColors } from '../theme/themeColors';
+import lightenOrDarken from '../utils/lightenOrDarken';
 import {
   ButtonThemeBase,
   ButtonThemeBreakpoint,
@@ -10,6 +11,7 @@ import {
 import { applyBorderStyle } from '../theme/borders';
 import { ExtendTheme } from '../utils/componentThemeBreakpoints';
 import applyComponentTheme from '../utils/applyComponentTheme';
+import applyBreakpointStyles from '../utils/applyBreakpointStyles';
 
 const StyledButton = styled.button<ThemeComponent>`
   ${({ componentCss }) => componentCss};
@@ -23,60 +25,43 @@ interface ButtonProps {
   color?: keyof ThemeColors;
 }
 
-function applyThemeState(props: Partial<ButtonThemeBase>) {
-  return css`
-    ${props.border && applyBorderStyle(props.border)}
+function applyThemeBreakpoint(theme: Theme, props: ButtonThemeBreakpoint) {
+  return applyBreakpointStyles<ButtonThemeBreakpoint>({
+    theme,
+    props,
+    cascade: {
+      backgroundColor: {
+        _hover: ({ backgroundColor }) =>
+          lightenOrDarken({
+            color: backgroundColor,
+            amount: 5
+          }),
 
-    ${
-      props.px &&
-      css`
-        padding-left: ${props.px};
-        padding-right: ${props.px};
-      `
-    }
-
-    ${
-      props.py &&
-      css`
-        padding-top: ${props.py};
-        padding-bottom: ${props.py};
-      `
-    }
-
-    ${
-      props.backgroundColor &&
-      css`
-        background-color: ${props.backgroundColor};
-      `
-    }
-
-    ${
-      props.textColor &&
-      css`
-        color: ${props.textColor};
-      `
-    }
-  `;
-}
-
-function applyThemeBreakpoint(props: ButtonThemeBreakpoint) {
-  return css`
-    ${applyThemeState(props)};
-
-    ${props._hover &&
-    css`
-      :hover {
-        ${applyThemeState(props._hover(props))};
+        _active: ({ _hover: { backgroundColor } }) =>
+          lightenOrDarken({
+            color: backgroundColor as string,
+            amount: 5
+          })
       }
-    `}
-
-    ${props._active &&
-    css`
-      :active {
-        ${applyThemeState(props._active(props))};
-      }
-    `}
-  `;
+    },
+    apply: {
+      backgroundColor: ({ backgroundColor }) => css`
+        background-color: ${backgroundColor};
+      `,
+      textColor: ({ backgroundColor, contrastColor }) => css`
+        color: ${contrastColor(backgroundColor)};
+      `,
+      border: props => applyBorderStyle(props.border),
+      px: ({ px }) => css`
+        padding-left: ${px};
+        padding-right: ${px};
+      `,
+      py: ({ py }) => css`
+        padding-top: ${py};
+        padding-bottom: ${py};
+      `
+    }
+  });
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -92,10 +77,7 @@ const Button: React.FC<ButtonProps> = ({
   const theme = themeProps || themeContext;
 
   // use the global theme to generate the default theme settings
-  const defaultComponentTheme = genButtonTheme({
-    theme,
-    color
-  });
+  const defaultComponentTheme = genButtonTheme({ theme, color });
 
   // use the extended theme along with the `applyThemeBreakpoint` function
   // specific to this method to generate the final style for this component

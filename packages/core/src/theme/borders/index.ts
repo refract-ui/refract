@@ -33,6 +33,10 @@ interface BorderProps {
 export function applyBorderStyle(
   border: Partial<BorderBreakpointStyle>
 ): FlattenSimpleInterpolation {
+  if (!border) {
+    return undefined;
+  }
+
   return css`
     ${
       border.borderWidth &&

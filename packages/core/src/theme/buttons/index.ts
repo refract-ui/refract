@@ -1,9 +1,11 @@
-import { ThemeBreakpoints } from '../../utils/componentThemeBreakpoints';
+import {
+  ThemeExtension,
+  ExtendTheme
+} from '../../utils/componentThemeBreakpoints';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 import { Theme } from '..';
 import { ThemeColors } from '../themeColors';
 import { BorderBreakpointStyle } from '../borders';
-import contrastColor from '../../utils/contrastColor';
 
 export type ButtonThemeBase = {
   backgroundColor: string;
@@ -15,8 +17,8 @@ export type ButtonThemeBase = {
 };
 
 export type ButtonThemeBreakpoint = ButtonThemeBase & {
-  _hover: (base: ButtonThemeBase) => Partial<ButtonThemeBase>;
-  _active: (base: ButtonThemeBase) => Partial<ButtonThemeBase>;
+  _hover?: ThemeExtension<ButtonThemeBreakpoint>;
+  _active?: ThemeExtension<ButtonThemeBreakpoint>;
 };
 
 export function genButtonTheme({
@@ -25,38 +27,21 @@ export function genButtonTheme({
 }: {
   theme: Theme;
   color: keyof ThemeColors;
-}): ThemeBreakpoints<ButtonThemeBreakpoint> {
-  const backgroundColor = theme[color];
+}): ExtendTheme<ButtonThemeBreakpoint> {
+  return {
+    xs: {
+      backgroundColor: theme[color],
+      textColor: ({ contrastColor, backgroundColor }) =>
+        contrastColor(backgroundColor),
+      border: theme.borders.xs,
+      px: `${theme.spacing['3']}`,
+      py: `${theme.spacing['2']}`
+    },
 
-  const textColor = contrastColor({ theme, color: backgroundColor });
-
-  const xs = {
-    backgroundColor,
-    textColor,
-    border: theme.borders.xs,
-    px: `${theme.spacing['3']}`,
-    py: `${theme.spacing['2']}`,
-
-    _hover: base => ({
-      backgroundColor: lightenOrDarken({
-        color: base.backgroundColor,
-        amount: 10
-      })
-    }),
-
-    _active: base => ({
-      backgroundColor: lightenOrDarken({
-        color: base.backgroundColor,
-        amount: 15
-      })
-    })
-  } as ButtonThemeBreakpoint;
-
-  const md = {
-    border: theme.borders.md,
-    px: `${theme.spacing['4']}`,
-    py: `${theme.spacing['3']}`
+    md: {
+      border: theme.borders.md,
+      px: `${theme.spacing['4']}`,
+      py: `${theme.spacing['3']}`
+    }
   };
-
-  return { xs, md };
 }
