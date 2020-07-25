@@ -2,18 +2,14 @@ import {
   get,
   set,
   each,
-  compact,
   reduce,
   isFunction,
   keys,
   omitBy,
   pick,
-  difference,
-  isEmpty,
   uniq,
   values,
-  flatten,
-  includes
+  flatten
 } from 'lodash';
 import {
   css,
@@ -175,8 +171,6 @@ export default function applyBreakpointStyles<T>({
       }
     });
   });
-
-  console.log('@-->props', props);
 
   const computedProps = computeProps<T>({ props, helperMethods });
 

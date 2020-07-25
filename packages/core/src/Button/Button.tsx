@@ -3,11 +3,7 @@ import styled, { css, ThemeContext } from 'styled-components';
 import { Theme, ThemeComponent } from '../theme';
 import { ThemeColors } from '../theme/themeColors';
 import lightenOrDarken from '../utils/lightenOrDarken';
-import {
-  ButtonThemeBase,
-  ButtonThemeBreakpoint,
-  genButtonTheme
-} from '../theme/buttons';
+import { ButtonThemeBreakpoint, genButtonTheme } from '../theme/buttons';
 import { applyBorderStyle } from '../theme/borders';
 import { ExtendTheme } from '../utils/componentThemeBreakpoints';
 import applyComponentTheme from '../utils/applyComponentTheme';
@@ -29,21 +25,7 @@ function applyThemeBreakpoint(theme: Theme, props: ButtonThemeBreakpoint) {
   return applyBreakpointStyles<ButtonThemeBreakpoint>({
     theme,
     props,
-    cascade: {
-      backgroundColor: {
-        _hover: ({ backgroundColor }) =>
-          lightenOrDarken({
-            color: backgroundColor,
-            amount: 5
-          }),
 
-        _active: ({ _hover: { backgroundColor } }) =>
-          lightenOrDarken({
-            color: backgroundColor as string,
-            amount: 5
-          })
-      }
-    },
     apply: {
       backgroundColor: ({ backgroundColor }) => css`
         background-color: ${backgroundColor};
@@ -60,6 +42,22 @@ function applyThemeBreakpoint(theme: Theme, props: ButtonThemeBreakpoint) {
         padding-top: ${py};
         padding-bottom: ${py};
       `
+    },
+
+    cascade: {
+      backgroundColor: {
+        _hover: ({ backgroundColor }) =>
+          lightenOrDarken({
+            color: backgroundColor,
+            amount: 5
+          }),
+
+        _active: ({ _hover: { backgroundColor } }) =>
+          lightenOrDarken({
+            color: backgroundColor as string,
+            amount: 5
+          })
+      }
     }
   });
 }

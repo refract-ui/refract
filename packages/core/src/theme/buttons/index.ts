@@ -2,14 +2,12 @@ import {
   ThemeExtension,
   ExtendTheme
 } from '../../utils/componentThemeBreakpoints';
-import lightenOrDarken from '../../utils/lightenOrDarken';
 import { Theme } from '..';
 import { ThemeColors } from '../themeColors';
 import { BorderBreakpointStyle } from '../borders';
 
 export type ButtonThemeBase = {
   backgroundColor: string;
-  // fontSize: string; TODO: set up font size theme defaults
   px: string;
   py: string;
   border: Partial<BorderBreakpointStyle>;
