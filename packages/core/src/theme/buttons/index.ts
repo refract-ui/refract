@@ -1,6 +1,7 @@
 import {
-  ThemeExtension,
-  ExtendTheme
+  PseudoClass,
+  ExtendTheme,
+  ComponentThemeBreakpoint
 } from '../../utils/componentThemeBreakpoints';
 import { Theme } from '..';
 import { ThemeColors } from '../themeColors';
@@ -14,10 +15,10 @@ export type ButtonThemeBase = {
   textColor?: string;
 };
 
-export type ButtonThemeBreakpoint = ButtonThemeBase & {
-  _hover?: ThemeExtension<ButtonThemeBreakpoint>;
-  _active?: ThemeExtension<ButtonThemeBreakpoint>;
-};
+export type ButtonThemeBreakpoint = ComponentThemeBreakpoint<
+  ButtonThemeBase,
+  '_hover' | '_active'
+>;
 
 export function genButtonTheme({
   theme,

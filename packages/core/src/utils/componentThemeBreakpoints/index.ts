@@ -27,12 +27,19 @@ type ThemeExtensionHelperMethods = {
   contrastColor: (color: string) => string;
 };
 
+export type PseudoClass<T> = Partial<T>;
+
 export type ThemeExtension<T> = {
   [P in keyof T]:
-    | Partial<ThemeExtension<T>>
+    | PseudoClass<T>
     | T[P]
     | ((props: Partial<T & ThemeExtensionHelperMethods>) => T[P]);
 };
+
+export type ComponentThemeBreakpoint<T, PC extends string> = T &
+  {
+    [P in PC]?: PseudoClass<T>;
+  };
 
 export type ExtendTheme<T> = Partial<ThemeBreakpoints<ThemeExtension<T>>> &
   Partial<T>;

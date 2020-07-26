@@ -17,7 +17,10 @@ import {
   FlattenSimpleInterpolation
 } from 'styled-components';
 import { OmitByValue, PickByValue } from 'utility-types';
-import { ThemeExtension } from '../../utils/componentThemeBreakpoints';
+import {
+  ThemeExtension,
+  PseudoClass
+} from '../../utils/componentThemeBreakpoints';
 import contrastColor from '../../utils/contrastColor';
 import { Theme } from '../../theme';
 
@@ -78,7 +81,7 @@ function computeProps<T>({
 }
 
 type ThemePropStyleMapping<T> = {
-  [P in keyof OmitByValue<T, ThemeExtension<T>>]:
+  [P in keyof OmitByValue<T, PseudoClass<T>>]:
     | ((args: ThemeStyleDirective<T>) => FlattenSimpleInterpolation)
     | FlattenSimpleInterpolation;
 };
@@ -124,14 +127,14 @@ function applyStyles<T>({
 }
 
 type ThemeCascadeStateMapping<T, U> = {
-  [P in keyof PickByValue<T, ThemeExtension<T>>]:
+  [P in keyof PickByValue<T, PseudoClass<T>>]:
     | ((args: ThemeStyleDirective<T>) => U)
     | U;
 };
 
 type CascadeStateSettings<T> = {
   [P in keyof Partial<
-    OmitByValue<T, ThemeExtension<T>>
+    OmitByValue<T, PseudoClass<T>>
   >]: ThemeCascadeStateMapping<T, T[P]>;
 };
 
@@ -161,7 +164,7 @@ export default function applyBreakpointStyles<T>({
   each(cascadableProps, (val, propName: string) => {
     const stateKeys = keys(val);
 
-    each(stateKeys, (stateKey: keyof PickByValue<T, ThemeExtension<T>>) => {
+    each(stateKeys, (stateKey: keyof PickByValue<T, PseudoClass<T>>) => {
       if (!props[stateKey]) {
         props[stateKey] = {};
       }
