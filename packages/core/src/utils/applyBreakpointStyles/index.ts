@@ -1,12 +1,11 @@
 import {
+  cloneDeep,
   get,
-  set,
-  each,
   reduce,
   isFunction,
   keys,
   omitBy,
-  pick,
+  reject,
   uniq,
   values,
   flatten
@@ -19,23 +18,12 @@ import {
 import { OmitByValue, PickByValue } from 'utility-types';
 import {
   ThemeExtension,
-  PseudoClass
+  PseudoClass,
+  PseudoClassExtension,
+  ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
 import contrastColor from '../../utils/contrastColor';
 import { Theme } from '../../theme';
-
-type ThemeStyleDirective<T> = Partial<
-  {
-    [P in keyof T]: T[P];
-  }
-> & {
-  theme: Theme;
-  contrastColor: (color: string) => string;
-};
-
-type ThemeHelperMethods = {
-  contrastColor: (c: string) => string;
-};
 
 function isPseudoSelector(key: string): boolean {
   return /^_/.test(key);
@@ -46,8 +34,8 @@ function computeProps<T>({
   helperMethods,
   root
 }: {
-  props: Partial<ThemeExtension<T>>;
-  helperMethods: ThemeHelperMethods;
+  props: Partial<T>;
+  helperMethods: ThemeExtensionHelperMethods;
   root?: Partial<T>;
 }): Partial<T> {
   return reduce(
@@ -59,14 +47,14 @@ function computeProps<T>({
 
       if (isPseudoSelector(key)) {
         memo[key as keyof T] = computeProps<T>({
-          props: val as Partial<ThemeExtension<T>>,
+          props: val as Partial<T>,
           helperMethods,
           root
         }) as T[keyof T];
       } else {
         if (isFunction(val)) {
           const genVal = val as (
-            props: Partial<T> & ThemeHelperMethods
+            props: Partial<T> & ThemeExtensionHelperMethods
           ) => T[keyof T];
           memo[key as keyof T] = genVal({ ...root, ...helperMethods });
         } else {
@@ -81,26 +69,26 @@ function computeProps<T>({
 }
 
 type ThemePropStyleMapping<T> = {
-  [P in keyof OmitByValue<T, PseudoClass<T>>]:
-    | ((args: ThemeStyleDirective<T>) => FlattenSimpleInterpolation)
+  [P in keyof OmitByValue<T, PseudoClassExtension<T>>]:
+    | ((args: T & ThemeExtensionHelperMethods) => FlattenSimpleInterpolation)
     | FlattenSimpleInterpolation;
 };
 
-interface ApplyStyleProps<T> {
+interface ApplyStyleProps<O, T> {
   theme: Theme;
   computedProps: Partial<T>;
   props: Partial<T>;
-  apply: ThemePropStyleMapping<T>;
-  helperMethods: ThemeHelperMethods;
+  apply: ThemePropStyleMapping<O>;
+  helperMethods: ThemeExtensionHelperMethods;
 }
 
-function applyStyles<T>({
+function applyStyles<O, T>({
   theme,
   computedProps,
   props,
   apply,
   helperMethods
-}: ApplyStyleProps<T>): Array<FlattenSimpleInterpolation> {
+}: ApplyStyleProps<O, T>): Array<FlattenSimpleInterpolation> {
   return reduce(
     apply,
     (memo, val, key) => {
@@ -126,54 +114,78 @@ function applyStyles<T>({
   );
 }
 
-type ThemeCascadeStateMapping<T, U> = {
-  [P in keyof PickByValue<T, PseudoClass<T>>]:
-    | ((args: ThemeStyleDirective<T>) => U)
-    | U;
+type ThemeCascadeStateMapping<O, T, P extends keyof O> = {
+  [Q in keyof PickByValue<Partial<T>, PseudoClassExtension<T>>]:
+    | ((args: Partial<O> & ThemeExtensionHelperMethods) => O[P])
+    | O[P];
 };
 
-type CascadeStateSettings<T> = {
-  [P in keyof Partial<
-    OmitByValue<T, PseudoClass<T>>
-  >]: ThemeCascadeStateMapping<T, T[P]>;
+type CascadeStateSettings<O, T> = {
+  [P in keyof OmitByValue<
+    Partial<O>,
+    PseudoClass<O>
+  >]?: ThemeCascadeStateMapping<O, T, P>;
 };
 
-interface ApplyBreakpointStyleProps<T> {
+interface ApplyBreakpointStyleProps<O, T> {
   theme: Theme;
-  props: Partial<ThemeExtension<T>>;
-  apply: ThemePropStyleMapping<T>;
-  cascade?: CascadeStateSettings<T>;
+  props: Partial<T>;
+  apply: ThemePropStyleMapping<O>;
+  cascade: CascadeStateSettings<O, T>;
 }
 
-export default function applyBreakpointStyles<T>({
+export default function applyBreakpointStyles<O, T = ThemeExtension<O>>({
   theme,
-  props,
+  props: passedProps,
   apply,
-  cascade
-}: ApplyBreakpointStyleProps<T>): Array<
+  cascade = {}
+}: ApplyBreakpointStyleProps<O, T>): Array<
   FlattenSimpleInterpolation | SimpleInterpolation
 > {
+  // used cloned instance of props so as not to mutate args
+  const props = cloneDeep(passedProps);
+
+  // define convenience methods passed along to each prop / style mapping
   const helperMethods = {
+    theme,
     contrastColor: (color: string) => contrastColor({ color, theme })
-  } as ThemeHelperMethods;
+  } as ThemeExtensionHelperMethods;
 
-  const cascadableProps = pick(cascade, keys(props));
+  const cascadableProps = reject(Object.keys(props), isPseudoSelector);
 
-  // fill in any missing props with cascaded values
-  // TODO: get types working
-  each(cascadableProps, (val, propName: string) => {
-    const stateKeys = keys(val);
+  // fill in any missing props with cascaded values.
+  // first iterate through all cascadable props
+  for (const prop of Object.keys(cascade)) {
+    if (!props[prop as keyof typeof props]) {
+      continue;
+    }
 
-    each(stateKeys, (stateKey: keyof PickByValue<T, PseudoClass<T>>) => {
+    // iterate through each cascadable state to see if any props are missing
+    for (const stateKey of Object.keys(
+      cascade[prop as keyof typeof cascade]
+    ) as Array<keyof Partial<T>>) {
+      const targetProp = props[prop as keyof typeof props];
+
       if (!props[stateKey]) {
-        props[stateKey] = {};
+        props[stateKey as keyof typeof props] = {} as T[keyof T];
       }
 
-      if (!get(props, [stateKey, propName])) {
-        set(props, [stateKey, propName], get(val, [stateKey]));
+      const cascadeState = cascade[prop as keyof typeof cascade];
+
+      const cascadeVal = cascadeState[
+        stateKey as keyof typeof cascadeState
+      ] as typeof targetProp;
+
+      const existingPropDef = get(props, [stateKey, prop]);
+
+      if (!existingPropDef) {
+        const existingStates = (props[stateKey] || {}) as PseudoClassExtension<
+          T
+        >;
+        existingStates[prop as keyof typeof existingStates] = cascadeVal;
       }
-    });
-  });
+    }
+  }
 
   const computedProps = computeProps<T>({ props, helperMethods });
 
@@ -181,7 +193,7 @@ export default function applyBreakpointStyles<T>({
     isPseudoSelector(key)
   ) as Partial<T>;
 
-  const baseStyles = applyStyles<T>({
+  const baseStyles = applyStyles<O, T>({
     theme,
     props: baseProps,
     computedProps,
@@ -196,11 +208,14 @@ export default function applyBreakpointStyles<T>({
 
   const pseudoStyles = reduce(
     pseudoSelectors,
-    (memo, selectorKey: keyof PickByValue<T, ThemeExtension<T>>) => {
+    (
+      memo,
+      selectorKey: keyof PickByValue<Partial<T>, PseudoClassExtension<T>>
+    ) => {
       const selector = (selectorKey as string).replace(/_/, ':');
-      const selectorProps = computedProps[selectorKey as keyof T] as Partial<T>;
+      const selectorProps = computedProps[selectorKey] as Partial<T>;
 
-      const pseudoStyles = applyStyles<T>({
+      const pseudoStyles = applyStyles<O, T>({
         theme,
         props: { ...selectorProps },
         computedProps,

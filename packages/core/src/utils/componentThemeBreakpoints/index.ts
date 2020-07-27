@@ -1,51 +1,62 @@
 import { omit, pick, defaults, get, defaultsDeep } from 'lodash';
+import { PickByValue, OmitByValue } from 'utility-types';
+import { Theme } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 
-export type ThemeBreakpoints<T> = {
-  xs: T;
-  sm?: Partial<T>;
-  md?: Partial<T>;
-  lg?: Partial<T>;
-  xl?: Partial<T>;
-  xxl?: Partial<T>;
-
-  xsOnly?: Partial<T>;
-  smOnly?: Partial<T>;
-  mdOnly?: Partial<T>;
-  lgOnly?: Partial<T>;
-  xlOnly?: Partial<T>;
-  xxlOnly?: Partial<T>;
-
-  ltSm?: Partial<T>;
-  ltMd?: Partial<T>;
-  ltLg?: Partial<T>;
-  ltXl?: Partial<T>;
-  ltXxl?: Partial<T>;
-};
-
-type ThemeExtensionHelperMethods = {
+export type ThemeExtensionHelperMethods = {
   contrastColor: (color: string) => string;
+  theme: Theme;
 };
 
 export type PseudoClass<T> = Partial<T>;
 
-export type ThemeExtension<T> = {
-  [P in keyof T]:
-    | PseudoClass<T>
-    | T[P]
-    | ((props: Partial<T & ThemeExtensionHelperMethods>) => T[P]);
+export type ThemeStyleDirective<T, P extends keyof T> =
+  | T[P]
+  | ((props: Partial<T & ThemeExtensionHelperMethods>) => T[P]);
+
+export type PseudoClassExtension<T> = {
+  [P in keyof Partial<T>]: ThemeStyleDirective<T, P>;
 };
+
+export type ThemeExtension<T> = {
+  [P in keyof OmitByValue<T, PseudoClass<T>>]: ThemeStyleDirective<T, P>;
+} &
+  {
+    [P in keyof PickByValue<T, PseudoClass<T>>]: PseudoClassExtension<T>;
+  };
 
 export type ComponentThemeBreakpoint<T, PC extends string> = T &
   {
     [P in PC]?: PseudoClass<T>;
   };
 
+export type ThemeBreakpoints<T> = {
+  xs: ThemeExtension<T>;
+  sm?: Partial<ThemeExtension<T>>;
+  md?: Partial<ThemeExtension<T>>;
+  lg?: Partial<ThemeExtension<T>>;
+  xl?: Partial<ThemeExtension<T>>;
+  xxl?: Partial<ThemeExtension<T>>;
+
+  xsOnly?: Partial<ThemeExtension<T>>;
+  smOnly?: Partial<ThemeExtension<T>>;
+  mdOnly?: Partial<ThemeExtension<T>>;
+  lgOnly?: Partial<ThemeExtension<T>>;
+  xlOnly?: Partial<ThemeExtension<T>>;
+  xxlOnly?: Partial<ThemeExtension<T>>;
+
+  ltSm?: Partial<ThemeExtension<T>>;
+  ltMd?: Partial<ThemeExtension<T>>;
+  ltLg?: Partial<ThemeExtension<T>>;
+  ltXl?: Partial<ThemeExtension<T>>;
+  ltXxl?: Partial<ThemeExtension<T>>;
+};
+
 export type ExtendTheme<T> = Partial<ThemeBreakpoints<ThemeExtension<T>>> &
   Partial<T>;
 
 export type ComponentThemeProps<T> = {
-  defaultComponentTheme: ExtendTheme<T>;
+  defaultComponentTheme: ThemeBreakpoints<T>;
   extendTheme: ExtendTheme<T>;
 };
 
@@ -53,18 +64,17 @@ export function extendComponentTheme<T>({
   defaultComponentTheme,
   extendTheme
 }: ComponentThemeProps<T>): ThemeBreakpoints<T> {
-  const breakpointOverrides = pick(extendTheme, breakpointKeys) as Partial<
-    ThemeBreakpoints<T>
-  >;
+  const breakpointOverrides = pick(extendTheme, breakpointKeys);
 
   const baseThemeProps = omit(extendTheme, breakpointKeys) as Partial<T>;
+  const defaultXs = defaultComponentTheme.xs;
 
   // account for situations where breakpoint syntax was not used
   const xs = defaults(
-    get(breakpointOverrides, 'xs', {}),
+    breakpointOverrides.xs || {},
     baseThemeProps,
-    defaultComponentTheme.xs
-  ) as T;
+    defaultXs
+  ) as ThemeExtension<T>;
 
   return defaultsDeep(
     {

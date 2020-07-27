@@ -5,7 +5,10 @@ import { ThemeColors } from '../theme/themeColors';
 import lightenOrDarken from '../utils/lightenOrDarken';
 import { ButtonThemeBreakpoint, genButtonTheme } from '../theme/buttons';
 import { applyBorderStyle } from '../theme/borders';
-import { ExtendTheme } from '../utils/componentThemeBreakpoints';
+import {
+  ExtendTheme,
+  ThemeExtension
+} from '../utils/componentThemeBreakpoints';
 import applyComponentTheme from '../utils/applyComponentTheme';
 import applyBreakpointStyles from '../utils/applyBreakpointStyles';
 
@@ -54,7 +57,7 @@ function applyThemeBreakpoint(theme: Theme, props: ButtonThemeBreakpoint) {
 
         _active: ({ _hover: { backgroundColor } }) =>
           lightenOrDarken({
-            color: backgroundColor as string,
+            color: backgroundColor,
             amount: 5
           })
       }

@@ -1,6 +1,5 @@
 import {
-  PseudoClass,
-  ExtendTheme,
+  ThemeBreakpoints,
   ComponentThemeBreakpoint
 } from '../../utils/componentThemeBreakpoints';
 import { Theme } from '..';
@@ -26,7 +25,7 @@ export function genButtonTheme({
 }: {
   theme: Theme;
   color: keyof ThemeColors;
-}): ExtendTheme<ButtonThemeBreakpoint> {
+}): ThemeBreakpoints<ButtonThemeBreakpoint> {
   return {
     xs: {
       backgroundColor: theme[color],

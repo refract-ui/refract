@@ -2,6 +2,7 @@ import { map, sortBy, indexOf, toPairs } from 'lodash';
 import { FlattenSimpleInterpolation } from 'styled-components';
 import {
   extendComponentTheme,
+  ThemeBreakpoints,
   ExtendTheme
 } from '../../utils/componentThemeBreakpoints';
 import { MediaQueries, breakpointKeys } from '../../theme/mediaQueries';
@@ -9,7 +10,7 @@ import { Theme } from '../../theme';
 
 interface ApplyComponentThemeProps<T> {
   theme: Theme;
-  defaultComponentTheme: ExtendTheme<T>;
+  defaultComponentTheme: ThemeBreakpoints<T>;
   extendTheme?: ExtendTheme<T>;
   applyThemeBreakpoint: (theme: Theme, props: T) => FlattenSimpleInterpolation;
 }
