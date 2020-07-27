@@ -52,8 +52,8 @@ export type ThemeBreakpoints<T> = {
   ltXxl?: Partial<ThemeExtension<T>>;
 };
 
-export type ExtendTheme<T> = Partial<ThemeBreakpoints<ThemeExtension<T>>> &
-  Partial<T>;
+export type ExtendTheme<T> = Partial<ThemeBreakpoints<T>> &
+  Partial<ThemeExtension<T>>;
 
 export type ComponentThemeProps<T> = {
   defaultComponentTheme: ThemeBreakpoints<T>;

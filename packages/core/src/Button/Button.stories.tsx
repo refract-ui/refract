@@ -31,10 +31,11 @@ storiesOf('Button', module).add('test', () => (
 
     <Button
       extendTheme={{
+        backgroundColor: props => props.theme.cyan200,
         mdOnly: {
-          backgroundColor: 'pink',
+          backgroundColor: props => props.theme.red900,
           _hover: {
-            backgroundColor: 'purple'
+            backgroundColor: props => props.theme.cyan300
           },
           _active: {
             backgroundColor: 'chartreuse'
