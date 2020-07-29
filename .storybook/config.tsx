@@ -1,7 +1,7 @@
 import React from 'react';
 import { addDecorator, configure, DecoratorFn } from '@storybook/react';
 // import { withThemesProvider } from 'themeprovider-storybook';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import genTheme from '../packages/core/src/theme';
 
 const defaultTheme = genTheme();
@@ -24,8 +24,20 @@ const themes = [
 addDecorator(withThemesProvider(themes));
 */
 
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Work+Sans&display=swap');
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 12px;
+    color: black;
+  }
+
+`
+
 const ThemeDecorator = ((StoryFn, c) => (
   <ThemeProvider theme={defaultTheme}>
+    <GlobalStyle />
     <StoryFn {...c} />
   </ThemeProvider>
 )) as DecoratorFn;

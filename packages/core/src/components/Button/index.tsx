@@ -7,16 +7,17 @@ import lightenOrDarken from '../../utils/lightenOrDarken';
 
 type ButtonTheme = {
   backgroundColor: string;
+  border: Partial<BorderBreakpointStyle>;
+  height: string;
   px: string;
   py: string;
-  height: string;
-  border: Partial<BorderBreakpointStyle>;
   textColor?: string;
+  width?: string;
 };
 
 type ButtonProps = {
-  onClick?: () => void;
   children: React.ReactNode;
+  onClick?: () => void;
 };
 
 type ButtonVariants = {
@@ -50,7 +51,8 @@ const Button = createThemedComponent<
       }),
       size: ({ size }) => ({
         height: size === 'md' ? '52px' : '42px',
-        py: size === 'md' ? `${theme.spacing['2']}` : `${theme.spacing['1']}`
+        py: size === 'md' ? `${theme.spacing['2']}` : `${theme.spacing['1']}`,
+        width: '100%'
       })
     },
 
@@ -59,25 +61,26 @@ const Button = createThemedComponent<
         backgroundColor: theme[variant.color],
         textColor: ({ contrastColor, backgroundColor }) =>
           contrastColor(backgroundColor),
-        border: theme.borders.xs,
+        border: theme.borders.md,
         height: '42px',
         px: `${theme.spacing['3']}`,
-        py: `${theme.spacing['2']}`
+        py: `${theme.spacing['2']}`,
+        width: '100%'
       },
 
       md: {
-        border: theme.borders.md,
         px: `${theme.spacing['4']}`,
-        py: `${theme.spacing['3']}`
+        py: `${theme.spacing['3']}`,
+        width: '300px'
       }
     },
 
     cascadeStateProps: {
       backgroundColor: {
         _hover: ({ backgroundColor }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 5 }),
+          lightenOrDarken({ color: backgroundColor, amount: 10 }),
         _active: ({ _hover: { backgroundColor } }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 5 })
+          lightenOrDarken({ color: backgroundColor, amount: 10 })
       }
     },
 
@@ -87,11 +90,17 @@ const Button = createThemedComponent<
       `,
       textColor: ({ backgroundColor, contrastColor }) => css`
         color: ${contrastColor(backgroundColor)};
+        font-size: 1rem;
+        line-height: 19px;
       `,
       height: ({ height }) => css`
         height: ${height};
       `,
-      border: props => applyBorderStyle(props.border),
+      border: props =>
+        applyBorderStyle({
+          borderColor: props.backgroundColor,
+          ...props.border
+        }),
       px: ({ px }) => css`
         padding-left: ${px};
         padding-right: ${px};
@@ -99,6 +108,9 @@ const Button = createThemedComponent<
       py: ({ py }) => css`
         padding-top: ${py};
         padding-bottom: ${py};
+      `,
+      width: ({ width }) => css`
+        min-width: ${width};
       `
     }
   })

@@ -73,7 +73,8 @@ export default function borders({
       borderRadius: '0.2rem'
     },
     md: {
-      borderRadius: '0.25rem'
+      borderWidth: '1px',
+      borderRadius: '0.5rem'
     },
     lg: {
       borderRadius: '0.3rem'
