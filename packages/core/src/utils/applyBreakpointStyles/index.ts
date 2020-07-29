@@ -68,7 +68,7 @@ function computeProps<T>({
   );
 }
 
-type ThemePropStyleMapping<T> = {
+export type ThemePropStyleMapping<T> = {
   [P in keyof OmitByValue<T, PseudoClassExtension<T>>]:
     | ((args: T & ThemeExtensionHelperMethods) => FlattenSimpleInterpolation)
     | FlattenSimpleInterpolation;
@@ -120,7 +120,7 @@ type ThemeCascadeStateMapping<O, T, P extends keyof O> = {
     | O[P];
 };
 
-type CascadeStateSettings<O, T> = {
+export type CascadeStateSettings<O, T> = {
   [P in keyof OmitByValue<
     Partial<O>,
     PseudoClass<O>
