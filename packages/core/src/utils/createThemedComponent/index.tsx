@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
-import { ValuesType } from 'utility-types';
+import { ValuesType, PickByValue } from 'utility-types';
 import { Theme, ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
@@ -9,7 +9,8 @@ import {
   ThemeBreakpoints,
   ThemeExtension,
   ComponentThemeBreakpoint,
-  ExtendTheme
+  ExtendTheme,
+  PseudoClass
 } from '../../utils/componentThemeBreakpoints';
 import applyBreakpointStyles, {
   ThemePropStyleMapping,
@@ -43,6 +44,7 @@ interface ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps> {
 
 type CreateThemedComponentProps<TTheme, TVariants, TThemeBreakpoint, TProps> = {
   defaultVariants: TVariants;
+  states: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
   compose: ({
     theme,
     variant
@@ -64,6 +66,7 @@ export default function createThemedComponent<
   TComponentProps = Partial<WithTheme & TExtendedTheme & TVariants>
 >({
   defaultVariants,
+  states,
   compose
 }: CreateThemedComponentProps<
   TTheme,
@@ -91,7 +94,8 @@ export default function createThemedComponent<
 
     const extendThemePropKeys = [
       ...Object.keys(defaultStyleMapping.xs),
-      ...breakpointKeys
+      ...breakpointKeys,
+      ...states
     ];
 
     const extendTheme = pick(props, extendThemePropKeys) as TExtendedTheme;

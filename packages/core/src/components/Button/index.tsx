@@ -37,6 +37,7 @@ const Button = createThemedComponent<
   defaultVariants: {
     color: 'primary'
   },
+  states: ['_hover', '_active'],
   compose: ({ theme, variant }) => ({
     Component: ButtonComponent,
 

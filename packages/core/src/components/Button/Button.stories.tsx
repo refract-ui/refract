@@ -29,6 +29,7 @@ storiesOf('Button', module).add('test', () => (
 
     <Button
       backgroundColor={props => props.theme.cyan200}
+      _hover={{ backgroundColor: props => props.theme.blue }}
       mdOnly={{
         backgroundColor: props => props.theme.red900,
         _hover: {
