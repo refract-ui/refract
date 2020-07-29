@@ -112,10 +112,7 @@ export default function createThemedComponent<
       >;
       const variantVal = genVariant(variantMapArgs);
 
-      defaultStyleMapping.xs = defaultsDeep(
-        { xs: variantVal },
-        defaultStyleMapping.xs
-      );
+      defaultStyleMapping.xs = defaultsDeep(variantVal, defaultStyleMapping.xs);
     }
 
     const componentPropKeys = difference(Object.keys(props), [

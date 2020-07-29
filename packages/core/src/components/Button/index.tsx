@@ -9,6 +9,7 @@ type ButtonTheme = {
   backgroundColor: string;
   px: string;
   py: string;
+  height: string;
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
 };
@@ -20,6 +21,7 @@ type ButtonProps = {
 
 type ButtonVariants = {
   color: keyof ThemeColors;
+  size: 'sm' | 'md';
 };
 
 const ButtonComponent = styled.button<ThemeComponent & ButtonProps>`
@@ -35,7 +37,8 @@ const Button = createThemedComponent<
   ButtonProps
 >({
   defaultVariants: {
-    color: 'primary'
+    color: 'primary',
+    size: 'md'
   },
   states: ['_hover', '_active'],
   compose: ({ theme, variant }) => ({
@@ -44,6 +47,10 @@ const Button = createThemedComponent<
     variantMapping: {
       color: ({ color }) => ({
         backgroundColor: theme[color]
+      }),
+      size: ({ size }) => ({
+        height: size === 'md' ? '52px' : '42px',
+        py: size === 'md' ? `${theme.spacing['2']}` : `${theme.spacing['1']}`
       })
     },
 
@@ -53,6 +60,7 @@ const Button = createThemedComponent<
         textColor: ({ contrastColor, backgroundColor }) =>
           contrastColor(backgroundColor),
         border: theme.borders.xs,
+        height: '42px',
         px: `${theme.spacing['3']}`,
         py: `${theme.spacing['2']}`
       },
@@ -79,6 +87,9 @@ const Button = createThemedComponent<
       `,
       textColor: ({ backgroundColor, contrastColor }) => css`
         color: ${contrastColor(backgroundColor)};
+      `,
+      height: ({ height }) => css`
+        height: ${height};
       `,
       border: props => applyBorderStyle(props.border),
       px: ({ px }) => css`
