@@ -1,8 +1,9 @@
 import { defaults, isFunction } from 'lodash';
+import { css, FlattenSimpleInterpolation } from 'styled-components';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 
-type BorderBreakpointStyle = {
+export type BorderBreakpointStyle = {
   borderWidth: string;
   borderColor: string;
   borderRadius: string;
@@ -29,6 +30,37 @@ interface BorderProps {
   overrides: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
 }
 
+export function applyBorderStyle(
+  border: Partial<BorderBreakpointStyle>
+): FlattenSimpleInterpolation {
+  if (!border) {
+    return undefined;
+  }
+
+  return css`
+    ${
+      border.borderWidth &&
+      css`
+        border-width: ${border.borderWidth};
+      `
+    }
+
+    ${
+      border.borderColor &&
+      css`
+        border-color: ${border.borderColor};
+      `
+    }
+
+    ${
+      border.borderRadius &&
+      css`
+        border-radius: ${border.borderRadius};
+      `
+    }
+  `;
+}
+
 export default function borders({
   colors,
   colorShades,
@@ -37,11 +69,12 @@ export default function borders({
   const defaultBorders: Borders = {
     xs: {
       borderWidth: '1px',
-      borderColor: colors.gray300,
+      borderColor: colorShades.gray300,
       borderRadius: '0.2rem'
     },
     md: {
-      borderRadius: '0.25rem'
+      borderWidth: '1px',
+      borderRadius: '0.5rem'
     },
     lg: {
       borderRadius: '0.3rem'

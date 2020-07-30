@@ -1,4 +1,4 @@
-import { get, reduce, defaults, isFunction } from 'lodash';
+import { defaults, isFunction } from 'lodash';
 
 export type Breakpoints = {
   xs: number;

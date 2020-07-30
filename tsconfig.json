@@ -15,7 +15,7 @@
       "@gfx-components/core": ["core/src"]
     }
   },
-  "include": ["packages/**/*"],
+  "include": ["packages/**/*", "babel.config.js"],
   "exclude": [
     "node_modules",
     "dist"

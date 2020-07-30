@@ -21,15 +21,6 @@ describe('theme', () => {
       green: '#28a745',
       teal: '#20c997',
       cyan: '#17a2b8',
-      gray100: 'rgb(255, 255, 255)',
-      gray200: 'rgb(255, 255, 255)',
-      gray300: 'rgb(241, 242, 244)',
-      gray400: 'rgb(218, 222, 225)',
-      gray500: 'rgb(173, 181, 189)',
-      gray600: 'rgb(150, 161, 171)',
-      gray700: 'rgb(128, 140, 153)',
-      gray800: 'rgb(107, 120, 133)',
-      gray900: 'rgb(89, 99, 110)',
 
       // theme colors
       primary: '#0d6efd',
@@ -42,6 +33,15 @@ describe('theme', () => {
       dark: 'rgb(107, 120, 133)',
 
       // color shades
+      gray100: 'rgb(255, 255, 255)',
+      gray200: 'rgb(255, 255, 255)',
+      gray300: 'rgb(241, 242, 244)',
+      gray400: 'rgb(218, 222, 225)',
+      gray500: 'rgb(173, 181, 189)',
+      gray600: 'rgb(150, 161, 171)',
+      gray700: 'rgb(128, 140, 153)',
+      gray800: 'rgb(107, 120, 133)',
+      gray900: 'rgb(89, 99, 110)',
       blue100: 'rgb(215, 231, 255)',
       blue200: 'rgb(175, 207, 254)',
       blue300: 'rgb(134, 183, 254)',
@@ -166,6 +166,14 @@ describe('theme', () => {
         },
         lg: {
           borderRadius: '0.3rem'
+        }
+      },
+
+      body: {
+        xs: {
+          bodyBg: '#ffffff',
+          bodyColor: 'rgb(89, 99, 110)',
+          bodyTextAlign: null
         }
       }
     });

@@ -43,6 +43,7 @@ module.exports = {
         ignoreTemplateLiterals: true,
         ignoreRegExpLiterals: true
       }
-    ]
+    ],
+    'react/prop-types': 0 // using typescript interfaces instead
   }
 };

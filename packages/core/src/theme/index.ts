@@ -3,6 +3,7 @@ import genColorShades, {
   ColorShades,
   ColorShadeOverrideProps
 } from './colorShades';
+import { FlattenSimpleInterpolation } from 'styled-components';
 import genThemeColors, {
   ThemeColors,
   ThemeColorOverrideProps
@@ -13,8 +14,9 @@ import genBreakpoints, {
   BreakpointOverrideProps
 } from './breakpoints';
 import genBorders, { Borders, BorderOverrideProps } from './borders';
+import genMediaQueries, { MediaQueries } from './mediaQueries';
 
-interface ThemeProps {
+export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
   themeColors?:
     | ((props: ThemeColorOverrideProps) => ThemeColors)
@@ -32,42 +34,55 @@ interface ThemeProps {
 export type Theme = Colors &
   ThemeColors &
   ColorShades & {
+    settings: ThemeProps;
     spacing: Spacing;
-    // breakpoints: Breakpoints;
+    breakpoints: Breakpoints;
     borders: Borders;
+    mq: MediaQueries;
   };
 
-export default function theme({
-  colors: colorOverrides,
-  themeColors: themeColorOverrides,
-  colorShades: colorShadeOverrides,
-  spacing: spacingOverrides,
-  breakpoints: breakpointOverrides,
-  borders: borderOverrides
-}: ThemeProps = {}): Theme {
+export type ThemeComponent = {
+  componentCss: (() => FlattenSimpleInterpolation)[];
+};
+
+export default function theme(settings: ThemeProps = {}): Theme {
+  const {
+    colors: colorOverrides,
+    themeColors: themeColorOverrides,
+    colorShades: colorShadeOverrides,
+    spacing: spacingOverrides,
+    breakpoints: breakpointOverrides,
+    borders: borderOverrides
+  } = settings;
+
   const colors = genColors({ overrides: colorOverrides });
-  const themeColors = genThemeColors({
-    colors,
-    overrides: themeColorOverrides
-  });
   const colorShades = genColorShades({
     colors,
     overrides: colorShadeOverrides
   });
+  const themeColors = genThemeColors({
+    colors,
+    colorShades,
+    overrides: themeColorOverrides
+  });
   const spacing = genSpacing({ overrides: spacingOverrides });
-  // const breakpoints = genBreakpoints({ overrides: breakpointOverrides });
+  const breakpoints = genBreakpoints({ overrides: breakpointOverrides });
   const borders = genBorders({
     colors,
     colorShades,
     overrides: borderOverrides
   });
 
+  const mq = genMediaQueries({ breakpoints });
+
   return {
+    settings,
     ...colors,
     ...themeColors,
     ...colorShades,
     spacing,
-    // breakpoints,
-    borders
+    breakpoints,
+    borders,
+    mq
   };
 }

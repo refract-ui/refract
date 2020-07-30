@@ -33,10 +33,10 @@ function calculateSpacing(basis: number): Spacing {
         4: basis * 1.5,
         5: basis * 3
       },
-      (memo, k, v) => {
+      (memo, v, k) => {
         return {
           ...memo,
-          [v]: `${k}rem`
+          [`${k}`]: `${v}rem`
         };
       },
       {} as Spacing
