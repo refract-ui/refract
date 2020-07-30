@@ -1,13 +1,36 @@
 import React from 'react';
-import { TestIcon } from './TestIcon';
 import { storiesOf } from '@storybook/react';
+import styled from 'styled-components';
+import { Icons } from './index';
 
 import Icon from '../index';
 
-export default {
-  title: 'Icons'
-};
+const icons: Array<keyof Icons> = ['add', 'back'];
+
+const IconWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  p {
+    margin-top: 0;
+  }
+`;
 
 storiesOf('Icon', module)
-  .add('test', () => <TestIcon />)
-  .add('prop', () => <Icon name="test" />);
+  .add('all icons', () => (
+    <IconWrapper>
+      {icons.map(icon => (
+        <>
+          <Icon name={icon} key={icon} />
+          <p>{icon}</p>
+        </>
+      ))}
+    </IconWrapper>
+  ))
+  .add('sizes', () => (
+    <IconWrapper>
+      <Icon name="add" />
+      <p>20px</p>
+      <Icon name="add" gfxSize="sm" />
+      <p>14px</p>
+    </IconWrapper>
+  ));
