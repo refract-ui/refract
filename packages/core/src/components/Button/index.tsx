@@ -90,6 +90,7 @@ const Button = createThemedComponent<
       `,
       textColor: ({ backgroundColor, contrastColor }) => css`
         color: ${contrastColor(backgroundColor)};
+        font-family: 'Work Sans', sans serif;
         font-size: 1rem;
         line-height: 19px;
       `,
