@@ -30,7 +30,11 @@ storiesOf('Icon', module)
     <IconWrapper>
       <Icon name="add" />
       <p>20px</p>
-      <Icon name="add" gfxSize="sm" />
+      <Icon name="add" size="sm" />
       <p>14px</p>
+      <Icon name="add" size={12} />
+      <p>small</p>
+      <Icon name="add" size={20} />
+      <p>medium</p>
     </IconWrapper>
   ));
