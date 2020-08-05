@@ -1,5 +1,5 @@
 import { GenIcon, IconBaseProps } from 'react-icons';
-import { Icons, defaultIcons, smallIcons } from './icons';
+import { Icons, defaultIcons, smallIcons, largeIcons } from './icons';
 
 type IconProps = {
   name: keyof Icons;
@@ -10,21 +10,21 @@ function getIcon({ name, size }: IconProps) {
   if (size <= 16) {
     return smallIcons[name];
   }
+  if (size >= 24) {
+    return largeIcons[name];
+  }
   return defaultIcons[name];
 }
 
 function getSize(size: IconProps['size']): number {
-  if (typeof size === 'string') {
-    switch (size) {
-      case 'sm':
-        return 16;
-      case 'lg':
-        return 24;
-      default:
-        return 20;
-    }
+  switch (size) {
+    case 'sm':
+      return 16;
+    case 'lg':
+      return 24;
+    default:
+      return 20;
   }
-  return size;
 }
 
 function Icon({
@@ -32,7 +32,7 @@ function Icon({
   size,
   ...props
 }: IconBaseProps & IconProps): JSX.Element {
-  const propSize = getSize(size);
+  const propSize = typeof size === 'string' ? getSize(size) : size;
   const data = getIcon({ name, size: propSize });
   return GenIcon(data)({ size: propSize, ...props });
 }
