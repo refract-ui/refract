@@ -10,6 +10,7 @@ const icons: Array<keyof Icons> = [
   'Back',
   'Behance',
   'Blank',
+  'CSV',
   'Calendar',
   'Camera',
   'Check',
@@ -17,6 +18,7 @@ const icons: Array<keyof Icons> = [
   'Close',
   'CloseRound',
   'Copy',
+  'DOC',
   'Danger',
   'Dashboard',
   'Delete',
@@ -26,6 +28,7 @@ const icons: Array<keyof Icons> = [
   'DotsVertical',
   'Download',
   'Dribbble',
+  'EPS',
   'Edit',
   'Expand',
   'Eye',
@@ -37,6 +40,7 @@ const icons: Array<keyof Icons> = [
   'Image',
   'Info',
   'Instagram',
+  'JPG',
   'LineGrid',
   'Link',
   'LinkedIn',
@@ -49,6 +53,11 @@ const icons: Array<keyof Icons> = [
   'Medium',
   'Menu',
   'Notification',
+  'OTHER',
+  'PDF',
+  'PNG',
+  'PPT',
+  'PSD',
   'Person',
   'Phone',
   'Print',
@@ -71,7 +80,21 @@ const icons: Array<keyof Icons> = [
   'Vimeo',
   'Website',
   'Whatsapp',
-  'YoutubeBlack'
+  'YoutubeBlack',
+  'ZIP'
+];
+
+const files: Array<keyof Icons> = [
+  'CSV',
+  'DOC',
+  'EPS',
+  'JPG',
+  'OTHER',
+  'PDF',
+  'PNG',
+  'PPT',
+  'PSD',
+  'ZIP'
 ];
 
 const IconWrapper = styled.div`
@@ -79,6 +102,7 @@ const IconWrapper = styled.div`
   flex-direction: column;
   p {
     margin-top: 0.25rem;
+    font-family: 'Work Sans';
   }
 `;
 
@@ -97,6 +121,7 @@ storiesOf('Icon', module)
       {icons.map(icon => (
         <>
           <Row>
+            <Icon name={icon} size="sm" key={`${icon}-sm`} />
             <Icon name={icon} key={`${icon}-md`} />
             <Icon name={icon} size="lg" key={`${icon}-lg`} />
           </Row>
@@ -108,8 +133,23 @@ storiesOf('Icon', module)
   .add('sizes', () => (
     <IconWrapper>
       <h1>test</h1>
-      <Icon name="CloseRound" />
+      <Icon name="CloseRound" size={72} />
+      <Icon name="CloseRound" size="lg" />
+      <Icon name="CloseRound" size={10} />
       <Icon name="LoadingSpinner" />
       <Icon name="Add" />
     </IconWrapper>
-));
+  ))
+  .add('file types', () => (
+    <IconWrapper>
+      {files.map(icon => (
+        <>
+          <Row>
+            <Icon name={icon} key={`${icon}-md`} useFill />
+            <Icon name={icon} size="lg" key={`${icon}-lg`} useFill />
+          </Row>
+          <p>{icon}</p>
+        </>
+      ))}
+    </IconWrapper>
+  ));

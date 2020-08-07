@@ -2,6 +2,7 @@ import React from 'react';
 import { get } from 'lodash';
 import tc from 'tinycolor2';
 import { Icons } from './icons';
+import SmIcons from './icons/SmIcons';
 import MdIcons from './icons/MdIcons';
 import LgIcons from './icons/LgIcons';
 
@@ -13,19 +14,13 @@ type IconProps = {
 };
 
 function getIconData({ name, size }: IconProps) {
-  /* if (size <= 16) {
-    return smallIcons[name];
-  } */
-  if (size >= 24) {
-    return {
-      metadata: LgIcons.metadata,
-      icon: LgIcons.icons.find(i => i.tags[0] === name)
-    };
+  if (size <= 16) {
+    return SmIcons.find(i => i.tags[0] === name);
   }
-  return {
-    metaData: MdIcons.metadata,
-    icon: MdIcons.icons.find(i => i.tags[0] === name)
-  };
+  if (size >= 24) {
+    return LgIcons.find(i => i.tags[0] === name);
+  }
+  return MdIcons.find(i => i.tags[0] === name);
 }
 
 function getSize(size: IconProps['size']): number {
@@ -60,7 +55,7 @@ function getMappedPaths(
     }));
   }
 
-  // convert black to `${color}` and white to `${background}
+  // convert black to `${color}` and white to `${background} [todo]
   // if useFill === true, leave that shit alone
   return paths.map((path, index) => {
     // keep rgb(255, 255, 255);
@@ -87,10 +82,8 @@ function Icon({
   const data = getIconData({ name, size: propSize });
   /* console.log('data.icon.tags[0]', data.icon); */
 
-  // const width = propSize || get(data, 'metadata.importSize.width', propSize);
-  // const height = propSize || get(data, 'metadata.importSize.height', propSize);
-  const paths = get(data, 'icon.paths', []);
-  const attrs = get(data, 'icon.attrs', []);
+  const paths = get(data, 'paths', []);
+  const attrs = get(data, 'attrs', []);
 
   const mappedPaths = getMappedPaths(paths, attrs, color, useFill);
   console.log('mappedPaths', mappedPaths);

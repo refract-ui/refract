@@ -25,6 +25,7 @@ export type Icons = {
   Back: IconTree;
   Behance: IconTree;
   Blank: IconTree;
+  CSV: IconTree;
   Calendar: IconTree;
   Camera: IconTree;
   Check: IconTree;
@@ -32,6 +33,7 @@ export type Icons = {
   Close: IconTree;
   CloseRound: IconTree;
   Copy: IconTree;
+  DOC: IconTree;
   Danger: IconTree;
   Dashboard: IconTree;
   Delete: IconTree;
@@ -41,6 +43,7 @@ export type Icons = {
   DotsVertical: IconTree;
   Download: IconTree;
   Dribbble: IconTree;
+  EPS: IconTree;
   Edit: IconTree;
   Expand: IconTree;
   Eye: IconTree;
@@ -52,6 +55,7 @@ export type Icons = {
   Image: IconTree;
   Info: IconTree;
   Instagram: IconTree;
+  JPG: IconTree;
   LineGrid: IconTree;
   Link: IconTree;
   LinkedIn: IconTree;
@@ -64,6 +68,11 @@ export type Icons = {
   Medium: IconTree;
   Menu: IconTree;
   Notification: IconTree;
+  OTHER: IconTree;
+  PDF: IconTree;
+  PNG: IconTree;
+  PPT: IconTree;
+  PSD: IconTree;
   Person: IconTree;
   Phone: IconTree;
   Print: IconTree;
@@ -87,6 +96,7 @@ export type Icons = {
   Website: IconTree;
   Whatsapp: IconTree;
   YoutubeBlack: IconTree;
+  ZIP: IconTree;
 };
 
 export default Icons;
