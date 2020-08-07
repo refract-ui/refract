@@ -5,13 +5,89 @@ import { Icons } from './index';
 
 import Icon from '../index';
 
-const icons: Array<keyof Icons> = ['add', 'back'];
+const icons: Array<keyof Icons> = [
+  'Add',
+  'Back',
+  'Behance',
+  'Blank',
+  'Calendar',
+  'Camera',
+  'Check',
+  'Clock',
+  'Close',
+  'CloseRound',
+  'Copy',
+  'Danger',
+  'Dashboard',
+  'Delete',
+  'Document',
+  'Dollar',
+  'DotsHorizontal',
+  'DotsVertical',
+  'Download',
+  'Dribbble',
+  'Edit',
+  'Expand',
+  'Eye',
+  'Facebook',
+  'Favorite',
+  'Filter',
+  'Forward',
+  'Heading',
+  'Image',
+  'Info',
+  'Instagram',
+  'LineGrid',
+  'Link',
+  'LinkedIn',
+  'List',
+  'LoadingSpinner',
+  'Location',
+  'Lock',
+  'Mail',
+  'Map',
+  'Medium',
+  'Menu',
+  'Notification',
+  'Person',
+  'Phone',
+  'Print',
+  'Refresh',
+  'RoundArrow',
+  'Save',
+  'Search',
+  'Settings',
+  'Shrink',
+  'SimpleArrowDown',
+  'SimpleArrowUp',
+  'Skype',
+  'Slack',
+  'Star',
+  'Table',
+  'Text',
+  'Twitter',
+  'Upload',
+  'Video',
+  'Vimeo',
+  'Website',
+  'Whatsapp',
+  'YoutubeBlack'
+];
 
 const IconWrapper = styled.div`
   display: flex;
   flex-direction: column;
   p {
-    margin-top: 0;
+    margin-top: 0.25rem;
+  }
+`;
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  svg {
+    margin-right: 1rem;
   }
 `;
 
@@ -20,7 +96,10 @@ storiesOf('Icon', module)
     <IconWrapper>
       {icons.map(icon => (
         <>
-          <Icon name={icon} key={icon} />
+          <Row>
+            <Icon name={icon} key={`${icon}-md`} />
+            <Icon name={icon} size="lg" key={`${icon}-lg`} />
+          </Row>
           <p>{icon}</p>
         </>
       ))}
@@ -28,15 +107,9 @@ storiesOf('Icon', module)
   ))
   .add('sizes', () => (
     <IconWrapper>
-      <Icon name="add" />
-      <p>20px</p>
-      <Icon name="add" size="sm" />
-      <p>14px</p>
-      <Icon name="add" size="lg" />
-      <p>24px</p>
-      <Icon name="add" size={12} />
-      <p>small</p>
-      <Icon name="add" size={20} />
-      <p>medium</p>
+      <h1>test</h1>
+      <Icon name="CloseRound" />
+      <Icon name="LoadingSpinner" />
+      <Icon name="Add" />
     </IconWrapper>
-  ));
+));
