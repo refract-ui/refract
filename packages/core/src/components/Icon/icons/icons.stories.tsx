@@ -45,7 +45,6 @@ const icons: Array<keyof Icons> = [
   'Link',
   'LinkedIn',
   'List',
-  'LoadingSpinner',
   'Location',
   'Lock',
   'Mail',
@@ -136,7 +135,6 @@ storiesOf('Icon', module)
       <Icon name="CloseRound" size={72} />
       <Icon name="CloseRound" size="lg" />
       <Icon name="CloseRound" size={10} />
-      <Icon name="LoadingSpinner" />
       <Icon name="Add" />
     </IconWrapper>
   ))
@@ -151,5 +149,14 @@ storiesOf('Icon', module)
           <p>{icon}</p>
         </>
       ))}
+    </IconWrapper>
+  ))
+  .add('theme test', () => (
+    <IconWrapper>
+      <Row>
+        <Icon name="Add" size="sm" color="primary" />
+        <Icon name="Back" color="secondary" />
+        <Icon name="Eye" size="lg" iconColor="red" />
+      </Row>
     </IconWrapper>
   ));

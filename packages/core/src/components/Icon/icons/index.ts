@@ -60,7 +60,6 @@ export type Icons = {
   Link: IconTree;
   LinkedIn: IconTree;
   List: IconTree;
-  LoadingSpinner: IconTree;
   Location: IconTree;
   Lock: IconTree;
   Mail: IconTree;

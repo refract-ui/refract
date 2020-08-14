@@ -41,6 +41,8 @@ export type Theme = Colors &
     mq: MediaQueries;
   };
 
+export type ThemeColorSet = Colors & ThemeColors & ColorShades;
+
 export type ThemeComponent = {
   componentCss: (() => FlattenSimpleInterpolation)[];
 };
