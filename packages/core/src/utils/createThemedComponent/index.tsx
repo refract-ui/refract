@@ -138,6 +138,8 @@ export default function createThemedComponent<
       applyThemeBreakpoint
     });
 
+    console.log('componentCss', componentCss);
+
     return <Component componentCss={componentCss} {...componentProps} />;
   };
 

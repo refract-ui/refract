@@ -1,17 +1,33 @@
 import React from 'react';
 import { get } from 'lodash';
 import tc from 'tinycolor2';
+import styled, { css } from 'styled-components';
+import createThemedComponent from '../../utils/createThemedComponent';
+import { ThemeColors } from '../../theme/themeColors';
+import { ThemeComponent } from '../../theme';
 import { Icons } from './icons';
 import SmIcons from './icons/SmIcons';
 import MdIcons from './icons/MdIcons';
 import LgIcons from './icons/LgIcons';
 
+type IconTheme = {
+  iconColor: string;
+  iconSize: number;
+};
+
 type IconProps = {
   name: keyof Icons;
-  size: number | 'sm' | 'md' | 'lg';
+  size?: number | 'sm' | 'md' | 'lg';
   color?: string;
   useFill?: boolean;
 };
+
+type IconVariants = {
+  color: keyof ThemeColors;
+  size?: number | 'sm' | 'md' | 'lg';
+};
+
+type IconStates = '_active';
 
 function getIconData({ name, size }: IconProps) {
   if (size <= 16) {
@@ -40,13 +56,6 @@ function getMappedPaths(
   color: string,
   useFill: boolean
 ) {
-  console.log('{ paths, attrs, color, useFill }', {
-    paths,
-    attrs,
-    color,
-    useFill
-  });
-
   // monochromatic icons
   if (!attrs.length) {
     return paths.map(path => ({
@@ -71,7 +80,7 @@ function getMappedPaths(
   });
 }
 
-function Icon({
+function IconFunction({
   name,
   size,
   color,
@@ -86,7 +95,10 @@ function Icon({
   const attrs = get(data, 'attrs', []);
 
   const mappedPaths = getMappedPaths(paths, attrs, color, useFill);
-  console.log('mappedPaths', mappedPaths);
+  const className = get(props, 'className', null);
+  // console.log('mappedPaths', mappedPaths);
+
+  console.log('props', props);
 
   return (
     <svg
@@ -94,6 +106,7 @@ function Icon({
       height={`${propSize}px`}
       viewBox="0 0 1024 1024"
       style={{ verticalAlign: 'middle' }}
+      className={className}
     >
       {mappedPaths.map(path => {
         return <path key={path.path} d={path.path} fill={path.color} />;
@@ -102,10 +115,60 @@ function Icon({
   );
 }
 
-Icon.defaultProps = {
+IconFunction.defaultProps = {
   color: '#D8D8D8',
-  size: '20',
+  size: 'md',
   useFill: false
 };
+
+const IconComponent = styled(IconFunction)<ThemeComponent & IconProps>`
+  ${({ componentCss }) => componentCss};
+`;
+
+const Icon = createThemedComponent<
+  IconTheme,
+  IconVariants,
+  IconStates,
+  IconProps
+>({
+  defaultVariants: {
+    color: 'dark',
+    size: 'md'
+  },
+  states: ['_active'],
+
+  compose: ({ theme, variant }) => {
+    console.log('{ theme, variant }', { theme, variant });
+    return {
+      Component: IconComponent,
+      variantMapping: {
+        color: ({ color }) => ({
+          iconColor: theme[color]
+        }),
+        size: ({ size }) => ({
+          iconSize: typeof size === 'string' ? getSize(size) : size
+        })
+      },
+      defaultStyleMapping: {
+        xs: {
+          iconColor: theme[variant.color],
+          iconSize: 20
+        }
+      },
+      cascadeStateProps: {},
+      mapPropsToStyle: {
+        iconColor: ({ iconColor }) => css`
+          path {
+            fill: ${iconColor};
+          }
+        `,
+        iconSize: ({ iconSize }) => css`
+          height: ${iconSize}px;
+          width: ${iconSize}px;
+        `
+      }
+    }
+  }
+});
 
 export default Icon;
