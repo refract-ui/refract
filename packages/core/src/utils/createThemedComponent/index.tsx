@@ -115,8 +115,6 @@ export default function createThemedComponent<
       defaultStyleMapping.xs = defaultsDeep(variantVal, defaultStyleMapping.xs);
     }
 
-    console.log('defaultStyleMapping', defaultStyleMapping);
-
     const componentPropKeys = difference(Object.keys(props), [
       ...extendThemePropKeys,
       ...variantPropKeys
@@ -137,8 +135,6 @@ export default function createThemedComponent<
       extendTheme,
       applyThemeBreakpoint
     });
-
-    console.log('componentCss', componentCss);
 
     return <Component componentCss={componentCss} {...componentProps} />;
   };
