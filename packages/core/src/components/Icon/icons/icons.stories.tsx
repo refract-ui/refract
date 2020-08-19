@@ -154,9 +154,14 @@ storiesOf('Icon', module)
   .add('theme test', () => (
     <IconWrapper>
       <Row>
-        <Icon name="Add" size="sm" color="primary" />
-        <Icon name="Back" color="secondary" />
-        <Icon name="Eye" size="lg" iconColor="red" />
+        <Icon
+          name="Add"
+          size="sm"
+          color="primary"
+          mdOnly={{ iconColor: 'red' }}
+        />
+        <Icon name="Back" iconColor="green" size={50} />
+        <Icon name="DOC" useFill size="lg" iconColor="red" />
       </Row>
     </IconWrapper>
   ));

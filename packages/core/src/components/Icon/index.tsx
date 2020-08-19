@@ -18,13 +18,12 @@ type IconTheme = {
 type IconProps = {
   name: keyof Icons;
   size?: number | 'sm' | 'md' | 'lg';
-  color?: string;
-  useFill?: boolean;
 };
 
 type IconVariants = {
   color: keyof ThemeColors;
   size?: number | 'sm' | 'md' | 'lg';
+  useFill?: boolean;
 };
 
 type IconStates = '_active';
@@ -50,75 +49,27 @@ function getSize(size: IconProps['size']): number {
   }
 }
 
-function getMappedPaths(
-  paths: string[],
-  attrs: any,
-  color: string,
-  useFill: boolean
-) {
-  // monochromatic icons
-  if (!attrs.length) {
-    return paths.map(path => ({
-      path,
-      color
-    }));
-  }
-
-  // convert black to `${color}` and white to `${background} [todo]
-  // if useFill === true, leave that shit alone
-  return paths.map((path, index) => {
-    // keep rgb(255, 255, 255);
-    const fillColor =
-      attrs[index].fill === 'rgb(255, 255, 255)' ? attrs[index].fill : color;
-    const pathColor = useFill ? tc(attrs[index].fill) : tc(fillColor);
-    const opacity = get(attrs[index], 'opacity', 1);
-
-    return {
-      path,
-      color: pathColor.setAlpha(opacity).toRgbString()
-    };
-  });
-}
-
-function IconFunction({
-  name,
-  size,
-  color,
-  useFill,
-  ...props
-}: IconProps): JSX.Element {
+function IconFunction({ name, size, ...props }: IconProps): JSX.Element {
   const propSize = typeof size === 'string' ? getSize(size) : size;
   const data = getIconData({ name, size: propSize });
-  /* console.log('data.icon.tags[0]', data.icon); */
-
-  const paths = get(data, 'paths', []);
-  const attrs = get(data, 'attrs', []);
-
-  const mappedPaths = getMappedPaths(paths, attrs, color, useFill);
   const className = get(props, 'className', null);
-  // console.log('mappedPaths', mappedPaths);
-
-  console.log('props', props);
+  const paths: string[] = get(data, 'paths', []);
 
   return (
     <svg
-      width={`${propSize}px`}
-      height={`${propSize}px`}
       viewBox="0 0 1024 1024"
       style={{ verticalAlign: 'middle' }}
       className={className}
     >
-      {mappedPaths.map(path => {
-        return <path key={path.path} d={path.path} fill={path.color} />;
+      {paths.map((path: string) => {
+        return <path key={path} d={path} />;
       })}
     </svg>
   );
 }
 
 IconFunction.defaultProps = {
-  color: '#D8D8D8',
-  size: 'md',
-  useFill: false
+  size: 'md'
 };
 
 const IconComponent = styled(IconFunction)<ThemeComponent & IconProps>`
@@ -133,12 +84,12 @@ const Icon = createThemedComponent<
 >({
   defaultVariants: {
     color: 'dark',
-    size: 'md'
+    size: 'md',
+    useFill: false
   },
   states: ['_active'],
 
   compose: ({ theme, variant }) => {
-    console.log('{ theme, variant }', { theme, variant });
     return {
       Component: IconComponent,
       variantMapping: {
@@ -167,7 +118,7 @@ const Icon = createThemedComponent<
           width: ${iconSize}px;
         `
       }
-    }
+    };
   }
 });
 
