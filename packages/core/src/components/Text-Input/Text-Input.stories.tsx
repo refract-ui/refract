@@ -14,7 +14,27 @@ storiesOf('TextInput', module).add('test', () => (
 
     <br />
 
-    <TextInput color="red" />
+    <TextInput
+      _hover={{ backgroundColor: props => props.theme.white }}
+      _active={{ backgroundColor: props => props.theme.white }}
+      placeholder="Hey"
+      border={{
+        borderRadius: '8px',
+        borderColor: '#B0B9C9',
+        borderWidth: '1px'
+      }}
+    />
+
+    <br />
+
+    <TextInput
+      color="red"
+      border={{
+        borderRadius: '50%',
+        borderColor: 'orange',
+        borderWidth: '3px'
+      }}
+    />
 
     <br />
 

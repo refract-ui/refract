@@ -16,16 +16,19 @@ type TextInputTheme = {
   width?: string;
 };
 
-type TextInputProps = {};
+type TextInputProps = {
+  placeholder?: string;
+};
 
 type TextInputVariants = {
   color: keyof Colors | keyof ThemeColors;
   size: 'sm' | 'md';
 };
 
-const TextInputComponent = styled.input.attrs({ type: 'text' })<
-  ThemeComponent & TextInputProps
->`
+const TextInputComponent = styled.input.attrs({
+  type: 'text',
+  placeholder: 'asdf'
+})<ThemeComponent & TextInputProps>`
   ${({ componentCss }) => componentCss};
 `;
 
@@ -43,7 +46,11 @@ const TextInput = createThemedComponent<
   },
   states: ['_hover', '_active'],
   compose: ({ theme, variant }) => ({
-    Component: TextInputComponent,
+    Component: styled.input.attrs(({ placeholder }) => ({
+      type: 'text'
+    }))<ThemeComponent & TextInputProps>`
+      ${({ componentCss }) => componentCss};
+    `,
 
     variantMapping: {
       color: ({ color }) => ({
@@ -99,7 +106,6 @@ const TextInput = createThemedComponent<
       `,
       border: props =>
         applyBorderStyle({
-          borderColor: props.backgroundColor,
           ...props.border
         }),
       px: ({ px }) => css`
