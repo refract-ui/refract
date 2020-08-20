@@ -68,12 +68,36 @@ storiesOf('Button', module)
       <SButton>translucent</SButton>
     </>
   ))
-  .add('big', () => (
+  .add('big & small', () => (
+    <>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color}>
+            {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={`${color}-sm`} size="sm">
+            {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+    </>
+  ))
+  .add('icons', () => (
     <ButtonWrapper>
-      {colors.map(color => (
-        <Button color={color} key={color}>
-          {color}
-        </Button>
-      ))}
+      <Button color="primary" iconLeft="Calendar" variant="outline">
+        With Icon
+      </Button>
+      <Button color="primary" iconLeft="Calendar" />
+      <Button color="primary" iconLeft="Calendar" variant="outline" />
+      <Button color="warning" iconLeft="DotsVertical" variant="outline">
+        With Icon
+      </Button>
+      <Button backgroundColor="crimson" iconLeft="Add" variant="outline">
+        With Icon
+      </Button>
     </ButtonWrapper>
   ));
