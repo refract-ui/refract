@@ -6,8 +6,6 @@ import { ThemeColors } from '../../theme/themeColors';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
-import contrastColor from '../../utils/contrastColor';
-import { lightenColor } from '../../utils/colorFunc';
 import { Icons } from '../Icon/icons';
 import Icon from '../Icon';
 
@@ -29,7 +27,7 @@ type ButtonTheme = {
 type ButtonVariants = {
   color: keyof ThemeColors;
   size?: 'sm' | 'md';
-  variant?: 'outline' | 'subtle' | null;
+  variant?: 'outline' | 'subtle' | 'link' | null;
   iconLeft?: keyof Icons | null;
   iconRight?: keyof Icons | null;
   icon?: keyof Icons | null;
@@ -101,6 +99,7 @@ const Button = createThemedComponent<
       Component: ButtonComponent,
 
       // variants aren't derived from single values, but the intersection of values
+      // move these hardcoded values into theme object
       variantMapping: {
         color: ({ size, color, variant, icon }) => {
           const sizeProps = {
@@ -119,6 +118,21 @@ const Button = createThemedComponent<
                 borderWidth: icon ? '2px' : '1px'
               },
               ...sizeProps
+            };
+          }
+
+          if (variant === 'link') {
+            return {
+              backgroundColor: theme.white,
+              textColor: theme.darkColors[color],
+              border: {
+                ...theme.borders.md,
+                borderStyle: 'none'
+              },
+              py: '0',
+              px: '0',
+              height: 'initial',
+              width: 'initial !important'
             };
           }
 

@@ -95,6 +95,13 @@ storiesOf('Button', module)
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
+          <Button color={color} key={color} variant="link">
+            link {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
           <Button color={color} key={color} iconLeft="Close">
             leading icon {color}
           </Button>
@@ -110,6 +117,13 @@ storiesOf('Button', module)
       <ButtonWrapper>
         {colors.map(color => (
           <Button color={color} key={color} variant="outline" iconLeft="Close">
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="link" iconLeft="Close">
             leading icon {color}
           </Button>
         ))}
@@ -139,6 +153,18 @@ storiesOf('Button', module)
             color={color}
             key={color}
             variant="outline"
+            iconRight="SimpleArrowDown"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="link"
             iconRight="SimpleArrowDown"
           >
             trailing icon {color}
@@ -302,19 +328,4 @@ storiesOf('Button', module)
         ))}
       </ButtonWrapper>
     </>
-  ))
-  .add('icons', () => (
-    <ButtonWrapper>
-      <Button color="primary" iconLeft="Calendar" variant="outline">
-        With Icon
-      </Button>
-      <Button color="primary" iconLeft="Calendar" />
-      <Button color="primary" iconLeft="Calendar" variant="outline" />
-      <Button color="warning" iconLeft="DotsVertical" variant="outline">
-        With Icon
-      </Button>
-      <Button backgroundColor="crimson" iconLeft="Add" variant="outline">
-        With Icon
-      </Button>
-    </ButtonWrapper>
   ));
