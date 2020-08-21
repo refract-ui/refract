@@ -7,11 +7,22 @@ import tc from 'tinycolor2';
  * @param layers - array of opacity values used to darken initial color
  */
 
-export const darkenColor = (initColor: string, layers: Array<number>) => {
+export const darkenColor = (
+  initColor: string,
+  layers: Array<number>
+): string => {
   const reducedLayers = layers.reduce((init, layer) => init + layer, 0);
   const color = tc(initColor);
 
-  console.log('{ reducedLayers, color }', { reducedLayers, color });
-
   return color.darken(reducedLayers).toRgbString();
+};
+
+export const lightenColor = (
+  initColor: string,
+  layers: Array<number>
+): string => {
+  const reducedLayers = layers.reduce((init, layer) => init + layer, 0);
+  const color = tc(initColor);
+
+  return color.lighten(reducedLayers).toRgbString();
 };

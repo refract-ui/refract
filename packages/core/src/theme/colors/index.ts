@@ -1,5 +1,4 @@
 import { defaults, isFunction } from 'lodash';
-import rampColor from '../../utils/rampColor';
 
 export type Colors = {
   white: string;
