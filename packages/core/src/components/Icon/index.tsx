@@ -1,6 +1,5 @@
 import React from 'react';
 import { get } from 'lodash';
-import tc from 'tinycolor2';
 import styled, { css } from 'styled-components';
 import createThemedComponent from '../../utils/createThemedComponent';
 import { ThemeColors } from '../../theme/themeColors';

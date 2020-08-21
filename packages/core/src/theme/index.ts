@@ -1,4 +1,12 @@
 import genColors, { Colors, ColorOverrideProps } from './colors';
+import genSubtleColors, {
+  SubtleColors,
+  SubtleColorOverrideProps
+} from './subtleColors';
+import genDarkColors, {
+  DarkColors,
+  DarkColorOverrideProps
+} from './darkColors';
 import genColorShades, {
   ColorShades,
   ColorShadeOverrideProps
@@ -21,6 +29,12 @@ export interface ThemeProps {
   themeColors?:
     | ((props: ThemeColorOverrideProps) => ThemeColors)
     | Partial<ThemeColors>;
+  subtleColors?:
+    | ((props: SubtleColorOverrideProps) => SubtleColors)
+    | Partial<SubtleColors>;
+  darkColors?:
+    | ((props: DarkColorOverrideProps) => DarkColors)
+    | Partial<DarkColors>;
   colorShades?:
     | ((props: ColorShadeOverrideProps) => ColorShades)
     | Partial<ColorShades>;
@@ -36,12 +50,14 @@ export type Theme = Colors &
   ColorShades & {
     settings: ThemeProps;
     spacing: Spacing;
+    subtleColors: SubtleColors;
+    darkColors: DarkColors;
     breakpoints: Breakpoints;
     borders: Borders;
     mq: MediaQueries;
   };
 
-export type ThemeColorSet = Colors & ThemeColors & ColorShades;
+export type ThemeColorSet = Colors & ThemeColors & SubtleColors & ColorShades;
 
 export type ThemeComponent = {
   componentCss: (() => FlattenSimpleInterpolation)[];
@@ -51,6 +67,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
   const {
     colors: colorOverrides,
     themeColors: themeColorOverrides,
+    subtleColors: subtleColorOverrides,
+    darkColors: darkColorOverrides,
     colorShades: colorShadeOverrides,
     spacing: spacingOverrides,
     breakpoints: breakpointOverrides,
@@ -61,6 +79,16 @@ export default function theme(settings: ThemeProps = {}): Theme {
   const colorShades = genColorShades({
     colors,
     overrides: colorShadeOverrides
+  });
+  const subtleColors = genSubtleColors({
+    colors,
+    colorShades,
+    overrides: subtleColorOverrides
+  });
+  const darkColors = genDarkColors({
+    colors,
+    colorShades,
+    overrides: darkColorOverrides
   });
   const themeColors = genThemeColors({
     colors,
@@ -81,6 +109,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     settings,
     ...colors,
     ...themeColors,
+    subtleColors,
+    darkColors,
     ...colorShades,
     spacing,
     breakpoints,

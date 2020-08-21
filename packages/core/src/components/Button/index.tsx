@@ -7,6 +7,7 @@ import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 import contrastColor from '../../utils/contrastColor';
+import { lightenColor } from '../../utils/colorFunc';
 import { Icons } from '../Icon/icons';
 import Icon from '../Icon';
 
@@ -21,13 +22,17 @@ type ButtonTheme = {
   fontSize?: string;
   width?: string;
   leftIcon?: boolean;
+  rightIcon?: boolean;
+  hasIcon?: boolean;
 };
 
 type ButtonVariants = {
   color: keyof ThemeColors;
   size?: 'sm' | 'md';
-  variant?: 'outline' | null;
+  variant?: 'outline' | 'subtle' | null;
   iconLeft?: keyof Icons | null;
+  iconRight?: keyof Icons | null;
+  icon?: keyof Icons | null;
 };
 
 type ButtonStates = '_hover' | '_active';
@@ -35,29 +40,30 @@ type ButtonStates = '_hover' | '_active';
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
-  iconRight?: keyof Icons;
 };
 
 function ButtonFunction({
   children,
   onClick,
+  icon,
   iconLeft,
   iconRight,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
   return (
-    <button className={className}>
+    <button className={className} onClick={onClick}>
       {iconLeft && <Icon name={iconLeft} />}
+      {!children && icon && <Icon name={icon} />}
       {children && children}
+      {iconRight && <Icon name={iconRight} />}
     </button>
   );
 }
 
 ButtonFunction.defaultProps = {
   children: null,
-  onClick: null,
-  iconRight: false
+  onClick: null
 };
 
 // move defaults to `text`
@@ -67,6 +73,12 @@ const ButtonComponent = styled(ButtonFunction)<ThemeComponent & ButtonProps>`
   font-family: 'Work Sans', sans serif;
   font-size: 1rem;
   line-height: 19px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const Button = createThemedComponent<
@@ -79,7 +91,9 @@ const Button = createThemedComponent<
     color: 'primary',
     size: 'md',
     variant: null,
-    iconLeft: null
+    icon: null,
+    iconLeft: null,
+    iconRight: null
   },
   states: ['_hover', '_active'],
   compose: ({ theme, variant }) => {
@@ -88,17 +102,31 @@ const Button = createThemedComponent<
 
       // variants aren't derived from single values, but the intersection of values
       variantMapping: {
-        color: ({ size, color, variant }) => {
+        color: ({ size, color, variant, icon }) => {
           const sizeProps = {
             height: size === 'md' ? '52px' : '42px',
-            py: size === 'md' ? `${theme.spacing['2']}` : '11px'
+            py: size === 'md' ? `${theme.spacing['2']}` : '11px',
+            px: size === 'md' ? '1rem' : '12px'
           };
 
           if (variant === 'outline') {
             return {
               backgroundColor: theme.white,
-              borderColor: theme[color],
-              textColor: theme[color],
+              textColor: theme.darkColors[color],
+              borderColor: theme.darkColors[color],
+              border: {
+                ...theme.borders.md,
+                borderWidth: icon ? '2px' : '1px'
+              },
+              ...sizeProps
+            };
+          }
+
+          if (variant === 'subtle') {
+            return {
+              backgroundColor: theme.subtleColors[color],
+              borderColor: theme.subtleColors[color],
+              textColor: theme.darkColors[color],
               ...sizeProps
             };
           }
@@ -106,7 +134,7 @@ const Button = createThemedComponent<
           return {
             backgroundColor: theme[color],
             borderColor: theme[color],
-            textColor: contrastColor({ color: theme[color], theme }),
+            textColor: theme.white,
             ...sizeProps
           };
         }
@@ -125,7 +153,9 @@ const Button = createThemedComponent<
           px: '1rem',
           py: '1rem',
           width: '100%',
-          leftIcon: !!variant.iconLeft
+          leftIcon: !!variant.iconLeft,
+          rightIcon: !!variant.iconRight,
+          hasIcon: !!variant.icon || !!variant.iconLeft || !!variant.iconRight
         },
 
         md: {
@@ -154,11 +184,13 @@ const Button = createThemedComponent<
             }
           }
         `,
-        fontSize: ({ fontSize, leftIcon }) => css`
+        fontSize: ({ fontSize, leftIcon, rightIcon }) => css`
           font-size: ${fontSize};
           svg {
             height: ${fontSize};
             width: ${fontSize};
+            margin-right: ${leftIcon && `${fontSize}`};
+            margin-left: ${rightIcon && `${fontSize}`};
           }
         `,
         height: ({ height }) => css`
@@ -182,12 +214,10 @@ const Button = createThemedComponent<
           padding-top: ${py};
           padding-bottom: ${py};
         `,
-        width: props => {
-          return css`
-            min-width: ${props.width};
-            min-width: ${props.leftIcon && '52px !important'};
-          `;
-        }
+        width: ({ width, height, hasIcon }) => css`
+          min-width: ${width};
+          min-width: ${hasIcon && `${height} !important`};
+        `
       }
     };
   }

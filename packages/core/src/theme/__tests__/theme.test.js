@@ -23,14 +23,14 @@ describe('theme', () => {
       cyan: '#17a2b8',
 
       // theme colors
-      primary: '#0d6efd',
-      secondary: 'rgb(150, 161, 171)',
-      success: '#28a745',
-      info: '#17a2b8',
-      warning: '#ffc107',
-      danger: '#dc3545',
-      light: 'rgb(255, 255, 255)',
-      dark: 'rgb(107, 120, 133)',
+      primary: '#3978EC',
+      secondary: '#B0B9C9',
+      success: '#6AD193',
+      info: colors.cyan,
+      warning: '#EFC174',
+      danger: '#DE7283',
+      light: colorShades.gray100,
+      dark: '#575C64',
 
       // color shades
       gray100: 'rgb(255, 255, 255)',
