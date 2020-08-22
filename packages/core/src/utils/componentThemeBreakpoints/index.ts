@@ -1,5 +1,5 @@
-import { omit, pick, defaults, get, defaultsDeep } from 'lodash';
-import { PickByValue, OmitByValue } from 'utility-types';
+import { omit, pick, defaults, defaultsDeep } from 'lodash';
+import { PickByValue, OmitByValue, NonUndefined, $Values } from 'utility-types';
 import { Theme } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 
@@ -10,7 +10,7 @@ export type ThemeExtensionHelperMethods = {
 
 export type PseudoClass<T> = Partial<T>;
 
-export type ThemeStyleDirective<T, P extends keyof T> =
+export type ThemeStyleDirective<T, P extends keyof T = keyof T> =
   | T[P]
   | ((props: Partial<T & ThemeExtensionHelperMethods>) => T[P]);
 
