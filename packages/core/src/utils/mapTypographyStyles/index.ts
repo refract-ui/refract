@@ -41,8 +41,6 @@ function mapTypographyStyles({
     ''
   );
 
-  console.log('@-->tagName', tagName);
-
   return css`
     ${tagName} {
       ${styles}

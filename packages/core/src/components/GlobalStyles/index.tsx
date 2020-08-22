@@ -73,7 +73,7 @@ const GlobalStyles = createThemedComponent<GlobalTheme>({
         },
         default: {
           ...theme.fontTagMappings.default,
-          size: 'rem'
+          size: '1rem'
         },
         button: {
           ...theme.fontTagMappings.button,
@@ -117,7 +117,7 @@ const GlobalStyles = createThemedComponent<GlobalTheme>({
       listItem: ({ listItem }) =>
         mapTypographyStyles({ tagMapping: listItem, tagName: 'li' }),
       small: ({ small }) =>
-        mapTypographyStyles({ tagMapping: small, tagName: '.small' }),
+        mapTypographyStyles({ tagMapping: small, tagName: 'small' }),
       large: ({ large }) =>
         mapTypographyStyles({ tagMapping: large, tagName: '.large' })
     }
