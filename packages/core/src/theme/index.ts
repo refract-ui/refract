@@ -23,6 +23,19 @@ import genBreakpoints, {
 } from './breakpoints';
 import genBorders, { Borders, BorderOverrideProps } from './borders';
 import genMediaQueries, { MediaQueries } from './mediaQueries';
+import genFontFaces, { FontFaces, StandardFaces } from './fontFaces';
+import genFontStacks, {
+  FontStacks,
+  FontStackOverrideProps
+} from './fontStacks';
+import genFontVariants, {
+  FontVariants,
+  FontVariantOverrideProps
+} from './fontVariants';
+import genFontTagMappings, {
+  FontTagMappings,
+  FontTagMappingOverrideProps
+} from './fontTagMappings';
 
 export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
@@ -43,6 +56,17 @@ export interface ThemeProps {
     | ((props: BreakpointOverrideProps) => Breakpoints)
     | Partial<Breakpoints>;
   borders?: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
+  defaultFontFaceFallback?: keyof typeof StandardFaces;
+  fontFaces?: Partial<FontFaces>;
+  fontStacks?:
+    | ((props: FontStackOverrideProps) => FontStacks)
+    | Partial<FontStacks>;
+  fontVariants?:
+    | ((props: FontVariantOverrideProps) => FontVariants)
+    | Partial<FontVariants>;
+  fontTagMappings?:
+    | ((props: FontTagMappingOverrideProps) => FontTagMappings)
+    | Partial<FontTagMappings>;
 }
 
 export type Theme = Colors &
@@ -55,6 +79,10 @@ export type Theme = Colors &
     breakpoints: Breakpoints;
     borders: Borders;
     mq: MediaQueries;
+    fontFaces: FontFaces;
+    fontStacks: FontStacks;
+    fontVariants: FontVariants;
+    fontTagMappings: FontTagMappings;
   };
 
 export type ThemeColorSet = Colors & ThemeColors & SubtleColors & ColorShades;
@@ -72,7 +100,12 @@ export default function theme(settings: ThemeProps = {}): Theme {
     colorShades: colorShadeOverrides,
     spacing: spacingOverrides,
     breakpoints: breakpointOverrides,
-    borders: borderOverrides
+    borders: borderOverrides,
+    fontFaces: fontFaceOverrides,
+    fontStacks: fontStackOverrides,
+    defaultFontFaceFallback: fallbackFace = 'sans',
+    fontVariants: fontVariantOverrides,
+    fontTagMappings: fontTagMappingOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -103,6 +136,27 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: borderOverrides
   });
 
+  const fontFaces = genFontFaces({ overrides: fontFaceOverrides });
+  const fontStacks = genFontStacks({
+    fontFaces,
+    fallbackFace,
+    overrides: fontStackOverrides
+  });
+  const fontVariants = genFontVariants({
+    fontFaces,
+    fontStacks,
+    overrides: fontVariantOverrides
+  });
+  const fontTagMappings = genFontTagMappings({
+    colors,
+    themeColors,
+    colorShades,
+    fontFaces,
+    fontStacks,
+    fontVariants,
+    overrides: fontTagMappingOverrides
+  });
+
   const mq = genMediaQueries({ breakpoints });
 
   return {
@@ -115,6 +169,10 @@ export default function theme(settings: ThemeProps = {}): Theme {
     spacing,
     breakpoints,
     borders,
-    mq
+    mq,
+    fontFaces,
+    fontStacks,
+    fontVariants,
+    fontTagMappings
   };
 }

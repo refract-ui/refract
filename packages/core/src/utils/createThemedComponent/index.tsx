@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
-import { ValuesType, PickByValue } from 'utility-types';
+import { ValuesType, PickByValue, NonUndefined } from 'utility-types';
 import { Theme, ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
@@ -35,16 +35,16 @@ interface ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps> {
   Component: React.FC<ThemeComponent & TProps>;
   defaultStyleMapping: ThemeBreakpoints<TThemeBreakpoint>;
   mapPropsToStyle: ThemePropStyleMapping<TThemeBreakpoint>;
-  cascadeStateProps: CascadeStateSettings<
+  cascadeStateProps?: CascadeStateSettings<
     TThemeBreakpoint,
     ThemeExtension<TThemeBreakpoint>
   >;
-  variantMapping: VariantMap<TVariants, TTheme>;
+  variantMapping?: VariantMap<TVariants, TTheme>;
 }
 
 type CreateThemedComponentProps<TTheme, TVariants, TThemeBreakpoint, TProps> = {
-  defaultVariants: TVariants;
-  states: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
+  defaultVariants?: TVariants;
+  states?: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
   compose: ({
     theme,
     variant
@@ -58,15 +58,15 @@ type CreateThemedComponentProps<TTheme, TVariants, TThemeBreakpoint, TProps> = {
 
 export default function createThemedComponent<
   TTheme,
-  TVariants,
-  TStates extends string,
-  TProps,
+  TVariants = unknown,
+  TStates extends string = '',
+  TProps = unknown,
   TThemeBreakpoint = ComponentThemeBreakpoint<TTheme, TStates>,
   TExtendedTheme = ExtendTheme<TThemeBreakpoint>,
   TComponentProps = Partial<WithTheme & TExtendedTheme & TVariants>
 >({
-  defaultVariants,
-  states,
+  defaultVariants = undefined,
+  states = [],
   compose
 }: CreateThemedComponentProps<
   TTheme,
@@ -76,7 +76,7 @@ export default function createThemedComponent<
 >): React.FC<TComponentProps & TProps> {
   const ThemedComponent: React.FC<TComponentProps & TProps> = props => {
     const theme = get(props, 'theme', useContext(ThemeContext)) as Theme;
-    const variantPropKeys = Object.keys(defaultVariants);
+    const variantPropKeys = Object.keys(defaultVariants || {});
     let variant = defaultsDeep(
       pick(props, variantPropKeys) as TVariants,
       defaultVariants
@@ -86,8 +86,8 @@ export default function createThemedComponent<
       Component,
       defaultStyleMapping,
       mapPropsToStyle,
-      cascadeStateProps,
-      variantMapping
+      cascadeStateProps = {},
+      variantMapping = {}
     } = compose({ theme, variant });
 
     variant = defaultsDeep(variant, defaultVariants);
