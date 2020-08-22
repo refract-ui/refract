@@ -91,9 +91,9 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme }) => {
       <Section title="small / large text">
         <p>
           <span>{faker.lorem.sentence()}</span>
-          <span className="small">
+          <small>
             <b>small</b> {faker.lorem.sentence()}
-          </span>
+          </small>
           <span>{faker.lorem.sentence()}</span>
           <span className="large">
             <b>large</b> {faker.lorem.sentence()}
