@@ -22,7 +22,8 @@ export enum Tags {
   button,
   listItem,
   small,
-  large
+  large,
+  code
 }
 
 export type FontTagMappings = {
@@ -76,7 +77,8 @@ export default function fontTagMappings({
     button: fontVariants.button,
     listItem: fontVariants.default,
     small: fontVariants.default,
-    large: fontVariants.default
+    large: fontVariants.default,
+    code: fontVariants.code
   } as FontTagMappings;
 
   if (isFunction(overrides)) {

@@ -1,7 +1,8 @@
 import React from 'react';
-import { createGlobalStyle } from 'styled-components';
+import { css, createGlobalStyle } from 'styled-components';
 import { ThemeComponent } from '../../theme';
 import { Tags as TypographyTags } from '../../theme/fontTagMappings';
+import reset from '../../theme/reset';
 import createThemedComponent from '../../utils/createThemedComponent';
 import mapTypographyStyles, {
   TypographyThemeMapping
@@ -14,7 +15,10 @@ type GlobalTheme = {
 };
 
 const GlobalStylesComponent = createGlobalStyle<ThemeComponent>`
-  ${({ componentCss }) => componentCss}
+  ${({ componentCss }) => css`
+    ${reset};
+    ${componentCss};
+  `}
 `;
 
 const GlobalStylesFC: React.FC<ThemeComponent> = ({ componentCss }) => (
@@ -29,7 +33,7 @@ const GlobalStyles = createThemedComponent<GlobalTheme>({
       xs: {
         h1: {
           ...theme.fontTagMappings.h1,
-          size: '2.5rem'
+          size: '3rem'
         },
         h2: {
           ...theme.fontTagMappings.h2,
@@ -90,6 +94,10 @@ const GlobalStyles = createThemedComponent<GlobalTheme>({
         large: {
           ...theme.fontTagMappings.large,
           size: '120%'
+        },
+        code: {
+          ...theme.fontTagMappings.code,
+          size: '1rem'
         }
       }
     },
@@ -119,7 +127,9 @@ const GlobalStyles = createThemedComponent<GlobalTheme>({
       small: ({ small }) =>
         mapTypographyStyles({ tagMapping: small, tagName: 'small' }),
       large: ({ large }) =>
-        mapTypographyStyles({ tagMapping: large, tagName: '.large' })
+        mapTypographyStyles({ tagMapping: large, tagName: '.large' }),
+      code: ({ code }) =>
+        mapTypographyStyles({ tagMapping: code, tagName: 'pre,code,kbd,samp' })
     }
   })
 });
