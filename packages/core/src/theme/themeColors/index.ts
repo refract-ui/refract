@@ -33,14 +33,14 @@ export default function themeColors({
   overrides = {}
 }: ThemeColorProps): ThemeColors {
   const defaultThemeColors: ThemeColors = {
-    primary: colors.blue,
-    secondary: colorShades.gray600,
-    success: colors.green,
+    primary: '#3978EC',
+    secondary: '#B0B9C9',
+    success: '#6AD193',
     info: colors.cyan,
-    warning: colors.yellow,
-    danger: colors.red,
+    warning: '#EFC174',
+    danger: '#DE7283',
     light: colorShades.gray100,
-    dark: colorShades.gray800
+    dark: '#575C64'
   };
 
   if (isFunction(overrides)) {

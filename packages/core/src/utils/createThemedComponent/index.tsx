@@ -17,7 +17,7 @@ import applyBreakpointStyles, {
   CascadeStateSettings
 } from '../../utils/applyBreakpointStyles';
 
-type WithTheme = {
+export type WithTheme = {
   theme: Theme;
 };
 
@@ -104,7 +104,12 @@ export default function createThemedComponent<
     // TODO: make this happen at every breakpoint
     for (const [variantKey, variantMap] of Object.entries(variantMapping)) {
       const variantMapArgs = {
-        [variantKey]: variant[variantKey as keyof typeof variant]
+        // previously:
+        // [variantKey]: variant[variantKey as keyof typeof variant]
+
+        // revision:
+        // i think we want access to all variant values for these functions
+        ...variant
       };
 
       const genVariant = variantMap as ValuesType<
@@ -114,8 +119,6 @@ export default function createThemedComponent<
 
       defaultStyleMapping.xs = defaultsDeep(variantVal, defaultStyleMapping.xs);
     }
-
-    console.log('defaultStyleMapping', defaultStyleMapping);
 
     const componentPropKeys = difference(Object.keys(props), [
       ...extendThemePropKeys,
@@ -138,7 +141,10 @@ export default function createThemedComponent<
       applyThemeBreakpoint
     });
 
-    return <Component componentCss={componentCss} {...componentProps} />;
+    // the logic of the component might need information about the variant
+    return (
+      <Component componentCss={componentCss} {...variant} {...componentProps} />
+    );
   };
 
   return ThemedComponent;

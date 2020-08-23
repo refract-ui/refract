@@ -19,8 +19,10 @@ const ButtonWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-bottom: 1rem;
   button {
     margin-right: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 
@@ -68,12 +70,251 @@ storiesOf('Button', module)
       <SButton>translucent</SButton>
     </>
   ))
-  .add('big', () => (
+  .add('overview md', () => (
+    <>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color}>
+            solid {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="subtle">
+            subtle {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="outline">
+            outline {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} iconLeft="Close">
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="subtle" iconLeft="Close">
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="outline" iconLeft="Close">
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} iconRight="SimpleArrowDown">
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="subtle"
+            iconRight="SimpleArrowDown"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="outline"
+            iconRight="SimpleArrowDown"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} icon="Danger" />
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="subtle" icon="Danger" />
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="outline" icon="Danger" />
+        ))}
+      </ButtonWrapper>
+    </>
+  ))
+  .add('overview sm', () => (
+    <>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} size="sm" key={color}>
+            solid {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} size="sm" key={color} variant="subtle">
+            subtle {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} size="sm" key={color} variant="outline">
+            outline {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} size="sm" key={color} iconLeft="Close">
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            variant="subtle"
+            iconLeft="Close"
+          >
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            variant="outline"
+            iconLeft="Close"
+          >
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            iconRight="SimpleArrowDown"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            variant="subtle"
+            iconRight="SimpleArrowDown"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            variant="outline"
+            iconRight="SimpleArrowDown"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} size="sm" key={color} icon="Danger" />
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            variant="subtle"
+            icon="Danger"
+          />
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            size="sm"
+            key={color}
+            variant="outline"
+            icon="Danger"
+          />
+        ))}
+      </ButtonWrapper>
+    </>
+  ))
+  .add('big & small', () => (
+    <>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color}>
+            {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={`${color}-sm`} size="sm">
+            {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+    </>
+  ))
+  .add('icons', () => (
     <ButtonWrapper>
-      {colors.map(color => (
-        <Button color={color} key={color}>
-          {color}
-        </Button>
-      ))}
+      <Button color="primary" iconLeft="Calendar" variant="outline">
+        With Icon
+      </Button>
+      <Button color="primary" iconLeft="Calendar" />
+      <Button color="primary" iconLeft="Calendar" variant="outline" />
+      <Button color="warning" iconLeft="DotsVertical" variant="outline">
+        With Icon
+      </Button>
+      <Button backgroundColor="crimson" iconLeft="Add" variant="outline">
+        With Icon
+      </Button>
     </ButtonWrapper>
   ));

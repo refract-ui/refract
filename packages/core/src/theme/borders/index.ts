@@ -5,6 +5,7 @@ import { Colors } from '../colors';
 
 export type BorderBreakpointStyle = {
   borderWidth: string;
+  borderStyle: string;
   borderColor: string;
   borderRadius: string;
 };
@@ -46,6 +47,13 @@ export function applyBorderStyle(
     }
 
     ${
+      border.borderStyle &&
+      css`
+        border-style: ${border.borderStyle};
+      `
+    }
+
+    ${
       border.borderColor &&
       css`
         border-color: ${border.borderColor};
@@ -70,10 +78,12 @@ export default function borders({
     xs: {
       borderWidth: '1px',
       borderColor: colorShades.gray300,
+      borderStyle: 'solid',
       borderRadius: '0.2rem'
     },
     md: {
       borderWidth: '1px',
+      borderStyle: 'solid',
       borderRadius: '0.5rem'
     },
     lg: {
