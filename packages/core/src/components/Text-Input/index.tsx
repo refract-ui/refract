@@ -23,14 +23,8 @@ type TextInputProps = {
 type TextInputVariants = {
   color: keyof Colors | keyof ThemeColors;
   size: 'sm' | 'md';
+  variant?: 'outline' | 'filled' | 'material';
 };
-
-const TextInputComponent = styled.input.attrs({
-  type: 'text',
-  placeholder: 'asdf'
-})<ThemeComponent & TextInputProps>`
-  ${({ componentCss }) => componentCss};
-`;
 
 type TextInputStates = '_hover' | '_active';
 
@@ -42,7 +36,8 @@ const TextInput = createThemedComponent<
 >({
   defaultVariants: {
     color: 'white',
-    size: 'md'
+    size: 'md',
+    variant: 'outline'
   },
   states: ['_hover', '_active'],
   compose: ({ theme, variant }) => ({
@@ -50,12 +45,38 @@ const TextInput = createThemedComponent<
       type: 'text'
     }))<ThemeComponent & TextInputProps>`
       ${({ componentCss }) => componentCss};
+      font-family: 'Work Sans', sans serif;
+      font-weight: 300;
     `,
 
     variantMapping: {
-      color: ({ color }) => ({
-        backgroundColor: theme[color]
-      }),
+      color: ({ color, variant }) => {
+        if (variant === 'outline') {
+          return {
+            backgroundColor: theme['white'],
+            border: {
+              borderRadius: '8px'
+            }
+          };
+        }
+        if (variant === 'filled') {
+          return {
+            backgroundColor: theme['gray300'],
+            border: {
+              borderColor: 'transparent',
+              borderRadius: '8px'
+            }
+          };
+        }
+        if (variant === 'material') {
+          return {
+            backgroundColor: theme['white'],
+            border: {
+              borderColor: 'none'
+            }
+          };
+        }
+      },
       size: ({ size }) => ({
         height: size === 'md' ? '18px' : '42px',
         py: size === 'md' ? `${theme.spacing['1']}` : `${theme.spacing['1']}`,
@@ -78,16 +99,16 @@ const TextInput = createThemedComponent<
       md: {
         px: `${theme.spacing['4']}`,
         py: `${theme.spacing['3']}`,
-        width: '300px'
+        width: '320px'
       }
     },
 
     cascadeStateProps: {
       backgroundColor: {
         _hover: ({ backgroundColor }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 10 }),
+          lightenOrDarken({ color: backgroundColor, amount: 3 }),
         _active: ({ _hover: { backgroundColor } }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 10 })
+          lightenOrDarken({ color: backgroundColor, amount: 3 })
       }
     },
 
@@ -97,17 +118,18 @@ const TextInput = createThemedComponent<
       `,
       textColor: ({ backgroundColor, contrastColor }) => css`
         color: ${contrastColor(backgroundColor)};
-        font-family: 'Work Sans', sans serif;
         font-size: 1rem;
         line-height: 19px;
       `,
       height: ({ height }) => css`
         height: ${height};
       `,
-      border: props =>
-        applyBorderStyle({
+      border: props => {
+        console.log('props -:> ', props);
+        return applyBorderStyle({
           ...props.border
-        }),
+        });
+      },
       px: ({ px }) => css`
         padding-left: ${px};
         padding-right: ${px};
