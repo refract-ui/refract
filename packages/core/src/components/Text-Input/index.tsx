@@ -78,9 +78,9 @@ const TextInput = createThemedComponent<
         }
       },
       size: ({ size }) => ({
-        height: size === 'md' ? '18px' : '42px',
-        py: size === 'md' ? `${theme.spacing['1']}` : `${theme.spacing['1']}`,
-        width: '100%'
+        height: size === 'md' ? '18px' : '42px'
+        // py: size === 'md' ? `${theme.spacing['1']}` : `${theme.spacing['1']}`,
+        // width: '100%'
       })
     },
 
@@ -92,8 +92,12 @@ const TextInput = createThemedComponent<
         border: theme.borders.md,
         height: '42px',
         px: `${theme.spacing['3']}`,
-        py: `${theme.spacing['2']}`,
+        py: `${theme.spacing['3']}`,
         width: '100%'
+      },
+
+      sm: {
+        width: '320px'
       },
 
       md: {
@@ -126,20 +130,30 @@ const TextInput = createThemedComponent<
       `,
       border: props => {
         console.log('props -:> ', props);
-        return applyBorderStyle({
-          ...props.border
-        });
+        if (variant.variant === 'material') {
+          return css`
+            border: none;
+            border-bottom: 1px solid ${theme['gray500']};
+          `;
+        } else {
+          return applyBorderStyle({
+            ...props.border
+          });
+        }
       },
       px: ({ px }) => css`
         padding-left: ${px};
         padding-right: ${px};
       `,
-      py: ({ py }) => css`
-        padding-top: ${py};
-        padding-bottom: ${py};
-      `,
+      py: ({ py }) => {
+        console.log('py', py);
+        return css`
+          padding-top: ${py};
+          padding-bottom: ${py};
+        `;
+      },
       width: ({ width }) => css`
-        min-width: ${width};
+        width: ${width};
       `
     }
   })
