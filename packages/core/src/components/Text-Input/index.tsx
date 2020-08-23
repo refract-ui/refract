@@ -109,8 +109,13 @@ const TextInput = createThemedComponent<
 
     cascadeStateProps: {
       backgroundColor: {
-        _hover: ({ backgroundColor }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 3 }),
+        _hover: ({ backgroundColor }) => {
+          if (variant.variant === 'material') {
+            return backgroundColor;
+          } else {
+            return lightenOrDarken({ color: backgroundColor, amount: 3 });
+          }
+        },
         _active: ({ _hover: { backgroundColor } }) =>
           lightenOrDarken({ color: backgroundColor, amount: 3 })
       }
