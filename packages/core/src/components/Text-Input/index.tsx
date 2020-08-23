@@ -26,7 +26,7 @@ type TextInputVariants = {
   variant?: 'outline' | 'filled' | 'material';
 };
 
-type TextInputStates = '_hover' | '_active';
+type TextInputStates = '_hover' | '_active' | '_focus';
 
 const TextInput = createThemedComponent<
   TextInputTheme,
@@ -39,7 +39,7 @@ const TextInput = createThemedComponent<
     size: 'md',
     variant: 'outline'
   },
-  states: ['_hover', '_active'],
+  states: ['_hover', '_active', '_focus'],
   compose: ({ theme, variant }) => ({
     Component: styled.input.attrs(({ placeholder }) => ({
       type: 'text'
@@ -118,12 +118,24 @@ const TextInput = createThemedComponent<
         },
         _active: ({ _hover: { backgroundColor } }) =>
           lightenOrDarken({ color: backgroundColor, amount: 3 })
+      },
+      border: {
+        _focus: () => ({
+          borderColor: theme['primary'],
+          borderWidth: '1px',
+          borderRadius: '8px'
+        })
       }
     },
 
     mapPropsToStyle: {
       backgroundColor: ({ backgroundColor }) => css`
         background-color: ${backgroundColor};
+
+        :focus,
+        :active {
+          outline: none;
+        }
       `,
       textColor: ({ backgroundColor, contrastColor }) => css`
         color: ${contrastColor(backgroundColor)};
@@ -139,6 +151,10 @@ const TextInput = createThemedComponent<
           return css`
             border: none;
             border-bottom: 1px solid ${theme['gray500']};
+            :focus,
+            :active {
+              border-color: ${theme['primary']};
+            }
           `;
         } else {
           return applyBorderStyle({
