@@ -16,6 +16,7 @@ import applyBreakpointStyles, {
   ThemePropStyleMapping,
   CascadeStateSettings
 } from '../../utils/applyBreakpointStyles';
+import { ContainerPropStyleMap } from '../../theme/containers';
 
 type WithTheme = {
   theme: Theme;
@@ -42,9 +43,16 @@ interface ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps> {
   variantMapping?: VariantMap<TVariants, TTheme>;
 }
 
-type CreateThemedComponentProps<TTheme, TVariants, TThemeBreakpoint, TProps> = {
+type CreateThemedComponentProps<
+  TTheme,
+  TVariants,
+  TThemeBreakpoint,
+  TProps,
+  TExtends
+> = {
   defaultVariants?: TVariants;
   states?: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
+  extend?: ContainerPropStyleMap<TExtends>;
   compose: ({
     theme,
     variant
@@ -61,18 +69,24 @@ export default function createThemedComponent<
   TVariants = unknown,
   TStates extends string = '',
   TProps = unknown,
-  TThemeBreakpoint = ComponentThemeBreakpoint<TTheme, TStates>,
+  TExtends = unknown,
+  TThemeBreakpoint = ComponentThemeBreakpoint<
+    TTheme & Partial<TExtends>,
+    TStates
+  >,
   TExtendedTheme = ExtendTheme<TThemeBreakpoint>,
   TComponentProps = Partial<WithTheme & TExtendedTheme & TVariants>
 >({
   defaultVariants = undefined,
   states = [],
+  extend,
   compose
 }: CreateThemedComponentProps<
-  TTheme,
+  TTheme & Partial<TExtends>,
   TVariants,
   TThemeBreakpoint,
-  TProps
+  TProps,
+  TExtends
 >): React.FC<TComponentProps & TProps> {
   const ThemedComponent: React.FC<TComponentProps & TProps> = props => {
     const theme = get(props, 'theme', useContext(ThemeContext)) as Theme;
@@ -122,10 +136,10 @@ export default function createThemedComponent<
     const componentProps = pick(props, componentPropKeys) as TProps;
 
     const applyThemeBreakpoint = (theme: Theme, props: TThemeBreakpoint) =>
-      applyBreakpointStyles<TThemeBreakpoint>({
+      applyBreakpointStyles<TThemeBreakpoint, TExtends>({
         theme,
         props,
-        apply: mapPropsToStyle,
+        apply: { ...mapPropsToStyle, ...(extend ? extend : {}) },
         cascade: cascadeStateProps
       });
 

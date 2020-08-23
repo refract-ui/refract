@@ -39,24 +39,24 @@ storiesOf('Button', module)
 
       <br />
 
-      <Button backgroundColor="crimson">extended</Button>
+      <Button bg="crimson">extended</Button>
 
       <br />
 
-      <Button mdOnly={{ backgroundColor: 'pink' }}>pink at md</Button>
+      <Button mdOnly={{ bg: 'pink' }}>pink at md</Button>
 
       <br />
 
       <Button
-        backgroundColor={props => props.theme.cyan200}
-        _hover={{ backgroundColor: props => props.theme.blue }}
+        bg={props => props.theme.cyan200}
+        _hover={{ bg: props => props.theme.blue }}
         mdOnly={{
-          backgroundColor: props => props.theme.red900,
+          bg: props => props.theme.red900,
           _hover: {
-            backgroundColor: props => props.theme.cyan300
+            bg: props => props.theme.cyan300
           },
           _active: {
-            backgroundColor: 'chartreuse'
+            bg: 'chartreuse'
           }
         }}
       >

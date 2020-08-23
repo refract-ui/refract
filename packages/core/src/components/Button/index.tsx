@@ -1,18 +1,17 @@
 import styled, { css } from 'styled-components';
 import { ThemeComponent } from '../../theme';
 import { ThemeColors } from '../../theme/themeColors';
+import {
+  Container,
+  mapDivContainerPropsToStyles
+} from '../../theme/containers';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 
 type ButtonTheme = {
-  backgroundColor: string;
   border: Partial<BorderBreakpointStyle>;
-  height: string;
-  px: string;
-  py: string;
   textColor?: string;
-  width?: string;
 };
 
 type ButtonProps = {
@@ -35,22 +34,24 @@ const Button = createThemedComponent<
   ButtonTheme,
   ButtonVariants,
   ButtonStates,
-  ButtonProps
+  ButtonProps,
+  Container
 >({
   defaultVariants: {
     color: 'primary',
     size: 'md'
   },
   states: ['_hover', '_active'],
+  extend: mapDivContainerPropsToStyles(),
   compose: ({ theme, variant }) => ({
     Component: ButtonComponent,
 
     variantMapping: {
       color: ({ color }) => ({
-        backgroundColor: theme[color]
+        bg: theme[color]
       }),
       size: ({ size }) => ({
-        height: size === 'md' ? '52px' : '42px',
+        h: size === 'md' ? '52px' : '42px',
         py: size === 'md' ? `${theme.spacing['2']}` : `${theme.spacing['1']}`,
         width: '100%'
       })
@@ -58,61 +59,42 @@ const Button = createThemedComponent<
 
     defaultStyleMapping: {
       xs: {
-        backgroundColor: theme[variant.color],
-        textColor: ({ contrastColor, backgroundColor }) =>
-          contrastColor(backgroundColor),
+        bg: theme[variant.color],
+        textColor: ({ contrastColor, bg }) => contrastColor(bg),
         border: theme.borders.md,
-        height: '42px',
+        h: '42px',
         px: `${theme.spacing['3']}`,
         py: `${theme.spacing['2']}`,
-        width: '100%'
+        w: '100%'
       },
 
       md: {
         px: `${theme.spacing['4']}`,
         py: `${theme.spacing['3']}`,
-        width: '300px'
+        w: '300px'
       }
     },
 
     cascadeStateProps: {
-      backgroundColor: {
-        _hover: ({ backgroundColor }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 10 }),
-        _active: ({ _hover: { backgroundColor } }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 10 })
+      bg: {
+        _hover: ({ bg }) => lightenOrDarken({ color: bg, amount: 10 }),
+        _active: ({ _hover: { bg } }) =>
+          lightenOrDarken({ color: bg, amount: 10 })
       }
     },
 
     mapPropsToStyle: {
-      backgroundColor: ({ backgroundColor }) => css`
-        background-color: ${backgroundColor};
-      `,
-      textColor: ({ backgroundColor, contrastColor }) => css`
-        color: ${contrastColor(backgroundColor)};
+      textColor: ({ bg, contrastColor }) => css`
+        color: ${contrastColor(bg)};
         font-family: 'Work Sans', sans serif;
         font-size: 1rem;
         line-height: 19px;
       `,
-      height: ({ height }) => css`
-        height: ${height};
-      `,
       border: props =>
         applyBorderStyle({
-          borderColor: props.backgroundColor,
+          borderColor: props.bg,
           ...props.border
-        }),
-      px: ({ px }) => css`
-        padding-left: ${px};
-        padding-right: ${px};
-      `,
-      py: ({ py }) => css`
-        padding-top: ${py};
-        padding-bottom: ${py};
-      `,
-      width: ({ width }) => css`
-        min-width: ${width};
-      `
+        })
     }
   })
 });
