@@ -100,10 +100,7 @@ const Icon = createThemedComponent<
         })
       },
       defaultStyleMapping: {
-        xs: {
-          iconColor: theme[variant.color],
-          iconSize: 20
-        }
+        xs: { ...theme.components.icons }
       },
       cascadeStateProps: {},
       mapPropsToStyle: {

@@ -44,6 +44,10 @@ import genBlockElementMappings, {
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
 
+type Components = {
+  icons?: IconBase;
+};
+
 export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
   themeColors?:
@@ -95,7 +99,7 @@ export type Theme = Colors &
     fontVariants: FontVariants;
     fontTagMappings: FontTagMappings;
     blockElementMappings: BlockElementMappings;
-    icons: IconBase;
+    components: Components;
   };
 
 export type ThemeColorSet = Colors & ThemeColors & SubtleColors & ColorShades;
@@ -202,6 +206,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontVariants,
     fontTagMappings,
     blockElementMappings,
-    icons
+    components: {
+      icons
+    }
   };
 }
