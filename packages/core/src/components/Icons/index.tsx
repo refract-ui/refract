@@ -88,6 +88,7 @@ const Icon = createThemedComponent<
   },
 
   compose: ({ theme, variant }) => {
+    console.log('theme', theme);
     return {
       Component: IconComponent,
       variantMapping: {
