@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import faker from 'faker';
-import { range } from 'lodash';
+import { range, defaultsDeep } from 'lodash';
 import genTheme, { Theme } from '../../theme';
 import GlobalStyles from './index';
 
@@ -45,10 +45,10 @@ interface StyleGuideProps {
   theme?: Theme;
 }
 
-const StyleGuide: React.FC<StyleGuideProps> = ({ theme }) => {
+const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => {
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyles />
+      {children}
 
       <Section title="headings">
         <h1>Heading 1</h1>
@@ -115,23 +115,42 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme }) => {
   );
 };
 
-storiesOf('GlobalStyles', module).add('default', () => (
-  <StyleGuide theme={genTheme()} />
-));
-// .add('overrides', () => (
-// <StyleGuide
-// theme={genTheme({
-// globalStyles: {
-// h1: { size: '2.6rem' }
-// }
-// })}
-// />
-// ))
+storiesOf('GlobalStyles', module)
+  .add('default', () => (
+    <StyleGuide theme={genTheme()}>
+      <GlobalStyles />
+    </StyleGuide>
+  ))
+  .add('overrides', () => (
+    <StyleGuide theme={genTheme()}>
+      <GlobalStyles
+        mdOnly={{
+          h1: props => ({
+            ...props.h1,
+            color: props.theme.red300
+          })
+        }}
+      />
+    </StyleGuide>
+  ));
+
 // .add('media queries', () => (
 // <StyleGuide
 // theme={genTheme({
-// globalStyles: {
-// h1: { mdOnly: '2.6rem' }
+// fontTagMappings: ({ colorShades, defaults }) => {
+// return defaultsDeep(
+// {
+// mdDown: {
+// h1: { color: colorShades.cyan500 },
+// h2: { color: colorShades.blue500 },
+// h3: { color: colorShades.green500 },
+// h4: { color: colorShades.red500 },
+// h5: { color: colorShades.gray600 },
+// h6: { color: colorShades.gray400 }
+// }
+// },
+// defaults
+// );
 // }
 // })}
 // />
