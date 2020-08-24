@@ -41,6 +41,9 @@ import genBlockElementMappings, {
   BlockElementMappingOverrideProps
 } from './globalBlockElements';
 
+// components
+import genIconProps, { IconBase, IconOverrideProps } from './icons';
+
 export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
   themeColors?:
@@ -74,6 +77,7 @@ export interface ThemeProps {
   blockElementMappings?:
     | ((props: BlockElementMappingOverrideProps) => BlockElementMappings)
     | Partial<BlockElementMappings>;
+  icons?: ((props: IconOverrideProps) => IconBase) | Partial<IconBase>;
 }
 
 export type Theme = Colors &
@@ -91,6 +95,7 @@ export type Theme = Colors &
     fontVariants: FontVariants;
     fontTagMappings: FontTagMappings;
     blockElementMappings: BlockElementMappings;
+    icons: IconBase;
   };
 
 export type ThemeColorSet = Colors & ThemeColors & SubtleColors & ColorShades;
@@ -114,7 +119,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     defaultFontFaceFallback: fallbackFace = 'sans',
     fontVariants: fontVariantOverrides,
     fontTagMappings: fontTagMappingOverrides,
-    blockElementMappings: blockElementMappingOverrides
+    blockElementMappings: blockElementMappingOverrides,
+    icons: iconOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -173,6 +179,11 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: blockElementMappingOverrides
   });
 
+  const icons = genIconProps({
+    themeColors,
+    overrides: iconOverrides
+  });
+
   const mq = genMediaQueries({ breakpoints });
 
   return {
@@ -190,6 +201,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontStacks,
     fontVariants,
     fontTagMappings,
-    blockElementMappings
+    blockElementMappings,
+    icons
   };
 }
