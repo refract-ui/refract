@@ -36,6 +36,10 @@ import genFontTagMappings, {
   FontTagMappings,
   FontTagMappingOverrideProps
 } from './fontTagMappings';
+import genBlockElementMappings, {
+  BlockElementMappings,
+  BlockElementMappingOverrideProps
+} from './globalBlockElements';
 
 export interface ThemeProps {
   colors?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
@@ -67,6 +71,9 @@ export interface ThemeProps {
   fontTagMappings?:
     | ((props: FontTagMappingOverrideProps) => FontTagMappings)
     | Partial<FontTagMappings>;
+  blockElementMappings?:
+    | ((props: BlockElementMappingOverrideProps) => BlockElementMappings)
+    | Partial<BlockElementMappings>;
 }
 
 export type Theme = Colors &
@@ -83,6 +90,7 @@ export type Theme = Colors &
     fontStacks: FontStacks;
     fontVariants: FontVariants;
     fontTagMappings: FontTagMappings;
+    blockElementMappings: BlockElementMappings;
   };
 
 export type ThemeColorSet = Colors & ThemeColors & SubtleColors & ColorShades;
@@ -105,7 +113,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontStacks: fontStackOverrides,
     defaultFontFaceFallback: fallbackFace = 'sans',
     fontVariants: fontVariantOverrides,
-    fontTagMappings: fontTagMappingOverrides
+    fontTagMappings: fontTagMappingOverrides,
+    blockElementMappings: blockElementMappingOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -156,6 +165,13 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontVariants,
     overrides: fontTagMappingOverrides
   });
+  const blockElementMappings = genBlockElementMappings({
+    colors,
+    themeColors,
+    colorShades,
+    spacing,
+    overrides: blockElementMappingOverrides
+  });
 
   const mq = genMediaQueries({ breakpoints });
 
@@ -173,6 +189,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontFaces,
     fontStacks,
     fontVariants,
-    fontTagMappings
+    fontTagMappings,
+    blockElementMappings
   };
 }

@@ -90,7 +90,7 @@ const Button = createThemedComponent<
     iconRight: null
   },
   states: ['_hover', '_active'],
-  extend: mapDivContainerPropsToStyles(),
+  extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => ({
     Component: ButtonComponent,
 

@@ -253,25 +253,6 @@ const reset = css`
   }
 
   /**
-  * nuke top margins. this allows for easier control within type scales as it
-  * avoids margin collapsing.
-  */
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ol,
-  ul,
-  dl,
-  pre {
-    margin-top: 0;
-  }
-
-  /**
   * Abbreviations
   * 1. Duplicate behavior to the data-* attribute for our tooltip plugin
   * 2. Add the correct text decoration in Chrome, Edge, Opera, and Safari.
@@ -292,7 +273,6 @@ const reset = css`
   */
 
   address {
-    margin-bottom: 1rem;
     font-style: normal;
     line-height: inherit;
   }
@@ -302,19 +282,6 @@ const reset = css`
   */
   dt {
     font-weight: $dt-font-weight;
-  }
-
-  dd {
-    margin-bottom: 0.5rem;
-    margin-left: 0;
-  }
-
-  /**
-  * blockquote
-  */
-
-  blockquote {
-    margin: 0 0 1rem;
   }
 
   /**
@@ -357,17 +324,15 @@ const reset = css`
   /**
   * code
   *
-  * 1. Reset browser default of '1em' to use 'rem's
-  * 2. Don't allow content to break outside
-  * 3. Disable auto-hiding scrollbar in legacy Edge to avoid overlap,
+  * 1. Don't allow content to break outside
+  * 2. Disable auto-hiding scrollbar in legacy Edge to avoid overlap,
   *    making it impossible to interact with the content
   */
 
   pre {
     display: block;
-    margin-bottom: 1rem; // 1
-    overflow: auto; // 2
-    -ms-overflow-style: scrollbar; // 3
+    overflow: auto; // 1
+    -ms-overflow-style: scrollbar; // 2
 
     // Account for some code outputs that place code tags in pre tags
     code {
@@ -392,16 +357,6 @@ const reset = css`
     kbd {
       padding: 0;
     }
-  }
-
-  /**
-  * Figures
-  *
-  * Apply a consistent margin strategy (matches our type styles).
-  */
-
-  figure {
-    margin: 0 0 1rem;
   }
 
   /**

@@ -22,9 +22,7 @@ import {
   PseudoClassExtension,
   ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
-import contrastColor from '../../utils/contrastColor';
 import { Theme } from '../../theme';
-import { ContainerPropStyleMap } from '../../theme/containers';
 
 function isPseudoSelector(key: string): boolean {
   return /^_/.test(key);
@@ -133,24 +131,20 @@ interface ApplyBreakpointStyleProps<O, T> {
   props: Partial<T>;
   apply: ThemePropStyleMapping<O>;
   cascade: CascadeStateSettings<O, T>;
+  helperMethods: ThemeExtensionHelperMethods;
 }
 
 export default function applyBreakpointStyles<O, T = ThemeExtension<O>>({
   theme,
   props: passedProps,
   apply,
-  cascade = {}
+  cascade = {},
+  helperMethods
 }: ApplyBreakpointStyleProps<O, T>): Array<
   FlattenSimpleInterpolation | SimpleInterpolation
 > {
   // used cloned instance of props so as not to mutate args
   const props = cloneDeep(passedProps);
-
-  // define convenience methods passed along to each prop / style mapping
-  const helperMethods = {
-    theme,
-    contrastColor: (color: string) => contrastColor({ color, theme })
-  } as ThemeExtensionHelperMethods;
 
   const cascadableProps = reject(Object.keys(props), isPseudoSelector);
 
