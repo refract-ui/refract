@@ -104,8 +104,8 @@ const Button = createThemedComponent<
         color: ({ size, color, variant, icon }) => {
           const sizeProps = {
             height: size === 'md' ? '52px' : '42px',
-            py: size === 'md' ? `${theme.spacing['2']}` : '11px',
-            px: size === 'md' ? '1rem' : '12px'
+            py: size === 'md' ? '0.5rem' : '0.6875rem',
+            px: size === 'md' ? '1rem' : '0.75rem'
           };
 
           if (variant === 'outline') {
@@ -154,6 +154,8 @@ const Button = createThemedComponent<
         }
       },
 
+      // theme function?
+      // genButton({ color, backgroundColor, variant })
       defaultStyleMapping: {
         xs: {
           backgroundColor: theme[variant.color],
