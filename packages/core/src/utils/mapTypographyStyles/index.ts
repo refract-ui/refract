@@ -23,7 +23,7 @@ const propAttrMap = {
   size: 'font-size',
   color: 'color',
   lineHeight: 'line-height',
-  letterSpacing: 'letterSpacing'
+  letterSpacing: 'letter-spacing'
 } as PropAttrMap;
 
 function mapTypographyStyles({

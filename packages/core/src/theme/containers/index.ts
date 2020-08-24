@@ -1,36 +1,13 @@
 import { CSSProperties } from 'react';
 import { css, FlattenSimpleInterpolation } from 'styled-components';
-import { reduce, kebabCase } from 'lodash';
+import { reduce, kebabCase, isFunction } from 'lodash';
 import { ThemeExtensionHelperMethods } from '../../utils/componentThemeBreakpoints';
+import { BlockElementMappings, BlockTagNames } from '../globalBlockElements';
 
 type CSSWideKeyword = 'initial' | 'inherit' | 'unset';
 
-export type Container = {
-  m: CSSProperties['margin'];
-  mt: CSSProperties['marginTop'];
-  mb: CSSProperties['marginBottom'];
-  ml: CSSProperties['marginLeft'];
-  mr: CSSProperties['marginRight'];
-  mx: CSSProperties['marginLeft'];
-  my: CSSProperties['marginTop'];
-  p: CSSProperties['padding'];
-  pt: CSSProperties['paddingTop'];
-  pb: CSSProperties['paddingBottom'];
-  pl: CSSProperties['paddingLeft'];
-  pr: CSSProperties['paddingRight'];
-  px: CSSProperties['paddingLeft'];
-  py: CSSProperties['paddingTop'];
-  opacity: CSSProperties['opacity'];
+interface ExtendedCSSProperties {
   textAlign: CSSWideKeyword | 'left' | 'right' | 'center' | 'justify';
-  w: CSSProperties['width'];
-  h: CSSProperties['height'];
-  // size: CSSProperties['width'];
-  minW: CSSProperties['minWidth'];
-  minH: CSSProperties['minHeight'];
-  minSize: CSSProperties['minWidth'];
-  maxW: CSSProperties['maxWidth'];
-  maxH: CSSProperties['maxHeight'];
-  maxSize: CSSProperties['maxWidth'];
   verticalAlign:
     | CSSWideKeyword
     | 'baseline'
@@ -42,12 +19,50 @@ export type Container = {
     | 'middle'
     | 'bottom'
     | 'text-bottom';
-  bg: CSSProperties['backgroundColor'];
-  bgSize: CSSProperties['backgroundSize'];
-  bgPos: CSSProperties['backgroundPosition'];
   bgRepeat: CSSWideKeyword | 'repeat' | 'repeat-x' | 'repeat-y' | 'no-repeat';
   bgAttachment: CSSWideKeyword | 'scroll' | 'fixed' | 'local';
-  area: CSSProperties['gridArea'];
+  order: CSSWideKeyword | string | number;
+}
+
+type AllCSSProperties = ExtendedCSSProperties & CSSProperties;
+
+type ContainerPropVal<T extends keyof AllCSSProperties> =
+  | ((props: ThemeExtensionHelperMethods) => AllCSSProperties[T])
+  | AllCSSProperties[T];
+
+export type Container = {
+  m: ContainerPropVal<'margin'>;
+  mt: ContainerPropVal<'marginTop'>;
+  mb: ContainerPropVal<'marginBottom'>;
+  ml: ContainerPropVal<'marginLeft'>;
+  mr: ContainerPropVal<'marginRight'>;
+  mx: ContainerPropVal<'marginLeft'>;
+  my: ContainerPropVal<'marginTop'>;
+  p: ContainerPropVal<'padding'>;
+  pt: ContainerPropVal<'paddingTop'>;
+  pb: ContainerPropVal<'paddingBottom'>;
+  pl: ContainerPropVal<'paddingLeft'>;
+  pr: ContainerPropVal<'paddingRight'>;
+  px: ContainerPropVal<'paddingLeft'>;
+  py: ContainerPropVal<'paddingTop'>;
+  opacity: ContainerPropVal<'opacity'>;
+  textAlign: ContainerPropVal<'textAlign'>;
+  w: ContainerPropVal<'width'>;
+  h: ContainerPropVal<'height'>;
+  // size: ContainerPropVal['width'];
+  minW: ContainerPropVal<'minWidth'>;
+  minH: ContainerPropVal<'minHeight'>;
+  minSize: ContainerPropVal<'minWidth'>;
+  maxW: ContainerPropVal<'maxWidth'>;
+  maxH: ContainerPropVal<'maxHeight'>;
+  maxSize: ContainerPropVal<'maxWidth'>;
+  verticalAlign: ContainerPropVal<'verticalAlign'>;
+  bg: ContainerPropVal<'backgroundColor'>;
+  bgSize: ContainerPropVal<'backgroundSize'>;
+  bgPos: ContainerPropVal<'backgroundPosition'>;
+  bgRepeat: ContainerPropVal<'bgRepeat'>;
+  bgAttachment: ContainerPropVal<'bgAttachment'>;
+  area: ContainerPropVal<'gridArea'>;
 };
 
 const ContainerProps = [
@@ -86,12 +101,12 @@ const ContainerProps = [
 ] as Array<keyof Container>;
 
 export type AlignedContainer = Container & {
-  alignItems: CSSProperties['alignItems'];
-  alignContent: CSSProperties['alignContent'];
-  alignSelf: CSSProperties['alignSelf'];
-  justifyItems: CSSProperties['justifyItems'];
-  justifyContent: CSSProperties['justifyContent'];
-  justifySelf: CSSProperties['justifySelf'];
+  alignItems: ContainerPropVal<'alignItems'>;
+  alignContent: ContainerPropVal<'alignContent'>;
+  alignSelf: ContainerPropVal<'alignSelf'>;
+  justifyItems: ContainerPropVal<'justifyItems'>;
+  justifyContent: ContainerPropVal<'justifyContent'>;
+  justifySelf: ContainerPropVal<'justifySelf'>;
 };
 
 const AlignedContainerProps = [
@@ -105,12 +120,12 @@ const AlignedContainerProps = [
 ] as Array<keyof AlignedContainer>;
 
 export type FlexContainer = AlignedContainer & {
-  wrap: CSSProperties['flexWrap'];
-  flex: CSSProperties['flex'];
-  grow: CSSProperties['flexGrow'];
-  shrink: CSSProperties['flexShrink'];
-  basis: CSSProperties['flexBasis'];
-  order: CSSWideKeyword | string | number;
+  wrap: ContainerPropVal<'flexWrap'>;
+  flex: ContainerPropVal<'flex'>;
+  grow: ContainerPropVal<'flexGrow'>;
+  shrink: ContainerPropVal<'flexShrink'>;
+  basis: ContainerPropVal<'flexBasis'>;
+  order: ContainerPropVal<'order'>;
 };
 
 const FlexContainerProps = [
@@ -124,17 +139,17 @@ const FlexContainerProps = [
 ] as Array<keyof FlexContainer>;
 
 export type GridContainer = AlignedContainer & {
-  gap: CSSProperties['gap'];
-  rowGap: CSSProperties['rowGap'];
-  columnGap: CSSProperties['columnGap'];
-  column: CSSProperties['gridColumn'];
-  row: CSSProperties['gridRow'];
-  autoFlow: CSSProperties['gridAutoFlow'];
-  autoRows: CSSProperties['gridAutoRows'];
-  autoColumns: CSSProperties['gridAutoColumns'];
-  templateRows: CSSProperties['gridTemplateRows'];
-  templateColumns: CSSProperties['gridTemplateColumns'];
-  templateAreas: CSSProperties['gridTemplateAreas'];
+  gap: ContainerPropVal<'gap'>;
+  rowGap: ContainerPropVal<'rowGap'>;
+  columnGap: ContainerPropVal<'columnGap'>;
+  column: ContainerPropVal<'gridColumn'>;
+  row: ContainerPropVal<'gridRow'>;
+  autoFlow: ContainerPropVal<'gridAutoFlow'>;
+  autoRows: ContainerPropVal<'gridAutoRows'>;
+  autoColumns: ContainerPropVal<'gridAutoColumns'>;
+  templateRows: ContainerPropVal<'gridTemplateRows'>;
+  templateColumns: ContainerPropVal<'gridTemplateColumns'>;
+  templateAreas: ContainerPropVal<'gridTemplateAreas'>;
 };
 
 const GridContainerProps = [
@@ -152,12 +167,12 @@ const GridContainerProps = [
   'templateAreas'
 ] as Array<keyof GridContainer>;
 
-type AllContainers = FlexContainer & GridContainer;
+export type AllContainers = FlexContainer & GridContainer;
 
 type AllContainerKeys = keyof AllContainers;
 
 type PropAbbrev = {
-  [P in AllContainerKeys]: Array<keyof CSSProperties>;
+  [P in AllContainerKeys]: Array<keyof AllCSSProperties>;
 };
 
 const propAbbrev = {
@@ -212,14 +227,15 @@ export type ContainerPropStyleMap<T> = {
 };
 
 export function mapContainerPropsToStyles<T>(
+  helperArgs: ThemeExtensionHelperMethods,
   props: Array<keyof T>
 ): ContainerPropStyleMap<T> {
   return reduce(
     props,
     (memo, key: keyof T) => {
       const styleAttrs = (propAbbrev[key as keyof PropAbbrev] || [
-        key as keyof CSSProperties
-      ]) as Array<keyof CSSProperties>;
+        key as keyof AllCSSProperties
+      ]) as Array<keyof AllCSSProperties>;
       const cssAttrs = styleAttrs.map(kebabCase);
 
       memo[key] = (props: T & ThemeExtensionHelperMethods) => {
@@ -227,7 +243,16 @@ export function mapContainerPropsToStyles<T>(
           return null;
         }
 
-        const val = `${props[key]}`;
+        let val: T[typeof key];
+
+        if (isFunction(val)) {
+          const valFn = val as (
+            props: ThemeExtensionHelperMethods
+          ) => T[typeof key];
+          val = valFn(helperArgs);
+        } else {
+          val = props[key] as T[typeof key];
+        }
 
         const cssStr = cssAttrs.map(attr => `${attr}: ${val};`).join('');
 
@@ -242,20 +267,57 @@ export function mapContainerPropsToStyles<T>(
   );
 }
 
-export function mapDivContainerPropsToStyles(): ContainerPropStyleMap<
-  Container
-> {
-  return mapContainerPropsToStyles<Container>(ContainerProps);
+export function mapDivContainerPropsToStyles(
+  helperArgs: ThemeExtensionHelperMethods
+): ContainerPropStyleMap<Container> {
+  return mapContainerPropsToStyles<Container>(helperArgs, ContainerProps);
 }
 
-export function mapFlexContainerPropsToStyles(): ContainerPropStyleMap<
-  FlexContainer
-> {
-  return mapContainerPropsToStyles<FlexContainer>(FlexContainerProps);
+export function mapFlexContainerPropsToStyles(
+  helperArgs: ThemeExtensionHelperMethods
+): ContainerPropStyleMap<FlexContainer> {
+  return mapContainerPropsToStyles<FlexContainer>(
+    helperArgs,
+    FlexContainerProps
+  );
 }
 
-export function mapGridContainerPropsToStyles(): ContainerPropStyleMap<
-  GridContainer
-> {
-  return mapContainerPropsToStyles<GridContainer>(GridContainerProps);
+export function mapGridContainerPropsToStyles(
+  helperArgs: ThemeExtensionHelperMethods
+): ContainerPropStyleMap<GridContainer> {
+  return mapContainerPropsToStyles<GridContainer>(
+    helperArgs,
+    GridContainerProps
+  );
+}
+
+interface MapBlockElementStyleProps {
+  tagMapping: Partial<Container>;
+  tagName: string;
+}
+
+export function mapBlockElementStyles({
+  tagName,
+  tagMapping
+}: MapBlockElementStyleProps): FlattenSimpleInterpolation {
+  const styles = reduce(
+    tagMapping,
+    (memo, val, key: keyof Partial<Container>) => {
+      if (val) {
+        const styleAttrs = (propAbbrev[key as keyof PropAbbrev] || [
+          key as keyof AllCSSProperties
+        ]) as Array<keyof AllCSSProperties>;
+        const cssAttrs = styleAttrs.map(kebabCase);
+        memo += cssAttrs.map(attr => `${attr}: ${val};`).join('');
+      }
+      return memo;
+    },
+    ''
+  );
+
+  return css`
+    ${tagName} {
+      ${styles}
+    }
+  `;
 }
