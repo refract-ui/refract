@@ -33,11 +33,6 @@ export type BlockElementMappings = {
   [tagName in BlockTagNames]: Partial<Container>;
 };
 
-export const defaultContainerProps = {
-  mt: 0,
-  mb: '1rem'
-} as Partial<Container>;
-
 export interface BlockElementMappingOverrideProps {
   colors: Colors;
   themeColors: ThemeColors;
@@ -63,6 +58,11 @@ export default function blockElementMappings({
   spacing,
   overrides = {}
 }: BlockElementMappingProps): BlockElementMappings {
+  const defaultContainerProps = {
+    mt: spacing[0],
+    mb: spacing[3]
+  } as Partial<Container>;
+
   const defaultBlockElementMappings = reduce(
     BlockElements,
     (memo, _, key: BlockTagNames) => {
@@ -74,8 +74,10 @@ export default function blockElementMappings({
     {} as BlockElementMappings
   );
 
-  defaultBlockElementMappings.ul.pl = '2rem';
-  defaultBlockElementMappings.ol.pl = '2rem';
+  defaultBlockElementMappings.ul.pl = spacing[4];
+  defaultBlockElementMappings.ol.pl = spacing[4];
+
+  defaultBlockElementMappings.label.mb = spacing[1];
 
   defaultBlockElementMappings.pre = {
     ...defaultContainerProps,
