@@ -23,11 +23,13 @@ type TextInputTheme = {
 type TextInputProps = {
   placeholder?: string;
   value?: string;
+  filled?: boolean;
+  size?: string;
 };
 
 type TextInputVariants = {
   color: keyof Colors | keyof ThemeColors;
-  size: 'sm' | 'md';
+  size?: 'sm' | 'md';
   filled?: boolean;
 };
 
@@ -76,11 +78,18 @@ const TextInput = createThemedComponent<
           };
         }
       },
-      size: ({ size }) => ({
-        height: size === 'md' ? '18px' : '42px'
-        // py: size === 'md' ? `${theme.spacing['1']}` : `${theme.spacing['1']}`,
-        // width: '100%'
-      })
+      size: ({ size }) => {
+        console.log('size', size);
+        if (size === 'sm') {
+          return {
+            py: `${theme.spacing['0']}`
+          };
+        } else {
+          return {
+            py: `${theme.spacing['1']}`
+          };
+        }
+      }
     },
 
     defaultStyleMapping: {
@@ -101,7 +110,6 @@ const TextInput = createThemedComponent<
 
       md: {
         px: `${theme.spacing['4']}`,
-        py: `${theme.spacing['3']}`,
         width: '320px'
       }
     },

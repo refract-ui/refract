@@ -23,7 +23,7 @@ const STextInput = styled(TextInput)`
 `;
 
 storiesOf('TextInput', module)
-  .add('Blank Big Input', () => (
+  .add('Md Inputs', () => (
     <OuterWrapper>
       <TextInputWrapper>
         <TextInput placeholder="Placeholder Input" />
@@ -39,60 +39,76 @@ storiesOf('TextInput', module)
       </TextInputWrapper>
     </OuterWrapper>
   ))
-  .add('Test', () => (
-    <>
-      <TextInput />
-
-      <br />
-
-      <TextInput
-        _hover={{ backgroundColor: props => props.theme.white }}
-        _active={{ backgroundColor: props => props.theme.white }}
-        placeholder="Placeholder Input"
-        border={{
-          borderRadius: '8px',
-          borderColor: '#B0B9C9',
-          borderWidth: '1px'
-        }}
-      />
-
-      <br />
-
-      <TextInput
-        color="red"
-        border={{
-          borderRadius: '50%',
-          borderColor: 'orange',
-          borderWidth: '3px'
-        }}
-      />
-
-      <br />
-
-      <TextInput backgroundColor="crimson" />
-
-      <br />
-
-      <TextInput mdOnly={{ backgroundColor: 'pink' }} />
-
-      <br />
-
-      <TextInput
-        backgroundColor={props => props.theme.cyan200}
-        _hover={{ backgroundColor: props => props.theme.blue }}
-        mdOnly={{
-          backgroundColor: props => props.theme.red900,
-          _hover: {
-            backgroundColor: props => props.theme.cyan300
-          },
-          _active: {
-            backgroundColor: 'chartreuse'
-          }
-        }}
-      />
-
-      <br />
-
-      <STextInput />
-    </>
+  .add('Sm Inputs', () => (
+    <OuterWrapper>
+      <TextInputWrapper>
+        <TextInput placeholder="Placeholder Input" size="sm" m="50px" />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput value="Pre-Filled In Text" size="sm" />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput placeholder="Placeholder Input" filled size="sm" />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput value="Pre-Filled In Text" filled size="sm" />
+      </TextInputWrapper>
+    </OuterWrapper>
   ));
+// .add('Test', () => (
+//   <>
+//     <TextInput />
+
+//     <br />
+
+//     <TextInput
+//       _hover={{ backgroundColor: props => props.theme.white }}
+//       _active={{ backgroundColor: props => props.theme.white }}
+//       placeholder="Placeholder Input"
+//       border={{
+//         borderRadius: '8px',
+//         borderColor: '#B0B9C9',
+//         borderWidth: '1px'
+//       }}
+//     />
+
+//     <br />
+
+//     <TextInput
+//       color="red"
+//       border={{
+//         borderRadius: '50%',
+//         borderColor: 'orange',
+//         borderWidth: '3px'
+//       }}
+//     />
+
+//     <br />
+
+//     <TextInput backgroundColor="crimson" />
+
+//     <br />
+
+//     <TextInput mdOnly={{ backgroundColor: 'pink' }} />
+
+//     <br />
+
+//     <TextInput
+//       backgroundColor={props => props.theme.cyan200}
+//       _hover={{ backgroundColor: props => props.theme.blue }}
+//       mdOnly={{
+//         backgroundColor: props => props.theme.red900,
+//         _hover: {
+//           backgroundColor: props => props.theme.cyan300
+//         },
+//         _active: {
+//           backgroundColor: 'chartreuse'
+//         }
+//       }}
+//     />
+
+//     <br />
+
+//     <STextInput />
+//   </>
+// ));
