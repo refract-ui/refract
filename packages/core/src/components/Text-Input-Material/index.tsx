@@ -22,12 +22,12 @@ type TextInputMaterialTheme = {
 
 type TextInputMaterialProps = {
   placeholder?: string;
+  value?: string;
 };
 
 type TextInputMaterialVariants = {
   color: keyof Colors | keyof ThemeColors;
   size: 'sm' | 'md';
-  variant?: 'outline' | 'filled' | 'material';
 };
 
 type TextInputMaterialStates = '_hover' | '_active' | '_focus';
@@ -41,13 +41,12 @@ const TextInputMaterial = createThemedComponent<
 >({
   defaultVariants: {
     color: 'white',
-    size: 'md',
-    variant: 'outline'
+    size: 'md'
   },
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => ({
-    Component: styled.input.attrs(({ placeholder }) => ({
+    Component: styled.input.attrs(({ placeholder, value }) => ({
       type: 'text'
     }))<ThemeComponent & TextInputMaterialProps>`
       ${({ componentCss }) => componentCss};
@@ -56,7 +55,7 @@ const TextInputMaterial = createThemedComponent<
     `,
 
     variantMapping: {
-      color: ({ color, variant }) => {
+      color: ({ color }) => {
         return {
           backgroundColor: theme['white'],
           border: {
@@ -97,11 +96,7 @@ const TextInputMaterial = createThemedComponent<
     cascadeStateProps: {
       backgroundColor: {
         _hover: ({ backgroundColor }) => {
-          if (variant.variant === 'material') {
-            return backgroundColor;
-          } else {
-            return lightenOrDarken({ color: backgroundColor, amount: 3 });
-          }
+          return lightenOrDarken({ color: backgroundColor, amount: 3 });
         },
         _active: ({ _hover: { backgroundColor } }) =>
           lightenOrDarken({ color: backgroundColor, amount: 3 })

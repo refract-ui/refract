@@ -29,10 +29,13 @@ storiesOf('TextInput', module)
         <TextInput placeholder="Placeholder Input" />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput placeholder="Outline Placeholder" />
+        <TextInput value="Pre-Filled In Text" />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput placeholder="Filled Placeholder" filled />
+        <TextInput placeholder="Placeholder Input" filled />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput value="Pre-Filled In Text" filled />
       </TextInputWrapper>
     </OuterWrapper>
   ))

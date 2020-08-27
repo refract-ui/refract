@@ -31,16 +31,7 @@ storiesOf('TextInputMaterial', module)
       <TextInputMaterialWrapper>
         <TextInputMaterial
           placeholder="Outline Placeholder"
-          variant="outline"
-        />
-      </TextInputMaterialWrapper>
-      <TextInputMaterialWrapper>
-        <TextInputMaterial placeholder="Filled Placeholder" variant="filled" />
-      </TextInputMaterialWrapper>
-      <TextInputMaterialWrapper>
-        <TextInputMaterial
-          placeholder="Material Placeholder"
-          variant="material"
+          value="Pre-Filled In Text"
         />
       </TextInputMaterialWrapper>
     </OuterWrapper>

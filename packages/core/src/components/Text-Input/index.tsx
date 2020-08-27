@@ -22,6 +22,7 @@ type TextInputTheme = {
 
 type TextInputProps = {
   placeholder?: string;
+  value?: string;
 };
 
 type TextInputVariants = {
@@ -47,7 +48,7 @@ const TextInput = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => ({
-    Component: styled.input.attrs(({ placeholder }) => ({
+    Component: styled.input.attrs(({ placeholder, value }) => ({
       type: 'text'
     }))<ThemeComponent & TextInputProps>`
       ${({ componentCss }) => componentCss};
