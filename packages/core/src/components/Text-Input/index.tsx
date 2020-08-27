@@ -27,7 +27,7 @@ type TextInputProps = {
 type TextInputVariants = {
   color: keyof Colors | keyof ThemeColors;
   size: 'sm' | 'md';
-  variant?: 'outline' | 'filled' | 'material';
+  filled?: boolean;
 };
 
 type TextInputStates = '_hover' | '_active' | '_focus';
@@ -42,7 +42,7 @@ const TextInput = createThemedComponent<
   defaultVariants: {
     color: 'white',
     size: 'md',
-    variant: 'outline'
+    filled: false
   },
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
@@ -56,8 +56,8 @@ const TextInput = createThemedComponent<
     `,
 
     variantMapping: {
-      color: ({ color, variant }) => {
-        if (variant === 'outline') {
+      color: ({ color, filled }) => {
+        if (!filled) {
           return {
             backgroundColor: theme['white'],
             border: {
@@ -65,20 +65,12 @@ const TextInput = createThemedComponent<
             }
           };
         }
-        if (variant === 'filled') {
+        if (filled) {
           return {
             backgroundColor: theme['gray300'],
             border: {
               borderColor: 'transparent',
               borderRadius: '8px'
-            }
-          };
-        }
-        if (variant === 'material') {
-          return {
-            backgroundColor: theme['white'],
-            border: {
-              borderColor: 'none'
             }
           };
         }
@@ -116,11 +108,7 @@ const TextInput = createThemedComponent<
     cascadeStateProps: {
       backgroundColor: {
         _hover: ({ backgroundColor }) => {
-          if (variant.variant === 'material') {
-            return backgroundColor;
-          } else {
-            return lightenOrDarken({ color: backgroundColor, amount: 3 });
-          }
+          return lightenOrDarken({ color: backgroundColor, amount: 3 });
         },
         _active: ({ _hover: { backgroundColor } }) =>
           lightenOrDarken({ color: backgroundColor, amount: 3 })
@@ -151,23 +139,11 @@ const TextInput = createThemedComponent<
       height: ({ height }) => css`
         height: ${height};
       `,
-      border: props => {
-        console.log('props -:> ', props);
-        if (variant.variant === 'material') {
-          return css`
-            border: none;
-            border-bottom: 1px solid ${theme['gray500']};
-            :focus,
-            :active {
-              border-color: ${theme['primary']};
-            }
-          `;
-        } else {
-          return applyBorderStyle({
-            ...props.border
-          });
-        }
-      },
+      border: props =>
+        applyBorderStyle({
+          borderColor: props.bg,
+          ...props.border
+        }),
       px: ({ px }) => css`
         padding-left: ${px};
         padding-right: ${px};
