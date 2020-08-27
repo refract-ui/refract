@@ -5,6 +5,10 @@ import { ThemeColors } from '../../theme/themeColors';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
+import {
+  Container,
+  mapDivContainerPropsToStyles
+} from '../../theme/containers';
 
 type TextInputTheme = {
   backgroundColor: string;
@@ -32,7 +36,8 @@ const TextInput = createThemedComponent<
   TextInputTheme,
   TextInputVariants,
   TextInputStates,
-  TextInputProps
+  TextInputProps,
+  Container
 >({
   defaultVariants: {
     color: 'white',
@@ -40,6 +45,7 @@ const TextInput = createThemedComponent<
     variant: 'outline'
   },
   states: ['_hover', '_active', '_focus'],
+  extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => ({
     Component: styled.input.attrs(({ placeholder }) => ({
       type: 'text'
