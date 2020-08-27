@@ -313,7 +313,7 @@ storiesOf('Button', module)
       <Button color="warning" iconLeft="DotsVertical" variant="outline">
         With Icon
       </Button>
-      <Button backgroundColor="crimson" iconLeft="Add" variant="outline">
+      <Button iconLeft="Add" variant="outline">
         With Icon
       </Button>
     </ButtonWrapper>
