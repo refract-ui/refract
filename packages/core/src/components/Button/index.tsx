@@ -195,8 +195,7 @@ const Button = createThemedComponent<
         return applyBorderStyle({
           borderColor:
             variant.variant === 'outline' ? props.textColor : props.bg,
-          borderWidth:
-            variant.variant === 'outline' && icon && !children ? '2px' : '1px',
+          borderWidth: icon && !children ? '2px' : '1px',
           ...props.border
         });
       },

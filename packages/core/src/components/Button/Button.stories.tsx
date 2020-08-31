@@ -173,4 +173,127 @@ storiesOf('Button', module)
         ))}
       </ButtonWrapper>
     </>
+  ))
+  .add('overview sm', () => (
+    <>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} size="sm">
+            solid {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="subtle" size="sm">
+            subtle {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} variant="outline" size="sm">
+            outline {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} icon="Close" size="sm">
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="subtle"
+            icon="Close"
+            size="sm"
+          >
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="outline"
+            icon="Close"
+            size="sm"
+          >
+            leading icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            size="sm"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="subtle"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            size="sm"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="outline"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            size="sm"
+          >
+            trailing icon {color}
+          </Button>
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button color={color} key={color} icon="Danger" size="sm" />
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="subtle"
+            icon="Danger"
+            size="sm"
+          />
+        ))}
+      </ButtonWrapper>
+      <ButtonWrapper>
+        {colors.map(color => (
+          <Button
+            color={color}
+            key={color}
+            variant="outline"
+            icon="Danger"
+            size="sm"
+          />
+        ))}
+      </ButtonWrapper>
+    </>
   ));
