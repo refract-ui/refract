@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get } from 'lodash';
+import { get, isObject } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { ThemeColors } from '../../theme/themeColors';
 import { ThemeColorShades } from '../../theme/themeColorShades';
@@ -11,10 +11,18 @@ import {
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
+import { Icons } from '../Icons/icons';
+import Icon from '../Icons';
 
 type ButtonTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
+  fontSize?: string;
+};
+
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
 };
 
 type ButtonVariants = {
@@ -28,30 +36,48 @@ type ButtonStates = '_hover' | '_active';
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
+  icon?: keyof Icons | IconObject | null;
 };
 
 function ButtonFunction({
   children,
   onClick,
+  icon,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
-  console.log('props', props);
   const className = get(props, 'className', null);
+
+  const useIcon = isObject(icon) ? get(icon, 'icon', null) : icon;
+  const iconPosition = isObject(icon) ? get(icon, 'position', 'left') : 'left';
+  // console.log('{ useIcon, iconPosition }', { useIcon, iconPosition });
 
   return (
     <button className={className} onClick={onClick}>
+      {iconPosition === 'left' && children && (
+        <Icon name={useIcon as keyof Icons} />
+      )}
       {children}
+      {icon && !children && <Icon name={useIcon as keyof Icons} />}
+      {iconPosition === 'right' && children && (
+        <Icon name={useIcon as keyof Icons} />
+      )}
     </button>
   );
 }
 
 ButtonFunction.defaultProps = {
   children: null,
-  onClick: null
+  onClick: null,
+  icon: null
 };
 
 const ButtonComponent = styled(ButtonFunction)<ThemeComponent & ButtonProps>`
   ${({ componentCss }) => componentCss};
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Work Sans', sans serif;
+  line-height: 19px;
   &:hover {
     cursor: pointer;
   }
@@ -118,6 +144,7 @@ const Button = createThemedComponent<
         border: {
           ...theme.borders.md
         },
+        fontSize: '1rem',
         px: '1rem',
         py: '0.75rem',
         w: '100%'
@@ -139,12 +166,21 @@ const Button = createThemedComponent<
     mapPropsToStyle: {
       textColor: ({ textColor }) => css`
         color: ${textColor};
-        font-family: 'Work Sans', sans serif;
-        font-size: 1rem;
-        line-height: 19px;
+        svg {
+          path {
+            fill: ${textColor};
+          }
+        }
+      `,
+      fontSize: ({ fontSize }) => css`
+        font-size: ${fontSize};
+        svg {
+          height: ${fontSize};
+          width: ${fontSize};
+        }
       `,
       border: props => {
-        console.log('props', { props, variant });
+        // console.log('props', { props, variant });
         return applyBorderStyle({
           borderColor:
             variant.variant === 'outline' ? props.textColor : props.bg,
