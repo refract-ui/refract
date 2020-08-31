@@ -8,6 +8,10 @@ import genThemeColors, {
   ThemeColors,
   ThemeColorOverrideProps
 } from './themeColors';
+import genThemeColorShades, {
+  ThemeColorShades,
+  ThemeColorShadeOverrideProps
+} from './themeColorShades';
 import genSpacing, { Spacing, SpacingOverrideProps } from './spacing';
 import genBreakpoints, {
   Breakpoints,
@@ -48,6 +52,9 @@ export interface ThemeProps {
   colorShades?:
     | ((props: ColorShadeOverrideProps) => ColorShades)
     | Partial<ColorShades>;
+  themeColorShades?:
+    | ((props: ThemeColorShadeOverrideProps) => ThemeColorShades)
+    | Partial<ThemeColorShades>;
   spacing?: ((props: SpacingOverrideProps) => Spacing) | Partial<Spacing>;
   breakpoints?:
     | ((props: BreakpointOverrideProps) => Breakpoints)
@@ -72,7 +79,8 @@ export interface ThemeProps {
 
 export type Theme = Colors &
   ThemeColors &
-  ColorShades & {
+  ColorShades &
+  ThemeColorShades & {
     settings: ThemeProps;
     spacing: Spacing;
     breakpoints: Breakpoints;
@@ -95,6 +103,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     colors: colorOverrides,
     themeColors: themeColorOverrides,
     colorShades: colorShadeOverrides,
+    themeColorShades: themeColorShadeOverrides,
     spacing: spacingOverrides,
     breakpoints: breakpointOverrides,
     borders: borderOverrides,
@@ -116,6 +125,10 @@ export default function theme(settings: ThemeProps = {}): Theme {
     colors,
     colorShades,
     overrides: themeColorOverrides
+  });
+  const themeColorShades = genThemeColorShades({
+    themeColors,
+    overrides: themeColorShadeOverrides
   });
   const spacing = genSpacing({ overrides: spacingOverrides });
   const breakpoints = genBreakpoints({ overrides: breakpointOverrides });
@@ -165,6 +178,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     ...colors,
     ...themeColors,
     ...colorShades,
+    ...themeColorShades,
     spacing,
     breakpoints,
     borders,

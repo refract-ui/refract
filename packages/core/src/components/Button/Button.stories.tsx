@@ -68,10 +68,10 @@ storiesOf('Button', module)
       <SButton>translucent</SButton>
     </>
   ))
-  .add('big', () => (
+  .add('small', () => (
     <ButtonWrapper>
       {colors.map(color => (
-        <Button color={color} key={color}>
+        <Button color={color} key={color} size="sm">
           {color}
         </Button>
       ))}
