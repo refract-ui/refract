@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import faker from 'faker';
-import { range, defaultsDeep } from 'lodash';
+import { range } from 'lodash';
 import genTheme, { Theme } from '../../theme';
 import GlobalStyles from './index';
 
@@ -133,25 +133,3 @@ storiesOf('GlobalStyles', module)
       />
     </StyleGuide>
   ));
-
-// .add('media queries', () => (
-// <StyleGuide
-// theme={genTheme({
-// fontTagMappings: ({ colorShades, defaults }) => {
-// return defaultsDeep(
-// {
-// mdDown: {
-// h1: { color: colorShades.cyan500 },
-// h2: { color: colorShades.blue500 },
-// h3: { color: colorShades.green500 },
-// h4: { color: colorShades.red500 },
-// h5: { color: colorShades.gray600 },
-// h6: { color: colorShades.gray400 }
-// }
-// },
-// defaults
-// );
-// }
-// })}
-// />
-// ));
