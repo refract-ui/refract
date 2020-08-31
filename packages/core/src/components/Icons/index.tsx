@@ -17,12 +17,11 @@ type IconTheme = {
 type IconProps = {
   name: keyof Icons;
   size?: number | 'sm' | 'md' | 'lg';
+  useFill?: boolean;
 };
 
 type IconVariants = {
   color: keyof ThemeColors;
-  size?: number | 'sm' | 'md' | 'lg';
-  useFill?: boolean;
 };
 
 type IconStates = null;
@@ -48,7 +47,7 @@ function getSize(size: IconProps['size']): number {
   }
 }
 
-function IconFunction({ name, size, ...props }: IconProps): JSX.Element {
+function IconFunction({ name, size = 'md', ...props }: IconProps): JSX.Element {
   const propSize = typeof size === 'string' ? getSize(size) : size;
   const data = getIconData({ name, size: propSize });
   const className = get(props, 'className', null);
@@ -82,21 +81,15 @@ const Icon = createThemedComponent<
   IconProps
 >({
   defaultVariants: {
-    color: 'dark',
-    size: 'md',
-    useFill: false
+    color: 'dark'
   },
 
-  compose: ({ theme, variant }) => {
-    console.log('theme', theme);
+  compose: ({ theme }) => {
     return {
       Component: IconComponent,
       variantMapping: {
         color: ({ color }) => ({
           iconColor: theme[color]
-        }),
-        size: ({ size }) => ({
-          iconSize: typeof size === 'string' ? getSize(size) : size
         })
       },
       defaultStyleMapping: {
@@ -109,10 +102,13 @@ const Icon = createThemedComponent<
             fill: ${iconColor};
           }
         `,
-        iconSize: ({ iconSize }) => css`
-          height: ${iconSize}px;
-          width: ${iconSize}px;
-        `
+        iconSize: ({ iconSize, componentProps: { size } }) => {
+          const computedSize = typeof size === 'string' ? getSize(size) : size;
+          return css`
+            height: ${computedSize || iconSize}px;
+            width: ${computedSize || iconSize}px;
+          `;
+        }
       }
     };
   }
