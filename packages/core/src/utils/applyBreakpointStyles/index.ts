@@ -17,7 +17,6 @@ import {
 } from 'styled-components';
 import { OmitByValue, PickByValue } from 'utility-types';
 import {
-  ThemeExtension,
   PseudoClass,
   PseudoClassExtension,
   ThemeExtensionHelperMethods
@@ -67,27 +66,31 @@ function computeProps<T>({
   );
 }
 
-export type ThemePropStyleMapping<T> = {
+export type ThemePropStyleMapping<T, TProps> = {
   [P in keyof OmitByValue<T, PseudoClassExtension<T>>]:
-    | ((args: T & ThemeExtensionHelperMethods) => FlattenSimpleInterpolation)
+    | ((
+        args: T & ThemeExtensionHelperMethods & { componentProps: TProps }
+      ) => FlattenSimpleInterpolation)
     | FlattenSimpleInterpolation;
 };
 
-interface ApplyStyleProps<O, T> {
+interface ApplyStyleProps<O, T, TProps> {
   theme: Theme;
   computedProps: Partial<T>;
   props: Partial<T>;
-  apply: ThemePropStyleMapping<O>;
+  apply: ThemePropStyleMapping<O, TProps>;
   helperMethods: ThemeExtensionHelperMethods;
+  componentProps: TProps;
 }
 
-function applyStyles<O, T>({
+function applyStyles<O, T, TProps>({
   theme,
   computedProps,
   props,
   apply,
-  helperMethods
-}: ApplyStyleProps<O, T>): Array<FlattenSimpleInterpolation> {
+  helperMethods,
+  componentProps
+}: ApplyStyleProps<O, T, TProps>): Array<FlattenSimpleInterpolation> {
   return reduce(
     apply,
     (memo, val, key) => {
@@ -101,6 +104,7 @@ function applyStyles<O, T>({
           ...computedProps,
           ...props,
           theme,
+          componentProps,
           ...helperMethods
         });
         memo.push(computedVal);
@@ -126,21 +130,23 @@ export type CascadeStateSettings<O, T> = {
   >]?: ThemeCascadeStateMapping<O, T, P>;
 };
 
-interface ApplyBreakpointStyleProps<O, T> {
+interface ApplyBreakpointStyleProps<O, T, TProps> {
   theme: Theme;
   props: Partial<T>;
-  apply: ThemePropStyleMapping<O>;
+  apply: ThemePropStyleMapping<O, TProps>;
   cascade: CascadeStateSettings<O, T>;
   helperMethods: ThemeExtensionHelperMethods;
+  componentProps: TProps;
 }
 
-export default function applyBreakpointStyles<O, T = ThemeExtension<O>>({
+export default function applyBreakpointStyles<O, T, TProps>({
   theme,
   props: passedProps,
   apply,
   cascade = {},
-  helperMethods
-}: ApplyBreakpointStyleProps<O, T>): Array<
+  helperMethods,
+  componentProps
+}: ApplyBreakpointStyleProps<O, T, TProps>): Array<
   FlattenSimpleInterpolation | SimpleInterpolation
 > {
   // used cloned instance of props so as not to mutate args
@@ -188,12 +194,13 @@ export default function applyBreakpointStyles<O, T = ThemeExtension<O>>({
     isPseudoSelector(key)
   ) as Partial<T>;
 
-  const baseStyles = applyStyles<O, T>({
+  const baseStyles = applyStyles<O, T, TProps>({
     theme,
     props: baseProps,
     computedProps,
     apply,
-    helperMethods
+    helperMethods,
+    componentProps
   });
 
   const pseudoSelectors = uniq([
@@ -210,12 +217,13 @@ export default function applyBreakpointStyles<O, T = ThemeExtension<O>>({
       const selector = (selectorKey as string).replace(/_/, ':');
       const selectorProps = computedProps[selectorKey] as Partial<T>;
 
-      const pseudoStyles = applyStyles<O, T>({
+      const pseudoStyles = applyStyles<O, T, TProps>({
         theme,
         props: { ...selectorProps },
         computedProps,
         apply,
-        helperMethods
+        helperMethods,
+        componentProps
       });
 
       const pseudoClass = css`
