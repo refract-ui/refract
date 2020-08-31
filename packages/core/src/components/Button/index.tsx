@@ -18,6 +18,7 @@ type ButtonTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
   fontSize?: string;
+  width?: string;
 };
 
 type IconObject = {
@@ -53,12 +54,12 @@ function ButtonFunction({
 
   return (
     <button className={className} onClick={onClick}>
-      {iconPosition === 'left' && children && (
+      {icon && iconPosition === 'left' && children && (
         <Icon name={useIcon as keyof Icons} />
       )}
       {children}
       {icon && !children && <Icon name={useIcon as keyof Icons} />}
-      {iconPosition === 'right' && children && (
+      {icon && iconPosition === 'right' && children && (
         <Icon name={useIcon as keyof Icons} />
       )}
     </button>
@@ -77,7 +78,7 @@ const ButtonComponent = styled(ButtonFunction)<ThemeComponent & ButtonProps>`
   justify-content: center;
   align-items: center;
   font-family: 'Work Sans', sans serif;
-  line-height: 19px;
+  line-height: 18px;
   &:hover {
     cursor: pointer;
   }
@@ -105,9 +106,8 @@ const Button = createThemedComponent<
         bg: theme[color]
       }),
       size: ({ size }) => ({
-        py: size === 'md' ? '0.75rem' : '0.6875rem',
-        px: size === 'md' ? '1rem' : '0.75rem',
-        width: '100%'
+        py: size === 'md' ? '1rem' : '0.6875rem',
+        px: size === 'md' ? '1rem' : '0.75rem'
       }),
       variant: ({ variant, color }) => {
         if (variant === 'outline') {
@@ -147,7 +147,8 @@ const Button = createThemedComponent<
         fontSize: '1rem',
         px: '1rem',
         py: '0.75rem',
-        w: '100%'
+        w: '100%',
+        width: 'unset'
       },
 
       md: {
@@ -172,20 +173,37 @@ const Button = createThemedComponent<
           }
         }
       `,
-      fontSize: ({ fontSize }) => css`
-        font-size: ${fontSize};
-        svg {
-          height: ${fontSize};
-          width: ${fontSize};
-        }
-      `,
+      fontSize: ({ fontSize, componentProps: { icon, children } }) => {
+        const iconPosition = get(icon, 'position', 'left');
+        const leftIcon = icon && children && iconPosition === 'left';
+        const rightIcon = icon && children && iconPosition === 'right';
+        return css`
+          font-size: ${fontSize};
+          svg {
+            height: ${fontSize};
+            width: ${fontSize};
+            margin-right: ${leftIcon && `${fontSize}`};
+            margin-left: ${rightIcon && `${fontSize}`};
+          }
+        `;
+      },
       border: props => {
-        // console.log('props', { props, variant });
+        const {
+          componentProps: { icon, children }
+        } = props;
+
         return applyBorderStyle({
           borderColor:
             variant.variant === 'outline' ? props.textColor : props.bg,
+          borderWidth:
+            variant.variant === 'outline' && icon && !children ? '2px' : '1px',
           ...props.border
         });
+      },
+      width: ({ componentProps: { icon } }) => {
+        return css`
+          width: ${icon && 'initial !important'};
+        `;
       }
     }
   })

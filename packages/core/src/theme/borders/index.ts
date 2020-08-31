@@ -38,6 +38,8 @@ export function applyBorderStyle(
     return undefined;
   }
 
+  console.log('border', border);
+
   return css`
     ${
       border.borderWidth &&
@@ -82,7 +84,6 @@ export default function borders({
       borderRadius: '0.2rem'
     },
     md: {
-      borderWidth: '1px',
       borderStyle: 'solid',
       borderRadius: '0.5rem'
     },
