@@ -1,7 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { ThemeColors } from '../../theme/themeColors';
+import { ThemeColorShades } from '../../theme/themeColorShades';
 import {
   Container,
   mapDivContainerPropsToStyles
@@ -18,7 +20,7 @@ type ButtonTheme = {
 type ButtonVariants = {
   color: keyof ThemeColors;
   size: 'sm' | 'md';
-  variant: 'outline' | null;
+  variant: 'outline' | 'subtle' | null;
 };
 
 type ButtonStates = '_hover' | '_active';
@@ -34,7 +36,13 @@ function ButtonFunction({
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   console.log('props', props);
-  return <button onClick={onClick}>{children}</button>;
+  const className = get(props, 'className', null);
+
+  return (
+    <button className={className} onClick={onClick}>
+      {children}
+    </button>
+  );
 }
 
 ButtonFunction.defaultProps = {
@@ -42,7 +50,7 @@ ButtonFunction.defaultProps = {
   onClick: null
 };
 
-const ButtonComponent = styled.button<ThemeComponent & ButtonProps>`
+const ButtonComponent = styled(ButtonFunction)<ThemeComponent & ButtonProps>`
   ${({ componentCss }) => componentCss};
   &:hover {
     cursor: pointer;
@@ -63,65 +71,88 @@ const Button = createThemedComponent<
   },
   states: ['_hover', '_active'],
   extend: mapDivContainerPropsToStyles,
-  compose: ({ theme, variant }) => {
-    console.log('theme', theme);
-    return {
-      Component: ButtonComponent,
+  compose: ({ theme, variant }) => ({
+    Component: ButtonComponent,
 
-      variantMapping: {
-        color: ({ color }) => ({
-          bg: theme[color]
-        }),
-        size: ({ size }) => ({
-          py: size === 'md' ? '0.75rem' : '0.6875rem',
-          px: size === 'md' ? '1rem' : '0.75rem',
-          width: '100%'
-        }),
-        variant: ({ variant, color }) => ({
+    variantMapping: {
+      color: ({ color }) => ({
+        bg: theme[color]
+      }),
+      size: ({ size }) => ({
+        py: size === 'md' ? '0.75rem' : '0.6875rem',
+        px: size === 'md' ? '1rem' : '0.75rem',
+        width: '100%'
+      }),
+      variant: ({ variant, color }) => {
+        if (variant === 'outline') {
+          return {
+            bg: theme.white,
+            textColor: theme[`${color}700` as keyof ThemeColorShades],
+            borderColor: theme[`${color}700` as keyof ThemeColorShades],
+            border: {
+              ...theme.borders.md
+            }
+          };
+        }
+
+        if (variant === 'subtle') {
+          return {
+            bg: theme[`${color}400` as keyof ThemeColorShades],
+            borderColor: theme[`${color}400` as keyof ThemeColorShades],
+            textColor: theme[`${color}900` as keyof ThemeColorShades]
+          };
+        }
+
+        return {
           bg: theme[color],
           borderColor: theme[color],
           textColor: theme.white
-        })
-      },
-
-      defaultStyleMapping: {
-        xs: {
-          bg: theme[variant.color],
-          textColor: ({ contrastColor, bg }) => contrastColor(bg),
-          border: theme.borders.md,
-          px: '1rem',
-          py: '0.75rem',
-          w: '100%'
-        },
-
-        md: {
-          w: '300px'
-        }
-      },
-
-      cascadeStateProps: {
-        bg: {
-          _hover: ({ bg }) => lightenOrDarken({ color: bg, amount: 10 }),
-          _active: ({ _hover: { bg } }) =>
-            lightenOrDarken({ color: bg, amount: 10 })
-        }
-      },
-
-      mapPropsToStyle: {
-        textColor: ({ bg, contrastColor }) => css`
-          color: ${contrastColor(bg)};
-          font-family: 'Work Sans', sans serif;
-          font-size: 1rem;
-          line-height: 19px;
-        `,
-        border: props =>
-          applyBorderStyle({
-            borderColor: props.bg,
-            ...props.border
-          })
+        };
       }
-    };
-  }
+    },
+
+    defaultStyleMapping: {
+      xs: {
+        bg: theme[variant.color],
+        textColor: ({ contrastColor, bg }) => contrastColor(bg),
+        border: {
+          ...theme.borders.md
+        },
+        px: '1rem',
+        py: '0.75rem',
+        w: '100%'
+      },
+
+      md: {
+        w: '300px'
+      }
+    },
+
+    cascadeStateProps: {
+      bg: {
+        _hover: ({ bg }) => lightenOrDarken({ color: bg, amount: 10 }),
+        _active: ({ _hover: { bg } }) =>
+          lightenOrDarken({ color: bg, amount: 10 })
+      }
+    },
+
+    mapPropsToStyle: {
+      textColor: ({ textColor }) => css`
+        color: ${textColor};
+        font-family: 'Work Sans', sans serif;
+        font-size: 1rem;
+        line-height: 19px;
+      `,
+      border: props => {
+        console.log('props', { props, variant });
+        return applyBorderStyle({
+          borderColor:
+            variant.variant === 'outline' ? props.textColor : props.bg,
+          ...props.border
+        });
+      }
+    }
+  })
 });
 
 export default Button;

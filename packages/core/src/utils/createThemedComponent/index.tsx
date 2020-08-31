@@ -131,7 +131,8 @@ export default function createThemedComponent<
     // TODO: make this happen at every breakpoint
     for (const [variantKey, variantMap] of Object.entries(variantMapping)) {
       const variantMapArgs = {
-        [variantKey]: variant[variantKey as keyof typeof variant]
+        // [variantKey]: variant[variantKey as keyof typeof variant]
+        ...variant
       };
 
       const genVariant = variantMap as ValuesType<
