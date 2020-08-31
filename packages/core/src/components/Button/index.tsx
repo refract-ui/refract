@@ -107,7 +107,7 @@ const Button = createThemedComponent<
       }),
       size: ({ size }) => ({
         py: size === 'md' ? '1rem' : '0.6875rem',
-        px: size === 'md' ? '1rem' : '0.75rem'
+        px: size === 'md' ? '1rem' : '0.6875rem'
       }),
       variant: ({ variant, color }) => {
         if (variant === 'outline') {
