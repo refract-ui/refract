@@ -42,7 +42,7 @@ storiesOf('TextInput', module)
   .add('Sm Inputs', () => (
     <OuterWrapper>
       <TextInputWrapper>
-        <TextInput placeholder="Placeholder Input" size="sm" m="50px" />
+        <TextInput placeholder="Placeholder Input" size="sm" />
       </TextInputWrapper>
       <TextInputWrapper>
         <TextInput value="Pre-Filled In Text" size="sm" />

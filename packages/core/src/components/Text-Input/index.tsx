@@ -1,4 +1,6 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
+import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -15,7 +17,7 @@ type TextInputTheme = {
   border: Partial<BorderBreakpointStyle>;
   height: string;
   px: string;
-  py: string;
+  py?: string;
   textColor?: string;
   width?: string;
 };
@@ -23,8 +25,6 @@ type TextInputTheme = {
 type TextInputProps = {
   placeholder?: string;
   value?: string;
-  filled?: boolean;
-  size?: string;
 };
 
 type TextInputVariants = {
@@ -34,6 +34,29 @@ type TextInputVariants = {
 };
 
 type TextInputStates = '_hover' | '_active' | '_focus';
+
+function TextInputFunction({
+  placeholder,
+  value,
+  ...props
+}: TextInputProps & TextInputVariants): JSX.Element {
+  console.log('props', props);
+  const className = get(props, 'className', null);
+  return (
+    <input className={className} placeholder={placeholder} value={value} />
+  );
+}
+
+const TextInputComponent = styled(TextInputFunction)<
+  ThemeComponent & TextInputProps
+>`
+  ${({ componentCss }) => {
+    console.log('componentCss', componentCss);
+    return componentCss;
+  }};
+  font-family: 'Work Sans', sans serif;
+  font-weight: 300;
+`;
 
 const TextInput = createThemedComponent<
   TextInputTheme,
@@ -50,13 +73,7 @@ const TextInput = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => ({
-    Component: styled.input.attrs(({ placeholder, value }) => ({
-      type: 'text'
-    }))<ThemeComponent & TextInputProps>`
-      ${({ componentCss }) => componentCss};
-      font-family: 'Work Sans', sans serif;
-      font-weight: 300;
-    `,
+    Component: TextInputComponent,
 
     variantMapping: {
       color: ({ color, filled }) => {
@@ -64,6 +81,7 @@ const TextInput = createThemedComponent<
           return {
             backgroundColor: theme['white'],
             border: {
+              borderColor: theme['secondary'],
               borderRadius: '8px'
             }
           };
@@ -79,7 +97,6 @@ const TextInput = createThemedComponent<
         }
       },
       size: ({ size }) => {
-        console.log('size', size);
         if (size === 'sm') {
           return {
             py: `${theme.spacing['0']}`
@@ -100,7 +117,7 @@ const TextInput = createThemedComponent<
         border: theme.borders.md,
         height: '42px',
         px: `${theme.spacing['3']}`,
-        py: `${theme.spacing['3']}`,
+        py: `0`,
         width: '100%'
       },
 
@@ -114,22 +131,7 @@ const TextInput = createThemedComponent<
       }
     },
 
-    cascadeStateProps: {
-      backgroundColor: {
-        _hover: ({ backgroundColor }) => {
-          return lightenOrDarken({ color: backgroundColor, amount: 3 });
-        },
-        _active: ({ _hover: { backgroundColor } }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 3 })
-      },
-      border: {
-        _focus: () => ({
-          borderColor: theme['primary'],
-          borderWidth: '1px',
-          borderRadius: '8px'
-        })
-      }
-    },
+    cascadeStateProps: {},
 
     mapPropsToStyle: {
       backgroundColor: ({ backgroundColor }) => css`
@@ -157,7 +159,8 @@ const TextInput = createThemedComponent<
         padding-left: ${px};
         padding-right: ${px};
       `,
-      py: ({ py }) => {
+      py: ({ py, ...props }) => {
+        console.log('In py, this is props: ', props);
         console.log('py', py);
         return css`
           padding-top: ${py};

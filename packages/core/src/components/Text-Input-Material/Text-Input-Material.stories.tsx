@@ -23,7 +23,7 @@ const STextInput = styled(TextInputMaterial)`
 `;
 
 storiesOf('TextInputMaterial', module)
-  .add('Blank Big Input', () => (
+  .add('Blank Input', () => (
     <OuterWrapper>
       <TextInputMaterialWrapper>
         <TextInputMaterial placeholder="Placeholder Input" />
