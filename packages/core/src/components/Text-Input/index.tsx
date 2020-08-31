@@ -13,13 +13,8 @@ import {
 } from '../../theme/containers';
 
 type TextInputTheme = {
-  backgroundColor: string;
   border: Partial<BorderBreakpointStyle>;
-  height: string;
-  px: string;
-  py?: string;
   textColor?: string;
-  width?: string;
 };
 
 type TextInputProps = {
@@ -51,6 +46,11 @@ const TextInputComponent = styled(TextInputFunction)<
   ${({ componentCss }) => componentCss};
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
+
+  :focus,
+  :active {
+    outline: none;
+  }
 `;
 
 const TextInput = createThemedComponent<
@@ -104,64 +104,54 @@ const TextInput = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          backgroundColor: '',
-          textColor: ({ contrastColor, backgroundColor }) =>
-            contrastColor(backgroundColor),
-          height: '42px',
+          bg: 'none',
+          textColor: ({ contrastColor, bg }) => contrastColor(bg),
+          h: '42px',
           border: theme.borders.md,
           px: `${theme.spacing['3']}`,
           py: `0`,
-          width: '100%'
+          w: '100%'
         },
 
         sm: {
-          width: '320px'
+          w: '320px'
         },
 
         md: {
           px: `${theme.spacing['4']}`,
-          width: '320px'
+          w: '320px'
         }
       },
 
       // hover, active state handling here:
-      cascadeStateProps: {},
+      cascadeStateProps: {
+        border: {
+          _focus: () => ({
+            borderColor: theme['primary']
+          })
+          // _hover: props => {
+          //   console.log('In _hover, this is props: ', props);
+          //   return lightenOrDarken({
+          //     color: props.border.borderColor,
+          //     amount: 3
+          //   });
+          //   // return { borderColor: props.border.borderColor };
+          //   // return lightenOrDarken({ color: backgroundColor, amount: 3 });
+          // }
+        }
+      },
 
       mapPropsToStyle: {
-        backgroundColor: ({ backgroundColor }) => css`
-          background-color: ${backgroundColor};
-
-          :focus,
-          :active {
-            outline: none;
-          }
-        `,
         textColor: ({ textColor }) => css`
           color: ${textColor};
           font-size: 1rem;
           line-height: 19px;
         `,
-        height: ({ height }) => css`
-          height: ${height};
-        `,
         border: props =>
           applyBorderStyle({
             borderColor: props.bg,
             ...props.border
-          }),
-        px: ({ px }) => css`
-          padding-left: ${px};
-          padding-right: ${px};
-        `,
-        py: ({ py, ...props }) => {
-          return css`
-            padding-top: ${py};
-            padding-bottom: ${py};
-          `;
-        },
-        width: ({ width }) => css`
-          width: ${width};
-        `
+          })
       }
     };
   }
