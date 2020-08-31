@@ -77,15 +77,18 @@ const TextInput = createThemedComponent<
         filled: ({ filled }) => {
           if (filled) {
             return {
-              backgroundColor: theme['gray300'],
+              bg: theme['gray300'],
               border: {
                 borderColor: 'transparent'
               }
             };
           } else {
             return {
-              backgroundColor: 'transparent',
-              textColor: theme['dark']
+              bg: 'transparent',
+              textColor: theme['dark'],
+              border: {
+                borderColor: theme['secondary']
+              }
             };
           }
         },
