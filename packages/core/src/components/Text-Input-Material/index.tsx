@@ -70,8 +70,6 @@ const TextInputMaterial = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    console.log('At top of materialcompose: , this is variant: ', variant);
-    console.log('At top of materialcompose: , this is theme: ', theme);
     return {
       Component: TextInputMaterialComponent,
 

@@ -20,6 +20,8 @@ type TextInputTheme = {
 type TextInputProps = {
   placeholder?: string;
   value?: string;
+  success?: boolean;
+  error?: boolean;
 };
 
 type TextInputVariants = {
@@ -67,9 +69,6 @@ const TextInput = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    console.log('In index.tsx, this is variant: ', variant);
-    console.log('In index.tsx, this is theme: ', theme);
-
     return {
       Component: TextInputComponent,
 
@@ -146,11 +145,34 @@ const TextInput = createThemedComponent<
           font-size: 1rem;
           line-height: 19px;
         `,
-        border: props =>
-          applyBorderStyle({
-            borderColor: props.bg,
-            ...props.border
-          })
+        border: ({
+          bg,
+          componentProps: { success, error },
+          border: { borderColor, borderWidth, borderStyle, borderRadius }
+        }) => {
+          if (success) {
+            return applyBorderStyle({
+              borderColor: theme['success'],
+              borderWidth,
+              borderStyle,
+              borderRadius
+            });
+          }
+          if (error) {
+            return applyBorderStyle({
+              borderColor: theme['danger'],
+              borderWidth,
+              borderStyle,
+              borderRadius
+            });
+          }
+          return applyBorderStyle({
+            borderColor,
+            borderWidth,
+            borderStyle,
+            borderRadius
+          });
+        }
       }
     };
   }

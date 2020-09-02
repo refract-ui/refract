@@ -38,8 +38,6 @@ export function applyBorderStyle(
     return undefined;
   }
 
-  console.log('border', border);
-
   return css`
     ${
       border.borderWidth &&
