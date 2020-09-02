@@ -43,7 +43,6 @@ const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
   ThemeComponent & TextInputMaterialProps
 >`
   ${({ componentCss }) => componentCss};
-  border-bottom-width: 1px;
   border-left: none;
   border-right: none;
   border-top: none;
@@ -94,7 +93,8 @@ const TextInputMaterial = createThemedComponent<
           textColor: theme['dark'],
           border: {
             borderRadius: '0',
-            borderColor: theme['secondary']
+            borderColor: theme['secondary'],
+            borderWidth: theme.borders.md.borderWidth
           },
           h: '42px',
           px: `${theme.spacing['3']}`,
@@ -116,7 +116,8 @@ const TextInputMaterial = createThemedComponent<
       cascadeStateProps: {
         border: {
           _focus: () => ({
-            borderColor: theme['primary']
+            borderColor: theme['primary'],
+            borderWidth: '2px'
           }),
           _hover: () => {
             return {
@@ -137,6 +138,7 @@ const TextInputMaterial = createThemedComponent<
         border: props => {
           return css`
             border-bottom-color: ${props.border.borderColor};
+            border-bottom-width: ${props.border.borderWidth};
           `;
         }
       }
