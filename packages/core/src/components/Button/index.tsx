@@ -1,8 +1,9 @@
 import React from 'react';
-import { get } from 'lodash';
 import styled, { css } from 'styled-components';
+import { get, isObject } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { ThemeColors } from '../../theme/themeColors';
+import { ThemeColorShades } from '../../theme/themeColorShades';
 import {
   Container,
   mapDivContainerPropsToStyles
@@ -10,10 +11,8 @@ import {
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
-import contrastColor from '../../utils/contrastColor';
-import { lightenColor } from '../../utils/colorFunc';
-import { Icons } from '../Icon/icons';
-import Icon from '../Icon';
+import { Icons } from '../Icons/icons';
+import Icon from '../Icons';
 
 // reduce to sets of types (text, box, etc.)?
 type ButtonTheme = {
@@ -21,18 +20,17 @@ type ButtonTheme = {
   textColor?: string;
   fontSize?: string;
   width?: string;
-  leftIcon?: boolean;
-  rightIcon?: boolean;
-  hasIcon?: boolean;
+};
+
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
 };
 
 type ButtonVariants = {
   color: keyof ThemeColors;
-  size?: 'sm' | 'md';
-  variant?: 'outline' | 'subtle' | null;
-  iconLeft?: keyof Icons | null;
-  iconRight?: keyof Icons | null;
-  icon?: keyof Icons | null;
+  size: 'sm' | 'md';
+  variant: 'outline' | 'subtle' | null;
 };
 
 type ButtonStates = '_hover' | '_active';
@@ -40,42 +38,48 @@ type ButtonStates = '_hover' | '_active';
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
+  icon?: keyof Icons | IconObject | null;
 };
 
 function ButtonFunction({
   children,
   onClick,
   icon,
-  iconLeft,
-  iconRight,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
+
+  const useIcon = isObject(icon) ? get(icon, 'icon', null) : icon;
+  const iconPosition = isObject(icon) ? get(icon, 'position', 'left') : 'left';
+  // console.log('{ useIcon, iconPosition }', { useIcon, iconPosition });
+
   return (
     <button className={className} onClick={onClick}>
-      {iconLeft && <Icon name={iconLeft} />}
-      {!children && icon && <Icon name={icon} />}
-      {children && children}
-      {iconRight && <Icon name={iconRight} />}
+      {icon && iconPosition === 'left' && children && (
+        <Icon name={useIcon as keyof Icons} />
+      )}
+      {children}
+      {icon && !children && <Icon name={useIcon as keyof Icons} />}
+      {icon && iconPosition === 'right' && children && (
+        <Icon name={useIcon as keyof Icons} />
+      )}
     </button>
   );
 }
 
 ButtonFunction.defaultProps = {
   children: null,
-  onClick: null
+  onClick: null,
+  icon: null
 };
 
-// move defaults to `text`
 const ButtonComponent = styled(ButtonFunction)<ThemeComponent & ButtonProps>`
   ${({ componentCss }) => componentCss};
-  // display: inline-flex;
-  font-family: 'Work Sans', sans serif;
-  font-size: 1rem;
-  line-height: 19px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Work Sans', sans serif;
+  line-height: 18px;
   &:hover {
     cursor: pointer;
   }
@@ -91,10 +95,7 @@ const Button = createThemedComponent<
   defaultVariants: {
     color: 'primary',
     size: 'md',
-    variant: null,
-    icon: null,
-    iconLeft: null,
-    iconRight: null
+    variant: null
   },
   states: ['_hover', '_active'],
   extend: mapDivContainerPropsToStyles,
@@ -106,26 +107,52 @@ const Button = createThemedComponent<
         bg: theme[color]
       }),
       size: ({ size }) => ({
-        h: size === 'md' ? '52px' : '42px',
-        py: size === 'md' ? `${theme.spacing['2']}` : `${theme.spacing['1']}`,
-        width: '100%'
-      })
+        py: size === 'md' ? '1rem' : '0.6875rem',
+        px: size === 'md' ? '1rem' : '0.6875rem'
+      }),
+      variant: ({ variant, color }) => {
+        if (variant === 'outline') {
+          return {
+            bg: theme.white,
+            textColor: theme[`${color}700` as keyof ThemeColorShades],
+            borderColor: theme[`${color}700` as keyof ThemeColorShades],
+            border: {
+              ...theme.borders.md
+            }
+          };
+        }
+
+        if (variant === 'subtle') {
+          return {
+            bg: theme[`${color}400` as keyof ThemeColorShades],
+            borderColor: theme[`${color}400` as keyof ThemeColorShades],
+            textColor: theme[`${color}900` as keyof ThemeColorShades]
+          };
+        }
+
+        return {
+          bg: theme[color],
+          borderColor: theme[color],
+          textColor: theme.white
+        };
+      }
     },
 
     defaultStyleMapping: {
       xs: {
         bg: theme[variant.color],
         textColor: ({ contrastColor, bg }) => contrastColor(bg),
-        border: theme.borders.md,
-        h: '42px',
-        px: `${theme.spacing['3']}`,
-        py: `${theme.spacing['2']}`,
-        w: '100%'
+        border: {
+          ...theme.borders.md
+        },
+        fontSize: '1rem',
+        px: '1rem',
+        py: '0.75rem',
+        w: '100%',
+        width: 'unset'
       },
 
       md: {
-        px: `${theme.spacing['4']}`,
-        py: `${theme.spacing['3']}`,
         w: '300px'
       }
     },
@@ -139,17 +166,45 @@ const Button = createThemedComponent<
     },
 
     mapPropsToStyle: {
-      textColor: ({ bg, contrastColor }) => css`
-        color: ${contrastColor(bg)};
-        font-family: 'Work Sans', sans serif;
-        font-size: 1rem;
-        line-height: 19px;
+      textColor: ({ textColor }) => css`
+        color: ${textColor};
+        svg {
+          path {
+            fill: ${textColor};
+          }
+        }
       `,
-      border: props =>
-        applyBorderStyle({
-          borderColor: props.bg,
+      fontSize: ({ fontSize, componentProps: { icon, children } }) => {
+        const iconPosition = get(icon, 'position', 'left');
+        const leftIcon = icon && children && iconPosition === 'left';
+        const rightIcon = icon && children && iconPosition === 'right';
+        return css`
+          font-size: ${fontSize};
+          svg {
+            height: ${fontSize};
+            width: ${fontSize};
+            margin-right: ${leftIcon && `${fontSize}`};
+            margin-left: ${rightIcon && `${fontSize}`};
+          }
+        `;
+      },
+      border: props => {
+        const {
+          componentProps: { icon, children }
+        } = props;
+
+        return applyBorderStyle({
+          borderColor:
+            variant.variant === 'outline' ? props.textColor : props.bg,
+          borderWidth: icon && !children ? '2px' : '1px',
           ...props.border
-        })
+        });
+      },
+      width: ({ componentProps: { icon } }) => {
+        return css`
+          width: ${icon && 'initial !important'};
+        `;
+      }
     }
   })
 });

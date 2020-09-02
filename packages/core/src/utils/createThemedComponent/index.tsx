@@ -40,7 +40,7 @@ type SansFunctions<T> = {
 interface ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps> {
   Component: React.FC<ThemeComponent & TProps>;
   defaultStyleMapping: ThemeBreakpoints<TThemeBreakpoint>;
-  mapPropsToStyle: ThemePropStyleMapping<TThemeBreakpoint>;
+  mapPropsToStyle: ThemePropStyleMapping<TThemeBreakpoint, TProps>;
   cascadeStateProps?: CascadeStateSettings<
     TThemeBreakpoint,
     ThemeExtension<TThemeBreakpoint>
@@ -131,11 +131,7 @@ export default function createThemedComponent<
     // TODO: make this happen at every breakpoint
     for (const [variantKey, variantMap] of Object.entries(variantMapping)) {
       const variantMapArgs = {
-        // previously:
         // [variantKey]: variant[variantKey as keyof typeof variant]
-
-        // revision:
-        // i think we want access to all variant values for these functions
         ...variant
       };
 
@@ -154,12 +150,13 @@ export default function createThemedComponent<
     const componentProps = pick(props, componentPropKeys) as TProps;
 
     const applyThemeBreakpoint = (theme: Theme, props: TThemeBreakpoint) =>
-      applyBreakpointStyles<TThemeBreakpoint, TExtends>({
+      applyBreakpointStyles<TThemeBreakpoint, TExtends, TProps>({
         theme,
         props,
         helperMethods,
         apply: { ...mapPropsToStyle, ...(extend ? extend(helperMethods) : {}) },
-        cascade: cascadeStateProps
+        cascade: cascadeStateProps,
+        componentProps
       });
 
     const componentCss = applyComponentTheme<TThemeBreakpoint>({

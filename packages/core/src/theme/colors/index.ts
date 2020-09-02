@@ -32,16 +32,16 @@ export const colorNames: Array<string> = [
 
 export const defaultColors: Colors = {
   white: '#ffffff',
-  gray: '#adb5bd',
+  gray: '#B0B9C9',
   black: '#000000',
-  blue: '#0d6efd',
+  blue: '#3978EC',
   indigo: '#6610f2',
   purple: '#6f42c1',
   pink: '#d63384',
-  red: '#dc3545',
+  red: '#DE7283',
   orange: '#fd7e14',
-  yellow: '#ffc107',
-  green: '#28a745',
+  yellow: '#EFC174',
+  green: '#6AD193',
   teal: '#20c997',
   cyan: '#17a2b8'
 };
