@@ -22,74 +22,54 @@ const STextInput = styled(TextInputMaterial)`
   opacity: 0.7;
 `;
 
-storiesOf('TextInputMaterial', module)
-  .add('Blank Input', () => (
-    <OuterWrapper>
-      <TextInputMaterialWrapper>
-        <TextInputMaterial placeholder="Placeholder Input" />
-      </TextInputMaterialWrapper>
-      <TextInputMaterialWrapper>
-        <TextInputMaterial
-          placeholder="Outline Placeholder"
-          value="Pre-Filled In Text"
-        />
-      </TextInputMaterialWrapper>
-    </OuterWrapper>
-  ))
-  .add('Test', () => (
-    <>
-      <TextInputMaterial />
-
-      <br />
-
+storiesOf('TextInputMaterial', module).add('Blank Input', () => (
+  <OuterWrapper>
+    <TextInputMaterialWrapper>
+      <TextInputMaterial placeholder="Placeholder Input" />
+    </TextInputMaterialWrapper>
+    <TextInputMaterialWrapper>
       <TextInputMaterial
-        _hover={{ backgroundColor: props => props.theme.white }}
-        _active={{ backgroundColor: props => props.theme.white }}
-        placeholder="Placeholder Input"
-        border={{
-          borderRadius: '8px',
-          borderColor: '#B0B9C9',
-          borderWidth: '1px'
-        }}
+        placeholder="Outline Placeholder"
+        value="Pre-Filled In Text"
       />
+    </TextInputMaterialWrapper>
+  </OuterWrapper>
+));
+// .add('Test', () => (
+//   <>
+//     <TextInputMaterial />
 
-      <br />
+//     <br />
 
-      <TextInputMaterial
-        color="red"
-        border={{
-          borderRadius: '50%',
-          borderColor: 'orange',
-          borderWidth: '3px'
-        }}
-      />
+//     <TextInputMaterial
+//       placeholder="Placeholder Input"
+//       border={{
+//         borderRadius: '8px',
+//         borderColor: '#B0B9C9',
+//         borderWidth: '1px'
+//       }}
+//     />
 
-      <br />
+//     <br />
 
-      <TextInputMaterial backgroundColor="crimson" />
+//     <TextInputMaterial
+//       border={{
+//         borderRadius: '50%',
+//         borderColor: 'orange',
+//         borderWidth: '3px'
+//       }}
+//     />
 
-      <br />
+//     <br />
 
-      <TextInputMaterial mdOnly={{ backgroundColor: 'pink' }} />
+//     <TextInputMaterial bg="crimson" />
 
-      <br />
+//     <br />
 
-      <TextInputMaterial
-        backgroundColor={props => props.theme.cyan200}
-        _hover={{ backgroundColor: props => props.theme.blue }}
-        mdOnly={{
-          backgroundColor: props => props.theme.red900,
-          _hover: {
-            backgroundColor: props => props.theme.cyan300
-          },
-          _active: {
-            backgroundColor: 'chartreuse'
-          }
-        }}
-      />
+//     <TextInputMaterial mdOnly={{ bg: 'pink' }} />
 
-      <br />
+//     <br />
 
-      <STextInput />
-    </>
-  ));
+//     <STextInput />
+//   </>
+// ));

@@ -13,13 +13,8 @@ import {
 } from '../../theme/containers';
 
 type TextInputMaterialTheme = {
-  backgroundColor: string;
   border: Partial<BorderBreakpointStyle>;
-  height: string;
-  px: string;
-  py: string;
   textColor?: string;
-  width?: string;
 };
 
 type TextInputMaterialProps = {
@@ -28,7 +23,6 @@ type TextInputMaterialProps = {
 };
 
 type TextInputMaterialVariants = {
-  color: keyof Colors | keyof ThemeColors;
   size: 'sm' | 'md';
 };
 
@@ -49,6 +43,10 @@ const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
   ThemeComponent & TextInputMaterialProps
 >`
   ${({ componentCss }) => componentCss};
+  border-bottom-width: 1px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
 
@@ -66,114 +64,84 @@ const TextInputMaterial = createThemedComponent<
   Container
 >({
   defaultVariants: {
-    color: 'white',
     size: 'md'
   },
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
-  compose: ({ theme, variant }) => ({
-    Component: TextInputMaterialComponent,
+  compose: ({ theme, variant }) => {
+    console.log('At top of materialcompose: , this is variant: ', variant);
+    console.log('At top of materialcompose: , this is theme: ', theme);
+    return {
+      Component: TextInputMaterialComponent,
 
-    variantMapping: {
-      color: ({ color }) => {
-        return {
-          backgroundColor: theme['white'],
-          border: {
-            borderColor: 'none'
+      variantMapping: {
+        size: ({ size }) => {
+          if (size === 'sm') {
+            return {
+              py: `${theme.spacing['0']}`
+            };
+          } else {
+            return {
+              py: `${theme.spacing['1']}`
+            };
           }
-        };
-      },
-      size: ({ size }) => ({
-        height: size === 'md' ? '18px' : '42px'
-        // py: size === 'md' ? `${theme.spacing['1']}` : `${theme.spacing['1']}`,
-        // width: '100%'
-      })
-    },
-
-    defaultStyleMapping: {
-      xs: {
-        backgroundColor: theme[variant.color],
-        textColor: ({ contrastColor, backgroundColor }) =>
-          contrastColor(backgroundColor),
-        border: theme.borders.md,
-        height: '42px',
-        px: `${theme.spacing['3']}`,
-        py: `${theme.spacing['3']}`,
-        width: '100%'
-      },
-
-      sm: {
-        width: '320px'
-      },
-
-      md: {
-        px: `${theme.spacing['4']}`,
-        py: `${theme.spacing['3']}`,
-        width: '320px'
-      }
-    },
-
-    cascadeStateProps: {
-      backgroundColor: {
-        _hover: ({ backgroundColor }) => {
-          return lightenOrDarken({ color: backgroundColor, amount: 3 });
-        },
-        _active: ({ _hover: { backgroundColor } }) =>
-          lightenOrDarken({ color: backgroundColor, amount: 3 })
-      },
-      border: {
-        _focus: () => ({
-          borderColor: theme['primary'],
-          borderWidth: '1px',
-          borderRadius: '8px'
-        })
-      }
-    },
-
-    mapPropsToStyle: {
-      backgroundColor: ({ backgroundColor }) => css`
-        background-color: ${backgroundColor};
-
-        :focus,
-        :active {
-          outline: none;
         }
-      `,
-      textColor: ({ backgroundColor, contrastColor }) => css`
-        color: ${contrastColor(backgroundColor)};
-        font-size: 1rem;
-        line-height: 19px;
-      `,
-      height: ({ height }) => css`
-        height: ${height};
-      `,
-      border: props => {
-        console.log('props -:> ', props);
-        return css`
-          border: none;
-          border-bottom: 1px solid ${theme['gray500']};
-          :focus,
-          :active {
-            border-color: ${theme['primary']};
+      },
+
+      defaultStyleMapping: {
+        xs: {
+          bg: 'none',
+          textColor: theme['dark'],
+          border: {
+            borderRadius: '0',
+            borderColor: theme['secondary']
+          },
+          h: '42px',
+          px: `${theme.spacing['3']}`,
+          py: `0`,
+          w: '100%'
+        },
+
+        sm: {
+          w: '320px'
+        },
+
+        md: {
+          px: `${theme.spacing['4']}`,
+          w: '320px'
+        }
+      },
+
+      // hover, active state handling here:
+      cascadeStateProps: {
+        border: {
+          _focus: () => ({
+            borderColor: theme['primary']
+          }),
+          _hover: () => {
+            return {
+              borderColor: theme['dark']
+            };
           }
-        `;
+        }
       },
-      px: ({ px }) => css`
-        padding-left: ${px};
-        padding-right: ${px};
-      `,
-      py: ({ py }) => {
-        console.log('py', py);
-        return css`
-          padding-top: ${py};
-          padding-bottom: ${py};
-        `;
-      },
-      width: ({ width }) => css`
-        width: ${width};
-      `
-    }
-  })
+
+      mapPropsToStyle: {
+        textColor: ({ textColor }) => {
+          return css`
+            color: ${textColor};
+            font-size: 1rem;
+            line-height: 19px;
+          `;
+        },
+        border: props => {
+          return css`
+            border-bottom-color: ${props.border.borderColor};
+          `;
+        }
+      }
+    };
+  }
 });
 
 export default TextInputMaterial;
