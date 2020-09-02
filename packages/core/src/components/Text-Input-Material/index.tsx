@@ -1,4 +1,6 @@
+import React from 'react';
 import styled, { css } from 'styled-components';
+import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -32,6 +34,30 @@ type TextInputMaterialVariants = {
 
 type TextInputMaterialStates = '_hover' | '_active' | '_focus';
 
+function TextInputMaterialFunction({
+  placeholder,
+  value,
+  ...props
+}: TextInputMaterialProps & TextInputMaterialVariants): JSX.Element {
+  const className = get(props, 'className', null);
+  return (
+    <input className={className} placeholder={placeholder} value={value} />
+  );
+}
+
+const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
+  ThemeComponent & TextInputMaterialProps
+>`
+  ${({ componentCss }) => componentCss};
+  font-family: 'Work Sans', sans serif;
+  font-weight: 300;
+
+  :focus,
+  :active {
+    outline: none;
+  }
+`;
+
 const TextInputMaterial = createThemedComponent<
   TextInputMaterialTheme,
   TextInputMaterialVariants,
@@ -46,13 +72,7 @@ const TextInputMaterial = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => ({
-    Component: styled.input.attrs(({ placeholder, value }) => ({
-      type: 'text'
-    }))<ThemeComponent & TextInputMaterialProps>`
-      ${({ componentCss }) => componentCss};
-      font-family: 'Work Sans', sans serif;
-      font-weight: 300;
-    `,
+    Component: TextInputMaterialComponent,
 
     variantMapping: {
       color: ({ color }) => {
