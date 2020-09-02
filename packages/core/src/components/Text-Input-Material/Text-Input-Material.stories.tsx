@@ -33,43 +33,19 @@ storiesOf('TextInputMaterial', module).add('Blank Input', () => (
         value="Pre-Filled In Text"
       />
     </TextInputMaterialWrapper>
+    <TextInputMaterialWrapper>
+      <TextInputMaterial
+        placeholder="Placeholder Input"
+        value="Success State"
+        success
+      />
+    </TextInputMaterialWrapper>
+    <TextInputMaterialWrapper>
+      <TextInputMaterial
+        placeholder="Placeholder Input"
+        value="Error State"
+        error
+      />
+    </TextInputMaterialWrapper>
   </OuterWrapper>
 ));
-// .add('Test', () => (
-//   <>
-//     <TextInputMaterial />
-
-//     <br />
-
-//     <TextInputMaterial
-//       placeholder="Placeholder Input"
-//       border={{
-//         borderRadius: '8px',
-//         borderColor: '#B0B9C9',
-//         borderWidth: '1px'
-//       }}
-//     />
-
-//     <br />
-
-//     <TextInputMaterial
-//       border={{
-//         borderRadius: '50%',
-//         borderColor: 'orange',
-//         borderWidth: '3px'
-//       }}
-//     />
-
-//     <br />
-
-//     <TextInputMaterial bg="crimson" />
-
-//     <br />
-
-//     <TextInputMaterial mdOnly={{ bg: 'pink' }} />
-
-//     <br />
-
-//     <STextInput />
-//   </>
-// ));

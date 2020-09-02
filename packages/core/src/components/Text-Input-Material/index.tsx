@@ -20,6 +20,8 @@ type TextInputMaterialTheme = {
 type TextInputMaterialProps = {
   placeholder?: string;
   value?: string;
+  success?: boolean;
+  error?: boolean;
 };
 
 type TextInputMaterialVariants = {
@@ -135,11 +137,27 @@ const TextInputMaterial = createThemedComponent<
             line-height: 19px;
           `;
         },
-        border: props => {
-          return css`
-            border-bottom-color: ${props.border.borderColor};
-            border-bottom-width: ${props.border.borderWidth};
-          `;
+        border: ({
+          componentProps: { success, error },
+          border: { borderColor, borderWidth }
+        }) => {
+          if (success) {
+            return css`
+              border-bottom-color: ${theme['success']};
+              border-bottom-width: ${borderWidth};
+            `;
+          }
+          if (error) {
+            return css`
+              border-bottom-color: ${theme['danger']};
+              border-bottom-width: ${borderWidth};
+            `;
+          } else {
+            return css`
+              border-bottom-color: ${borderColor};
+              border-bottom-width: ${borderWidth};
+            `;
+          }
         }
       }
     };
