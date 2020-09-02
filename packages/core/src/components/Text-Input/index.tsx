@@ -131,16 +131,12 @@ const TextInput = createThemedComponent<
         border: {
           _focus: () => ({
             borderColor: theme['primary']
-          })
-          // _hover: props => {
-          //   console.log('In _hover, this is props: ', props);
-          //   return lightenOrDarken({
-          //     color: props.border.borderColor,
-          //     amount: 3
-          //   });
-          //   // return { borderColor: props.border.borderColor };
-          //   // return lightenOrDarken({ color: backgroundColor, amount: 3 });
-          // }
+          }),
+          _hover: props => {
+            return {
+              borderColor: theme['dark']
+            };
+          }
         }
       },
 
