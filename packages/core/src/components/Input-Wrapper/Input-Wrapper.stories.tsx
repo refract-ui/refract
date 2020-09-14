@@ -34,7 +34,7 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
     <SectionWrapper>
       <InputWrapper>
         <InputLabel htmlFor="input-2">Test Two</InputLabel>
-        <TextInput placeholder="Placeholder Input" id="input-2" />
+        <TextInput placeholder="Placeholder Input" id="input-2" size="sm" />
         <InputHelpText>Help Text</InputHelpText>
       </InputWrapper>
     </SectionWrapper>

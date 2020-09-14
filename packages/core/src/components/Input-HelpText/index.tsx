@@ -12,7 +12,9 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputHelpTextTheme = {};
+type InputHelpTextTheme = {
+  textColor?: string;
+};
 
 type InputHelpTextProps = {
   children?: string;
@@ -55,10 +57,8 @@ const InputHelpText = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
-          // textColor: ({ contrastColor, bg }) => contrastColor(bg),
-          // h: '42px',
+          textColor: theme.dark,
           border: theme.borders.md,
-          // px: `${theme.spacing['3']}`,
           mt: theme.spacing[2],
           mb: `0`,
           py: `0`,
@@ -66,7 +66,14 @@ const InputHelpText = createThemedComponent<
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        textColor: ({ textColor }) => {
+          return css`
+            color: ${textColor};
+            font-size: 0.75rem;
+          `;
+        }
+      }
     };
   }
 });

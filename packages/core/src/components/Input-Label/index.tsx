@@ -12,7 +12,9 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputLabelTheme = {};
+type InputLabelTheme = {
+  textColor?: string;
+};
 
 type InputLabelProps = {
   htmlFor?: string;
@@ -60,17 +62,22 @@ const InputLabel = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
-          // textColor: ({ contrastColor, bg }) => contrastColor(bg),
-          // h: '42px',
+          textColor: theme.secondary,
           border: theme.borders.md,
-          // px: `${theme.spacing['3']}`,
           mb: theme.spacing[2],
           py: `0`,
           w: '100%'
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        textColor: ({ textColor }) => {
+          return css`
+            color: ${textColor};
+            font-size: 0.875rem;
+          `;
+        }
+      }
     };
   }
 });
