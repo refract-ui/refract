@@ -24,18 +24,20 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
   <OuterWrapper>
     <SectionWrapper>
       <InputWrapper label="Input One">
-        <InputLabel label="Test One" />
-        <TextInput placeholder="Placeholder Input" />
+        <InputLabel label="Test One" htmlFor="input-1" />
+        <TextInput placeholder="Placeholder Input" id="input-1" />
       </InputWrapper>
     </SectionWrapper>
     <SectionWrapper>
       <InputWrapper label="Input Two">
-        <TextInput placeholder="Placeholder Input" />
+        <InputLabel label="Test Two" htmlFor="input-2" />
+        <TextInput placeholder="Placeholder Input" id="input-2" />
       </InputWrapper>
     </SectionWrapper>
     <SectionWrapper>
       <InputWrapper label="Input Three">
-        <TextInput placeholder="Placeholder Input" />
+        <InputLabel label="Test Three" htmlFor="input-3" />
+        <TextInput placeholder="Placeholder Input" id="input-3" />
       </InputWrapper>
     </SectionWrapper>
   </OuterWrapper>

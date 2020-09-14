@@ -22,6 +22,7 @@ type TextInputProps = {
   value?: string;
   success?: boolean;
   error?: boolean;
+  id?: string;
 };
 
 type TextInputVariants = {
@@ -34,11 +35,17 @@ type TextInputStates = '_hover' | '_active' | '_focus';
 function TextInputFunction({
   placeholder,
   value,
+  id,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
   return (
-    <input className={className} placeholder={placeholder} value={value} />
+    <input
+      className={className}
+      placeholder={placeholder}
+      value={value}
+      id={id}
+    />
   );
 }
 

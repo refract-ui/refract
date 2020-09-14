@@ -16,6 +16,7 @@ type InputLabelTheme = {};
 
 type InputLabelProps = {
   label?: string;
+  htmlFor?: string;
 };
 
 type InputLabelVariants = {};
@@ -23,12 +24,13 @@ type InputLabelVariants = {};
 type InputLabelStates = '_hover' | '_active' | '_focus';
 
 function InputLabelFunction({
+  htmlFor,
   label,
   ...props
 }: InputLabelProps & InputLabelVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <label>{label}</label>;
+  return <label htmlFor={htmlFor}>{label}</label>;
 }
 
 const InputLabelComponent = styled(InputLabelFunction)<
