@@ -12,50 +12,45 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputLabelTheme = {};
+type InputHelpTextTheme = {};
 
-type InputLabelProps = {
-  htmlFor?: string;
+type InputHelpTextProps = {
   children?: string;
 };
 
-type InputLabelVariants = {};
+type InputHelpTextVariants = {};
 
-type InputLabelStates = '_hover' | '_active' | '_focus';
+type InputHelpTextStates = '_hover' | '_active' | '_focus';
 
-function InputLabelFunction({
-  htmlFor,
+function InputHelpTextFunction({
   children,
   ...props
-}: InputLabelProps & InputLabelVariants): JSX.Element {
+}: InputHelpTextProps & InputHelpTextVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return (
-    <label htmlFor={htmlFor} className={className}>
-      {children}
-    </label>
-  );
+  return <p className={className}>{children}</p>;
 }
 
-const InputLabelComponent = styled(InputLabelFunction)<
-  ThemeComponent & InputLabelProps
+const InputHelpTextComponent = styled(InputHelpTextFunction)<
+  ThemeComponent & InputHelpTextProps
 >`
   ${({ componentCss }) => componentCss};
 `;
 
-const InputLabel = createThemedComponent<
-  InputLabelTheme,
-  InputLabelVariants,
-  InputLabelStates,
-  InputLabelProps,
+const InputHelpText = createThemedComponent<
+  InputHelpTextTheme,
+  InputHelpTextVariants,
+  InputHelpTextStates,
+  InputHelpTextProps,
   Container
 >({
   defaultVariants: {},
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
+    console.log('In index.tsx, this is theme: ', theme);
     return {
-      Component: InputLabelComponent,
+      Component: InputHelpTextComponent,
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
@@ -64,6 +59,7 @@ const InputLabel = createThemedComponent<
           // h: '42px',
           border: theme.borders.md,
           // px: `${theme.spacing['3']}`,
+          my: `0`,
           py: `0`,
           w: '100%'
         }
@@ -74,4 +70,4 @@ const InputLabel = createThemedComponent<
   }
 });
 
-export default InputLabel;
+export default InputHelpText;

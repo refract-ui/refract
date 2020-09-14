@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react';
 import InputWrapper from './index';
 import TextInput from './../Text-Input';
 import InputLabel from './../Input-Label';
+import InputHelpText from './../Input-HelpText';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -26,18 +27,21 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
       <InputWrapper>
         <InputLabel htmlFor="input-1">Test One</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-1" />
+        <InputHelpText>Help Text</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
     <SectionWrapper>
       <InputWrapper>
         <InputLabel htmlFor="input-2">Test Two</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-2" />
+        <InputHelpText>Help Text</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
     <SectionWrapper>
       <InputWrapper>
         <InputLabel htmlFor="input-3">Test Three</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-3" />
+        <InputHelpText>Help Text</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
   </OuterWrapper>
