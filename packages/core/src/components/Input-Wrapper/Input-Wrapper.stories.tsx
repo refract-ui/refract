@@ -23,20 +23,20 @@ const SectionWrapper = styled.div`
 storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
   <OuterWrapper>
     <SectionWrapper>
-      <InputWrapper label="Input One">
-        <InputLabel label="Test One" htmlFor="input-1" />
+      <InputWrapper>
+        <InputLabel htmlFor="input-1">Test One</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-1" />
       </InputWrapper>
     </SectionWrapper>
     <SectionWrapper>
-      <InputWrapper label="Input Two">
-        <InputLabel label="Test Two" htmlFor="input-2" />
+      <InputWrapper>
+        <InputLabel htmlFor="input-2">Test Two</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-2" />
       </InputWrapper>
     </SectionWrapper>
     <SectionWrapper>
-      <InputWrapper label="Input Three">
-        <InputLabel label="Test Three" htmlFor="input-3" />
+      <InputWrapper>
+        <InputLabel htmlFor="input-3">Test Three</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-3" />
       </InputWrapper>
     </SectionWrapper>
