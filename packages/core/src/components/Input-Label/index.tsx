@@ -12,46 +12,36 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputWrapperTheme = {};
+type InputLabelTheme = {};
 
-type InputWrapperProps = {
-  children?: React.ReactNode;
+type InputLabelProps = {
   label?: string;
 };
 
-type InputWrapperVariants = {};
+type InputLabelVariants = {};
 
-type InputWrapperStates = '_hover' | '_active' | '_focus';
+type InputLabelStates = '_hover' | '_active' | '_focus';
 
-function InputWrapperFunction({
+function InputLabelFunction({
   label,
-  children,
   ...props
-}: InputWrapperProps & InputWrapperVariants): JSX.Element {
+}: InputLabelProps & InputLabelVariants): JSX.Element {
   const className = get(props, 'className', null);
-  return (
-    <div className={className} role="group">
-      {/* <label>{label}</label> */}
-      {children}
-    </div>
-  );
+
+  return <label>{label}</label>;
 }
 
-const InputWrapperComponent = styled(InputWrapperFunction)<
-  ThemeComponent & InputWrapperProps
+const InputLabelComponent = styled(InputLabelFunction)<
+  ThemeComponent & InputLabelProps
 >`
   ${({ componentCss }) => componentCss};
-  display: flex;
-  flex-direction: column;
-  font-family: 'Work Sans', sans serif;
-  font-weight: 300;
 `;
 
-const InputWrapper = createThemedComponent<
-  InputWrapperTheme,
-  InputWrapperVariants,
-  InputWrapperStates,
-  InputWrapperProps,
+const InputLabel = createThemedComponent<
+  InputLabelTheme,
+  InputLabelVariants,
+  InputLabelStates,
+  InputLabelProps,
   Container
 >({
   defaultVariants: {},
@@ -59,7 +49,7 @@ const InputWrapper = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: InputWrapperComponent,
+      Component: InputLabelComponent,
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
@@ -78,4 +68,4 @@ const InputWrapper = createThemedComponent<
   }
 });
 
-export default InputWrapper;
+export default InputLabel;
