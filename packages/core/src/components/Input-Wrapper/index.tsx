@@ -68,8 +68,7 @@ const InputWrapper = createThemedComponent<
           // h: '42px',
           border: theme.borders.md,
           // px: `${theme.spacing['3']}`,
-          py: `0`,
-          w: '100%'
+          py: `0`
         }
       },
       cascadeStateProps: {},

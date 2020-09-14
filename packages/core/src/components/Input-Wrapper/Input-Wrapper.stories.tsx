@@ -30,6 +30,7 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
         <InputHelpText>Help Text</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
+
     <SectionWrapper>
       <InputWrapper>
         <InputLabel htmlFor="input-2">Test Two</InputLabel>
@@ -37,6 +38,7 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
         <InputHelpText>Help Text</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
+
     <SectionWrapper>
       <InputWrapper>
         <InputLabel htmlFor="input-3">Test Three</InputLabel>

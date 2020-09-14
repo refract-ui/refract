@@ -64,6 +64,7 @@ const InputLabel = createThemedComponent<
           // h: '42px',
           border: theme.borders.md,
           // px: `${theme.spacing['3']}`,
+          mb: theme.spacing[2],
           py: `0`,
           w: '100%'
         }
