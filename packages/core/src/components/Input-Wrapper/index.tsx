@@ -16,7 +16,6 @@ type InputWrapperTheme = {};
 
 type InputWrapperProps = {
   children?: React.ReactNode;
-  label?: string;
 };
 
 type InputWrapperVariants = {};
@@ -24,14 +23,12 @@ type InputWrapperVariants = {};
 type InputWrapperStates = '_hover' | '_active' | '_focus';
 
 function InputWrapperFunction({
-  label,
   children,
   ...props
 }: InputWrapperProps & InputWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
   return (
     <div className={className} role="group">
-      {/* <label>{label}</label> */}
       {children}
     </div>
   );
@@ -64,10 +61,7 @@ const InputWrapper = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
-          // textColor: ({ contrastColor, bg }) => contrastColor(bg),
-          // h: '42px',
           border: theme.borders.md,
-          // px: `${theme.spacing['3']}`,
           py: `0`
         }
       },
