@@ -22,6 +22,7 @@ type TextInputMaterialProps = {
   value?: string;
   success?: boolean;
   error?: boolean;
+  id?: string;
 };
 
 type TextInputMaterialVariants = {
@@ -33,11 +34,17 @@ type TextInputMaterialStates = '_hover' | '_active' | '_focus';
 function TextInputMaterialFunction({
   placeholder,
   value,
+  id,
   ...props
 }: TextInputMaterialProps & TextInputMaterialVariants): JSX.Element {
   const className = get(props, 'className', null);
   return (
-    <input className={className} placeholder={placeholder} value={value} />
+    <input
+      className={className}
+      placeholder={placeholder}
+      value={value}
+      id={id}
+    />
   );
 }
 

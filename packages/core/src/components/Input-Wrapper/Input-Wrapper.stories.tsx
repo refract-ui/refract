@@ -6,6 +6,7 @@ import InputWrapper from './index';
 import TextInput from './../Text-Input';
 import InputLabel from './../Input-Label';
 import InputHelpText from './../Input-HelpText';
+import TextInputMaterial from './../Text-Input-Material';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -25,25 +26,33 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
   <OuterWrapper>
     <SectionWrapper>
       <InputWrapper>
-        <InputLabel htmlFor="input-1">Test One</InputLabel>
+        <InputLabel htmlFor="input-1">Label</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-1" />
-        <InputHelpText>Help Text</InputHelpText>
+        <InputHelpText>Some Description</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
 
     <SectionWrapper>
       <InputWrapper>
-        <InputLabel htmlFor="input-2">Test Two</InputLabel>
+        <InputLabel htmlFor="input-2">Label</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-2" size="sm" />
-        <InputHelpText>Help Text</InputHelpText>
+        <InputHelpText>Some Description</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
 
     <SectionWrapper>
       <InputWrapper>
-        <InputLabel htmlFor="input-3">Test Three</InputLabel>
+        <InputLabel htmlFor="input-3">Label</InputLabel>
         <TextInput placeholder="Placeholder Input" id="input-3" />
-        <InputHelpText>Help Text</InputHelpText>
+        <InputHelpText>Some Description</InputHelpText>
+      </InputWrapper>
+    </SectionWrapper>
+
+    <SectionWrapper>
+      <InputWrapper>
+        <InputLabel htmlFor="input-4">Label</InputLabel>
+        <TextInputMaterial placeholder="Placeholder Input" id="input-4" />
+        <InputHelpText>Some Description</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
   </OuterWrapper>
