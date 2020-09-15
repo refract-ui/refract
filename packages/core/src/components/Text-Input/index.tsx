@@ -23,6 +23,7 @@ type TextInputProps = {
   success?: boolean;
   error?: boolean;
   id?: string;
+  onChange?: (ev: any) => void;
 };
 
 type TextInputVariants = {
@@ -36,6 +37,7 @@ function TextInputFunction({
   placeholder,
   value,
   id,
+  onChange,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -45,6 +47,7 @@ function TextInputFunction({
       placeholder={placeholder}
       value={value}
       id={id}
+      onChange={onChange}
     />
   );
 }

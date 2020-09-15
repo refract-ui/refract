@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
@@ -45,6 +45,28 @@ storiesOf('TextInput', module)
       </TextInputWrapper>
     </OuterWrapper>
   ))
+  .add('Controlled Md Input', () => {
+    function Parent({ children }: any): any {
+      const [state, setState] = useState({ value: '' });
+      return <div>{children(state, setState)}</div>;
+    }
+
+    return (
+      <Parent>
+        {(state: any, setState: any) => (
+          <OuterWrapper>
+            <TextInputWrapper>
+              <TextInput
+                placeholder="OnChange Placeholder"
+                onChange={e => setState({ value: e.currentTarget.value })}
+                value={state.value}
+              />
+            </TextInputWrapper>
+          </OuterWrapper>
+        )}
+      </Parent>
+    );
+  })
   .add('Sm Inputs', () => (
     <OuterWrapper>
       <TextInputWrapper>
