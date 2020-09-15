@@ -59,8 +59,12 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
 
     <SectionWrapper>
       <InputWrapper>
-        <InputLabel htmlFor="input-4">Label</InputLabel>
-        <TextInputMaterial placeholder="Placeholder Input" id="input-4" error />
+        <InputLabel htmlFor="input-4a">Label</InputLabel>
+        <TextInputMaterial
+          placeholder="Placeholder Input"
+          id="input-4a"
+          error
+        />
         <InputHelpText>Some Description</InputHelpText>
         <InputValidationMessage error>Error Description</InputValidationMessage>
       </InputWrapper>
@@ -68,10 +72,10 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
 
     <SectionWrapper>
       <InputWrapper>
-        <InputLabel htmlFor="input-4">Label</InputLabel>
+        <InputLabel htmlFor="input-4b">Label</InputLabel>
         <TextInputMaterial
           placeholder="Placeholder Input"
-          id="input-4"
+          id="input-4b"
           success
         />
         <InputHelpText>Some Description</InputHelpText>
@@ -107,10 +111,10 @@ storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
 
     <SectionWrapper>
       <InputWrapper>
-        <InputLabel htmlFor="input-6">Label</InputLabel>
+        <InputLabel htmlFor="input-7">Label</InputLabel>
         <TextInput
           placeholder="Placeholder Empty Validation"
-          id="input-6"
+          id="input-7"
           success
         />
         <InputHelpText>Some Description</InputHelpText>

@@ -50,7 +50,6 @@ const InputHelpText = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    console.log('In index.tsx, this is theme: ', theme);
     return {
       Component: InputHelpTextComponent,
       variantMapping: {},

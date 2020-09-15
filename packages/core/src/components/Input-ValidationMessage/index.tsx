@@ -11,7 +11,6 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { Icons } from '../Icons/icons';
 import Icon from '../Icons';
 
 type InputValidationMessageTheme = {
@@ -46,7 +45,7 @@ function InputValidationMessageFunction({
   }
   if (children && success) {
     return (
-      <div className={className}>
+      <div className={className} role="alert">
         <Icon name="Check" size="sm" color="success" />
         <div>{children}</div>
       </div>
@@ -78,7 +77,6 @@ const InputValidationMessage = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    console.log('In index.tsx, this is theme: ', theme);
     return {
       Component: InputValidationMessageComponent,
       variantMapping: {},
