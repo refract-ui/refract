@@ -32,7 +32,7 @@ type TextInputVariants = {
   filled?: boolean;
 };
 
-type TextInputStates = '_hover' | '_active' | '_focus';
+type TextInputStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function TextInputFunction({
   placeholder,
@@ -66,6 +66,10 @@ const TextInputComponent = styled(TextInputFunction)<
   :active {
     outline: none;
   }
+
+  :disabled {
+    opacity: 0.5;
+  }
 `;
 
 const TextInput = createThemedComponent<
@@ -79,7 +83,7 @@ const TextInput = createThemedComponent<
     size: 'md',
     filled: false
   },
-  states: ['_hover', '_active', '_focus'],
+  states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
@@ -141,15 +145,28 @@ const TextInput = createThemedComponent<
       // hover, active state handling here:
       cascadeStateProps: {
         border: {
-          _focus: () => ({
-            borderColor: theme['primary']
-          }),
           _hover: props => {
             return {
               borderColor: theme['dark']
             };
+          },
+          _focus: () => ({
+            borderColor: theme['primary']
+          }),
+          _disabled: props => {
+            return {
+              borderColor: theme['secondary']
+            };
           }
         }
+        // bg: {
+        //   _disabled: props => {
+        //     console.log('In disabled, this is props: ', props);
+        //     return {
+        //       bg: theme['success']
+        //     };
+        //   }
+        // }
       },
 
       mapPropsToStyle: {
@@ -159,7 +176,6 @@ const TextInput = createThemedComponent<
           line-height: 19px;
         `,
         border: ({
-          bg,
           componentProps: { success, error },
           border: { borderColor, borderWidth, borderStyle, borderRadius }
         }) => {

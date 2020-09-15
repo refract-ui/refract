@@ -68,6 +68,10 @@ const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
   :active {
     outline: none;
   }
+
+  :disabled {
+    opacity: 0.5;
+  }
 `;
 
 const TextInputMaterial = createThemedComponent<
@@ -128,15 +132,15 @@ const TextInputMaterial = createThemedComponent<
       // hover, active state handling here:
       cascadeStateProps: {
         border: {
-          _focus: () => ({
-            borderColor: theme['primary'],
-            borderWidth: '2px'
-          }),
           _hover: () => {
             return {
               borderColor: theme['dark']
             };
-          }
+          },
+          _focus: () => ({
+            borderColor: theme['primary'],
+            borderWidth: '2px'
+          })
         }
       },
 
