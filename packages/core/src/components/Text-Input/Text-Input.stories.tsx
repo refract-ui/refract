@@ -109,4 +109,19 @@ storiesOf('TextInput', module)
         />
       </TextInputWrapper>
     </OuterWrapper>
+  ))
+  .add('Disabled', () => (
+    <OuterWrapper>
+      <TextInputWrapper>
+        <TextInput placeholder="Placeholder Input" disabled />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput
+          value="Pre-Filled In Text"
+          onChange={console.log}
+          size="sm"
+          disabled
+        />
+      </TextInputWrapper>
+    </OuterWrapper>
   ));

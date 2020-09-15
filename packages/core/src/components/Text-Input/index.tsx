@@ -24,6 +24,7 @@ type TextInputProps = {
   error?: boolean;
   id?: string;
   onChange?: (ev: any) => void;
+  disabled?: boolean;
 };
 
 type TextInputVariants = {
@@ -38,6 +39,7 @@ function TextInputFunction({
   value,
   id,
   onChange,
+  disabled,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -48,6 +50,7 @@ function TextInputFunction({
       value={value}
       id={id}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 }

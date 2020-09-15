@@ -74,4 +74,16 @@ storiesOf('TextInputMaterial', module)
         )}
       </Parent>
     );
-  });
+  })
+  .add('Disabled', () => (
+    <OuterWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Placeholder Input"
+          disabled
+          value="Disabled Input"
+          onChange={console.log}
+        />
+      </TextInputMaterialWrapper>
+    </OuterWrapper>
+  ));
