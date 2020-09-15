@@ -159,14 +159,6 @@ const TextInput = createThemedComponent<
             };
           }
         }
-        // bg: {
-        //   _disabled: props => {
-        //     console.log('In disabled, this is props: ', props);
-        //     return {
-        //       bg: theme['success']
-        //     };
-        //   }
-        // }
       },
 
       mapPropsToStyle: {

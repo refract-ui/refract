@@ -31,7 +31,7 @@ type TextInputMaterialVariants = {
   size: 'sm' | 'md';
 };
 
-type TextInputMaterialStates = '_hover' | '_active' | '_focus';
+type TextInputMaterialStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function TextInputMaterialFunction({
   placeholder,
@@ -84,7 +84,7 @@ const TextInputMaterial = createThemedComponent<
   defaultVariants: {
     size: 'md'
   },
-  states: ['_hover', '_active', '_focus'],
+  states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
@@ -140,7 +140,15 @@ const TextInputMaterial = createThemedComponent<
           _focus: () => ({
             borderColor: theme['primary'],
             borderWidth: '2px'
-          })
+          }),
+          _disabled: props => {
+            return {
+              borderColor: theme['secondary']
+            };
+          }
+        },
+        bg: {
+          _disabled: () => 'none'
         }
       },
 
