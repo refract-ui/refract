@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
@@ -22,30 +22,56 @@ const STextInput = styled(TextInputMaterial)`
   opacity: 0.7;
 `;
 
-storiesOf('TextInputMaterial', module).add('Blank Input', () => (
-  <OuterWrapper>
-    <TextInputMaterialWrapper>
-      <TextInputMaterial placeholder="Placeholder Input" />
-    </TextInputMaterialWrapper>
-    <TextInputMaterialWrapper>
-      <TextInputMaterial
-        placeholder="Outline Placeholder"
-        value="Pre-Filled In Text"
-      />
-    </TextInputMaterialWrapper>
-    <TextInputMaterialWrapper>
-      <TextInputMaterial
-        placeholder="Placeholder Input"
-        value="Success State"
-        success
-      />
-    </TextInputMaterialWrapper>
-    <TextInputMaterialWrapper>
-      <TextInputMaterial
-        placeholder="Placeholder Input"
-        value="Error State"
-        error
-      />
-    </TextInputMaterialWrapper>
-  </OuterWrapper>
-));
+storiesOf('TextInputMaterial', module)
+  .add('Blank Input', () => (
+    <OuterWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial placeholder="Placeholder Input" />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Outline Placeholder"
+          value="Pre-Filled In Text"
+          onChange={console.log}
+        />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Placeholder Input"
+          value="Success State"
+          onChange={console.log}
+          success
+        />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Placeholder Input"
+          value="Error State"
+          onChange={console.log}
+          error
+        />
+      </TextInputMaterialWrapper>
+    </OuterWrapper>
+  ))
+  .add('Controlled Input', () => {
+    function Parent({ children }: any): any {
+      const [state, setState] = useState({ value: '' });
+      return <div>{children(state, setState)}</div>;
+    }
+
+    return (
+      <Parent>
+        {(state: any, setState: any) => (
+          <OuterWrapper>
+            <TextInputMaterialWrapper>
+              <TextInputMaterial
+                placeholder="OnChange Placeholder"
+                onChange={e => setState({ value: e.currentTarget.value })}
+                value={state.value}
+              />
+            </TextInputMaterialWrapper>
+          </OuterWrapper>
+        )}
+      </Parent>
+    );
+  });

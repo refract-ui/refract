@@ -29,19 +29,19 @@ storiesOf('TextInput', module)
         <TextInput placeholder="Placeholder Input" />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Pre-Filled In Text" />
+        <TextInput value="Pre-Filled In Text" onChange={console.log} />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Success State" success />
+        <TextInput value="Success State" onChange={console.log} success />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Error State" error />
+        <TextInput value="Error State" onChange={console.log} error />
       </TextInputWrapper>
       <TextInputWrapper>
         <TextInput placeholder="Placeholder Input" filled />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Pre-Filled In Text" filled />
+        <TextInput value="Pre-Filled In Text" onChange={console.log} filled />
       </TextInputWrapper>
     </OuterWrapper>
   ))
@@ -73,19 +73,40 @@ storiesOf('TextInput', module)
         <TextInput placeholder="Placeholder Input" size="sm" />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Pre-Filled In Text" size="sm" />
+        <TextInput
+          value="Pre-Filled In Text"
+          onChange={console.log}
+          size="sm"
+        />
       </TextInputWrapper>
       <TextInputWrapper>
         <TextInput placeholder="Placeholder Input" filled size="sm" />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Pre-Filled In Text" filled size="sm" />
+        <TextInput
+          value="Pre-Filled In Text"
+          onChange={console.log}
+          filled
+          size="sm"
+        />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Success State" success filled size="sm" />
+        <TextInput
+          value="Success State"
+          onChange={console.log}
+          success
+          filled
+          size="sm"
+        />
       </TextInputWrapper>
       <TextInputWrapper>
-        <TextInput value="Error State" error filled size="sm" />
+        <TextInput
+          value="Error State"
+          onChange={console.log}
+          error
+          filled
+          size="sm"
+        />
       </TextInputWrapper>
     </OuterWrapper>
   ));

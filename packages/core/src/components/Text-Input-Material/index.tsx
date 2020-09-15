@@ -23,6 +23,7 @@ type TextInputMaterialProps = {
   success?: boolean;
   error?: boolean;
   id?: string;
+  onChange?: (ev: any) => void;
 };
 
 type TextInputMaterialVariants = {
@@ -35,6 +36,7 @@ function TextInputMaterialFunction({
   placeholder,
   value,
   id,
+  onChange,
   ...props
 }: TextInputMaterialProps & TextInputMaterialVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -44,6 +46,7 @@ function TextInputMaterialFunction({
       placeholder={placeholder}
       value={value}
       id={id}
+      onChange={onChange}
     />
   );
 }
