@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get } from 'lodash';
+import { get, isObject } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -14,10 +14,18 @@ import {
 import { Icons } from '../Icons/icons';
 import Icon from '../Icons';
 
-type InputIconTheme = {};
+type InputIconTheme = {
+  right?: string;
+};
+
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
+};
 
 type InputIconProps = {
   children?: React.ReactNode;
+  icon?: keyof Icons | IconObject | null;
 };
 
 type InputIconVariants = {};
@@ -26,30 +34,36 @@ type InputIconStates = '_hover' | '_disabled';
 
 function InputIconFunction({
   children,
+  icon,
   ...props
 }: InputIconProps & InputIconVariants): JSX.Element {
   const className = get(props, 'className', null);
+
+  const useIcon = isObject(icon) ? get(icon, 'icon', null) : icon;
+  const iconPosition = isObject(icon) ? get(icon, 'position', 'left') : 'left';
+
   return (
-    <div
-      style={{
-        alignItems: 'center',
-        display: 'flex',
-        height: '42px',
-        justifyContent: 'center',
-        padding: '4px 0 4px 4px',
-        position: 'absolute'
-      }}
-    >
-      <Icon name="Search" />
+    <div className={className}>
+      <Icon name={useIcon as keyof Icons} />
     </div>
   );
 }
+
+InputIconFunction.defaultProps = {
+  children: null,
+  icon: null
+};
 
 const InputIconComponent = styled(InputIconFunction)<
   ThemeComponent & InputIconProps
 >`
   ${({ componentCss }) => componentCss};
-  position: relative;
+  align-items: center;
+  display: flex;
+  min-height: 100%;
+  justify-content: center;
+  padding: 4px 0 4px 4px;
+  position: absolute;
 `;
 
 const InputIcon = createThemedComponent<
@@ -72,15 +86,30 @@ const InputIcon = createThemedComponent<
         xs: {
           bg: 'none',
           border: theme.borders.md,
-          py: `0`
+          py: `0`,
+          right: 'auto'
         }
       },
 
       cascadeStateProps: {},
 
-      mapPropsToStyle: {},
-    }
+      mapPropsToStyle: {
+        right: ({ componentProps }) => {
+          const { icon } = componentProps;
+          const iconPosition = get(icon, 'position', 'left');
+
+          if (iconPosition === 'right') {
+            return css`
+              left: auto;
+              right: 0;
+            `;
+          } else {
+            return;
+          }
+        }
+      }
+    };
   }
-})
+});
 
 export default InputIcon;

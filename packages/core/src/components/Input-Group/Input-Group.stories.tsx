@@ -25,19 +25,76 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('InputGroup', module).add('Input Group - W/ Left Icons', () => (
-  <OuterWrapper>
-    <SectionWrapper>
+storiesOf('InputGroup', module)
+  .add('w/ Left Icons', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputIcon icon="Search" />
+            <TextInput placeholder="Placeholder Input" id="input-1" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-      <InputWrapper>
-        <InputLabel htmlFor="input-1">Label</InputLabel>
-        <InputGroup>
-          <InputIcon />
-          <TextInput placeholder="Placeholder Input" id="input-1" />
-        </InputGroup>
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-2">Label</InputLabel>
+          <InputGroup>
+            <InputIcon icon={{ icon: 'Search', position: 'left' }} />
+            <TextInput placeholder="Placeholder Input" id="input-2" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-    </SectionWrapper>
-  </OuterWrapper>
-));
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <InputGroup>
+            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'left' }} />
+            <TextInput placeholder="Placeholder Input" id="input-3" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Right Icons', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <InputGroup>
+            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'right' }} />
+            <TextInput placeholder="Placeholder Input" id="input-4" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-5">Label</InputLabel>
+          <InputGroup>
+            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'right' }} />
+            <TextInput placeholder="Placeholder Input" id="input-5" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-6">Label</InputLabel>
+          <InputGroup>
+            <InputIcon icon={{ icon: 'Close', position: 'right' }} />
+            <TextInput placeholder="Placeholder Input" id="input-6" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ));
