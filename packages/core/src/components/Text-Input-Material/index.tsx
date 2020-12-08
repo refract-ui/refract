@@ -114,7 +114,7 @@ const TextInputMaterial = createThemedComponent<
             borderWidth: theme.borders.md.borderWidth
           },
           h: '42px',
-          px: `${theme.spacing['3']}`,
+          px: `0`,
           py: `0`,
           w: '100%'
         },
@@ -124,7 +124,6 @@ const TextInputMaterial = createThemedComponent<
         },
 
         md: {
-          px: `${theme.spacing['4']}`,
           w: '320px'
         }
       },

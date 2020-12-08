@@ -33,7 +33,6 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
-            {/* <InputIcon icon="Search" /> */}
             <TextInput
               icon={{ icon: 'Search', position: 'left' }}
               placeholder="Placeholder Input"
