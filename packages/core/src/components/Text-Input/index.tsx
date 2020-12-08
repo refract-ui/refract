@@ -11,10 +11,18 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
+import { Icons } from '../Icons/icons';
+import InputIcon from './../Input-Icon';
 
 type TextInputTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
+  iconStyle?: string;
+};
+
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
 };
 
 type TextInputProps = {
@@ -25,6 +33,7 @@ type TextInputProps = {
   id?: string;
   onChange?: (ev: any) => void;
   disabled?: boolean;
+  icon?: keyof Icons | IconObject | null;
 };
 
 type TextInputVariants = {
@@ -40,19 +49,36 @@ function TextInputFunction({
   id,
   onChange,
   disabled,
+  icon,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
-  return (
-    <input
-      className={className}
-      placeholder={placeholder}
-      value={value}
-      id={id}
-      onChange={onChange}
-      disabled={disabled}
-    />
-  );
+  if (icon) {
+    return (
+      <>
+        <InputIcon icon={icon} />
+        <input
+          className={className}
+          placeholder={placeholder}
+          value={value}
+          id={id}
+          onChange={onChange}
+          disabled={disabled}
+        />
+      </>
+    );
+  } else {
+    return (
+      <input
+        className={className}
+        placeholder={placeholder}
+        value={value}
+        id={id}
+        onChange={onChange}
+        disabled={disabled}
+      />
+    );
+  }
 }
 
 const TextInputComponent = styled(TextInputFunction)<
@@ -128,7 +154,8 @@ const TextInput = createThemedComponent<
           h: '42px',
           border: theme.borders.md,
           py: `0`,
-          w: '100%'
+          w: '100%',
+          iconStyle: '0'
         },
 
         sm: {
@@ -166,6 +193,20 @@ const TextInput = createThemedComponent<
           font-size: 1rem;
           line-height: 19px;
         `,
+        iconStyle: ({ componentProps: { icon } }) => {
+          const iconPosition = get(icon, 'position', 'left');
+          if (icon && iconPosition === 'left') {
+            return css`
+              padding-left: 2.5rem !important;
+            `;
+          }
+          if (icon && iconPosition === 'right') {
+            return css`
+              padding-right: 2.5rem !important;
+            `;
+          }
+          return css``;
+        },
         border: ({
           componentProps: { success, error },
           border: { borderColor, borderWidth, borderStyle, borderRadius }

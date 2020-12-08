@@ -28,18 +28,25 @@ const SectionWrapper = styled.div`
 storiesOf('InputGroup', module)
   .add('w/ Left Icons', () => (
     <OuterWrapper>
+      {/* REFACTOR THIS ONE */}
       <SectionWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
-            <InputIcon icon="Search" />
-            <TextInput placeholder="Placeholder Input" id="input-1" />
+            {/* <InputIcon icon="Search" /> */}
+            <TextInput
+              icon={{ icon: 'Search', position: 'left' }}
+              placeholder="Placeholder Input"
+              id="input-1"
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
+      {/* ---------------------- */}
 
       <SectionWrapper>
+
         <InputWrapper>
           <InputLabel htmlFor="input-2">Label</InputLabel>
           <InputGroup>
@@ -48,6 +55,7 @@ storiesOf('InputGroup', module)
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
+
       </SectionWrapper>
 
       <SectionWrapper>
@@ -68,8 +76,11 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-4">Label</InputLabel>
           <InputGroup>
-            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'right' }} />
-            <TextInput placeholder="Placeholder Input" id="input-4" />
+            <TextInput
+              icon={{ icon: 'Search', position: 'right' }}
+              placeholder="Placeholder Input"
+              id="input-1"
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
