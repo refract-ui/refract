@@ -26,6 +26,7 @@ type IconObject = {
 type InputIconProps = {
   children?: React.ReactNode;
   icon?: keyof Icons | IconObject | null;
+  color?: keyof ThemeColors;
 };
 
 type InputIconVariants = {};
@@ -35,6 +36,7 @@ type InputIconStates = '_hover' | '_disabled';
 function InputIconFunction({
   children,
   icon,
+  color,
   ...props
 }: InputIconProps & InputIconVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -44,14 +46,15 @@ function InputIconFunction({
 
   return (
     <div className={className}>
-      <Icon name={useIcon as keyof Icons} />
+      <Icon name={useIcon as keyof Icons} color={color} />
     </div>
   );
 }
 
 InputIconFunction.defaultProps = {
   children: null,
-  icon: null
+  icon: null,
+  color: 'secondary'
 };
 
 const InputIconComponent = styled(InputIconFunction)<
@@ -64,6 +67,7 @@ const InputIconComponent = styled(InputIconFunction)<
   justify-content: center;
   padding: 4px 0 4px 4px;
   position: absolute;
+  top: 0;
 `;
 
 const InputIcon = createThemedComponent<
@@ -87,6 +91,7 @@ const InputIcon = createThemedComponent<
           bg: 'none',
           border: theme.borders.md,
           py: `0`,
+          px: `${theme.spacing['3']}`,
           right: 'auto'
         }
       },

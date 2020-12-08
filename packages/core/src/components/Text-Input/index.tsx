@@ -127,7 +127,6 @@ const TextInput = createThemedComponent<
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           h: '42px',
           border: theme.borders.md,
-          px: `${theme.spacing['3']}`,
           py: `0`,
           w: '100%'
         },

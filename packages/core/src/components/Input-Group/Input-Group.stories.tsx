@@ -54,8 +54,8 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-3">Label</InputLabel>
           <InputGroup>
-            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'left' }} />
             <TextInput placeholder="Placeholder Input" id="input-3" />
+            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'left' }} />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
