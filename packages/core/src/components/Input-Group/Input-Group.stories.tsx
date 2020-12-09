@@ -28,7 +28,6 @@ const SectionWrapper = styled.div`
 storiesOf('InputGroup', module)
   .add('w/ Left Icons', () => (
     <OuterWrapper>
-      {/* REFACTOR THIS ONE */}
       <SectionWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
@@ -42,7 +41,6 @@ storiesOf('InputGroup', module)
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
-      {/* ---------------------- */}
 
       <SectionWrapper>
         <InputWrapper>
@@ -122,7 +120,7 @@ storiesOf('InputGroup', module)
     <OuterWrapper>
       <SectionWrapper>
         <InputWrapper>
-          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <InputLabel htmlFor="input-7">Label</InputLabel>
           <InputGroup>
             <TextInput
               icons={[
@@ -130,7 +128,52 @@ storiesOf('InputGroup', module)
                 { icon: 'Close', position: 'right' }
               ]}
               placeholder="Placeholder Input"
-              id="input-1"
+              id="input-7"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Left Icons - Material', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-8">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Search', position: 'left' }]}
+              placeholder="Placeholder Input"
+              id="input-8"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-9">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Menu', position: 'left' }]}
+              placeholder="Placeholder Input"
+              id="input-9"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-10">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
+              placeholder="Placeholder Input"
+              id="input-10"
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>

@@ -53,7 +53,6 @@ function TextInputFunction({
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
-  console.log('icons in TextInputFunction', icons);
   if (icons) {
     return (
       <>

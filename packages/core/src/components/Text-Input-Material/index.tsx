@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get } from 'lodash';
+import { get, find } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -11,10 +11,18 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
+import { Icons } from '../Icons/icons';
+import InputIcon from './../Input-Icon';
 
 type TextInputMaterialTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
+  iconStyle?: string;
+};
+
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
 };
 
 type TextInputMaterialProps = {
@@ -25,6 +33,7 @@ type TextInputMaterialProps = {
   id?: string;
   onChange?: (ev: any) => void;
   disabled?: boolean;
+  icons?: Array<IconObject | null>;
 };
 
 type TextInputMaterialVariants = {
@@ -39,19 +48,43 @@ function TextInputMaterialFunction({
   id,
   onChange,
   disabled,
+  icons,
   ...props
 }: TextInputMaterialProps & TextInputMaterialVariants): JSX.Element {
   const className = get(props, 'className', null);
-  return (
-    <input
-      className={className}
-      placeholder={placeholder}
-      value={value}
-      id={id}
-      onChange={onChange}
-      disabled={disabled}
-    />
-  );
+  if (icons) {
+    return (
+      <>
+        {icons &&
+          icons.map((ic, idx) => (
+            <InputIcon
+              icon={ic}
+              key={`input-group-icon-${idx}`}
+              iconStyle="material"
+            />
+          ))}
+        <input
+          className={className}
+          placeholder={placeholder}
+          value={value}
+          id={id}
+          onChange={onChange}
+          disabled={disabled}
+        />
+      </>
+    );
+  } else {
+    return (
+      <input
+        className={className}
+        placeholder={placeholder}
+        value={value}
+        id={id}
+        onChange={onChange}
+        disabled={disabled}
+      />
+    );
+  }
 }
 
 const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
@@ -116,7 +149,8 @@ const TextInputMaterial = createThemedComponent<
           h: '42px',
           px: `0`,
           py: `0`,
-          w: '100%'
+          w: '100%',
+          iconStyle: '0'
         },
 
         sm: {
@@ -158,6 +192,37 @@ const TextInputMaterial = createThemedComponent<
             font-size: 1rem;
             line-height: 19px;
           `;
+        },
+        iconStyle: ({ componentProps: { icons } }) => {
+          if (
+            icons &&
+            find(icons, ['position', 'left']) &&
+            !find(icons, ['position', 'right'])
+          ) {
+            return css`
+              padding-left: 2.5rem !important;
+            `;
+          }
+          if (
+            icons &&
+            find(icons, ['position', 'left']) &&
+            find(icons, ['position', 'right'])
+          ) {
+            return css`
+              padding-left: 2.5rem !important;
+              padding-right: 2.5rem !important;
+            `;
+          }
+          if (
+            icons &&
+            find(icons, ['position', 'right']) &&
+            !find(icons, ['position', 'left'])
+          ) {
+            return css`
+              padding-right: 2.5rem !important;
+            `;
+          }
+          return css``;
         },
         border: ({
           componentProps: { success, error },

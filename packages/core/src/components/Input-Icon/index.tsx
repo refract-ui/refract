@@ -29,7 +29,9 @@ type InputIconProps = {
   color?: keyof ThemeColors;
 };
 
-type InputIconVariants = {};
+type InputIconVariants = {
+  iconStyle?: 'text' | 'material';
+};
 
 type InputIconStates = '_hover' | '_disabled';
 
@@ -37,6 +39,7 @@ function InputIconFunction({
   children,
   icon,
   color,
+  iconStyle,
   ...props
 }: InputIconProps & InputIconVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -77,14 +80,24 @@ const InputIcon = createThemedComponent<
   InputIconProps,
   Container
 >({
-  defaultVariants: {},
+  defaultVariants: {
+    iconStyle: 'text'
+  },
   states: [],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
       Component: InputIconComponent,
 
-      variantMapping: {},
+      variantMapping: {
+        iconStyle: ({ iconStyle }) => {
+          if (iconStyle === 'material') {
+            return {
+              px: `0`
+            };
+          }
+        }
+      },
 
       defaultStyleMapping: {
         xs: {
@@ -102,6 +115,7 @@ const InputIcon = createThemedComponent<
         right: ({ componentProps }) => {
           const { icon } = componentProps;
           const iconPosition = get(icon, 'position', 'left');
+          console.log('in right mapPropsToStyle');
 
           if (iconPosition === 'right') {
             return css`
