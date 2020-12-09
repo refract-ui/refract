@@ -116,7 +116,7 @@ storiesOf('InputGroup', module)
       </SectionWrapper>
     </OuterWrapper>
   ))
-  .add('w/ Icons on Both Sides', () => (
+  .add('w/ Both Icons', () => (
     <OuterWrapper>
       <SectionWrapper>
         <InputWrapper>
@@ -174,6 +174,85 @@ storiesOf('InputGroup', module)
               icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
               placeholder="Placeholder Input"
               id="input-10"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Right Icons - Material', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-11">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Search', position: 'right' }]}
+              placeholder="Placeholder Input"
+              id="input-11"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-12">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'SimpleArrowDown', position: 'right' }]}
+              placeholder="Placeholder Input"
+              id="input-12"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-13">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Close', position: 'right' }]}
+              placeholder="Placeholder Input"
+              id="input-13"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-14">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Calendar', position: 'right' }]}
+              placeholder="Placeholder Input"
+              id="input-14"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Both Icons - Material', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-15">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[
+                { icon: 'Search', position: 'left' },
+                { icon: 'Close', position: 'right' }
+              ]}
+              placeholder="Placeholder Input"
+              id="input-15"
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
