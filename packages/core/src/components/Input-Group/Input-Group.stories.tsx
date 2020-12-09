@@ -34,7 +34,7 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icon={{ icon: 'Search', position: 'left' }}
+              icons={[{ icon: 'Search', position: 'left' }]}
               placeholder="Placeholder Input"
               id="input-1"
             />
@@ -45,24 +45,28 @@ storiesOf('InputGroup', module)
       {/* ---------------------- */}
 
       <SectionWrapper>
-
         <InputWrapper>
           <InputLabel htmlFor="input-2">Label</InputLabel>
           <InputGroup>
-            <InputIcon icon={{ icon: 'Search', position: 'left' }} />
-            <TextInput placeholder="Placeholder Input" id="input-2" />
+            <TextInput
+              icons={[{ icon: 'Menu', position: 'left' }]}
+              placeholder="Placeholder Input"
+              id="input-2"
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
-
       </SectionWrapper>
 
       <SectionWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-3">Label</InputLabel>
           <InputGroup>
-            <TextInput placeholder="Placeholder Input" id="input-3" />
-            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'left' }} />
+            <TextInput
+              icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
+              placeholder="Placeholder Input"
+              id="input-3"
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -76,7 +80,7 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-4">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icon={{ icon: 'Search', position: 'right' }}
+              icons={[{ icon: 'Search', position: 'right' }]}
               placeholder="Placeholder Input"
               id="input-1"
             />
@@ -89,8 +93,11 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-5">Label</InputLabel>
           <InputGroup>
-            <InputIcon icon={{ icon: 'SimpleArrowDown', position: 'right' }} />
-            <TextInput placeholder="Placeholder Input" id="input-5" />
+            <TextInput
+              icons={[{ icon: 'SimpleArrowDown', position: 'right' }]}
+              placeholder="Placeholder Input"
+              id="input-5"
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -100,8 +107,31 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-6">Label</InputLabel>
           <InputGroup>
-            <InputIcon icon={{ icon: 'Close', position: 'right' }} />
-            <TextInput placeholder="Placeholder Input" id="input-6" />
+            <TextInput
+              icons={[{ icon: 'Close', position: 'right' }]}
+              placeholder="Placeholder Input"
+              id="input-6"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Icons on Both Sides', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Search', position: 'left' },
+                { icon: 'Close', position: 'right' }
+              ]}
+              placeholder="Placeholder Input"
+              id="input-1"
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>

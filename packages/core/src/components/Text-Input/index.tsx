@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get } from 'lodash';
+import { get, find } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -33,7 +33,7 @@ type TextInputProps = {
   id?: string;
   onChange?: (ev: any) => void;
   disabled?: boolean;
-  icon?: keyof Icons | IconObject | null;
+  icons?: Array<IconObject | null>;
 };
 
 type TextInputVariants = {
@@ -49,14 +49,18 @@ function TextInputFunction({
   id,
   onChange,
   disabled,
-  icon,
+  icons,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
-  if (icon) {
+  console.log('icons in TextInputFunction', icons);
+  if (icons) {
     return (
       <>
-        <InputIcon icon={icon} />
+        {icons &&
+          icons.map((ic, idx) => (
+            <InputIcon icon={ic} key={`input-group-icon-${idx}`} />
+          ))}
         <input
           className={className}
           placeholder={placeholder}
@@ -193,14 +197,31 @@ const TextInput = createThemedComponent<
           font-size: 1rem;
           line-height: 19px;
         `,
-        iconStyle: ({ componentProps: { icon } }) => {
-          const iconPosition = get(icon, 'position', 'left');
-          if (icon && iconPosition === 'left') {
+        iconStyle: ({ componentProps: { icons } }) => {
+          if (
+            icons &&
+            find(icons, ['position', 'left']) &&
+            !find(icons, ['position', 'right'])
+          ) {
             return css`
               padding-left: 2.5rem !important;
             `;
           }
-          if (icon && iconPosition === 'right') {
+          if (
+            icons &&
+            find(icons, ['position', 'left']) &&
+            find(icons, ['position', 'right'])
+          ) {
+            return css`
+              padding-left: 2.5rem !important;
+              padding-right: 2.5rem !important;
+            `;
+          }
+          if (
+            icons &&
+            find(icons, ['position', 'right']) &&
+            !find(icons, ['position', 'left'])
+          ) {
             return css`
               padding-right: 2.5rem !important;
             `;
