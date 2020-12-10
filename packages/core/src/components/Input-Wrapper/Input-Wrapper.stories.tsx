@@ -23,103 +23,120 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('InputWrapper', module).add('Input Wrapper - Md Inputs', () => (
-  <OuterWrapper>
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-1">Label</InputLabel>
-        <TextInput placeholder="Placeholder Input" id="input-1" />
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+storiesOf('InputWrapper', module)
+  .add('Input Wrapper - Md Inputs', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <TextInput placeholder="Placeholder Input" id="input-1" />
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-2">Label</InputLabel>
-        <TextInput placeholder="Placeholder Input" id="input-2" size="sm" />
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-2">Label</InputLabel>
+          <TextInput placeholder="Placeholder Input" id="input-2" size="sm" />
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-3">Label</InputLabel>
-        <TextInput placeholder="Placeholder Input" id="input-3" />
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <TextInput placeholder="Placeholder Input" id="input-3" />
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-4">Label</InputLabel>
-        <TextInputMaterial placeholder="Placeholder Input" id="input-4" />
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <TextInputMaterial placeholder="Placeholder Input" id="input-4" />
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-4a">Label</InputLabel>
-        <TextInputMaterial
-          placeholder="Placeholder Input"
-          id="input-4a"
-          error
-        />
-        <InputHelpText>Some Description</InputHelpText>
-        <InputValidationMessage error>Error Description</InputValidationMessage>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4a">Label</InputLabel>
+          <TextInputMaterial
+            placeholder="Placeholder Input"
+            id="input-4a"
+            error
+          />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage error>
+            Error Description
+          </InputValidationMessage>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-4b">Label</InputLabel>
-        <TextInputMaterial
-          placeholder="Placeholder Input"
-          id="input-4b"
-          success
-        />
-        <InputHelpText>Some Description</InputHelpText>
-        <InputValidationMessage success>
-          Error Description
-        </InputValidationMessage>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4b">Label</InputLabel>
+          <TextInputMaterial
+            placeholder="Placeholder Input"
+            id="input-4b"
+            success
+          />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage success>
+            Error Description
+          </InputValidationMessage>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-5">Label</InputLabel>
-        <TextInput placeholder="Placeholder Error Input" id="input-5" error />
-        <InputHelpText>Some Description</InputHelpText>
-        <InputValidationMessage error>Error Description</InputValidationMessage>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-5">Label</InputLabel>
+          <TextInput placeholder="Placeholder Error Input" id="input-5" error />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage error>
+            Error Description
+          </InputValidationMessage>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-6">Label</InputLabel>
-        <TextInput
-          placeholder="Placeholder Success Input"
-          id="input-6"
-          success
-        />
-        <InputHelpText>Some Description</InputHelpText>
-        <InputValidationMessage success>
-          Success Description
-        </InputValidationMessage>
-      </InputWrapper>
-    </SectionWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-6">Label</InputLabel>
+          <TextInput
+            placeholder="Placeholder Success Input"
+            id="input-6"
+            success
+          />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage success>
+            Success Description
+          </InputValidationMessage>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-7">Label</InputLabel>
-        <TextInput
-          placeholder="Placeholder Empty Validation"
-          id="input-7"
-          success
-        />
-        <InputHelpText>Some Description</InputHelpText>
-        <InputValidationMessage success></InputValidationMessage>
-      </InputWrapper>
-    </SectionWrapper>
-  </OuterWrapper>
-));
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-7">Label</InputLabel>
+          <TextInput
+            placeholder="Placeholder Empty Validation"
+            id="input-7"
+            success
+          />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage success></InputValidationMessage>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('Horizontal Inputs', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <TextInput placeholder="Placeholder Input" id="input-1" />
+        </InputWrapper>
+
+      </SectionWrapper>
+    </OuterWrapper>
+  ));

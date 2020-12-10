@@ -12,10 +12,13 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputWrapperTheme = {};
+type InputWrapperTheme = {
+  flexDir: 'row' | 'column';
+};
 
 type InputWrapperProps = {
   children?: React.ReactNode;
+  horizontal?: boolean;
 };
 
 type InputWrapperVariants = {};
@@ -24,6 +27,7 @@ type InputWrapperStates = '_hover' | '_active' | '_focus';
 
 function InputWrapperFunction({
   children,
+  horizontal,
   ...props
 }: InputWrapperProps & InputWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -39,7 +43,6 @@ const InputWrapperComponent = styled(InputWrapperFunction)<
 >`
   ${({ componentCss }) => componentCss};
   display: flex;
-  flex-direction: column;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
 `;
@@ -62,11 +65,24 @@ const InputWrapper = createThemedComponent<
         xs: {
           bg: 'none',
           border: theme.borders.md,
-          py: `0`
+          py: `0`,
+          flexDir: 'row'
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        flexDir: ({ componentProps: { horizontal } }) => {
+          if (horizontal) {
+            return css`
+              flex-direction: row;
+            `;
+          } else {
+            return css`
+              flex-direction: column;
+            `;
+          }
+        }
+      }
     };
   }
 });
