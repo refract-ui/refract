@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get, find } from 'lodash';
+import { get, find, pick } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -23,6 +23,7 @@ type TextInputTheme = {
 type IconObject = {
   icon: keyof Icons;
   position: 'left' | 'right' | null;
+  color?: keyof ThemeColors;
 };
 
 type TextInputProps = {
@@ -57,9 +58,16 @@ function TextInputFunction({
     return (
       <>
         {icons &&
-          icons.map((ic, idx) => (
-            <InputIcon icon={ic} key={`input-group-icon-${idx}`} />
-          ))}
+          icons.map((ic, idx) => {
+            const icon = pick(ic, ['icon', 'position']);
+            return (
+              <InputIcon
+                icon={icon}
+                key={`input-group-icon-${idx}`}
+                color={ic.color}
+              />
+            );
+          })}
         <input
           className={className}
           placeholder={placeholder}

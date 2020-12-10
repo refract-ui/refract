@@ -70,6 +70,35 @@ storiesOf('InputGroup', module)
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[{ icon: 'LineGrid', position: 'left', color: 'primary' }]}
+              placeholder="Placeholder Input"
+              id="input-4"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[{ icon: 'Settings', position: 'left', color: 'warning' }]}
+              placeholder="Placeholder Input"
+              id="input-3"
+              filled
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
     </OuterWrapper>
   ))
   .add('w/ Right Icons', () => (
@@ -116,6 +145,37 @@ storiesOf('InputGroup', module)
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Dashboard', position: 'right', color: 'danger' }
+              ]}
+              placeholder="Placeholder Input"
+              id="input-4"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[{ icon: 'Clock', position: 'right', color: 'success' }]}
+              placeholder="Placeholder Input"
+              id="input-3"
+              filled
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
     </OuterWrapper>
   ))
   .add('w/ Both Icons', () => (
@@ -148,6 +208,76 @@ storiesOf('InputGroup', module)
               ]}
               placeholder="Placeholder Input"
               id="input-7-filled"
+              filled
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-8">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Expand', position: 'left' },
+                { icon: 'Check', position: 'right', color: 'success' }
+              ]}
+              placeholder="Placeholder Input"
+              id="input-8"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-8-filled">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Expand', position: 'left' },
+                { icon: 'Check', position: 'right', color: 'success' }
+              ]}
+              placeholder="Placeholder Input"
+              id="input-8-filled"
+              filled
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-9">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Calendar', position: 'left', color: 'info' },
+                { icon: 'Info', position: 'right', color: 'danger' }
+              ]}
+              placeholder="Not a Valid Date"
+              id="input-9"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-9-filled">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Calendar', position: 'left', color: 'info' },
+                { icon: 'Info', position: 'right', color: 'danger' }
+              ]}
+              placeholder="Not a Valid Date"
+              id="input-9-filled"
               filled
             />
           </InputGroup>
