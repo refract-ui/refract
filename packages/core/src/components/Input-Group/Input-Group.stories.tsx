@@ -64,6 +64,7 @@ storiesOf('InputGroup', module)
               icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
               placeholder="Placeholder Input"
               id="input-3"
+              filled
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
@@ -109,6 +110,7 @@ storiesOf('InputGroup', module)
               icons={[{ icon: 'Close', position: 'right' }]}
               placeholder="Placeholder Input"
               id="input-6"
+              filled
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
@@ -129,6 +131,24 @@ storiesOf('InputGroup', module)
               ]}
               placeholder="Placeholder Input"
               id="input-7"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-7-filled">Label</InputLabel>
+          <InputGroup>
+            <TextInput
+              icons={[
+                { icon: 'Search', position: 'left' },
+                { icon: 'Close', position: 'right' }
+              ]}
+              placeholder="Placeholder Input"
+              id="input-7-filled"
+              filled
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
