@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get, find } from 'lodash';
+import { get, find, pick } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { Colors } from '../../theme/colors';
 import { ThemeColors } from '../../theme/themeColors';
@@ -23,6 +23,8 @@ type TextInputMaterialTheme = {
 type IconObject = {
   icon: keyof Icons;
   position: 'left' | 'right' | null;
+  color?: keyof ThemeColors;
+  onClick?: (ev: any) => void;
 };
 
 type TextInputMaterialProps = {
@@ -56,13 +58,18 @@ function TextInputMaterialFunction({
     return (
       <>
         {icons &&
-          icons.map((ic, idx) => (
-            <InputIcon
-              icon={ic}
-              key={`input-group-icon-${idx}`}
-              iconStyle="material"
-            />
-          ))}
+          icons.map((ic, idx) => {
+            const icon = pick(ic, ['icon', 'position']);
+            return (
+              <InputIcon
+                icon={icon}
+                key={`input-group-icon-${idx}`}
+                color={ic.color}
+                iconStyle="material"
+                onClick={ic.onClick}
+              />
+            );
+          })}
         <input
           className={className}
           placeholder={placeholder}

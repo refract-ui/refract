@@ -314,7 +314,14 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-8">Label</InputLabel>
           <InputGroup>
             <TextInputMaterial
-              icons={[{ icon: 'Search', position: 'left' }]}
+              icons={[
+                {
+                  icon: 'Search',
+                  position: 'left',
+                  color: 'primary',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
+              ]}
               placeholder="Placeholder Input"
               id="input-8"
             />
@@ -345,6 +352,34 @@ storiesOf('InputGroup', module)
               icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
               placeholder="Placeholder Input"
               id="input-10"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-11">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Star', position: 'left', color: 'success' }]}
+              placeholder="Placeholder Input"
+              id="input-11"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-12">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Table', position: 'left', color: 'warning' }]}
+              placeholder="Enter Text Here"
+              id="input-12"
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
@@ -387,7 +422,13 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-13">Label</InputLabel>
           <InputGroup>
             <TextInputMaterial
-              icons={[{ icon: 'Close', position: 'right' }]}
+              icons={[
+                {
+                  icon: 'Close',
+                  position: 'right',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
+              ]}
               placeholder="Placeholder Input"
               id="input-13"
             />
@@ -409,13 +450,41 @@ storiesOf('InputGroup', module)
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-15">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Website', position: 'right', color: 'primary' }]}
+              placeholder="Placeholder Input"
+              id="input-15"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-16">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[{ icon: 'Phone', position: 'right', color: 'info' }]}
+              placeholder="Enter Phone Number"
+              id="input-16"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
     </OuterWrapper>
   ))
   .add('w/ Both Icons - Material', () => (
     <OuterWrapper>
       <SectionWrapper>
         <InputWrapper>
-          <InputLabel htmlFor="input-15">Label</InputLabel>
+          <InputLabel htmlFor="input-100">Label</InputLabel>
           <InputGroup>
             <TextInputMaterial
               icons={[
@@ -423,7 +492,63 @@ storiesOf('InputGroup', module)
                 { icon: 'Close', position: 'right' }
               ]}
               placeholder="Placeholder Input"
-              id="input-15"
+              id="input-100"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-101">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[
+                { icon: 'Person', position: 'left', color: 'info' },
+                {
+                  icon: 'Close',
+                  position: 'right',
+                  color: 'danger',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
+              ]}
+              placeholder="Enter First Name"
+              id="input-101"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-102">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[
+                { icon: 'DotsHorizontal', position: 'left', color: 'dark' },
+                { icon: 'Refresh', position: 'right', color: 'warning' }
+              ]}
+              placeholder="Enter First Name"
+              id="input-102"
+            />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-103">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              icons={[
+                { icon: 'Calendar', position: 'left', color: 'success' },
+                { icon: 'Info', position: 'right', color: 'danger' }
+              ]}
+              placeholder="Enter Date"
+              id="input-103"
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
