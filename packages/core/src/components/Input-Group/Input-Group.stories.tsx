@@ -76,7 +76,14 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-4">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icons={[{ icon: 'LineGrid', position: 'left', color: 'primary' }]}
+              icons={[
+                {
+                  icon: 'LineGrid',
+                  position: 'left',
+                  color: 'primary',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
+              ]}
               placeholder="Placeholder Input"
               id="input-4"
             />
@@ -136,7 +143,13 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-6">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icons={[{ icon: 'Close', position: 'right' }]}
+              icons={[
+                {
+                  icon: 'Close',
+                  position: 'right',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
+              ]}
               placeholder="Placeholder Input"
               id="input-6"
               filled
@@ -187,7 +200,11 @@ storiesOf('InputGroup', module)
             <TextInput
               icons={[
                 { icon: 'Search', position: 'left' },
-                { icon: 'Close', position: 'right' }
+                {
+                  icon: 'Close',
+                  position: 'right',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
               ]}
               placeholder="Placeholder Input"
               id="input-7"
@@ -204,7 +221,11 @@ storiesOf('InputGroup', module)
             <TextInput
               icons={[
                 { icon: 'Search', position: 'left' },
-                { icon: 'Close', position: 'right' }
+                {
+                  icon: 'Close',
+                  position: 'right',
+                  onClick: () => console.log('Clicked on InputIcon!')
+                }
               ]}
               placeholder="Placeholder Input"
               id="input-7-filled"

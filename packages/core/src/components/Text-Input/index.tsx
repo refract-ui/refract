@@ -24,6 +24,7 @@ type IconObject = {
   icon: keyof Icons;
   position: 'left' | 'right' | null;
   color?: keyof ThemeColors;
+  onClick?: (ev: any) => void;
 };
 
 type TextInputProps = {
@@ -65,6 +66,7 @@ function TextInputFunction({
                 icon={icon}
                 key={`input-group-icon-${idx}`}
                 color={ic.color}
+                onClick={ic.onClick}
               />
             );
           })}

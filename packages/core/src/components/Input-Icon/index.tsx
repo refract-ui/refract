@@ -27,6 +27,7 @@ type InputIconProps = {
   children?: React.ReactNode;
   icon?: keyof Icons | IconObject | null;
   color?: keyof ThemeColors;
+  onClick?: (ev: any) => void;
 };
 
 type InputIconVariants = {
@@ -40,6 +41,7 @@ function InputIconFunction({
   icon,
   color,
   iconStyle,
+  onClick,
   ...props
 }: InputIconProps & InputIconVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -48,7 +50,7 @@ function InputIconFunction({
   const iconPosition = isObject(icon) ? get(icon, 'position', 'left') : 'left';
 
   return (
-    <div className={className}>
+    <div className={className} onClick={onClick}>
       <Icon name={useIcon as keyof Icons} color={color} />
     </div>
   );
