@@ -32,6 +32,9 @@ storiesOf('TextInput', module)
         <TextInput value="Pre-Filled In Text" onChange={console.log} />
       </TextInputWrapper>
       <TextInputWrapper>
+        <TextInput value="Full Width Input" isFullWidth />
+      </TextInputWrapper>
+      <TextInputWrapper>
         <TextInput value="Success State" onChange={console.log} success />
       </TextInputWrapper>
       <TextInputWrapper>
@@ -42,6 +45,9 @@ storiesOf('TextInput', module)
       </TextInputWrapper>
       <TextInputWrapper>
         <TextInput value="Pre-Filled In Text" onChange={console.log} filled />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput value="Full Width Input" filled isFullWidth />
       </TextInputWrapper>
       <TextInputWrapper>
         <TextInput

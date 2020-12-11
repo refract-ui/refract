@@ -57,8 +57,7 @@ const InputGroup = createThemedComponent<
         xs: {
           bg: 'none',
           border: theme.borders.md,
-          py: `0`,
-          w: '100%'
+          py: `0`
         }
       },
 

@@ -60,6 +60,14 @@ storiesOf('TextInputMaterial', module)
       </TextInputMaterialWrapper>
       <TextInputMaterialWrapper>
         <TextInputMaterial
+          placeholder="Full Width Text"
+          onChange={console.log}
+          type="text"
+          isFullWidth
+        />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
           placeholder="Enter Password"
           onChange={console.log}
           type="password"

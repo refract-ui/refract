@@ -41,6 +41,7 @@ type TextInputMaterialProps = {
 
 type TextInputMaterialVariants = {
   size: 'sm' | 'md';
+  isFullWidth?: boolean;
 };
 
 type TextInputMaterialStates = '_hover' | '_active' | '_focus' | '_disabled';
@@ -127,7 +128,8 @@ const TextInputMaterial = createThemedComponent<
   Container
 >({
   defaultVariants: {
-    size: 'md'
+    size: 'md',
+    isFullWidth: false
   },
   states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
@@ -144,6 +146,13 @@ const TextInputMaterial = createThemedComponent<
           } else {
             return {
               py: `${theme.spacing['1']}`
+            };
+          }
+        },
+        isFullWidth: ({ isFullWidth }) => {
+          if (isFullWidth) {
+            return {
+              w: '100%'
             };
           }
         }
@@ -166,7 +175,7 @@ const TextInputMaterial = createThemedComponent<
         },
 
         sm: {
-          maxW: '320px'
+          w: variant.isFullWidth ? '100%' : '320px'
         }
       },
 

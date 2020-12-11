@@ -68,12 +68,8 @@ const InputWrapper = createThemedComponent<
           py: `0`,
           px: `0`,
           flexDir: 'row',
-          w: '100%',
+          w: 'auto',
           mb: theme.spacing[3]
-        },
-
-        sm: {
-          maxW: '320px'
         }
       },
       cascadeStateProps: {},
@@ -81,8 +77,8 @@ const InputWrapper = createThemedComponent<
         flexDir: ({ componentProps: { horizontal } }) => {
           if (horizontal) {
             return css`
-              flex-direction: row;
               align-items: center;
+              flex-direction: row;
             `;
           } else {
             return css`

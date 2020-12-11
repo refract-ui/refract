@@ -32,17 +32,20 @@ const SectionWrapper = styled.div`
 `;
 
 const LoginWrapper = styled(SectionWrapper)`
+  align-items: center;
   flex-direction: column;
   margin: 0 auto;
 `;
 
 const HalfWidthDiv = styled.div`
-  margin: 0 1rem;
-  width: calc(50% - 2rem);
+  width: calc(50% - 8px);
+
+  &:first-child {
+    margin-right: 1rem;
+  }
 `;
 
 const FullWidthDiv = styled.div`
-  margin: 0 1rem;
   width: 100%;
 `;
 
@@ -312,28 +315,48 @@ storiesOf('InputWrapper', module)
         <HalfWidthDiv>
           <InputWrapper>
             <InputLabel htmlFor="input-firstname">First Name</InputLabel>
-            <TextInput placeholder="" id="input-firstname" type="text" />
+            <TextInput
+              placeholder=""
+              id="input-firstname"
+              type="text"
+              isFullWidth
+            />
           </InputWrapper>
         </HalfWidthDiv>
 
         <HalfWidthDiv>
           <InputWrapper>
             <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
-            <TextInput placeholder="" id="input-lastname" type="text" />
+            <TextInput
+              placeholder=""
+              id="input-lastname"
+              type="text"
+              isFullWidth
+            />
           </InputWrapper>
         </HalfWidthDiv>
 
         <FullWidthDiv>
           <InputWrapper>
             <InputLabel htmlFor="input-email">Email</InputLabel>
-            <TextInput placeholder="" id="input-email" type="email" />
+            <TextInput
+              placeholder=""
+              id="input-email"
+              type="email"
+              isFullWidth
+            />
           </InputWrapper>
         </FullWidthDiv>
 
         <FullWidthDiv>
           <InputWrapper>
             <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
-            <TextInput placeholder="" id="input-reason" type="text" />
+            <TextInput
+              placeholder=""
+              id="input-reason"
+              type="text"
+              isFullWidth
+            />
           </InputWrapper>
         </FullWidthDiv>
 
