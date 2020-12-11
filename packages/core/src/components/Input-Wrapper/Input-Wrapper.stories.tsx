@@ -8,6 +8,8 @@ import InputLabel from './../Input-Label';
 import InputHelpText from './../Input-HelpText';
 import TextInputMaterial from './../Text-Input-Material';
 import InputValidationMessage from './../Input-ValidationMessage';
+import InputGroup from './../Input-Group';
+import Button from './../Button';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -21,6 +23,11 @@ const SectionWrapper = styled.div`
   display: flex;
   margin: 1rem;
   padding: 1rem;
+`;
+
+const LoginWrapper = styled(SectionWrapper)`
+  flex-direction: column;
+  margin: 0 auto;
 `;
 
 storiesOf('InputWrapper', module)
@@ -131,19 +138,155 @@ storiesOf('InputWrapper', module)
   .add('Horizontal Inputs', () => (
     <OuterWrapper>
       <SectionWrapper>
-
         <InputWrapper horizontal>
-          <InputLabel htmlFor="input-10">Label</InputLabel>
-          <TextInput placeholder="Placeholder Input" id="input-10" />
+          <InputLabel htmlFor="input-10">Horizontal Input</InputLabel>
+          <TextInput placeholder="Input Text" id="input-10" />
         </InputWrapper>
-
       </SectionWrapper>
 
       <SectionWrapper>
         <InputWrapper horizontal>
-          <InputLabel htmlFor="input-11">Label</InputLabel>
-          <TextInputMaterial placeholder="Placeholder Input" id="input-11" />
+          <InputLabel htmlFor="input-12">Horizontal Input</InputLabel>
+          <TextInput placeholder="Input Text" id="input-12" filled />
         </InputWrapper>
       </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-11">Horizontal Input</InputLabel>
+          <TextInputMaterial placeholder="Input Text" id="input-11" />
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-12">Horizontal Input</InputLabel>
+          <InputGroup>
+            <TextInput placeholder="Input Text" id="input-12" />
+          </InputGroup>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('Login', () => (
+    <OuterWrapper>
+      <LoginWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-13">User Name</InputLabel>
+          <TextInput placeholder="Username" id="input-13" type="text" />
+        </InputWrapper>
+
+        <InputWrapper>
+          <InputLabel htmlFor="input-14">Password</InputLabel>
+          <TextInput placeholder="Password" id="input-14" type="password" />
+        </InputWrapper>
+
+        <Button>Login</Button>
+      </LoginWrapper>
+    </OuterWrapper>
+  ))
+  .add('Login - Filled', () => (
+    <OuterWrapper>
+      <LoginWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-100">User Name</InputLabel>
+          <TextInput placeholder="Username" id="input-13" type="text" filled />
+        </InputWrapper>
+
+        <InputWrapper>
+          <InputLabel htmlFor="input-101">Password</InputLabel>
+          <TextInput
+            placeholder="Password"
+            id="input-101"
+            type="password"
+            filled
+          />
+        </InputWrapper>
+
+        <Button>Login</Button>
+      </LoginWrapper>
+    </OuterWrapper>
+  ))
+  .add('Login - Material', () => (
+    <OuterWrapper>
+      <LoginWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-15">User Name</InputLabel>
+          <TextInputMaterial placeholder="Username" id="input-15" type="text" />
+        </InputWrapper>
+
+        <InputWrapper>
+          <InputLabel htmlFor="input-16">Password</InputLabel>
+          <TextInputMaterial
+            placeholder="Password"
+            id="input-16"
+            type="password"
+          />
+        </InputWrapper>
+
+        <Button>Login</Button>
+      </LoginWrapper>
+    </OuterWrapper>
+  ))
+  .add('Login w/ Icons', () => (
+    <OuterWrapper>
+      <LoginWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-17">User Name</InputLabel>
+          <InputGroup>
+            <TextInput
+              placeholder="Username"
+              id="input-17"
+              type="text"
+              icons={[{ icon: 'Person', position: 'left' }]}
+            />
+          </InputGroup>
+        </InputWrapper>
+
+        <InputWrapper>
+          <InputLabel htmlFor="input-18">Password</InputLabel>
+          <InputGroup>
+            <TextInput
+              placeholder="Password"
+              id="input-18"
+              type="password"
+              icons={[{ icon: 'DotsHorizontal', position: 'left' }]}
+            />
+          </InputGroup>
+        </InputWrapper>
+
+        <Button>Login</Button>
+      </LoginWrapper>
+    </OuterWrapper>
+  ))
+  .add('Login w/ Icons - Material', () => (
+    <OuterWrapper>
+      <LoginWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-15">User Name</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              placeholder="Username"
+              id="input-15"
+              type="text"
+              icons={[{ icon: 'Person', position: 'left' }]}
+            />
+          </InputGroup>
+        </InputWrapper>
+
+        <InputWrapper>
+          <InputLabel htmlFor="input-16">Password</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              placeholder="Password"
+              id="input-16"
+              type="password"
+              icons={[{ icon: 'DotsHorizontal', position: 'left' }]}
+            />
+          </InputGroup>
+        </InputWrapper>
+
+        <Button>Login</Button>
+      </LoginWrapper>
     </OuterWrapper>
   ));

@@ -166,11 +166,7 @@ const TextInputMaterial = createThemedComponent<
         },
 
         sm: {
-          w: '320px'
-        },
-
-        md: {
-          w: '320px'
+          maxW: '320px'
         }
       },
 
