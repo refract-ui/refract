@@ -106,6 +106,7 @@ const TextInputComponent = styled(TextInputFunction)<
   box-sizing: border-box;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
+  transition: all 0.3s ease-in-out;
 
   :focus,
   :active {
