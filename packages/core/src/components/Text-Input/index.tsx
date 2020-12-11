@@ -102,9 +102,9 @@ const TextInputComponent = styled(TextInputFunction)<
   ThemeComponent & TextInputProps
 >`
   ${({ componentCss }) => componentCss};
+  box-sizing: border-box;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
-  box-sizing: border-box;
 
   :focus,
   :active {

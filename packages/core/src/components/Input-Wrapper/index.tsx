@@ -45,7 +45,6 @@ const InputWrapperComponent = styled(InputWrapperFunction)<
   display: flex;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
-  border: 1px dotted red;
 `;
 
 const InputWrapper = createThemedComponent<

@@ -105,6 +105,7 @@ const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
   border-left: none;
   border-right: none;
   border-top: none;
+  box-sizing: border-box;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
 

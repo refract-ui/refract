@@ -29,7 +29,7 @@ storiesOf('InputWrapper', module)
       <SectionWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
-          <TextInput placeholder="Placeholder Input" id="input-1" />
+          <TextInput placeholder="Placeholder Input" id="input-1" type="text" />
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
@@ -133,10 +133,17 @@ storiesOf('InputWrapper', module)
       <SectionWrapper>
 
         <InputWrapper horizontal>
-          <InputLabel htmlFor="input-1">Label</InputLabel>
-          <TextInput placeholder="Placeholder Input" id="input-1" />
+          <InputLabel htmlFor="input-10">Label</InputLabel>
+          <TextInput placeholder="Placeholder Input" id="input-10" />
         </InputWrapper>
 
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-11">Label</InputLabel>
+          <TextInputMaterial placeholder="Placeholder Input" id="input-11" />
+        </InputWrapper>
       </SectionWrapper>
     </OuterWrapper>
   ));
