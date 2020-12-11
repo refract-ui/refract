@@ -16,6 +16,11 @@ const OuterWrapper = styled.div`
   flex-direction: column;
 `;
 
+const OuterWrapperCentered = styled(OuterWrapper)`
+  justify-content: center;
+  height: 100vh;
+`;
+
 const SectionWrapper = styled.div`
   border: 1px solid rgba(243, 245, 250, 1);
   border-radius: 16px;
@@ -169,7 +174,7 @@ storiesOf('InputWrapper', module)
     </OuterWrapper>
   ))
   .add('Login', () => (
-    <OuterWrapper>
+    <OuterWrapperCentered>
       <LoginWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-13">User Name</InputLabel>
@@ -183,10 +188,10 @@ storiesOf('InputWrapper', module)
 
         <Button>Login</Button>
       </LoginWrapper>
-    </OuterWrapper>
+    </OuterWrapperCentered>
   ))
   .add('Login - Filled', () => (
-    <OuterWrapper>
+    <OuterWrapperCentered>
       <LoginWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-100">User Name</InputLabel>
@@ -205,10 +210,10 @@ storiesOf('InputWrapper', module)
 
         <Button>Login</Button>
       </LoginWrapper>
-    </OuterWrapper>
+    </OuterWrapperCentered>
   ))
   .add('Login - Material', () => (
-    <OuterWrapper>
+    <OuterWrapperCentered>
       <LoginWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-15">User Name</InputLabel>
@@ -224,12 +229,12 @@ storiesOf('InputWrapper', module)
           />
         </InputWrapper>
 
-        <Button>Login</Button>
+        <Button color="success">Login</Button>
       </LoginWrapper>
-    </OuterWrapper>
+    </OuterWrapperCentered>
   ))
   .add('Login w/ Icons', () => (
-    <OuterWrapper>
+    <OuterWrapperCentered>
       <LoginWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-17">User Name</InputLabel>
@@ -255,12 +260,12 @@ storiesOf('InputWrapper', module)
           </InputGroup>
         </InputWrapper>
 
-        <Button>Login</Button>
+        <Button color="info">Login</Button>
       </LoginWrapper>
-    </OuterWrapper>
+    </OuterWrapperCentered>
   ))
   .add('Login w/ Icons - Material', () => (
-    <OuterWrapper>
+    <OuterWrapperCentered>
       <LoginWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-15">User Name</InputLabel>
@@ -286,7 +291,7 @@ storiesOf('InputWrapper', module)
           </InputGroup>
         </InputWrapper>
 
-        <Button>Login</Button>
+        <Button color="warning">Login</Button>
       </LoginWrapper>
-    </OuterWrapper>
+    </OuterWrapperCentered>
   ));

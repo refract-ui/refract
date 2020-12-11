@@ -38,7 +38,7 @@ function InputValidationMessageFunction({
   if (children && error) {
     return (
       <div className={className}>
-        <Icon name="Info" size="sm" color="danger" />
+        <Icon name="Danger" size="sm" color="danger" />
         <div>{children}</div>
       </div>
     );
