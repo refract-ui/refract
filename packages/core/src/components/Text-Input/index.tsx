@@ -36,6 +36,7 @@ type TextInputProps = {
   onChange?: (ev: any) => void;
   disabled?: boolean;
   icons?: Array<IconObject | null>;
+  type?: string;
 };
 
 type TextInputVariants = {
@@ -52,6 +53,7 @@ function TextInputFunction({
   onChange,
   disabled,
   icons,
+  type,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -77,6 +79,7 @@ function TextInputFunction({
           id={id}
           onChange={onChange}
           disabled={disabled}
+          type={type}
         />
       </>
     );
@@ -89,6 +92,7 @@ function TextInputFunction({
         id={id}
         onChange={onChange}
         disabled={disabled}
+        type={type}
       />
     );
   }

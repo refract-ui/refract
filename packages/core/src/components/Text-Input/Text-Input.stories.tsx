@@ -43,6 +43,34 @@ storiesOf('TextInput', module)
       <TextInputWrapper>
         <TextInput value="Pre-Filled In Text" onChange={console.log} filled />
       </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput
+          placeholder="Enter Text"
+          type="text"
+          onChange={console.log}
+        />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput
+          placeholder="Enter Password"
+          type="password"
+          onChange={console.log}
+        />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput
+          placeholder="Enter Email"
+          type="email"
+          onChange={console.log}
+        />
+      </TextInputWrapper>
+      <TextInputWrapper>
+        <TextInput
+          placeholder="Enter Phone"
+          type="tel"
+          onChange={console.log}
+        />
+      </TextInputWrapper>
     </OuterWrapper>
   ))
   .add('Controlled Md Input', () => {

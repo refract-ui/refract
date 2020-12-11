@@ -36,6 +36,7 @@ type TextInputMaterialProps = {
   onChange?: (ev: any) => void;
   disabled?: boolean;
   icons?: Array<IconObject | null>;
+  type?: string;
 };
 
 type TextInputMaterialVariants = {
@@ -51,6 +52,7 @@ function TextInputMaterialFunction({
   onChange,
   disabled,
   icons,
+  type,
   ...props
 }: TextInputMaterialProps & TextInputMaterialVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -77,6 +79,7 @@ function TextInputMaterialFunction({
           id={id}
           onChange={onChange}
           disabled={disabled}
+          type={type}
         />
       </>
     );
@@ -89,6 +92,7 @@ function TextInputMaterialFunction({
         id={id}
         onChange={onChange}
         disabled={disabled}
+        type={type}
       />
     );
   }

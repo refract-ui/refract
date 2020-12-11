@@ -51,6 +51,34 @@ storiesOf('TextInputMaterial', module)
           error
         />
       </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Enter Text"
+          onChange={console.log}
+          type="text"
+        />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Enter Password"
+          onChange={console.log}
+          type="password"
+        />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Enter Email"
+          onChange={console.log}
+          type="email"
+        />
+      </TextInputMaterialWrapper>
+      <TextInputMaterialWrapper>
+        <TextInputMaterial
+          placeholder="Enter Phone"
+          onChange={console.log}
+          type="tel"
+        />
+      </TextInputMaterialWrapper>
     </OuterWrapper>
   ))
   .add('Controlled Input', () => {
