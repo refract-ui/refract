@@ -100,6 +100,7 @@ const TextInputComponent = styled(TextInputFunction)<
   ${({ componentCss }) => componentCss};
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
+  box-sizing: border-box;
 
   :focus,
   :active {
@@ -150,7 +151,8 @@ const TextInput = createThemedComponent<
         size: ({ size }) => {
           if (size === 'sm') {
             return {
-              py: `${theme.spacing['0']}`
+              py: `${theme.spacing['0']}`,
+              h: '42px'
             };
           } else {
             return {
@@ -164,7 +166,7 @@ const TextInput = createThemedComponent<
         xs: {
           bg: 'none',
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
-          h: '42px',
+          h: '54px',
           border: theme.borders.md,
           py: `0`,
           w: '100%',
@@ -172,12 +174,11 @@ const TextInput = createThemedComponent<
         },
 
         sm: {
-          w: '320px'
+          maxW: '320px'
         },
 
         md: {
-          px: `${theme.spacing['4']}`,
-          w: '320px'
+          px: `${theme.spacing['4']}`
         }
       },
 

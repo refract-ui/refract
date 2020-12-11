@@ -45,6 +45,7 @@ const InputWrapperComponent = styled(InputWrapperFunction)<
   display: flex;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
+  border: 1px dotted red;
 `;
 
 const InputWrapper = createThemedComponent<
@@ -66,7 +67,12 @@ const InputWrapper = createThemedComponent<
           bg: 'none',
           border: theme.borders.md,
           py: `0`,
-          flexDir: 'row'
+          flexDir: 'row',
+          w: '100%'
+        },
+
+        sm: {
+          maxW: '320px'
         }
       },
       cascadeStateProps: {},
@@ -75,6 +81,7 @@ const InputWrapper = createThemedComponent<
           if (horizontal) {
             return css`
               flex-direction: row;
+              align-items: center;
             `;
           } else {
             return css`
