@@ -26,6 +26,7 @@ const SectionWrapper = styled.div`
   border-radius: 16px;
   box-shadow: 0 7px 11px 0 rgba(45, 45, 49, 0.1);
   display: flex;
+  flex-wrap: wrap;
   margin: 1rem;
   padding: 1rem;
 `;
@@ -33,6 +34,16 @@ const SectionWrapper = styled.div`
 const LoginWrapper = styled(SectionWrapper)`
   flex-direction: column;
   margin: 0 auto;
+`;
+
+const HalfWidthDiv = styled.div`
+  margin: 0 1rem;
+  width: calc(50% - 2rem);
+`;
+
+const FullWidthDiv = styled.div`
+  margin: 0 1rem;
+  width: 100%;
 `;
 
 storiesOf('InputWrapper', module)
@@ -294,4 +305,39 @@ storiesOf('InputWrapper', module)
         <Button color="warning">Login</Button>
       </LoginWrapper>
     </OuterWrapperCentered>
+  ))
+  .add('Form Example', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-firstname">First Name</InputLabel>
+            <TextInput placeholder="" id="input-firstname" type="text" />
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
+            <TextInput placeholder="" id="input-lastname" type="text" />
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-email">Email</InputLabel>
+            <TextInput placeholder="" id="input-email" type="email" />
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
+            <TextInput placeholder="" id="input-reason" type="text" />
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <Button color="success">Submit</Button>
+      </SectionWrapper>
+    </OuterWrapper>
   ));

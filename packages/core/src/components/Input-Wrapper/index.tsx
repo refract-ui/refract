@@ -66,6 +66,7 @@ const InputWrapper = createThemedComponent<
           bg: 'none',
           border: theme.borders.md,
           py: `0`,
+          px: `0`,
           flexDir: 'row',
           w: '100%',
           mb: theme.spacing[3]
