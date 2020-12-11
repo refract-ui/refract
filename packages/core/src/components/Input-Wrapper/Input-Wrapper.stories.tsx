@@ -309,7 +309,7 @@ storiesOf('InputWrapper', module)
       </LoginWrapper>
     </OuterWrapperCentered>
   ))
-  .add('Form Example', () => (
+  .add('Form Ex', () => (
     <OuterWrapper>
       <SectionWrapper>
         <HalfWidthDiv>
@@ -360,7 +360,204 @@ storiesOf('InputWrapper', module)
           </InputWrapper>
         </FullWidthDiv>
 
-        <Button color="success">Submit</Button>
+        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
+          Submit
+        </Button>
       </SectionWrapper>
     </OuterWrapper>
-  ));
+  ))
+  .add('Form Ex - Material', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-firstname">First Name</InputLabel>
+            <TextInputMaterial
+              placeholder=""
+              id="input-firstname"
+              type="text"
+              isFullWidth
+            />
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
+            <TextInputMaterial
+              placeholder=""
+              id="input-lastname"
+              type="text"
+              isFullWidth
+            />
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-email">Email</InputLabel>
+            <TextInputMaterial
+              placeholder=""
+              id="input-email"
+              type="email"
+              isFullWidth
+            />
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
+            <TextInputMaterial
+              placeholder=""
+              id="input-reason"
+              type="text"
+              isFullWidth
+            />
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
+          Submit
+        </Button>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('Form Ex w/ Icons', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-firstname">First Name</InputLabel>
+            <InputGroup>
+              <TextInput
+                placeholder=""
+                id="input-firstname"
+                type="text"
+                icons={[{ icon: 'Person', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
+            <InputGroup>
+              <TextInput
+                placeholder=""
+                id="input-lastname"
+                type="text"
+                icons={[{ icon: 'Person', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-email">Email</InputLabel>
+            <InputGroup>
+              <TextInput
+                placeholder=""
+                id="input-email"
+                type="email"
+                icons={[{ icon: 'Mail', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
+            <InputGroup>
+              <TextInput
+                placeholder=""
+                id="input-reason"
+                type="text"
+                icons={[{ icon: 'Expand', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
+          Submit
+        </Button>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('Form Ex w/ Icons - Material', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-firstname">First Name</InputLabel>
+            <InputGroup>
+              <TextInputMaterial
+                placeholder=""
+                id="input-firstname"
+                type="text"
+                icons={[{ icon: 'Person', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <HalfWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
+            <InputGroup>
+              <TextInputMaterial
+                placeholder=""
+                id="input-lastname"
+                type="text"
+                icons={[{ icon: 'Person', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </HalfWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-email">Email</InputLabel>
+            <InputGroup>
+              <TextInputMaterial
+                placeholder=""
+                id="input-email"
+                type="email"
+                icons={[{ icon: 'Mail', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <FullWidthDiv>
+          <InputWrapper>
+            <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
+            <InputGroup>
+              <TextInputMaterial
+                placeholder=""
+                id="input-reason"
+                type="text"
+                icons={[{ icon: 'Expand', position: 'left' }]}
+                isFullWidth
+              />
+            </InputGroup>
+          </InputWrapper>
+        </FullWidthDiv>
+
+        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
+          Submit
+        </Button>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
