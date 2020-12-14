@@ -166,14 +166,23 @@ storiesOf('InputWrapper', module)
       <SectionWrapper>
         <InputWrapper horizontal>
           <InputLabel htmlFor="input-12">Horizontal Input</InputLabel>
-          <TextInput placeholder="Input Text" id="input-12" filled isFullWidth/>
+          <TextInput
+            placeholder="Input Text"
+            id="input-12"
+            filled
+            isFullWidth
+          />
         </InputWrapper>
       </SectionWrapper>
 
       <SectionWrapper>
         <InputWrapper horizontal>
           <InputLabel htmlFor="input-11">Horizontal Input</InputLabel>
-          <TextInputMaterial placeholder="Input Text" id="input-11" isFullWidth />
+          <TextInputMaterial
+            placeholder="Input Text"
+            id="input-11"
+            isFullWidth
+          />
         </InputWrapper>
       </SectionWrapper>
 
@@ -182,6 +191,47 @@ storiesOf('InputWrapper', module)
           <InputLabel htmlFor="input-12">Horizontal Input</InputLabel>
           <InputGroup>
             <TextInput placeholder="Input Text" id="input-12" isFullWidth />
+          </InputGroup>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-14">Horizontal Input</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              placeholder="Input Text"
+              id="input-14"
+              isFullWidth
+            />
+          </InputGroup>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-13">Horizontal Input</InputLabel>
+          <InputGroup>
+            <TextInput
+              placeholder="Input Text"
+              id="input-13"
+              icons={[{ icon: 'Person', position: 'left' }]}
+              isFullWidth
+            />
+          </InputGroup>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper horizontal>
+          <InputLabel htmlFor="input-14">Horizontal Input</InputLabel>
+          <InputGroup>
+            <TextInputMaterial
+              placeholder="Input Text"
+              id="input-14"
+              icons={[{ icon: 'Person', position: 'left' }]}
+              isFullWidth
+            />
           </InputGroup>
         </InputWrapper>
       </SectionWrapper>
