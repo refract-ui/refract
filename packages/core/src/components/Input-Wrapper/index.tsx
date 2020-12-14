@@ -79,6 +79,12 @@ const InputWrapper = createThemedComponent<
             return css`
               align-items: center;
               flex-direction: row;
+              max-width: 320px;
+              width: 100% !important;
+
+              .input-group {
+                width: 100%;
+              }
             `;
           } else {
             return css`

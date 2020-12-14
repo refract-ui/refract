@@ -109,6 +109,7 @@ const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
   box-sizing: border-box;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
+  min-width: 0;
   transition: all 0.3s ease-in-out;
 
   :focus,

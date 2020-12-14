@@ -27,7 +27,7 @@ function InputGroupFunction({
   ...props
 }: InputGroupProps & InputGroupVariants): JSX.Element {
   const className = get(props, 'className', null);
-  return <div className={className}>{children}</div>;
+  return <div className={`${className} input-group`}>{children}</div>;
 }
 
 const InputGroupComponent = styled(InputGroupFunction)<
