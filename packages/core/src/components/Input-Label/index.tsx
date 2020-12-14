@@ -33,7 +33,7 @@ function InputLabelFunction({
   const className = get(props, 'className', null);
 
   return (
-    <label htmlFor={htmlFor} className={className}>
+    <label htmlFor={htmlFor} className={`${className} input-label`}>
       {children}
     </label>
   );

@@ -85,6 +85,10 @@ const InputWrapper = createThemedComponent<
               .input-group {
                 width: 100%;
               }
+
+              .input-label {
+                margin-bottom: 0;
+              }
             `;
           } else {
             return css`
