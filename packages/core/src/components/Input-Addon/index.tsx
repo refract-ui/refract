@@ -12,37 +12,38 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputGroupTheme = {};
+type InputAddonTheme = {};
 
-type InputGroupProps = {
+type InputAddonProps = {
   children?: React.ReactNode;
 };
 
-type InputGroupVariants = {};
+type InputAddonVariants = {};
 
-type InputGroupStates = '_hover' | '_disabled';
+type InputAddonStates = '_hover';
 
-function InputGroupFunction({
+function InputAddonFunction({
   children,
   ...props
-}: InputGroupProps & InputGroupVariants): JSX.Element {
+}: InputAddonProps & InputAddonVariants): JSX.Element {
   const className = get(props, 'className', null);
-  return <div className={`${className} input-group`}>{children}</div>;
+  return <div className={className}>{children}</div>;
 }
 
-const InputGroupComponent = styled(InputGroupFunction)<
-  ThemeComponent & InputGroupProps
+const InputAddonComponent = styled(InputAddonFunction)<
+  ThemeComponent & InputAddonProps
 >`
   ${({ componentCss }) => componentCss};
   display: flex;
-  position: relative;
+  justify-content: center;
+  align-items: center;
 `;
 
-const InputGroup = createThemedComponent<
-  InputGroupTheme,
-  InputGroupVariants,
-  InputGroupStates,
-  InputGroupProps,
+const InputAddon = createThemedComponent<
+  InputAddonTheme,
+  InputAddonVariants,
+  InputAddonStates,
+  InputAddonProps,
   Container
 >({
   defaultVariants: {},
@@ -50,14 +51,16 @@ const InputGroup = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: InputGroupComponent,
+      Component: InputAddonComponent,
 
       variantMapping: {},
 
       defaultStyleMapping: {
         xs: {
-          bg: 'none',
-          py: `0`
+          bg: theme['gray400'],
+          py: theme.spacing[2],
+          px: theme.spacing[2],
+          minW: '20px'
         }
       },
 
@@ -68,4 +71,4 @@ const InputGroup = createThemedComponent<
   }
 });
 
-export default InputGroup;
+export default InputAddon;
