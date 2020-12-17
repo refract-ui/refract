@@ -13,57 +13,55 @@ import {
 } from '../../theme/containers';
 import InputAddon from './../Input-Addon';
 
-type InputLeftAddonTheme = {
+type InputRightAddonTheme = {
   border?: Partial<BorderBreakpointStyle>;
 };
 
-type InputLeftAddonProps = {
+type InputRightAddonProps = {
   children?: React.ReactNode;
-  content?: Array<string | React.ReactNode>;
+  content?: any;
 };
 
-type InputLeftAddonVariants = {
+type InputRightAddonVariants = {
   isMaterial?: boolean;
 };
 
-type InputLeftAddonStates = '_hover';
+type InputRightAddonStates = '_hover';
 
-function InputLeftAddonFunction({
+function InputRightAddonFunction({
   children,
   content,
   ...props
-}: InputLeftAddonProps & InputLeftAddonVariants): JSX.Element {
+}: InputRightAddonProps & InputRightAddonVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   return (
     <div className={className}>
-      {content.map((itm: string, idx: number) => {
-        return (
-          <InputAddon key={`input-addon-${idx}`} content={itm}></InputAddon>
-        );
-      })}
+      {content.map((itm: string, idx: number) => (
+        <InputAddon key={`input-addon-${idx}`}>{itm}</InputAddon>
+      ))}
     </div>
   );
 }
 
-InputLeftAddonFunction.defaultProps = {
+InputRightAddonFunction.defaultProps = {
   children: null,
   content: []
 };
 
-const InputLeftAddonComponent = styled(InputLeftAddonFunction)<
-  ThemeComponent & InputLeftAddonProps
+const InputRightAddonComponent = styled(InputRightAddonFunction)<
+  ThemeComponent & InputRightAddonProps
 >`
   ${({ componentCss }) => componentCss};
+  border-left: 0;
   display: flex;
-  font-family: 'Work Sans', sans serif;
 `;
 
-const InputLeftAddon = createThemedComponent<
-  InputLeftAddonTheme,
-  InputLeftAddonVariants,
-  InputLeftAddonStates,
-  InputLeftAddonProps,
+const InputRightAddon = createThemedComponent<
+  InputRightAddonTheme,
+  InputRightAddonVariants,
+  InputRightAddonStates,
+  InputRightAddonProps,
   Container
 >({
   defaultVariants: {
@@ -73,7 +71,7 @@ const InputLeftAddon = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: InputLeftAddonComponent,
+      Component: InputRightAddonComponent,
 
       variantMapping: {
         isMaterial: ({ isMaterial }) => {
@@ -81,8 +79,8 @@ const InputLeftAddon = createThemedComponent<
             return {
               border: {
                 ...theme.borders.md,
-                borderRadius: `0`,
-                borderWidth: `0 0 2px 0`
+                borderWidth: `0 0 2px 0`,
+                borderRadius: `0`
               }
             };
           }
@@ -95,8 +93,8 @@ const InputLeftAddon = createThemedComponent<
           border: {
             ...theme.borders.md,
             borderColor: theme['secondary'],
-            borderRadius: `${theme.spacing[2]} 0 0 ${theme.spacing[2]}`,
-            borderWidth: '2px'
+            borderRadius: `0 ${theme.spacing[2]} ${theme.spacing[2]} 0`,
+            borderWidth: `2px`
           }
         }
       },
@@ -112,4 +110,4 @@ const InputLeftAddon = createThemedComponent<
   }
 });
 
-export default InputLeftAddon;
+export default InputRightAddon;

@@ -16,6 +16,7 @@ type InputAddonTheme = {};
 
 type InputAddonProps = {
   children?: React.ReactNode;
+  content?: string | React.ReactNode;
 };
 
 type InputAddonVariants = {};
@@ -23,11 +24,12 @@ type InputAddonVariants = {};
 type InputAddonStates = '_hover';
 
 function InputAddonFunction({
-  children,
+  content,
   ...props
 }: InputAddonProps & InputAddonVariants): JSX.Element {
   const className = get(props, 'className', null);
-  return <div className={className}>{children}</div>;
+
+  return <div className={className}>{content}</div>;
 }
 
 const InputAddonComponent = styled(InputAddonFunction)<
@@ -37,6 +39,11 @@ const InputAddonComponent = styled(InputAddonFunction)<
   display: flex;
   justify-content: center;
   align-items: center;
+  border-right: 1px solid black;
+
+  &:last-child {
+    border-right: 0;
+  }
 `;
 
 const InputAddon = createThemedComponent<
@@ -57,7 +64,7 @@ const InputAddon = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          bg: theme['gray400'],
+          bg: 'none',
           py: theme.spacing[2],
           px: theme.spacing[2],
           minW: '20px'
