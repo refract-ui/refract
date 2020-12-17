@@ -75,7 +75,9 @@ storiesOf('InputAddons', module)
               id="input-1"
               noBorderRight
             />
-            <InputRightAddon content={['$', '.00']} />
+            <InputRightAddon
+              content={['$', '.00', <Icon name="Refresh" key="icon-11" />]}
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -86,7 +88,10 @@ storiesOf('InputAddons', module)
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
             <TextInputMaterial placeholder="Placeholder Input" id="input-1" />
-            <InputRightAddon content={['$', '.00']} isMaterial />
+            <InputRightAddon
+              content={[<Icon name="Menu" key="icon-11" />, '$', '.00']}
+              isMaterial
+            />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>

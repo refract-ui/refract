@@ -19,7 +19,7 @@ type InputRightAddonTheme = {
 
 type InputRightAddonProps = {
   children?: React.ReactNode;
-  content?: any;
+  content?: Array<string | React.ReactNode>;
 };
 
 type InputRightAddonVariants = {
@@ -29,7 +29,6 @@ type InputRightAddonVariants = {
 type InputRightAddonStates = '_hover';
 
 function InputRightAddonFunction({
-  children,
   content,
   ...props
 }: InputRightAddonProps & InputRightAddonVariants): JSX.Element {
@@ -38,7 +37,7 @@ function InputRightAddonFunction({
   return (
     <div className={className}>
       {content.map((itm: string, idx: number) => (
-        <InputAddon key={`input-addon-${idx}`}>{itm}</InputAddon>
+        <InputAddon key={`input-addon-${idx}`} content={itm}></InputAddon>
       ))}
     </div>
   );

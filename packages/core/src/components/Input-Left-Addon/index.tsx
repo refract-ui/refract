@@ -29,7 +29,6 @@ type InputLeftAddonVariants = {
 type InputLeftAddonStates = '_hover';
 
 function InputLeftAddonFunction({
-  children,
   content,
   ...props
 }: InputLeftAddonProps & InputLeftAddonVariants): JSX.Element {
