@@ -37,7 +37,7 @@ const InputGroupComponent = styled(InputGroupFunction)<
   display: flex;
   position: relative;
 
-  .gfx-text-input:not(:first-child) {
+  .gfx-input-addon + .gfx-text-input {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }

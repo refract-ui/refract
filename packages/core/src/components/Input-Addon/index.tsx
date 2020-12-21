@@ -30,7 +30,7 @@ function InputAddonFunction({
 }: InputAddonProps & InputAddonVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <div className={className}>{children}</div>;
+  return <div className={`${className} gfx-input-addon`}>{children}</div>;
 }
 
 const InputAddonComponent = styled(InputAddonFunction)<
