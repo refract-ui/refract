@@ -43,11 +43,7 @@ storiesOf('InputAddonItems', module)
                 <Icon name="Person" key="icon-10" color="secondary" />
               ]}
             />
-            <TextInput
-              placeholder="Placeholder Input"
-              id="input-1"
-              noBorderLeft
-            />
+            <TextInput placeholder="Placeholder Input" id="input-1" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -72,11 +68,7 @@ storiesOf('InputAddonItems', module)
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              placeholder="Placeholder Input"
-              id="input-1"
-              noBorderRight
-            />
+            <TextInput placeholder="Placeholder Input" id="input-1" />
             <InputRightAddon
               content={[
                 '$',
@@ -132,12 +124,7 @@ storiesOf('InputAddonItems', module)
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
             <InputLeftAddon content={['$']} />
-            <TextInput
-              placeholder="Enter Amount"
-              id="input-1"
-              noBorderRight
-              noBorderLeft
-            />
+            <TextInput placeholder="Enter Amount" id="input-1" />
             <InputRightAddon content={['.00']} />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
@@ -149,12 +136,7 @@ storiesOf('InputAddonItems', module)
           <InputLabel htmlFor="input-1">Email</InputLabel>
           <InputGroup>
             <InputLeftAddon content={[<Icon name="Mail" key="icon-11" />]} />
-            <TextInput
-              placeholder="..."
-              id="input-1"
-              noBorderRight
-              noBorderLeft
-            />
+            <TextInput placeholder="..." id="input-1" />
             <InputRightAddon content={['.com']} />
           </InputGroup>
           <InputHelpText>Enter Email Address</InputHelpText>

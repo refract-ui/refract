@@ -36,6 +36,16 @@ const InputGroupComponent = styled(InputGroupFunction)<
   ${({ componentCss }) => componentCss};
   display: flex;
   position: relative;
+
+  .gfx-text-input:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  .gfx-text-input:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
 `;
 
 const InputGroup = createThemedComponent<

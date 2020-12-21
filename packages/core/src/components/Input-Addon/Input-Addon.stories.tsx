@@ -34,16 +34,74 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
       <InputWrapper>
         <InputLabel htmlFor="input-1">Label</InputLabel>
         <InputGroup>
+          <TextInput placeholder="Placeholder Input" id="input-1" />
+          <InputAddon>
+            <Button
+              bg="blue"
+              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+              variant="addon"
+            >
+              Download
+            </Button>
+          </InputAddon>
+        </InputGroup>
+        <InputHelpText>Some Description</InputHelpText>
+      </InputWrapper>
+    </SectionWrapper>
+
+    <SectionWrapper>
+      <InputWrapper>
+        <InputLabel htmlFor="input-1">Label</InputLabel>
+        <InputGroup>
+          <InputAddon>
+            <Button
+              bg="blue"
+              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+              variant="addon"
+            >
+              Download
+            </Button>
+          </InputAddon>
+          <TextInput placeholder="Placeholder Input" id="input-1" />
+        </InputGroup>
+        <InputHelpText>Some Description</InputHelpText>
+      </InputWrapper>
+    </SectionWrapper>
+
+    <SectionWrapper>
+      <InputWrapper>
+        <InputLabel htmlFor="input-1">Label</InputLabel>
+        <InputGroup>
           <InputAddon>
             <Icon name="Person" color="secondary" />
           </InputAddon>
+          <InputAddon>Addon Text</InputAddon>
+          <TextInput placeholder="Placeholder Input" id="input-1" />
           <InputAddon>
-            <Icon name="Person" color="secondary" />
+            <Button
+              bg="blue"
+              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+              variant="addon"
+            >
+              Download
+            </Button>
+          </InputAddon>
+        </InputGroup>
+        <InputHelpText>Some Description</InputHelpText>
+      </InputWrapper>
+    </SectionWrapper>
+
+    <SectionWrapper>
+      <InputWrapper>
+        <InputLabel htmlFor="input-1">Label</InputLabel>
+        <InputGroup>
+          <InputAddon>
+            <Icon name="Mail" color="secondary" />
           </InputAddon>
           <TextInput
             placeholder="Placeholder Input"
             id="input-1"
-            noBorderLeft
+            // noBorderLeft
           />
           <InputAddon>
             <Button
