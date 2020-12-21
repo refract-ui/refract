@@ -30,7 +30,7 @@ type IconObject = {
 type ButtonVariants = {
   color: keyof ThemeColors;
   size: 'sm' | 'md';
-  variant: 'outline' | 'subtle' | 'addon' | null;
+  variant: 'outline' | 'subtle' | null;
 };
 
 type ButtonStates = '_hover' | '_active';
@@ -127,17 +127,6 @@ const Button = createThemedComponent<
             bg: theme[`${color}400` as keyof ThemeColorShades],
             borderColor: theme[`${color}400` as keyof ThemeColorShades],
             textColor: theme[`${color}900` as keyof ThemeColorShades]
-          };
-        }
-
-        if (variant === 'addon') {
-          return {
-            py: `0`,
-            h: '100%',
-            border: {
-              borderRadius: `0`,
-              borderWidth: `0`
-            }
           };
         }
 

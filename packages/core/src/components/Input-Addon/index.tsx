@@ -54,6 +54,13 @@ const InputAddonComponent = styled(InputAddonFunction)<
     padding-left: ${({ theme }) => theme.spacing[2]};
     padding-right: ${({ theme }) => theme.spacing[2]};
   }
+
+  button {
+    height: 100%;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 0;
+  }
 `;
 
 const InputAddon = createThemedComponent<

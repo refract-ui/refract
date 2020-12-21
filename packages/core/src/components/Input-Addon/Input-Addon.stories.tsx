@@ -40,7 +40,6 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
             <Button
               bg="blue"
               icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
             >
               Download
             </Button>
@@ -59,7 +58,6 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
             <Button
               bg="blue"
               icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
             >
               Download
             </Button>
@@ -85,7 +83,6 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
             <Button
               bg="blue"
               icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
             >
               Download
             </Button>
@@ -107,7 +104,6 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
             <Button
               bg="blue"
               icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
             >
               Download
             </Button>

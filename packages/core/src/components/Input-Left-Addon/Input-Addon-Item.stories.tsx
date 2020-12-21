@@ -78,7 +78,6 @@ storiesOf('InputAddonItems', module)
                   key="bttn-12"
                   icon={{ icon: 'SimpleArrowDown', position: 'right' }}
                   bg="none"
-                  variant="addon"
                 >
                   Upload
                 </Button>
@@ -104,7 +103,6 @@ storiesOf('InputAddonItems', module)
                   key="bttn-12"
                   icon={{ icon: 'SimpleArrowDown', position: 'right' }}
                   bg="none"
-                  variant="addon"
                 >
                   Upload
                 </Button>
