@@ -12,12 +12,11 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type InputAddonTheme = {
-  border?: Partial<BorderBreakpointStyle>;
-};
+type InputAddonTheme = {};
 
 type InputAddonProps = {
   children?: React.ReactNode;
+  content?: string | React.ReactNode;
 };
 
 type InputAddonVariants = {};
@@ -25,28 +24,25 @@ type InputAddonVariants = {};
 type InputAddonStates = '_hover';
 
 function InputAddonFunction({
-  children,
+  content,
   ...props
 }: InputAddonProps & InputAddonVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <div className={className}>{children}</div>;
+  return <div className={className}>{content}</div>;
 }
 
 const InputAddonComponent = styled(InputAddonFunction)<
   ThemeComponent & InputAddonProps
 >`
   ${({ componentCss }) => componentCss};
-  align-items: center;
   display: flex;
   justify-content: center;
-
-  &:first-child {
-    border-radius: 0.5rem 0 0 0.5rem;
-  }
+  align-items: center;
+  border-right: 1px solid black;
 
   &:last-child {
-    border-radius: 0 0.5rem 0.5rem 0;
+    border-right: 0;
   }
 `;
 
@@ -70,22 +66,13 @@ const InputAddon = createThemedComponent<
         xs: {
           bg: 'none',
           px: theme.spacing[2],
-          border: {
-            ...theme.borders.md,
-            borderColor: theme['secondary'],
-            borderRadius: `0`,
-            borderWidth: '2px'
-          }
+          minW: '20px'
         }
       },
 
       cascadeStateProps: {},
 
-      mapPropsToStyle: {
-        border: ({ border }) => {
-          return applyBorderStyle(border);
-        }
-      }
+      mapPropsToStyle: {}
     };
   }
 });

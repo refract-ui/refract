@@ -11,8 +11,9 @@ import TextInputMaterial from '../Text-Input-Material';
 import InputValidationMessage from '../Input-ValidationMessage';
 import InputIcon from '../Input-Icon';
 import InputLeftAddon from '.';
-import InputRightAddon from './../Input-Right-Addon';
+import InputRightAddon from '../Input-Right-Addon';
 import Icon from '../Icons';
+import Button from '../Button';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -28,7 +29,7 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('InputAddons', module)
+storiesOf('InputAddonItems', module)
   .add('Left Addons', () => (
     <OuterWrapper>
       <SectionWrapper>
@@ -67,6 +68,7 @@ storiesOf('InputAddons', module)
   .add('Right Addons', () => (
     <OuterWrapper>
       <SectionWrapper>
+        {/* -------------------------------------------------------------------------------------- */}
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
@@ -76,11 +78,24 @@ storiesOf('InputAddons', module)
               noBorderRight
             />
             <InputRightAddon
-              content={['$', '.00', <Icon name="Refresh" key="icon-11" />]}
+              content={[
+                '$',
+                '.00',
+                <Icon name="Refresh" key="icon-11" />,
+                <Button
+                  key="bttn-12"
+                  icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                  bg="none"
+                  variant="addon"
+                >
+                  Upload
+                </Button>
+              ]}
             />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
+        {/* ---------------------------------------------------------------------------------------- */}
       </SectionWrapper>
 
       <SectionWrapper>
@@ -89,7 +104,19 @@ storiesOf('InputAddons', module)
           <InputGroup>
             <TextInputMaterial placeholder="Placeholder Input" id="input-1" />
             <InputRightAddon
-              content={[<Icon name="Menu" key="icon-11" />, '$', '.00']}
+              content={[
+                <Icon name="Menu" key="icon-11" />,
+                '$',
+                '.00',
+                <Button
+                  key="bttn-12"
+                  icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                  bg="none"
+                  variant="addon"
+                >
+                  Upload
+                </Button>
+              ]}
               isMaterial
             />
           </InputGroup>
@@ -106,7 +133,7 @@ storiesOf('InputAddons', module)
           <InputGroup>
             <InputLeftAddon content={['$']} />
             <TextInput
-              placeholder="Placeholder Input"
+              placeholder="Enter Amount"
               id="input-1"
               noBorderRight
               noBorderLeft
@@ -114,6 +141,23 @@ storiesOf('InputAddons', module)
             <InputRightAddon content={['.00']} />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Email</InputLabel>
+          <InputGroup>
+            <InputLeftAddon content={[<Icon name="Mail" key="icon-11" />]} />
+            <TextInput
+              placeholder="..."
+              id="input-1"
+              noBorderRight
+              noBorderLeft
+            />
+            <InputRightAddon content={['.com']} />
+          </InputGroup>
+          <InputHelpText>Enter Email Address</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
 

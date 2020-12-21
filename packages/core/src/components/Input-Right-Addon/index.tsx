@@ -11,7 +11,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import InputAddon from './../Input-Addon';
+import InputAddonItem from '../Input-Addon-Item';
 
 type InputRightAddonTheme = {
   border?: Partial<BorderBreakpointStyle>;
@@ -33,12 +33,21 @@ function InputRightAddonFunction({
   ...props
 }: InputRightAddonProps & InputRightAddonVariants): JSX.Element {
   const className = get(props, 'className', null);
+  console.log('In index.tsx, this is content: ', content);
 
   return (
     <div className={className}>
-      {content.map((itm: string, idx: number) => (
-        <InputAddon key={`input-addon-${idx}`} content={itm}></InputAddon>
-      ))}
+      {content.map((itm: string | React.ReactNode, idx: number) => {
+        console.log('In index.tsx, this is itm: ', typeof itm);
+
+        return (
+          <InputAddonItem
+            key={`input-addon-${idx}`}
+            content={itm}
+            xs={typeof itm === 'object' ? { px: `0` } : null}
+          ></InputAddonItem>
+        );
+      })}
     </div>
   );
 }
@@ -54,6 +63,7 @@ const InputRightAddonComponent = styled(InputRightAddonFunction)<
   ${({ componentCss }) => componentCss};
   border-left: 0;
   display: flex;
+  overflow: hidden;
 `;
 
 const InputRightAddon = createThemedComponent<

@@ -11,7 +11,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import InputAddon from './../Input-Addon';
+import InputAddonItem from '../Input-Addon-Item';
 
 type InputLeftAddonTheme = {
   border?: Partial<BorderBreakpointStyle>;
@@ -38,7 +38,10 @@ function InputLeftAddonFunction({
     <div className={className}>
       {content.map((itm: string, idx: number) => {
         return (
-          <InputAddon key={`input-addon-${idx}`} content={itm}></InputAddon>
+          <InputAddonItem
+            key={`input-addon-${idx}`}
+            content={itm}
+          ></InputAddonItem>
         );
       })}
     </div>
