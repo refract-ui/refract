@@ -74,7 +74,7 @@ function TextInputMaterialFunction({
             );
           })}
         <input
-          className={className}
+          className={`${className} gfx-material-text-input`}
           placeholder={placeholder}
           value={value}
           id={id}
@@ -87,7 +87,7 @@ function TextInputMaterialFunction({
   } else {
     return (
       <input
-        className={className}
+        className={`${className} gfx-material-text-input`}
         placeholder={placeholder}
         value={value}
         id={id}

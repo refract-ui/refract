@@ -40,6 +40,7 @@ const InputAddonComponent = styled(InputAddonFunction)<
   align-items: center;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 
   &:first-child {
     border-radius: 0.5rem 0 0 0.5rem;
@@ -47,6 +48,11 @@ const InputAddonComponent = styled(InputAddonFunction)<
 
   &:last-child {
     border-radius: 0 0.5rem 0.5rem 0;
+  }
+
+  > *:not(button) {
+    padding-left: ${({ theme }) => theme.spacing[2]};
+    padding-right: ${({ theme }) => theme.spacing[2]};
   }
 `;
 
@@ -69,7 +75,6 @@ const InputAddon = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
-          px: theme.spacing[2],
           border: {
             ...theme.borders.md,
             borderColor: theme['secondary'],

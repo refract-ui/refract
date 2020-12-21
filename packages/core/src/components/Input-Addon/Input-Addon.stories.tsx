@@ -28,96 +28,188 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('InputAddons', module).add('Input Addon New', () => (
-  <OuterWrapper>
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-1">Label</InputLabel>
-        <InputGroup>
-          <TextInput placeholder="Placeholder Input" id="input-1" />
-          <InputAddon>
-            <Button
-              bg="blue"
-              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
-            >
-              Download
-            </Button>
-          </InputAddon>
-        </InputGroup>
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+storiesOf('InputAddons', module)
+  .add('Input Addon New', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-1">Label</InputLabel>
-        <InputGroup>
-          <InputAddon>
-            <Button
-              bg="blue"
-              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
-            >
-              Download
-            </Button>
-          </InputAddon>
-          <TextInput placeholder="Placeholder Input" id="input-1" />
-        </InputGroup>
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+          <InputGroup>
+            <TextInput placeholder="Placeholder Input" id="input-1" />
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+          </InputGroup>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-1">Label</InputLabel>
-        <InputGroup>
-          <InputAddon>
-            <Icon name="Person" color="secondary" />
-          </InputAddon>
-          <InputAddon>Addon Text</InputAddon>
-          <TextInput placeholder="Placeholder Input" id="input-1" />
-          <InputAddon>
-            <Button
-              bg="blue"
-              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
-            >
-              Download
-            </Button>
-          </InputAddon>
-        </InputGroup>
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
 
-    <SectionWrapper>
-      <InputWrapper>
-        <InputLabel htmlFor="input-1">Label</InputLabel>
-        <InputGroup>
-          <InputAddon>
-            <Icon name="Mail" color="secondary" />
-          </InputAddon>
-          <TextInput
-            placeholder="Placeholder Input"
-            id="input-1"
-            // noBorderLeft
-          />
-          <InputAddon>
-            <Button
-              bg="blue"
-              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              variant="addon"
-            >
-              Download
-            </Button>
-          </InputAddon>
-          <InputAddon>
-            <Icon name="Person" color="secondary" />
-          </InputAddon>
-        </InputGroup>
-        <InputHelpText>Some Description</InputHelpText>
-      </InputWrapper>
-    </SectionWrapper>
-  </OuterWrapper>
-));
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+            <TextInput placeholder="Placeholder Input" id="input-1" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Icon name="Person" color="secondary" />
+            </InputAddon>
+            <InputAddon>
+              <span>Addon Text</span>
+            </InputAddon>
+            <TextInput placeholder="Placeholder Input" id="input-1" />
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Icon name="Mail" color="secondary" />
+            </InputAddon>
+            <TextInput placeholder="Placeholder Input" id="input-1" />
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+            <InputAddon>
+              <Icon name="Person" color="secondary" />
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ))
+  .add('Input Addons Material New', () => (
+    <OuterWrapper>
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <TextInputMaterial placeholder="Placeholder Input" id="input-1" />
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+            <TextInputMaterial placeholder="Placeholder Input" id="input-1" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Icon name="Person" color="secondary" />
+            </InputAddon>
+            <InputAddon>
+              <span>Addon Text</span>
+            </InputAddon>
+            <TextInputMaterial placeholder="Placeholder Input" id="input-1" />
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+
+      <SectionWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Icon name="Mail" color="secondary" />
+            </InputAddon>
+            <TextInputMaterial placeholder="Placeholder Input" id="input-1" />
+            <InputAddon>
+              <Button
+                bg="blue"
+                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                variant="addon"
+              >
+                Download
+              </Button>
+            </InputAddon>
+            <InputAddon>
+              <Icon name="Person" color="secondary" />
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </SectionWrapper>
+    </OuterWrapper>
+  ));
