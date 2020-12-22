@@ -12,7 +12,9 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type TextCounterTheme = {};
+type TextCounterTheme = {
+  textColor?: string;
+};
 
 type TextCounterProps = {
   children?: React.ReactNode;
@@ -65,13 +67,20 @@ const TextCounter = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
+          textColor: theme.secondary,
           px: theme.spacing[2]
         }
       },
 
       cascadeStateProps: {},
 
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        textColor: ({ textColor }) => css`
+          color: ${textColor};
+          font-size: 1rem;
+          line-height: 19px;
+        `
+      }
     };
   }
 });

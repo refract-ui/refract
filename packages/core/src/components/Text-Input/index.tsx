@@ -147,6 +147,10 @@ const TextInputComponent = styled(TextInputFunction)<
   :disabled {
     opacity: 0.5;
   }
+
+  ::placeholder {
+    opacity: 0.7;
+  }
 `;
 
 const TextInput = createThemedComponent<
