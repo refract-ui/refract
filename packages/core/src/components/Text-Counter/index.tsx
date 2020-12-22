@@ -40,6 +40,10 @@ function TextCounterFunction({
   return <div className={className}>{`${currentLength} / ${maxLength}`}</div>;
 }
 
+TextCounterFunction.defaultProps = {
+  currentLength: 0
+};
+
 const TextCounterComponent = styled(TextCounterFunction)<
   ThemeComponent & TextCounterProps
 >`

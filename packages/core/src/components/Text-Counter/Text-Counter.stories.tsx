@@ -44,7 +44,7 @@ storiesOf('TextCounter', module).add('Text Counter - Controlled', () => {
               <InputLabel htmlFor="input-1">Label</InputLabel>
 
               <InputGroup>
-                <InputAddon>
+                <InputAddon xs={{ border: { borderWidth: '0' } }}>
                   <Icon name="Person" color="secondary" />
                 </InputAddon>
                 <TextInput
@@ -54,8 +54,14 @@ storiesOf('TextCounter', module).add('Text Counter - Controlled', () => {
                   value={state.value}
                   maxLength={8}
                 />
-                <InputAddon>
+                <InputAddon xs={{ border: { borderWidth: '0' } }}>
                   <Icon name="Person" color="secondary" />
+                </InputAddon>
+                <InputAddon xs={{ border: { borderWidth: '0' } }}>
+                  <TextCounter
+                    maxLength={8}
+                    currentLength={state.value ? state.value.length : 0}
+                  />
                 </InputAddon>
               </InputGroup>
 

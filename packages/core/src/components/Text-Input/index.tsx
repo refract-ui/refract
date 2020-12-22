@@ -91,40 +91,21 @@ function TextInputFunction({
           maxLength={maxLength}
           ref={ref}
         />
-        {maxLength && (
-          <InputAddon>
-            <TextCounter
-              maxLength={maxLength}
-              tester={ref.current}
-              currentLength={value ? value.length : 0}
-            />
-          </InputAddon>
-        )}
       </>
     );
   } else {
     return (
-      <>
-        <input
-          className={`${className} gfx-text-input`}
-          placeholder={placeholder}
-          value={value}
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          type={type}
-          maxLength={maxLength}
-          ref={ref}
-        />
-        {maxLength && (
-          <InputAddon>
-            <TextCounter
-              maxLength={maxLength}
-              currentLength={value ? value.length : 0}
-            />
-          </InputAddon>
-        )}
-      </>
+      <input
+        className={`${className} gfx-text-input`}
+        placeholder={placeholder}
+        value={value}
+        id={id}
+        onChange={onChange}
+        disabled={disabled}
+        type={type}
+        maxLength={maxLength}
+        ref={ref}
+      />
     );
   }
 }
