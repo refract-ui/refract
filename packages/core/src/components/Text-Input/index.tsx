@@ -13,6 +13,8 @@ import {
 } from '../../theme/containers';
 import { Icons } from '../Icons/icons';
 import InputIcon from './../Input-Icon';
+import TextCounter from './../Text-Counter';
+import InputAddon from './../Input-Addon';
 
 type TextInputTheme = {
   border: Partial<BorderBreakpointStyle>;
@@ -37,6 +39,8 @@ type TextInputProps = {
   disabled?: boolean;
   icons?: Array<IconObject | null>;
   type?: string;
+  maxLength?: number;
+  ref?: any;
 };
 
 type TextInputVariants = {
@@ -55,9 +59,12 @@ function TextInputFunction({
   disabled,
   icons,
   type,
+  maxLength,
+  ref,
   ...props
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
+
   if (icons) {
     return (
       <>
@@ -81,20 +88,43 @@ function TextInputFunction({
           onChange={onChange}
           disabled={disabled}
           type={type}
+          maxLength={maxLength}
+          ref={ref}
         />
+        {maxLength && (
+          <InputAddon>
+            <TextCounter
+              maxLength={maxLength}
+              tester={ref.current}
+              currentLength={value ? value.length : 0}
+            />
+          </InputAddon>
+        )}
       </>
     );
   } else {
     return (
-      <input
-        className={`${className} gfx-text-input`}
-        placeholder={placeholder}
-        value={value}
-        id={id}
-        onChange={onChange}
-        disabled={disabled}
-        type={type}
-      />
+      <>
+        <input
+          className={`${className} gfx-text-input`}
+          placeholder={placeholder}
+          value={value}
+          id={id}
+          onChange={onChange}
+          disabled={disabled}
+          type={type}
+          maxLength={maxLength}
+          ref={ref}
+        />
+        {maxLength && (
+          <InputAddon>
+            <TextCounter
+              maxLength={maxLength}
+              currentLength={value ? value.length : 0}
+            />
+          </InputAddon>
+        )}
+      </>
     );
   }
 }
