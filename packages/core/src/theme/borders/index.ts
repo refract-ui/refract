@@ -89,6 +89,7 @@ export default function borders({
       borderRadius: '0.2rem'
     },
     md: {
+      borderWidth: '2px',
       borderStyle: 'solid',
       borderRadius: '0.5rem'
     },
