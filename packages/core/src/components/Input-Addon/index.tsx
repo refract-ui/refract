@@ -14,6 +14,7 @@ import {
 
 type InputAddonTheme = {
   border?: Partial<BorderBreakpointStyle>;
+  textColor?: string;
 };
 
 type InputAddonProps = {
@@ -82,6 +83,7 @@ const InputAddon = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
+          textColor: theme.secondary,
           border: {
             ...theme.borders.md,
             borderColor: theme['secondary'],

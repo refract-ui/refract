@@ -44,7 +44,7 @@ storiesOf('TextCounter', module).add('Text Counter - Controlled', () => {
               <InputLabel htmlFor="input-1">Label</InputLabel>
 
               <InputGroup>
-                <InputAddon xs={{ border: { borderWidth: '0' } }}>
+                <InputAddon>
                   <Icon name="Person" color="secondary" />
                 </InputAddon>
                 <TextInput
@@ -54,10 +54,108 @@ storiesOf('TextCounter', module).add('Text Counter - Controlled', () => {
                   value={state.value}
                   maxLength={8}
                 />
+                <InputAddon>
+                  <TextCounter
+                    maxLength={8}
+                    currentLength={state.value ? state.value.length : 0}
+                  />
+                </InputAddon>
+              </InputGroup>
+
+              <InputHelpText>Some Description</InputHelpText>
+            </InputWrapper>
+          </SectionWrapper>
+        )}
+      </Parent>
+
+      <Parent>
+        {(state: any, setState: any) => (
+          <SectionWrapper>
+            <InputWrapper>
+              <InputLabel htmlFor="input-2">Label</InputLabel>
+
+              <InputGroup>
                 <InputAddon xs={{ border: { borderWidth: '0' } }}>
                   <Icon name="Person" color="secondary" />
                 </InputAddon>
+                <TextInput
+                  placeholder="Placeholder Input"
+                  id="input-2"
+                  onChange={e => setState({ value: e.currentTarget.value })}
+                  value={state.value}
+                  maxLength={8}
+                />
                 <InputAddon xs={{ border: { borderWidth: '0' } }}>
+                  <TextCounter
+                    maxLength={8}
+                    currentLength={state.value ? state.value.length : 0}
+                  />
+                </InputAddon>
+              </InputGroup>
+
+              <InputHelpText>Some Description</InputHelpText>
+            </InputWrapper>
+          </SectionWrapper>
+        )}
+      </Parent>
+
+      <Parent>
+        {(state: any, setState: any) => (
+          <SectionWrapper>
+            <InputWrapper>
+              <InputLabel htmlFor="input-3">Label</InputLabel>
+
+              <InputGroup>
+                <InputAddon
+                  xs={{ border: { borderWidth: '0' }, bg: 'navajowhite' }}
+                >
+                  <Icon name="Map" color="secondary" />
+                </InputAddon>
+                <TextInput
+                  placeholder="Placeholder Input"
+                  id="input-3"
+                  onChange={e => setState({ value: e.currentTarget.value })}
+                  value={state.value}
+                  maxLength={8}
+                />
+                <InputAddon xs={{ bg: 'lavenderblush' }}>
+                  <TextCounter
+                    maxLength={8}
+                    currentLength={state.value ? state.value.length : 0}
+                  />
+                </InputAddon>
+              </InputGroup>
+
+              <InputHelpText>Some Description</InputHelpText>
+            </InputWrapper>
+          </SectionWrapper>
+        )}
+      </Parent>
+
+      <Parent>
+        {(state: any, setState: any) => (
+          <SectionWrapper>
+            <InputWrapper>
+              <InputLabel htmlFor="input-3">Label</InputLabel>
+
+              <InputGroup>
+                <InputAddon>
+                  <Icon name="Menu" color="secondary" />
+                </InputAddon>
+                <TextInput
+                  placeholder="Placeholder Input"
+                  id="input-3"
+                  onChange={e => setState({ value: e.currentTarget.value })}
+                  value={state.value}
+                  maxLength={8}
+                />
+                <InputAddon>
+                  <Icon name="Clock" />
+                </InputAddon>
+                <InputAddon>
+                  <span>Text</span>
+                </InputAddon>
+                <InputAddon>
                   <TextCounter
                     maxLength={8}
                     currentLength={state.value ? state.value.length : 0}
