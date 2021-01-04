@@ -131,5 +131,42 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
         <InputHelpText>Some Description</InputHelpText>
       </InputWrapper>
     </SectionWrapper>
+
+    <SectionWrapper>
+      <InputWrapper>
+        <InputLabel htmlFor="input-20">Label</InputLabel>
+        <InputGroup>
+          <InputAddon xs={{ border: { borderWidth: '0' } }}>
+            <Icon name="Mail" color="secondary" />
+          </InputAddon>
+          <TextInput placeholder="Placeholder Input" id="input-20" />
+          <InputAddon xs={{ border: { borderWidth: '0' } }}>
+            <Icon name="Person" color="secondary" />
+          </InputAddon>
+        </InputGroup>
+        <InputHelpText>Some Description</InputHelpText>
+      </InputWrapper>
+    </SectionWrapper>
+
+    <SectionWrapper>
+      <InputWrapper>
+        <InputLabel htmlFor="input-21">Label</InputLabel>
+        <InputGroup>
+          <InputAddon xs={{ border: { borderWidth: '0' } }}>
+            <Icon name="Mail" color="secondary" />
+          </InputAddon>
+          <TextInput placeholder="Placeholder Input" id="input-21" />
+          <InputAddon xs={{ border: { borderWidth: '0' } }}>
+            <Button
+              bg="grey"
+              icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            >
+              Download
+            </Button>
+          </InputAddon>
+        </InputGroup>
+        <InputHelpText>Some Description</InputHelpText>
+      </InputWrapper>
+    </SectionWrapper>
   </OuterWrapper>
 ));

@@ -41,6 +41,7 @@ const InputGroupComponent = styled(InputGroupFunction)<
 >`
   ${({ componentCss }) => componentCss};
   display: flex;
+  overflow: hidden;
   position: relative;
   transition: all 0.3s ease-in-out;
 

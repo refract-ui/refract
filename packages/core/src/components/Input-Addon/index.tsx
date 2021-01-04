@@ -41,14 +41,15 @@ const InputAddonComponent = styled(InputAddonFunction)<
   align-items: center;
   display: flex;
   justify-content: center;
-  overflow: hidden;
 
   &:first-child {
-    border-radius: 0.5rem 0 0 0.5rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   &:last-child {
-    border-radius: 0 0.5rem 0.5rem 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   > *:not(button) {
@@ -58,6 +59,7 @@ const InputAddonComponent = styled(InputAddonFunction)<
 
   button {
     height: 100%;
+    margin: 0;
     padding-top: 0;
     padding-bottom: 0;
     border-radius: 0;
