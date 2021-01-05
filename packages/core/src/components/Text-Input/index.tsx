@@ -119,7 +119,7 @@ const TextInput = createThemedComponent<
               bg: 'transparent',
               textColor: theme['dark'],
               border: {
-                borderColor: theme['secondary']
+                borderColor: theme.components.inputs.borders.borderColor
               }
             };
           }
@@ -150,7 +150,7 @@ const TextInput = createThemedComponent<
           bg: 'none',
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           h: '54px',
-          border: theme.borders.md,
+          border: theme.components.inputs.borders,
           py: `0`,
           w: '100%'
         },
@@ -167,7 +167,7 @@ const TextInput = createThemedComponent<
       // hover, active state handling here:
       cascadeStateProps: {
         border: {
-          _hover: props => {
+          _hover: () => {
             return {
               borderColor: theme['dark']
             };
@@ -175,7 +175,7 @@ const TextInput = createThemedComponent<
           _focus: () => ({
             borderColor: theme['primary']
           }),
-          _disabled: props => {
+          _disabled: () => {
             return {
               borderColor: theme['secondary']
             };
@@ -192,7 +192,7 @@ const TextInput = createThemedComponent<
         border: ({
           componentProps: { success, error },
           border: { borderColor, borderWidth, borderStyle, borderRadius }
-        }) => {
+        }: any) => {
           if (success) {
             return applyBorderStyle({
               borderColor: theme['success'],
