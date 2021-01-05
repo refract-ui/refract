@@ -12,12 +12,10 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import { Icons } from '../Icons/icons';
-import InputIcon from './../Input-Icon';
 
 type TextInputMaterialTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
-  iconStyle?: string;
 };
 
 type IconObject = {
@@ -57,46 +55,18 @@ function TextInputMaterialFunction({
   ...props
 }: TextInputMaterialProps & TextInputMaterialVariants): JSX.Element {
   const className = get(props, 'className', null);
-  if (icons) {
-    return (
-      <>
-        {icons &&
-          icons.map((ic, idx) => {
-            const icon = pick(ic, ['icon', 'position']);
-            return (
-              <InputIcon
-                icon={icon}
-                key={`input-group-icon-${idx}`}
-                color={ic.color}
-                iconStyle="material"
-                onClick={ic.onClick}
-              />
-            );
-          })}
-        <input
-          className={`${className} gfx-material-text-input`}
-          placeholder={placeholder}
-          value={value}
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          type={type}
-        />
-      </>
-    );
-  } else {
-    return (
-      <input
-        className={`${className} gfx-material-text-input`}
-        placeholder={placeholder}
-        value={value}
-        id={id}
-        onChange={onChange}
-        disabled={disabled}
-        type={type}
-      />
-    );
-  }
+
+  return (
+    <input
+      className={`${className} gfx-material-text-input`}
+      placeholder={placeholder}
+      value={value}
+      id={id}
+      onChange={onChange}
+      disabled={disabled}
+      type={type}
+    />
+  );
 }
 
 const TextInputMaterialComponent = styled(TextInputMaterialFunction)<
@@ -172,8 +142,7 @@ const TextInputMaterial = createThemedComponent<
           h: '42px',
           px: `0`,
           py: `0`,
-          w: '100%',
-          iconStyle: '0'
+          w: '100%'
         },
 
         sm: {
@@ -211,37 +180,6 @@ const TextInputMaterial = createThemedComponent<
             font-size: 1rem;
             line-height: 19px;
           `;
-        },
-        iconStyle: ({ componentProps: { icons } }) => {
-          if (
-            icons &&
-            find(icons, ['position', 'left']) &&
-            !find(icons, ['position', 'right'])
-          ) {
-            return css`
-              padding-left: 2.5rem !important;
-            `;
-          }
-          if (
-            icons &&
-            find(icons, ['position', 'left']) &&
-            find(icons, ['position', 'right'])
-          ) {
-            return css`
-              padding-left: 2.5rem !important;
-              padding-right: 2.5rem !important;
-            `;
-          }
-          if (
-            icons &&
-            find(icons, ['position', 'right']) &&
-            !find(icons, ['position', 'left'])
-          ) {
-            return css`
-              padding-right: 2.5rem !important;
-            `;
-          }
-          return css``;
         },
         border: ({
           componentProps: { success, error },

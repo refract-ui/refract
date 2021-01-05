@@ -12,14 +12,12 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import { Icons } from '../Icons/icons';
-import InputIcon from './../Input-Icon';
 import TextCounter from './../Text-Counter';
 import InputAddon from './../Input-Addon';
 
 type TextInputTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
-  iconStyle?: string;
 };
 
 type IconObject = {
@@ -65,49 +63,19 @@ function TextInputFunction({
 }: TextInputProps & TextInputVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  if (icons) {
-    return (
-      <>
-        {icons &&
-          icons.map((ic, idx) => {
-            const icon = pick(ic, ['icon', 'position']);
-            return (
-              <InputIcon
-                icon={icon}
-                key={`input-group-icon-${idx}`}
-                color={ic.color}
-                onClick={ic.onClick}
-              />
-            );
-          })}
-        <input
-          className={`${className} gfx-text-input`}
-          placeholder={placeholder}
-          value={value}
-          id={id}
-          onChange={onChange}
-          disabled={disabled}
-          type={type}
-          maxLength={maxLength}
-          ref={ref}
-        />
-      </>
-    );
-  } else {
-    return (
-      <input
-        className={`${className} gfx-text-input`}
-        placeholder={placeholder}
-        value={value}
-        id={id}
-        onChange={onChange}
-        disabled={disabled}
-        type={type}
-        maxLength={maxLength}
-        ref={ref}
-      />
-    );
-  }
+  return (
+    <input
+      className={`${className} gfx-text-input`}
+      placeholder={placeholder}
+      value={value}
+      id={id}
+      onChange={onChange}
+      disabled={disabled}
+      type={type}
+      maxLength={maxLength}
+      ref={ref}
+    />
+  );
 }
 
 const TextInputComponent = styled(TextInputFunction)<
@@ -199,8 +167,7 @@ const TextInput = createThemedComponent<
           h: '54px',
           border: theme.borders.md,
           py: `0`,
-          w: '100%',
-          iconStyle: '0'
+          w: '100%'
         },
 
         sm: {
@@ -237,37 +204,6 @@ const TextInput = createThemedComponent<
           font-size: 1rem;
           line-height: 19px;
         `,
-        iconStyle: ({ componentProps: { icons } }) => {
-          if (
-            icons &&
-            find(icons, ['position', 'left']) &&
-            !find(icons, ['position', 'right'])
-          ) {
-            return css`
-              padding-left: 2.5rem !important;
-            `;
-          }
-          if (
-            icons &&
-            find(icons, ['position', 'left']) &&
-            find(icons, ['position', 'right'])
-          ) {
-            return css`
-              padding-left: 2.5rem !important;
-              padding-right: 2.5rem !important;
-            `;
-          }
-          if (
-            icons &&
-            find(icons, ['position', 'right']) &&
-            !find(icons, ['position', 'left'])
-          ) {
-            return css`
-              padding-right: 2.5rem !important;
-            `;
-          }
-          return css``;
-        },
         border: ({
           componentProps: { success, error },
           border: { borderColor, borderWidth, borderStyle, borderRadius }

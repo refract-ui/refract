@@ -10,7 +10,6 @@ import InputHelpText from '../Input-HelpText';
 import TextInputMaterial from '../Text-Input-Material';
 import InputValidationMessage from '../Input-ValidationMessage';
 import InputAddon from './index';
-import InputIcon from '../Input-Icon';
 import Icon from '../Icons';
 import Button from '../Button';
 

@@ -9,7 +9,6 @@ import InputLabel from './../Input-Label';
 import InputHelpText from './../Input-HelpText';
 import TextInputMaterial from './../Text-Input-Material';
 import InputValidationMessage from './../Input-ValidationMessage';
-import InputIcon from './../Input-Icon';
 
 const OuterWrapper = styled.div`
   display: flex;
