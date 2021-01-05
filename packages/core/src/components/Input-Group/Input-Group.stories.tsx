@@ -8,7 +8,6 @@ import TextInput from './../Text-Input';
 import InputLabel from './../Input-Label';
 import InputHelpText from './../Input-HelpText';
 import TextInputMaterial from './../Text-Input-Material';
-import InputValidationMessage from './../Input-ValidationMessage';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -31,11 +30,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'Search', position: 'left' }]}
-              placeholder="Placeholder Input"
-              id="input-1"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-1" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -45,11 +40,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-2">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'Menu', position: 'left' }]}
-              placeholder="Placeholder Input"
-              id="input-2"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-2" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -59,12 +50,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-3">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
-              placeholder="Placeholder Input"
-              id="input-3"
-              filled
-            />
+            <TextInput placeholder="Placeholder Input" id="input-3" filled />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -74,18 +60,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-4">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[
-                {
-                  icon: 'LineGrid',
-                  position: 'left',
-                  color: 'primary',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-4"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-4" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -95,12 +70,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-3">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'Settings', position: 'left', color: 'warning' }]}
-              placeholder="Placeholder Input"
-              id="input-3"
-              filled
-            />
+            <TextInput placeholder="Placeholder Input" id="input-3" filled />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -113,11 +83,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-4">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'Search', position: 'right' }]}
-              placeholder="Placeholder Input"
-              id="input-1"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-1" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -127,11 +93,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-5">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'SimpleArrowDown', position: 'right' }]}
-              placeholder="Placeholder Input"
-              id="input-5"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-5" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -141,18 +103,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-6">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[
-                {
-                  icon: 'Close',
-                  position: 'right',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-6"
-              filled
-            />
+            <TextInput placeholder="Placeholder Input" id="input-6" filled />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -162,13 +113,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-4">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[
-                { icon: 'Dashboard', position: 'right', color: 'danger' }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-4"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-4" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -178,12 +123,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-3">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[{ icon: 'Clock', position: 'right', color: 'success' }]}
-              placeholder="Placeholder Input"
-              id="input-3"
-              filled
-            />
+            <TextInput placeholder="Placeholder Input" id="input-3" filled />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -196,18 +136,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-7">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[
-                { icon: 'Search', position: 'left' },
-                {
-                  icon: 'Close',
-                  position: 'right',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-7"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-7" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -218,14 +147,6 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-7-filled">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icons={[
-                { icon: 'Search', position: 'left' },
-                {
-                  icon: 'Close',
-                  position: 'right',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
               placeholder="Placeholder Input"
               id="input-7-filled"
               filled
@@ -239,14 +160,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-8">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[
-                { icon: 'Expand', position: 'left' },
-                { icon: 'Check', position: 'right', color: 'success' }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-8"
-            />
+            <TextInput placeholder="Placeholder Input" id="input-8" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -257,10 +171,6 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-8-filled">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icons={[
-                { icon: 'Expand', position: 'left' },
-                { icon: 'Check', position: 'right', color: 'success' }
-              ]}
               placeholder="Placeholder Input"
               id="input-8-filled"
               filled
@@ -274,14 +184,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-9">Label</InputLabel>
           <InputGroup>
-            <TextInput
-              icons={[
-                { icon: 'Calendar', position: 'left', color: 'info' },
-                { icon: 'Info', position: 'right', color: 'danger' }
-              ]}
-              placeholder="Not a Valid Date"
-              id="input-9"
-            />
+            <TextInput placeholder="Not a Valid Date" id="input-9" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -292,10 +195,6 @@ storiesOf('InputGroup', module)
           <InputLabel htmlFor="input-9-filled">Label</InputLabel>
           <InputGroup>
             <TextInput
-              icons={[
-                { icon: 'Calendar', position: 'left', color: 'info' },
-                { icon: 'Info', position: 'right', color: 'danger' }
-              ]}
               placeholder="Not a Valid Date"
               id="input-9-filled"
               filled
@@ -312,18 +211,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-8">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[
-                {
-                  icon: 'Search',
-                  position: 'left',
-                  color: 'primary',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-8"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-8" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -333,11 +221,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-9">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Menu', position: 'left' }]}
-              placeholder="Placeholder Input"
-              id="input-9"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-9" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -347,11 +231,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-10">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'SimpleArrowDown', position: 'left' }]}
-              placeholder="Placeholder Input"
-              id="input-10"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-10" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -361,11 +241,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-11">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Star', position: 'left', color: 'success' }]}
-              placeholder="Placeholder Input"
-              id="input-11"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-11" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -375,11 +251,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-12">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Table', position: 'left', color: 'warning' }]}
-              placeholder="Enter Text Here"
-              id="input-12"
-            />
+            <TextInputMaterial placeholder="Enter Text Here" id="input-12" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -392,11 +264,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-11">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Search', position: 'right' }]}
-              placeholder="Placeholder Input"
-              id="input-11"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-11" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -406,11 +274,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-12">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'SimpleArrowDown', position: 'right' }]}
-              placeholder="Placeholder Input"
-              id="input-12"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-12" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -420,17 +284,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-13">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[
-                {
-                  icon: 'Close',
-                  position: 'right',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-13"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-13" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -440,11 +294,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-14">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Calendar', position: 'right' }]}
-              placeholder="Placeholder Input"
-              id="input-14"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-14" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -454,11 +304,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-15">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Website', position: 'right', color: 'primary' }]}
-              placeholder="Placeholder Input"
-              id="input-15"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-15" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -468,11 +314,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-16">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[{ icon: 'Phone', position: 'right', color: 'info' }]}
-              placeholder="Enter Phone Number"
-              id="input-16"
-            />
+            <TextInputMaterial placeholder="Enter Phone Number" id="input-16" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -485,14 +327,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-100">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[
-                { icon: 'Search', position: 'left' },
-                { icon: 'Close', position: 'right' }
-              ]}
-              placeholder="Placeholder Input"
-              id="input-100"
-            />
+            <TextInputMaterial placeholder="Placeholder Input" id="input-100" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -502,19 +337,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-101">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[
-                { icon: 'Person', position: 'left', color: 'info' },
-                {
-                  icon: 'Close',
-                  position: 'right',
-                  color: 'danger',
-                  onClick: () => console.log('Clicked on InputIcon!')
-                }
-              ]}
-              placeholder="Enter First Name"
-              id="input-101"
-            />
+            <TextInputMaterial placeholder="Enter First Name" id="input-101" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -524,14 +347,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-102">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[
-                { icon: 'DotsHorizontal', position: 'left', color: 'dark' },
-                { icon: 'Refresh', position: 'right', color: 'warning' }
-              ]}
-              placeholder="Enter First Name"
-              id="input-102"
-            />
+            <TextInputMaterial placeholder="Enter First Name" id="input-102" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
@@ -541,14 +357,7 @@ storiesOf('InputGroup', module)
         <InputWrapper>
           <InputLabel htmlFor="input-103">Label</InputLabel>
           <InputGroup>
-            <TextInputMaterial
-              icons={[
-                { icon: 'Calendar', position: 'left', color: 'success' },
-                { icon: 'Info', position: 'right', color: 'danger' }
-              ]}
-              placeholder="Enter Date"
-              id="input-103"
-            />
+            <TextInputMaterial placeholder="Enter Date" id="input-103" />
           </InputGroup>
           <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>

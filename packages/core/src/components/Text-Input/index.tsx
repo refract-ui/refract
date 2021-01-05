@@ -11,20 +11,12 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { Icons } from '../Icons/icons';
 import TextCounter from './../Text-Counter';
 import InputAddon from './../Input-Addon';
 
 type TextInputTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
-};
-
-type IconObject = {
-  icon: keyof Icons;
-  position: 'left' | 'right' | null;
-  color?: keyof ThemeColors;
-  onClick?: (ev: any) => void;
 };
 
 type TextInputProps = {
@@ -35,7 +27,6 @@ type TextInputProps = {
   id?: string;
   onChange?: (ev: any) => void;
   disabled?: boolean;
-  icons?: Array<IconObject | null>;
   type?: string;
   maxLength?: number;
   ref?: any;
@@ -55,7 +46,6 @@ function TextInputFunction({
   id,
   onChange,
   disabled,
-  icons,
   type,
   maxLength,
   ref,

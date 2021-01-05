@@ -212,12 +212,7 @@ storiesOf('InputWrapper', module)
         <InputWrapper horizontal>
           <InputLabel htmlFor="input-13">Horizontal Input</InputLabel>
           <InputGroup>
-            <TextInput
-              placeholder="Input Text"
-              id="input-13"
-              icons={[{ icon: 'Person', position: 'left' }]}
-              isFullWidth
-            />
+            <TextInput placeholder="Input Text" id="input-13" isFullWidth />
           </InputGroup>
         </InputWrapper>
       </SectionWrapper>
@@ -229,7 +224,6 @@ storiesOf('InputWrapper', module)
             <TextInputMaterial
               placeholder="Input Text"
               id="input-14"
-              icons={[{ icon: 'Person', position: 'left' }]}
               isFullWidth
             />
           </InputGroup>
@@ -303,24 +297,14 @@ storiesOf('InputWrapper', module)
         <InputWrapper>
           <InputLabel htmlFor="input-17">User Name</InputLabel>
           <InputGroup>
-            <TextInput
-              placeholder="Username"
-              id="input-17"
-              type="text"
-              icons={[{ icon: 'Person', position: 'left' }]}
-            />
+            <TextInput placeholder="Username" id="input-17" type="text" />
           </InputGroup>
         </InputWrapper>
 
         <InputWrapper>
           <InputLabel htmlFor="input-18">Password</InputLabel>
           <InputGroup>
-            <TextInput
-              placeholder="Password"
-              id="input-18"
-              type="password"
-              icons={[{ icon: 'DotsHorizontal', position: 'left' }]}
-            />
+            <TextInput placeholder="Password" id="input-18" type="password" />
           </InputGroup>
         </InputWrapper>
 
@@ -338,7 +322,6 @@ storiesOf('InputWrapper', module)
               placeholder="Username"
               id="input-15"
               type="text"
-              icons={[{ icon: 'Person', position: 'left' }]}
             />
           </InputGroup>
         </InputWrapper>
@@ -350,7 +333,6 @@ storiesOf('InputWrapper', module)
               placeholder="Password"
               id="input-16"
               type="password"
-              icons={[{ icon: 'DotsHorizontal', position: 'left' }]}
             />
           </InputGroup>
         </InputWrapper>
@@ -410,9 +392,7 @@ storiesOf('InputWrapper', module)
           </InputWrapper>
         </FullWidthDiv>
 
-        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
-          Submit
-        </Button>
+        <Button color="success">Submit</Button>
       </SectionWrapper>
     </OuterWrapper>
   ))
@@ -467,9 +447,7 @@ storiesOf('InputWrapper', module)
           </InputWrapper>
         </FullWidthDiv>
 
-        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
-          Submit
-        </Button>
+        <Button color="success">Submit</Button>
       </SectionWrapper>
     </OuterWrapper>
   ))
@@ -484,7 +462,6 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-firstname"
                 type="text"
-                icons={[{ icon: 'Person', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
@@ -499,7 +476,6 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-lastname"
                 type="text"
-                icons={[{ icon: 'Person', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
@@ -514,7 +490,6 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-email"
                 type="email"
-                icons={[{ icon: 'Mail', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
@@ -529,16 +504,13 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-reason"
                 type="text"
-                icons={[{ icon: 'Expand', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
           </InputWrapper>
         </FullWidthDiv>
 
-        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
-          Submit
-        </Button>
+        <Button color="success">Submit</Button>
       </SectionWrapper>
     </OuterWrapper>
   ))
@@ -553,7 +525,6 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-firstname"
                 type="text"
-                icons={[{ icon: 'Person', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
@@ -568,7 +539,6 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-lastname"
                 type="text"
-                icons={[{ icon: 'Person', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
@@ -583,7 +553,6 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-email"
                 type="email"
-                icons={[{ icon: 'Mail', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
@@ -598,16 +567,13 @@ storiesOf('InputWrapper', module)
                 placeholder=""
                 id="input-reason"
                 type="text"
-                icons={[{ icon: 'Expand', position: 'left' }]}
                 isFullWidth
               />
             </InputGroup>
           </InputWrapper>
         </FullWidthDiv>
 
-        <Button color="success" icon={{ icon: 'Forward', position: 'right' }}>
-          Submit
-        </Button>
+        <Button color="success">Submit</Button>
       </SectionWrapper>
     </OuterWrapper>
-  ))
+  ));
