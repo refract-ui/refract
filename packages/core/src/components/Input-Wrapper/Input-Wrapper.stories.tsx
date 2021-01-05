@@ -9,6 +9,8 @@ import InputHelpText from './../Input-HelpText';
 import InputValidationMessage from './../Input-ValidationMessage';
 import InputGroup from './../Input-Group';
 import Button from './../Button';
+import InputAddon from '../Input-Addon';
+import Icon from '../Icons';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -200,6 +202,9 @@ storiesOf('InputWrapper', module)
         <InputWrapper>
           <InputLabel htmlFor="input-17">User Name</InputLabel>
           <InputGroup>
+            <InputAddon>
+              <Icon name="Person" color="secondary" />
+            </InputAddon>
             <TextInput placeholder="Username" id="input-17" type="text" />
           </InputGroup>
         </InputWrapper>
@@ -207,6 +212,9 @@ storiesOf('InputWrapper', module)
         <InputWrapper>
           <InputLabel htmlFor="input-18">Password</InputLabel>
           <InputGroup>
+            <InputAddon>
+              <Icon name="Lock" color="secondary" />
+            </InputAddon>
             <TextInput placeholder="Password" id="input-18" type="password" />
           </InputGroup>
         </InputWrapper>
@@ -277,6 +285,9 @@ storiesOf('InputWrapper', module)
           <InputWrapper>
             <InputLabel htmlFor="input-firstname">First Name</InputLabel>
             <InputGroup>
+              <InputAddon>
+                <Icon name="Person" color="secondary" />
+              </InputAddon>
               <TextInput
                 placeholder=""
                 id="input-firstname"
@@ -291,6 +302,9 @@ storiesOf('InputWrapper', module)
           <InputWrapper>
             <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
             <InputGroup>
+              <InputAddon>
+                <Icon name="Person" color="secondary" />
+              </InputAddon>
               <TextInput
                 placeholder=""
                 id="input-lastname"
@@ -305,6 +319,9 @@ storiesOf('InputWrapper', module)
           <InputWrapper>
             <InputLabel htmlFor="input-email">Email</InputLabel>
             <InputGroup>
+              <InputAddon>
+                <Icon name="Mail" color="secondary" />
+              </InputAddon>
               <TextInput
                 placeholder=""
                 id="input-email"
@@ -319,6 +336,9 @@ storiesOf('InputWrapper', module)
           <InputWrapper>
             <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
             <InputGroup>
+              <InputAddon>
+                <Icon name="Menu" color="secondary" />
+              </InputAddon>
               <TextInput
                 placeholder=""
                 id="input-reason"
