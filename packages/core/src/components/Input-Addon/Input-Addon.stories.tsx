@@ -7,7 +7,6 @@ import InputGroup from '../Input-Group';
 import TextInput from '../Text-Input';
 import InputLabel from '../Input-Label';
 import InputHelpText from '../Input-HelpText';
-import TextInputMaterial from '../Text-Input-Material';
 import InputValidationMessage from '../Input-ValidationMessage';
 import InputAddon from './index';
 import Icon from '../Icons';

@@ -6,7 +6,6 @@ import InputWrapper from './index';
 import TextInput from './../Text-Input';
 import InputLabel from './../Input-Label';
 import InputHelpText from './../Input-HelpText';
-import TextInputMaterial from './../Text-Input-Material';
 import InputValidationMessage from './../Input-ValidationMessage';
 import InputGroup from './../Input-Group';
 import Button from './../Button';
@@ -78,44 +77,6 @@ storiesOf('InputWrapper', module)
 
       <SectionWrapper>
         <InputWrapper>
-          <InputLabel htmlFor="input-4">Label</InputLabel>
-          <TextInputMaterial placeholder="Placeholder Input" id="input-4" />
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-4a">Label</InputLabel>
-          <TextInputMaterial
-            placeholder="Placeholder Input"
-            id="input-4a"
-            error
-          />
-          <InputHelpText>Some Description</InputHelpText>
-          <InputValidationMessage error>
-            Error Description
-          </InputValidationMessage>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-4b">Label</InputLabel>
-          <TextInputMaterial
-            placeholder="Placeholder Input"
-            id="input-4b"
-            success
-          />
-          <InputHelpText>Some Description</InputHelpText>
-          <InputValidationMessage success>
-            Error Description
-          </InputValidationMessage>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper>
           <InputLabel htmlFor="input-5">Label</InputLabel>
           <TextInput placeholder="Placeholder Error Input" id="input-5" error />
           <InputHelpText>Some Description</InputHelpText>
@@ -177,17 +138,6 @@ storiesOf('InputWrapper', module)
 
       <SectionWrapper>
         <InputWrapper horizontal>
-          <InputLabel htmlFor="input-11">Horizontal Input</InputLabel>
-          <TextInputMaterial
-            placeholder="Input Text"
-            id="input-11"
-            isFullWidth
-          />
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper horizontal>
           <InputLabel htmlFor="input-12">Horizontal Input</InputLabel>
           <InputGroup>
             <TextInput placeholder="Input Text" id="input-12" isFullWidth />
@@ -197,35 +147,9 @@ storiesOf('InputWrapper', module)
 
       <SectionWrapper>
         <InputWrapper horizontal>
-          <InputLabel htmlFor="input-14">Horizontal Input</InputLabel>
-          <InputGroup>
-            <TextInputMaterial
-              placeholder="Input Text"
-              id="input-14"
-              isFullWidth
-            />
-          </InputGroup>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper horizontal>
           <InputLabel htmlFor="input-13">Horizontal Input</InputLabel>
           <InputGroup>
             <TextInput placeholder="Input Text" id="input-13" isFullWidth />
-          </InputGroup>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper horizontal>
-          <InputLabel htmlFor="input-14">Horizontal Input</InputLabel>
-          <InputGroup>
-            <TextInputMaterial
-              placeholder="Input Text"
-              id="input-14"
-              isFullWidth
-            />
           </InputGroup>
         </InputWrapper>
       </SectionWrapper>
@@ -270,27 +194,6 @@ storiesOf('InputWrapper', module)
       </LoginWrapper>
     </OuterWrapperCentered>
   ))
-  .add('Login - Material', () => (
-    <OuterWrapperCentered>
-      <LoginWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-15">User Name</InputLabel>
-          <TextInputMaterial placeholder="Username" id="input-15" type="text" />
-        </InputWrapper>
-
-        <InputWrapper>
-          <InputLabel htmlFor="input-16">Password</InputLabel>
-          <TextInputMaterial
-            placeholder="Password"
-            id="input-16"
-            type="password"
-          />
-        </InputWrapper>
-
-        <Button color="success">Login</Button>
-      </LoginWrapper>
-    </OuterWrapperCentered>
-  ))
   .add('Login w/ Icons', () => (
     <OuterWrapperCentered>
       <LoginWrapper>
@@ -309,35 +212,6 @@ storiesOf('InputWrapper', module)
         </InputWrapper>
 
         <Button color="info">Login</Button>
-      </LoginWrapper>
-    </OuterWrapperCentered>
-  ))
-  .add('Login w/ Icons - Material', () => (
-    <OuterWrapperCentered>
-      <LoginWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-15">User Name</InputLabel>
-          <InputGroup>
-            <TextInputMaterial
-              placeholder="Username"
-              id="input-15"
-              type="text"
-            />
-          </InputGroup>
-        </InputWrapper>
-
-        <InputWrapper>
-          <InputLabel htmlFor="input-16">Password</InputLabel>
-          <InputGroup>
-            <TextInputMaterial
-              placeholder="Password"
-              id="input-16"
-              type="password"
-            />
-          </InputGroup>
-        </InputWrapper>
-
-        <Button color="warning">Login</Button>
       </LoginWrapper>
     </OuterWrapperCentered>
   ))
@@ -384,61 +258,6 @@ storiesOf('InputWrapper', module)
           <InputWrapper>
             <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
             <TextInput
-              placeholder=""
-              id="input-reason"
-              type="text"
-              isFullWidth
-            />
-          </InputWrapper>
-        </FullWidthDiv>
-
-        <Button color="success">Submit</Button>
-      </SectionWrapper>
-    </OuterWrapper>
-  ))
-  .add('Form Ex - Material', () => (
-    <OuterWrapper>
-      <SectionWrapper>
-        <HalfWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-firstname">First Name</InputLabel>
-            <TextInputMaterial
-              placeholder=""
-              id="input-firstname"
-              type="text"
-              isFullWidth
-            />
-          </InputWrapper>
-        </HalfWidthDiv>
-
-        <HalfWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
-            <TextInputMaterial
-              placeholder=""
-              id="input-lastname"
-              type="text"
-              isFullWidth
-            />
-          </InputWrapper>
-        </HalfWidthDiv>
-
-        <FullWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-email">Email</InputLabel>
-            <TextInputMaterial
-              placeholder=""
-              id="input-email"
-              type="email"
-              isFullWidth
-            />
-          </InputWrapper>
-        </FullWidthDiv>
-
-        <FullWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
-            <TextInputMaterial
               placeholder=""
               id="input-reason"
               type="text"
@@ -501,69 +320,6 @@ storiesOf('InputWrapper', module)
             <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
             <InputGroup>
               <TextInput
-                placeholder=""
-                id="input-reason"
-                type="text"
-                isFullWidth
-              />
-            </InputGroup>
-          </InputWrapper>
-        </FullWidthDiv>
-
-        <Button color="success">Submit</Button>
-      </SectionWrapper>
-    </OuterWrapper>
-  ))
-  .add('Form Ex w/ Icons - Material', () => (
-    <OuterWrapper>
-      <SectionWrapper>
-        <HalfWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-firstname">First Name</InputLabel>
-            <InputGroup>
-              <TextInputMaterial
-                placeholder=""
-                id="input-firstname"
-                type="text"
-                isFullWidth
-              />
-            </InputGroup>
-          </InputWrapper>
-        </HalfWidthDiv>
-
-        <HalfWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-lastname">Last Name</InputLabel>
-            <InputGroup>
-              <TextInputMaterial
-                placeholder=""
-                id="input-lastname"
-                type="text"
-                isFullWidth
-              />
-            </InputGroup>
-          </InputWrapper>
-        </HalfWidthDiv>
-
-        <FullWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-email">Email</InputLabel>
-            <InputGroup>
-              <TextInputMaterial
-                placeholder=""
-                id="input-email"
-                type="email"
-                isFullWidth
-              />
-            </InputGroup>
-          </InputWrapper>
-        </FullWidthDiv>
-
-        <FullWidthDiv>
-          <InputWrapper>
-            <InputLabel htmlFor="input-reason">Reason For Contact</InputLabel>
-            <InputGroup>
-              <TextInputMaterial
                 placeholder=""
                 id="input-reason"
                 type="text"
