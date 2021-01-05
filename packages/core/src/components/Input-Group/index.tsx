@@ -1,12 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { Colors } from '../../theme/colors';
-import { ThemeColors } from '../../theme/themeColors';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
-import lightenOrDarken from '../../utils/lightenOrDarken';
 import {
   Container,
   mapDivContainerPropsToStyles

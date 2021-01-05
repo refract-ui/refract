@@ -149,44 +149,6 @@ storiesOf('InputAddons', module)
       <SectionWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-1">Label</InputLabel>
-
-          <InputGroup>
-            <TextInput placeholder="Placeholder Input" id="input-1" />
-            <InputAddon>
-              <Button
-                bg="orange"
-                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              >
-                Download
-              </Button>
-            </InputAddon>
-          </InputGroup>
-
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-1">Label</InputLabel>
-          <InputGroup>
-            <InputAddon>
-              <Button
-                bg="blue"
-                icon={{ icon: 'SimpleArrowDown', position: 'right' }}
-              >
-                Download
-              </Button>
-            </InputAddon>
-            <TextInput placeholder="Placeholder Input" id="input-1" />
-          </InputGroup>
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </SectionWrapper>
-
-      <SectionWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-1">Label</InputLabel>
           <InputGroup>
             <InputAddon xs={{ border: { borderWidth: '0' } }}>
               <Icon name="Person" color="secondary" />

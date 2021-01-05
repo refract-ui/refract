@@ -1,18 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { get, find, pick } from 'lodash';
+import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { Colors } from '../../theme/colors';
-import { ThemeColors } from '../../theme/themeColors';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
-import lightenOrDarken from '../../utils/lightenOrDarken';
 import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import TextCounter from './../Text-Counter';
-import InputAddon from './../Input-Addon';
 
 type TextInputTheme = {
   border: Partial<BorderBreakpointStyle>;
