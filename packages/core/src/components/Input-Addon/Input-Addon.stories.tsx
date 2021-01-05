@@ -38,7 +38,7 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
           <TextInput placeholder="Placeholder Input" id="input-1" />
           <InputAddon>
             <Button
-              bg="blue"
+              bg="orange"
               icon={{ icon: 'SimpleArrowDown', position: 'right' }}
             >
               Download
@@ -72,7 +72,7 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
       <InputWrapper>
         <InputLabel htmlFor="input-1">Label</InputLabel>
         <InputGroup>
-          <InputAddon>
+          <InputAddon xs={{ border: { borderWidth: '0' } }}>
             <Icon name="Person" color="secondary" />
           </InputAddon>
           <InputAddon>
@@ -81,7 +81,7 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
           <TextInput placeholder="Placeholder Input" id="input-1" />
           <InputAddon>
             <Button
-              bg="blue"
+              bg="deepskyblue"
               icon={{ icon: 'SimpleArrowDown', position: 'right' }}
             >
               Download
@@ -108,7 +108,7 @@ storiesOf('InputAddons', module).add('Input Addon New', () => (
               Download
             </Button>
           </InputAddon>
-          <InputAddon>
+          <InputAddon xs={{ border: { borderWidth: '0' } }}>
             <Icon name="Person" color="secondary" />
           </InputAddon>
         </InputGroup>

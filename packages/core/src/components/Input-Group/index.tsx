@@ -111,7 +111,7 @@ const InputGroup = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
-          border: theme.borders.md,
+          border: theme.components.inputs.borders,
           py: `0`
         }
       },
@@ -134,7 +134,12 @@ const InputGroup = createThemedComponent<
       mapPropsToStyle: {
         border: ({
           componentProps: { success, error },
-          border: { borderColor, borderWidth, borderStyle, borderRadius }
+          border: { borderColor, borderWidth, borderStyle, borderRadius },
+          theme: {
+            components: {
+              inputs: { borders }
+            }
+          }
         }) => {
           if (success) {
             return applyBorderStyle({

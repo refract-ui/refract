@@ -152,7 +152,7 @@ storiesOf('TextCounter', module).add('Text Counter - Controlled', () => {
                 <InputAddon>
                   <Icon name="Clock" />
                 </InputAddon>
-                <InputAddon>
+                <InputAddon xs={{ border: { borderWidth: '0' } }}>
                   <span>Text</span>
                 </InputAddon>
                 <InputAddon>
