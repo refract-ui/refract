@@ -149,9 +149,6 @@ const TextInput = createThemedComponent<
   states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    // console.log('In TextInput, this is theme: ', theme);
-    console.log('input borders: ', theme.components.inputs.borders);
-    console.log('md borders: ', theme.borders.md);
     return {
       Component: TextInputComponent,
 
@@ -200,10 +197,7 @@ const TextInput = createThemedComponent<
           bg: 'none',
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           h: '54px',
-          border: {
-            ...theme.borders.md,
-            borderColor: theme['primary']
-          },
+          border: theme.borders.md,
           py: `0`,
           w: '100%',
           iconStyle: '0'
@@ -276,12 +270,7 @@ const TextInput = createThemedComponent<
         },
         border: ({
           componentProps: { success, error },
-          border: { borderColor, borderWidth, borderStyle, borderRadius },
-          theme: {
-            components: {
-              inputs: { borders }
-            }
-          }
+          border: { borderColor, borderWidth, borderStyle, borderRadius }
         }) => {
           if (success) {
             return applyBorderStyle({
