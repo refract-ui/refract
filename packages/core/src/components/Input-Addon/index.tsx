@@ -81,13 +81,11 @@ const InputAddon = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          bg: 'none',
+          bg: theme.components.inputs.bg,
           textColor: theme.secondary,
           border: {
-            ...theme.borders.md,
-            borderColor: theme['secondary'],
-            borderRadius: `0`,
-            borderWidth: '2px'
+            ...theme.components.inputs.borders,
+            borderRadius: `0`
           }
         }
       },

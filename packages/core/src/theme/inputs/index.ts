@@ -3,9 +3,17 @@ import { BorderBreakpointStyle } from '../borders';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 import { ThemeColors } from '../themeColors';
+import theme from '..';
+
+type ValueOf<T> = T[keyof T];
+type ColorValues =
+  | ValueOf<ThemeColors>
+  | ValueOf<Colors>
+  | ValueOf<ColorShades>;
 
 export type InputBase = {
   borders?: BorderBreakpointStyle;
+  bg: ColorValues;
 };
 
 interface InputBorderProps {
@@ -34,7 +42,8 @@ export default function genInputProps({
       borderWidth: '2px',
       borderStyle: 'solid',
       borderRadius: '0.5rem'
-    }
+    },
+    bg: 'red'
   };
 
   if (isFunction(overrides)) {

@@ -116,7 +116,7 @@ const TextInput = createThemedComponent<
             };
           } else {
             return {
-              bg: 'transparent',
+              bg: theme.components.inputs.bg,
               textColor: theme['dark'],
               border: {
                 borderColor: theme.components.inputs.borders.borderColor
@@ -147,7 +147,7 @@ const TextInput = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          bg: 'none',
+          bg: theme.components.inputs.bg,
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           h: '54px',
           border: theme.components.inputs.borders,
