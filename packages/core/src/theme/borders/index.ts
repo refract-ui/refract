@@ -25,7 +25,7 @@ export interface BorderOverrideProps {
   defaults: Borders;
 }
 
-interface BorderProps {
+export interface BorderProps {
   colors: Colors;
   colorShades: ColorShades;
   overrides: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;

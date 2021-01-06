@@ -47,7 +47,7 @@ import genBlockElementMappings, {
 
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
-import { InputBase } from './inputs';
+import genInputBorders, { InputBase } from './inputs';
 
 type Components = {
   icons?: IconBase;
@@ -204,12 +204,12 @@ export default function theme(settings: ThemeProps = {}): Theme {
   });
 
   const inputs = {
-    borders: {
-      borderColor: themeColors.secondary,
-      borderWidth: '2px',
-      borderStyle: 'solid',
-      borderRadius: '0.5rem'
-    }
+    borders: genInputBorders({
+      colors,
+      colorShades,
+      themeColors,
+      overrides: borderOverrides
+    })
   };
 
   const mq = genMediaQueries({ breakpoints });
