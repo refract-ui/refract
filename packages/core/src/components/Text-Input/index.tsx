@@ -192,7 +192,7 @@ const TextInput = createThemedComponent<
         border: ({
           componentProps: { success, error },
           border: { borderColor, borderWidth, borderStyle, borderRadius }
-        }: any) => {
+        }) => {
           if (success) {
             return applyBorderStyle({
               borderColor: theme['success'],

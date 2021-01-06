@@ -3,7 +3,6 @@ import { BorderBreakpointStyle } from '../borders';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 import { ThemeColors } from '../themeColors';
-import theme from '..';
 
 type ValueOf<T> = T[keyof T];
 type ColorValues =
@@ -43,7 +42,7 @@ export default function genInputProps({
       borderStyle: 'solid',
       borderRadius: '0.5rem'
     },
-    bg: 'red'
+    bg: 'none'
   };
 
   if (isFunction(overrides)) {

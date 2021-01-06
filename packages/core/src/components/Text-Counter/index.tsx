@@ -24,14 +24,12 @@ type TextCounterVariants = {};
 type TextCounterStates = '_hover' | '_active';
 
 function TextCounterFunction({
-  children,
   maxLength,
   tester,
   currentLength,
   ...props
 }: TextCounterProps & TextCounterVariants): JSX.Element {
   const className = get(props, 'className', null);
-  console.log('tester in TextCounter', tester);
 
   return <div className={className}>{`${currentLength} / ${maxLength}`}</div>;
 }
