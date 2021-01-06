@@ -1,48 +1,45 @@
 import { defaults, isFunction } from 'lodash';
-import {
-  BorderOverrideProps,
-  BorderBreakpointStyle,
-  applyBorderStyle
-} from '../borders';
-import { Borders, BorderProps } from '../borders';
+import { BorderBreakpointStyle } from '../borders';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 import { ThemeColors } from '../themeColors';
 
 export type InputBase = {
-  borders?: any;
+  borders?: BorderBreakpointStyle;
 };
 
 interface InputBorderProps {
   colors?: Colors;
   colorShades?: ColorShades;
   themeColors?: ThemeColors;
-  overrides?: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
+  overrides?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
 }
 
-export interface InputBorderOverrideProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  themeColors: ThemeColors;
-  defaults: Borders;
+export interface InputOverrideProps {
+  colors?: Colors;
+  colorShades?: ColorShades;
+  themeColors?: ThemeColors;
+  defaults?: InputBase;
 }
 
-export default function inputBorders({
+export default function genInputProps({
   colors,
   colorShades,
   themeColors,
   overrides = {}
-}: InputBorderProps): any {
-  const defaultBorders: any = {
-    borderColor: themeColors.secondary,
-    borderWidth: '2px',
-    borderStyle: 'solid',
-    borderRadius: '0.5rem'
+}: InputBorderProps): InputBase {
+  const defaultInputProps: InputBase = {
+    borders: {
+      borderColor: themeColors.secondary,
+      borderWidth: '2px',
+      borderStyle: 'solid',
+      borderRadius: '0.5rem'
+    }
   };
 
   if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: defaultBorders });
+    return overrides({ colors, colorShades, defaults: defaultInputProps });
   }
 
-  return defaults(overrides, defaultBorders);
+  return defaults(overrides, defaultInputProps);
 }

@@ -47,7 +47,7 @@ import genBlockElementMappings, {
 
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
-import genInputBorders, { InputBase } from './inputs';
+import genInputProps, { InputBase, InputOverrideProps } from './inputs';
 
 type Components = {
   icons?: IconBase;
@@ -91,6 +91,7 @@ export interface ThemeProps {
     | ((props: BlockElementMappingOverrideProps) => BlockElementMappings)
     | Partial<BlockElementMappings>;
   icons?: ((props: IconOverrideProps) => IconBase) | Partial<IconBase>;
+  inputs?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
 }
 
 export type Theme = Colors &
@@ -135,7 +136,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontVariants: fontVariantOverrides,
     fontTagMappings: fontTagMappingOverrides,
     blockElementMappings: blockElementMappingOverrides,
-    icons: iconOverrides
+    icons: iconOverrides,
+    inputs: inputOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -203,14 +205,12 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: iconOverrides
   });
 
-  const inputs = {
-    borders: genInputBorders({
-      colors,
-      colorShades,
-      themeColors,
-      overrides: borderOverrides
-    })
-  };
+  const inputs = genInputProps({
+    colors,
+    colorShades,
+    themeColors,
+    overrides: inputOverrides
+  });
 
   const mq = genMediaQueries({ breakpoints });
 
