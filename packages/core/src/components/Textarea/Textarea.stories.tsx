@@ -7,7 +7,7 @@ import InputWrapper from '../Input-Wrapper';
 import InputGroup from '../Input-Group';
 import InputLabel from '../Input-Label';
 import InputHelpText from '../Input-HelpText';
-import InputAddon from './index';
+import InputAddon from '../Input-Addon';
 import Icon from '../Icons';
 import Button from '../Button';
 import InputValidationMessage from './../Input-ValidationMessage';
@@ -73,6 +73,65 @@ storiesOf('Textarea', module)
           <Textarea id="input-3" placeholder="Enter Text Here" error />
           <InputHelpText>Some Description</InputHelpText>
           <InputValidationMessage error>Error</InputValidationMessage>
+        </InputWrapper>
+      </ComponentWrapper>
+    </OuterWrapper>
+  ))
+  .add('Textarea - w/ Addons', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Icon name="Menu" />
+            </InputAddon>
+            <Textarea id="input-1" placeholder="Enter Text Here" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-2">Label</InputLabel>
+          <InputGroup>
+            <Textarea id="input-2" placeholder="Enter Text Here" />
+            <InputAddon>
+              <Icon name="Person" />
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Button bg="grey" icon={{ icon: 'Menu', position: 'right' }}>
+                Select
+              </Button>
+            </InputAddon>
+            <Textarea id="input-3" placeholder="Enter Text Here" />
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-4">Label</InputLabel>
+          <InputGroup>
+            <InputAddon>
+              <Icon name="Website" />
+            </InputAddon>
+            <Textarea id="input-4" placeholder="Enter Text Here" />
+            <InputAddon>
+              <Button bg="#bada55" icon={{ icon: 'Mail', position: 'right' }}>
+                Send
+              </Button>
+            </InputAddon>
+          </InputGroup>
+          <InputHelpText>Some Description</InputHelpText>
         </InputWrapper>
       </ComponentWrapper>
     </OuterWrapper>

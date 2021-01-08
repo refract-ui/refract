@@ -67,6 +67,19 @@ const TextareaComponent = styled(TextareaFunction)<
   font-family: 'Work Sans', sans serif;
   transition: all 0.3s ease-in-out;
   font-weight: 300;
+
+  :focus,
+  :active {
+    outline: none;
+  }
+
+  :disabled {
+    opacity: 0.5;
+  }
+
+  ::placeholder {
+    opacity: 0.7;
+  }
 `;
 
 const Textarea = createThemedComponent<
