@@ -117,18 +117,17 @@ const Textarea = createThemedComponent<
         xs: {
           bg: theme.components.inputs.bg,
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
-          h: '54px',
+          h: '161px',
           border: theme.components.inputs.borders,
-          py: `0`,
+          px: `${theme.spacing['2']}`,
+          py: `${theme.spacing['2']}`,
           w: '100%'
         },
 
         sm: {
-          w: variant.isFullWidth ? '100%' : '320px'
-        },
-
-        md: {
-          px: `${theme.spacing['4']}`
+          w: variant.isFullWidth ? '100%' : '320px',
+          px: `${theme.spacing['3']}`,
+          py: `${theme.spacing['3']}`
         }
       },
       // hover, active state handling here:

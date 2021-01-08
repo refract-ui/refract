@@ -3,6 +3,14 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
 import Textarea from './index';
+import InputWrapper from '../Input-Wrapper';
+import InputGroup from '../Input-Group';
+import InputLabel from '../Input-Label';
+import InputHelpText from '../Input-HelpText';
+import InputAddon from './index';
+import Icon from '../Icons';
+import Button from '../Button';
+import InputValidationMessage from './../Input-ValidationMessage';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -18,10 +26,54 @@ const ComponentWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('Textarea', module).add('Textarea', () => (
-  <OuterWrapper>
-    <ComponentWrapper>
-      <Textarea />
-    </ComponentWrapper>
-  </OuterWrapper>
-));
+storiesOf('Textarea', module)
+  .add('Textarea', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <Textarea />
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Textarea filled />
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Textarea isFullWidth />
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Textarea filled isFullWidth />
+      </ComponentWrapper>
+    </OuterWrapper>
+  ))
+  .add('Textarea - In Wrapper', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-1">Label</InputLabel>
+          <Textarea id="input-1" placeholder="Enter Text Here" />
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-2">Label</InputLabel>
+          <Textarea id="input-2" placeholder="Enter Text Here" filled />
+          <InputHelpText>Some Description</InputHelpText>
+        </InputWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <Textarea id="input-3" placeholder="Enter Text Here" success />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage success>Success</InputValidationMessage>
+        </InputWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <InputWrapper>
+          <InputLabel htmlFor="input-3">Label</InputLabel>
+          <Textarea id="input-3" placeholder="Enter Text Here" error />
+          <InputHelpText>Some Description</InputHelpText>
+          <InputValidationMessage error>Error</InputValidationMessage>
+        </InputWrapper>
+      </ComponentWrapper>
+    </OuterWrapper>
+  ));
