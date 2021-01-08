@@ -44,6 +44,8 @@ const TextCounterComponent = styled(TextCounterFunction)<
   ${({ componentCss }) => componentCss};
   align-items: center;
   display: flex;
+  font-family: 'Work Sans', sans serif;
+  font-weight: 300;
   height: 100%;
   justify-content: center;
 `;

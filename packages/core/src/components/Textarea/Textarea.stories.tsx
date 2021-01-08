@@ -11,6 +11,7 @@ import InputAddon from '../Input-Addon';
 import Icon from '../Icons';
 import Button from '../Button';
 import InputValidationMessage from './../Input-ValidationMessage';
+import TextCounter from '../Text-Counter';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -135,4 +136,34 @@ storiesOf('Textarea', module)
         </InputWrapper>
       </ComponentWrapper>
     </OuterWrapper>
-  ));
+  ))
+  .add('Textarea - w/ Counter', () => {
+    function Parent({ children }: any): any {
+      const [state, setState] = useState({ value: '' });
+      return <div>{children(state, setState)}</div>;
+    }
+
+    return (
+      <OuterWrapper>
+        <Parent>
+          {(state: any, setState: any) => (
+            <ComponentWrapper>
+              <InputGroup>
+                <Textarea
+                  onChange={e => setState({ value: e.currentTarget.value })}
+                  value={state.value}
+                  maxLength={8}
+                />
+                <InputAddon>
+                  <TextCounter
+                    currentLength={state.value ? state.value.length : 0}
+                    maxLength={8}
+                  />
+                </InputAddon>
+              </InputGroup>
+            </ComponentWrapper>
+          )}
+        </Parent>
+      </OuterWrapper>
+    );
+  });
