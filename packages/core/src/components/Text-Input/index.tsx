@@ -67,6 +67,7 @@ const TextInputComponent = styled(TextInputFunction)<
   ThemeComponent & TextInputProps
 >`
   ${({ componentCss }) => componentCss};
+  background: none;
   box-sizing: border-box;
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
@@ -107,6 +108,8 @@ const TextInput = createThemedComponent<
 
       variantMapping: {
         filled: ({ filled }) => {
+          console.log('In index.tsx, this is filled: ', filled);
+          console.log('theme.components.inputs.bg', theme.components.inputs.bg);
           if (filled) {
             return {
               bg: theme['gray300'],

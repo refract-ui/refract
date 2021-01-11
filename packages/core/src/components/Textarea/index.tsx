@@ -93,6 +93,7 @@ const TextareaComponent = styled(TextareaFunction)<
   ThemeComponent & TextareaProps
 >`
   ${({ componentCss }) => componentCss};
+  background: none;
   box-sizing: border-box;
   font-family: 'Work Sans', sans serif;
   transition: all 0.3s ease-in-out;

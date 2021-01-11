@@ -213,16 +213,16 @@ storiesOf('InputAddons', module)
       <SectionWrapper>
         <InputWrapper>
           <InputLabel htmlFor="input-20">Label</InputLabel>
-          <InputGroup>
+          <InputGroup filled>
             <InputAddon xs={{ border: { borderWidth: '0' } }}>
               <Icon name="Mail" color="secondary" />
             </InputAddon>
-            <TextInput placeholder="Placeholder Input" id="input-20" />
+            <TextInput placeholder="Filled Input" id="input-20" />
             <InputAddon xs={{ border: { borderWidth: '0' } }}>
               <Icon name="Person" color="secondary" />
             </InputAddon>
           </InputGroup>
-          <InputHelpText>Some Description</InputHelpText>
+          <InputHelpText>Filled Input Group</InputHelpText>
         </InputWrapper>
       </SectionWrapper>
 

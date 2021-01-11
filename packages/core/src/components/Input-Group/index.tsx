@@ -77,7 +77,9 @@ const InputGroup = createThemedComponent<
   InputGroupProps,
   Container
 >({
-  defaultVariants: {},
+  defaultVariants: {
+    filled: false
+  },
   states: [],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
