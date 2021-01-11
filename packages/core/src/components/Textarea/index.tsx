@@ -15,7 +15,10 @@ type TextareaTheme = {
   textColor?: string;
   textCounterPadding?: string;
   textCounterBg?: string;
+  resize?: ResizeOptions;
 };
+
+type ResizeOptions = 'none' | 'vertical' | 'horizontal' | 'both';
 
 type TextareaProps = {
   placeholder?: string;
@@ -28,6 +31,7 @@ type TextareaProps = {
   maxLength?: number;
   ref?: any;
   showTextCounter?: boolean;
+  resize?: ResizeOptions;
 };
 
 type TextareaVariants = {
@@ -168,7 +172,8 @@ const Textarea = createThemedComponent<
           py: `${theme.spacing['2']}`,
           w: '100%',
           textCounterPadding: `${theme.spacing['2']}`,
-          textCounterBg: theme.components.inputs.bg
+          textCounterBg: theme.components.inputs.bg,
+          resize: 'none'
         },
 
         sm: {
@@ -244,6 +249,11 @@ const Textarea = createThemedComponent<
             borderStyle,
             borderRadius
           });
+        },
+        resize: ({ resize }) => {
+          return css`
+            resize: ${resize};
+          `;
         }
       }
     };

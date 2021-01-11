@@ -44,6 +44,22 @@ storiesOf('Textarea', module)
       </ComponentWrapper>
     </OuterWrapper>
   ))
+  .add('Textarea - Resize', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <Textarea placeholder="No Resize - default" resize="none" />
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Textarea placeholder="Vertical Resize" resize="vertical" />
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Textarea placeholder="Horizontal Resize" resize="horizontal" />
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Textarea placeholder="Both Resize" resize="both" />
+      </ComponentWrapper>
+    </OuterWrapper>
+  ))
   .add('Textarea - In Wrapper', () => (
     <OuterWrapper>
       <ComponentWrapper>
@@ -188,13 +204,12 @@ storiesOf('Textarea', module)
         <Parent>
           {(state: any, setState: any) => (
             <ComponentWrapper>
-              <InputGroup>
+              <InputGroup filled>
                 <Textarea
                   onChange={e => setState({ value: e.currentTarget.value })}
                   value={state.value}
                   maxLength={400}
                   showTextCounter
-                  filled
                 />
               </InputGroup>
             </ComponentWrapper>
