@@ -8,10 +8,13 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
+import TextCounter from '../Text-Counter';
 
 type TextareaTheme = {
   border: Partial<BorderBreakpointStyle>;
   textColor?: string;
+  textCounterPadding?: string;
+  textCounterBg?: string;
 };
 
 type TextareaProps = {
@@ -24,6 +27,7 @@ type TextareaProps = {
   disabled?: boolean;
   maxLength?: number;
   ref?: any;
+  showTextCounter?: boolean;
 };
 
 type TextareaVariants = {
@@ -41,22 +45,48 @@ function TextareaFunction({
   disabled,
   maxLength,
   ref,
+  showTextCounter,
   ...props
 }: TextareaProps & TextareaVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return (
-    <textarea
-      className={`${className} gfx-text-input`}
-      placeholder={placeholder}
-      value={value}
-      id={id}
-      onChange={onChange}
-      disabled={disabled}
-      maxLength={maxLength}
-      ref={ref}
-    />
-  );
+  if (showTextCounter) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <textarea
+          className={`${className} gfx-text-input`}
+          placeholder={placeholder}
+          value={value}
+          id={id}
+          onChange={onChange}
+          disabled={disabled}
+          maxLength={maxLength}
+          ref={ref}
+        />
+        {showTextCounter && (
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <TextCounter
+              maxLength={maxLength}
+              currentLength={value ? value.length : 0}
+            />
+          </div>
+        )}
+      </div>
+    );
+  } else {
+    return (
+      <textarea
+        className={`${className} gfx-text-input`}
+        placeholder={placeholder}
+        value={value}
+        id={id}
+        onChange={onChange}
+        disabled={disabled}
+        maxLength={maxLength}
+        ref={ref}
+      />
+    );
+  }
 }
 
 const TextareaComponent = styled(TextareaFunction)<
@@ -104,6 +134,7 @@ const Textarea = createThemedComponent<
           if (filled) {
             return {
               bg: theme['gray300'],
+              textCounterBg: theme['gray300'],
               border: {
                 borderColor: 'transparent'
               }
@@ -134,7 +165,9 @@ const Textarea = createThemedComponent<
           border: theme.components.inputs.borders,
           px: `${theme.spacing['2']}`,
           py: `${theme.spacing['2']}`,
-          w: '100%'
+          w: '100%',
+          textCounterPadding: `${theme.spacing['2']}`,
+          textCounterBg: theme.components.inputs.bg
         },
 
         sm: {
@@ -167,6 +200,23 @@ const Textarea = createThemedComponent<
           font-size: 1rem;
           line-height: 19px;
         `,
+        textCounterPadding: ({ textCounterPadding, ...props }) => {
+          console.log('In index.tsx, this is props: ', props);
+          return css`
+            + div {
+              padding: 0 ${textCounterPadding} ${textCounterPadding}
+                ${textCounterPadding};
+            }
+          `;
+        },
+        textCounterBg: ({ textCounterBg, ...props }) => {
+          console.log('In index.tsx, this is props: ', props);
+          return css`
+            + div {
+              background-color: ${textCounterBg};
+            }
+          `;
+        },
         border: ({
           componentProps: { success, error },
           border: { borderColor, borderWidth, borderStyle, borderRadius }

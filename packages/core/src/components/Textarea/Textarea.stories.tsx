@@ -78,65 +78,91 @@ storiesOf('Textarea', module)
       </ComponentWrapper>
     </OuterWrapper>
   ))
-  .add('Textarea - w/ Addons', () => (
-    <OuterWrapper>
-      <ComponentWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-1">Label</InputLabel>
-          <InputGroup>
-            <InputAddon>
-              <Icon name="Menu" />
-            </InputAddon>
-            <Textarea id="input-1" placeholder="Enter Text Here" />
-          </InputGroup>
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </ComponentWrapper>
-      <ComponentWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-2">Label</InputLabel>
-          <InputGroup>
-            <Textarea id="input-2" placeholder="Enter Text Here" />
-            <InputAddon>
-              <Icon name="Person" />
-            </InputAddon>
-          </InputGroup>
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </ComponentWrapper>
-      <ComponentWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-3">Label</InputLabel>
-          <InputGroup>
-            <InputAddon>
-              <Button bg="grey" icon={{ icon: 'Menu', position: 'right' }}>
-                Select
-              </Button>
-            </InputAddon>
-            <Textarea id="input-3" placeholder="Enter Text Here" />
-          </InputGroup>
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </ComponentWrapper>
-      <ComponentWrapper>
-        <InputWrapper>
-          <InputLabel htmlFor="input-4">Label</InputLabel>
-          <InputGroup>
-            <InputAddon>
-              <Icon name="Website" />
-            </InputAddon>
-            <Textarea id="input-4" placeholder="Enter Text Here" />
-            <InputAddon>
-              <Button bg="#bada55" icon={{ icon: 'Mail', position: 'right' }}>
-                Send
-              </Button>
-            </InputAddon>
-          </InputGroup>
-          <InputHelpText>Some Description</InputHelpText>
-        </InputWrapper>
-      </ComponentWrapper>
-    </OuterWrapper>
-  ))
+  .add('Textarea - w/ Addons', () => {
+    function Parent({ children }: any): any {
+      const [state, setState] = useState({ value: '' });
+      return <div>{children(state, setState)}</div>;
+    }
+
+    return (
+      <OuterWrapper>
+        <ComponentWrapper>
+          <InputWrapper>
+            <InputLabel htmlFor="input-1">Label</InputLabel>
+            <InputGroup>
+              <InputAddon>
+                <Icon name="Menu" />
+              </InputAddon>
+              <Textarea id="input-1" placeholder="Enter Text Here" />
+            </InputGroup>
+            <InputHelpText>Some Description</InputHelpText>
+          </InputWrapper>
+        </ComponentWrapper>
+        <ComponentWrapper>
+          <InputWrapper>
+            <InputLabel htmlFor="input-2">Label</InputLabel>
+            <InputGroup>
+              <Textarea id="input-2" placeholder="Enter Text Here" />
+              <InputAddon>
+                <Icon name="Person" />
+              </InputAddon>
+            </InputGroup>
+            <InputHelpText>Some Description</InputHelpText>
+          </InputWrapper>
+        </ComponentWrapper>
+        <ComponentWrapper>
+          <InputWrapper>
+            <InputLabel htmlFor="input-3">Label</InputLabel>
+            <InputGroup>
+              <InputAddon>
+                <Button bg="grey" icon={{ icon: 'Menu', position: 'right' }}>
+                  Select
+                </Button>
+              </InputAddon>
+              <Textarea id="input-3" placeholder="Enter Text Here" />
+            </InputGroup>
+            <InputHelpText>Some Description</InputHelpText>
+          </InputWrapper>
+        </ComponentWrapper>
+        <ComponentWrapper>
+          <InputWrapper>
+            <InputLabel htmlFor="input-4">Label</InputLabel>
+            <InputGroup>
+              <InputAddon>
+                <Icon name="Website" />
+              </InputAddon>
+              <Textarea id="input-4" placeholder="Enter Text Here" />
+              <InputAddon>
+                <Button bg="#bada55" icon={{ icon: 'Mail', position: 'right' }}>
+                  Send
+                </Button>
+              </InputAddon>
+            </InputGroup>
+            <InputHelpText>Some Description</InputHelpText>
+          </InputWrapper>
+        </ComponentWrapper>
+        <Parent>
+          {(state: any, setState: any) => (
+            <ComponentWrapper>
+              <InputGroup>
+                <Textarea
+                  onChange={e => setState({ value: e.currentTarget.value })}
+                  value={state.value}
+                  maxLength={400}
+                />
+                <InputAddon>
+                  <TextCounter
+                    currentLength={state.value ? state.value.length : 0}
+                    maxLength={400}
+                  />
+                </InputAddon>
+              </InputGroup>
+            </ComponentWrapper>
+          )}
+        </Parent>
+      </OuterWrapper>
+    );
+  })
   .add('Textarea - w/ Counter', () => {
     function Parent({ children }: any): any {
       const [state, setState] = useState({ value: '' });
@@ -152,14 +178,24 @@ storiesOf('Textarea', module)
                 <Textarea
                   onChange={e => setState({ value: e.currentTarget.value })}
                   value={state.value}
-                  maxLength={8}
+                  maxLength={400}
+                  showTextCounter
                 />
-                <InputAddon>
-                  <TextCounter
-                    currentLength={state.value ? state.value.length : 0}
-                    maxLength={8}
-                  />
-                </InputAddon>
+              </InputGroup>
+            </ComponentWrapper>
+          )}
+        </Parent>
+        <Parent>
+          {(state: any, setState: any) => (
+            <ComponentWrapper>
+              <InputGroup>
+                <Textarea
+                  onChange={e => setState({ value: e.currentTarget.value })}
+                  value={state.value}
+                  maxLength={400}
+                  showTextCounter
+                  filled
+                />
               </InputGroup>
             </ComponentWrapper>
           )}
