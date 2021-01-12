@@ -8,6 +8,7 @@ export { default as InputValidationMessage } from './components/Input-Validation
 export { default as InputGroup } from './components/Input-Group';
 export { default as InputAddon } from './components/Input-Addon';
 export { default as DropdownMenu } from './components/Dropdown-Menu';
+export { default as DropdownList } from './components/Dropdown-List';
 
 // theme
 export { default as theme } from './theme';
