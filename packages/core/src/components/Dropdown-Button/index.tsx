@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -9,6 +9,7 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import Button from '../Button';
+import { DropdownContext } from '../Dropdown-Menu';
 
 type DropdownButtonTheme = {};
 
@@ -22,6 +23,8 @@ function DropdownButtonFunction({
   ...props
 }: DropdownButtonProps & DropdownButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
+
+  const ddCtx = useContext(DropdownContext);
 
   return <Button>Open</Button>;
 }

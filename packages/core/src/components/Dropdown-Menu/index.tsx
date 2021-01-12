@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -19,6 +19,8 @@ type DropdownMenuVariants = {};
 
 type DropdownMenuStates = '_hover' | '_active' | '_focus';
 
+export const DropdownContext = createContext({});
+
 function DropdownMenuFunction({
   children,
   ...props
@@ -26,8 +28,13 @@ function DropdownMenuFunction({
   const className = get(props, 'className', null);
 
   const [isOpen, setIsOpen] = useState(false);
+  const ddCtx = { isOpen, setIsOpen };
 
-  return <div>{children}</div>;
+  return (
+    <DropdownContext.Provider value={ddCtx}>
+      <div className={className}>{children}</div>
+    </DropdownContext.Provider>
+  );
 }
 
 const DropdownMenuComponent = styled(DropdownMenuFunction)<
