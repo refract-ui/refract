@@ -10,7 +10,9 @@ import {
 } from '../../theme/containers';
 import { DropdownContext } from '../Dropdown-Menu';
 
-type DropdownListTheme = {};
+type DropdownListTheme = {
+  border: Partial<BorderBreakpointStyle>;
+};
 
 type DropdownListProps = {
   children?: React.ReactNode;
@@ -40,9 +42,7 @@ const DropdownListComponent = styled(DropdownListFunction)<
   ThemeComponent & DropdownListProps
 >`
   ${({ componentCss }) => componentCss};
-  background: red;
-  height: 100px;
-  width: 100px;
+  box-shadow: 0 2px 6px 0 rgba(45, 45, 49, 0.13);
 `;
 
 const DropdownList = createThemedComponent<
@@ -61,13 +61,21 @@ const DropdownList = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'none',
-          px: theme.spacing[1],
-          py: theme.spacing[1]
+          bg: 'white',
+          border: {
+            ...theme.borders.md,
+            borderWidth: '0'
+          },
+          minW: '200px',
+          minH: '100px'
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        border: ({ border }) => {
+          return applyBorderStyle(border);
+        }
+      }
     };
   }
 });
