@@ -31,7 +31,11 @@ storiesOf('DropdownMenu', module).add('Default', () => (
         >
           Open
         </DropdownButton>
-        <DropdownList />
+        <DropdownList>
+          <DropdownItem>First Item</DropdownItem>
+          <DropdownItem>Second Item</DropdownItem>
+          <DropdownItem>Third Item</DropdownItem>
+        </DropdownList>
       </DropdownMenu>
     </ComponentWrapper>
     <ComponentWrapper>
