@@ -28,5 +28,11 @@ storiesOf('DropdownButton', module).add('Default', () => (
         <DropdownList />
       </DropdownMenu>
     </ComponentWrapper>
+    <ComponentWrapper>
+      <DropdownMenu>
+        <DropdownButton />
+        <DropdownList />
+      </DropdownMenu>
+    </ComponentWrapper>
   </OuterWrapper>
 ));

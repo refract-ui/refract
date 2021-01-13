@@ -19,14 +19,19 @@ type DropdownButtonVariants = {};
 
 type DropdownButtonStates = '_hover' | '_active' | '_focus';
 
+type DropdownCtx = {
+  isOpen?: boolean;
+  setIsOpen?: (arg0: boolean) => boolean;
+};
+
 function DropdownButtonFunction({
   ...props
 }: DropdownButtonProps & DropdownButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  const ddCtx = useContext(DropdownContext);
+  const ddCtx: DropdownCtx = useContext(DropdownContext);
 
-  return <Button>Open</Button>;
+  return <div onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}>Open</div>;
 }
 
 const DropdownButtonComponent = styled(DropdownButtonFunction)<

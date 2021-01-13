@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -8,6 +8,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
+import { DropdownContext } from '../Dropdown-Menu';
 
 type DropdownListTheme = {};
 
@@ -19,13 +20,20 @@ type DropdownListVariants = {};
 
 type DropdownListStates = '_hover' | '_active' | '_focus';
 
+type DropdownCtx = {
+  isOpen?: boolean;
+  setIsOpen?: (arg0: boolean) => boolean;
+};
+
 function DropdownListFunction({
   children,
   ...props
 }: DropdownListProps & DropdownListVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <div className={className}>{children}</div>;
+  const ddCtx: DropdownCtx = useContext(DropdownContext);
+
+  return ddCtx.isOpen && <div className={className}>{children}</div>;
 }
 
 const DropdownListComponent = styled(DropdownListFunction)<
