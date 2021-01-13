@@ -1,8 +1,7 @@
 import React, { useContext } from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import {
   Container,
@@ -10,10 +9,21 @@ import {
 } from '../../theme/containers';
 import Button from '../Button';
 import { DropdownContext } from '../Dropdown-Menu';
+import { Icons } from '../Icons/icons';
+import { ThemeColors } from '../../theme/themeColors';
 
 type DropdownButtonTheme = {};
 
-type DropdownButtonProps = {};
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
+};
+
+type DropdownButtonProps = {
+  icon?: keyof Icons | IconObject | null;
+  color?: keyof ThemeColors;
+  children?: string;
+};
 
 type DropdownButtonVariants = {};
 
@@ -25,13 +35,24 @@ type DropdownCtx = {
 };
 
 function DropdownButtonFunction({
+  children,
+  color,
+  icon,
   ...props
 }: DropdownButtonProps & DropdownButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   const ddCtx: DropdownCtx = useContext(DropdownContext);
 
-  return <div onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}>Open</div>;
+  return (
+    <Button
+      icon={icon}
+      color={color}
+      onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}
+    >
+      {children}
+    </Button>
+  );
 }
 
 const DropdownButtonComponent = styled(DropdownButtonFunction)<

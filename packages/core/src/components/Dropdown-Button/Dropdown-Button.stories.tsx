@@ -24,13 +24,24 @@ storiesOf('DropdownButton', module).add('Default', () => (
   <OuterWrapper>
     <ComponentWrapper>
       <DropdownMenu>
-        <DropdownButton />
+        <DropdownButton
+          color="secondary"
+          icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+        >
+          Open
+        </DropdownButton>
         <DropdownList />
       </DropdownMenu>
     </ComponentWrapper>
     <ComponentWrapper>
       <DropdownMenu>
-        <DropdownButton />
+        <DropdownButton color="dark">Items</DropdownButton>
+        <DropdownList />
+      </DropdownMenu>
+    </ComponentWrapper>
+    <ComponentWrapper>
+      <DropdownMenu>
+        <DropdownButton>Entries</DropdownButton>
         <DropdownList />
       </DropdownMenu>
     </ComponentWrapper>
