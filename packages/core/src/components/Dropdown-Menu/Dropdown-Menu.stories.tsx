@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
-import DropdownButton from './index';
-import DropdownMenu from '../Dropdown-Menu';
+import DropdownButton from '../Dropdown-Button';
+import DropdownMenu from './index';
 import DropdownList from '../Dropdown-List';
+import DropdownItem from '../Dropdown-Item';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -20,7 +21,7 @@ const ComponentWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('DropdownButton', module).add('Default', () => (
+storiesOf('DropdownMenu', module).add('Default', () => (
   <OuterWrapper>
     <ComponentWrapper>
       <DropdownMenu>
