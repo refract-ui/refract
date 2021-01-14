@@ -68,7 +68,7 @@ const DropdownList = createThemedComponent<
           },
           minW: '200px',
           minH: '100px',
-          py: theme.spacing['2']
+          py: theme.spacing['3']
         }
       },
       cascadeStateProps: {},

@@ -10,7 +10,6 @@ import {
 } from '../../theme/containers';
 
 type DropdownItemTheme = {
-  border: Partial<BorderBreakpointStyle>;
   textColor?: string;
 };
 type DropdownItemProps = {
@@ -61,14 +60,8 @@ const DropdownItem = createThemedComponent<
         xs: {
           bg: 'none',
           px: theme.spacing['3'],
-          py: theme.spacing['1'],
+          py: theme.spacing['2'],
           textColor: theme.secondary,
-          border: {
-            ...theme.borders.xs,
-            borderRadius: '0',
-            borderColor: theme.secondary,
-            borderWidth: `${theme.borders.xs.borderWidth} 0 ${theme.borders.xs.borderWidth} 0`
-          },
           w: 'auto'
         }
       },
@@ -87,9 +80,6 @@ const DropdownItem = createThemedComponent<
       },
 
       mapPropsToStyle: {
-        border: ({ border }) => {
-          return applyBorderStyle(border);
-        },
         textColor: ({ textColor }) => css`
           color: ${textColor};
           svg {

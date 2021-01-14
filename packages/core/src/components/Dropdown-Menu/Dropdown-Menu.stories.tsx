@@ -32,22 +32,36 @@ storiesOf('DropdownMenu', module).add('Default', () => (
           Open
         </DropdownButton>
         <DropdownList>
-          <DropdownItem>First Item</DropdownItem>
-          <DropdownItem>Second Item</DropdownItem>
-          <DropdownItem>Third Item</DropdownItem>
+          <DropdownItem>A First One</DropdownItem>
+          <DropdownItem>Boom Second</DropdownItem>
+          <DropdownItem>Cool Third</DropdownItem>
+          <DropdownItem>Delicate Fourth</DropdownItem>
+          <DropdownItem>Eager Five</DropdownItem>
         </DropdownList>
       </DropdownMenu>
     </ComponentWrapper>
     <ComponentWrapper>
       <DropdownMenu>
         <DropdownButton color="dark">Items</DropdownButton>
-        <DropdownList />
+        <DropdownList>
+          <DropdownItem>A First One</DropdownItem>
+          <DropdownItem>Boom Second</DropdownItem>
+          <DropdownItem>Cool Third</DropdownItem>
+          <DropdownItem>Delicate Fourth</DropdownItem>
+          <DropdownItem>Eager Five</DropdownItem>
+        </DropdownList>
       </DropdownMenu>
     </ComponentWrapper>
     <ComponentWrapper>
       <DropdownMenu>
         <DropdownButton>Entries</DropdownButton>
-        <DropdownList />
+        <DropdownList>
+          <DropdownItem>A First One</DropdownItem>
+          <DropdownItem>Boom Second</DropdownItem>
+          <DropdownItem>Cool Third</DropdownItem>
+          <DropdownItem>Delicate Fourth</DropdownItem>
+          <DropdownItem>Eager Five</DropdownItem>
+        </DropdownList>
       </DropdownMenu>
     </ComponentWrapper>
   </OuterWrapper>
