@@ -61,7 +61,7 @@ const DropdownList = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'white',
+          bg: theme.secondary,
           border: {
             ...theme.borders.md,
             borderWidth: '0'

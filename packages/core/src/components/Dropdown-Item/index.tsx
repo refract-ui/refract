@@ -66,10 +66,12 @@ const DropdownItem = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          bg: 'none',
+          bg: 'inherit',
           px: theme.spacing['3'],
           py: theme.spacing['2'],
-          textColor: theme.secondary,
+          textColor: () => {
+            return theme.secondary;
+          },
           w: 'auto'
         }
       },
@@ -81,21 +83,23 @@ const DropdownItem = createThemedComponent<
           }
         },
         textColor: {
-          _hover: ({ contrastColor, bg }) => {
-            return contrastColor(bg);
+          _hover: ({ contrastColor, theme: { primary } }) => {
+            return contrastColor(primary);
           }
         }
       },
 
       mapPropsToStyle: {
-        textColor: ({ textColor }) => css`
-          color: ${textColor};
-          svg {
-            path {
-              fill: ${textColor};
+        textColor: ({ contrastColor, textColor, bg, ...props }) => {
+          return css`
+            color: ${contrastColor(bg)};
+            svg {
+              path {
+                fill: ${contrastColor(bg)};
+              }
             }
-          }
-        `
+          `;
+        }
       }
     };
   }
