@@ -56,12 +56,13 @@ const DropdownList = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
+    console.log('In index.tsx, this is theme: ', theme);
     return {
       Component: DropdownListComponent,
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: theme.secondary,
+          bg: theme.components.dropdowns.bg,
           border: {
             ...theme.borders.md,
             borderWidth: '0'

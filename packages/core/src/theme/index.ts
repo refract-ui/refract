@@ -48,10 +48,12 @@ import genBlockElementMappings, {
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
 import genInputProps, { InputBase, InputOverrideProps } from './inputs';
+import genDropdownProps, { DropdownBase, DropdownOverrideProps } from './dropdowns';
 
 type Components = {
   icons?: IconBase;
   inputs?: InputBase;
+  dropdowns?: DropdownBase;
 };
 
 export interface ThemeProps {
@@ -92,6 +94,9 @@ export interface ThemeProps {
     | Partial<BlockElementMappings>;
   icons?: ((props: IconOverrideProps) => IconBase) | Partial<IconBase>;
   inputs?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
+  dropdowns?:
+    | ((props: DropdownOverrideProps) => DropdownBase)
+    | Partial<DropdownBase>;
 }
 
 export type Theme = Colors &
@@ -137,7 +142,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontTagMappings: fontTagMappingOverrides,
     blockElementMappings: blockElementMappingOverrides,
     icons: iconOverrides,
-    inputs: inputOverrides
+    inputs: inputOverrides,
+    dropdowns: dropdownOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -212,6 +218,13 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: inputOverrides
   });
 
+  const dropdowns = genDropdownProps({
+    colors,
+    colorShades,
+    themeColors,
+    overrides: dropdownOverrides
+  });
+
   const mq = genMediaQueries({ breakpoints });
 
   return {
@@ -233,7 +246,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     blockElementMappings,
     components: {
       icons,
-      inputs
+      inputs,
+      dropdowns
     }
   };
 }

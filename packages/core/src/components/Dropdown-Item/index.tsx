@@ -69,9 +69,8 @@ const DropdownItem = createThemedComponent<
           bg: 'inherit',
           px: theme.spacing['3'],
           py: theme.spacing['2'],
-          textColor: () => {
-            return theme.secondary;
-          },
+          textColor: ({ contrastColor }) =>
+            contrastColor(theme.components.dropdowns.bg),
           w: 'auto'
         }
       },
@@ -90,12 +89,12 @@ const DropdownItem = createThemedComponent<
       },
 
       mapPropsToStyle: {
-        textColor: ({ contrastColor, textColor, bg, ...props }) => {
+        textColor: ({ textColor }) => {
           return css`
-            color: ${contrastColor(bg)};
+            color: ${textColor};
             svg {
               path {
-                fill: ${contrastColor(bg)};
+                fill: ${textColor};
               }
             }
           `;
