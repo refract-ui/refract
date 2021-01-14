@@ -1,4 +1,4 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useRef, useEffect } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -30,9 +30,33 @@ function DropdownMenuFunction({
   const [isOpen, setIsOpen] = useState(false);
   const ddCtx = { isOpen, setIsOpen };
 
+  const ddRef = useRef(null);
+
+  const handleClickOutside = (e: MouseEvent): void => {
+    if (ddRef.current && ddRef.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    ddCtx.setIsOpen(false);
+  };
+
+  useEffect(() => {
+    if (ddCtx.isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  });
+
   return (
     <DropdownContext.Provider value={ddCtx}>
-      <div className={className}>{children}</div>
+      <div className={className} ref={ddRef}>
+        {children}
+      </div>
     </DropdownContext.Provider>
   );
 }

@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "module": "commonjs",
     "target": "es6",
-    "lib": [ "es6" ],
+    "lib": [ "es6", "DOM" ],
     "jsx": "react",
     "baseUrl": "./packages",
     "paths": {
