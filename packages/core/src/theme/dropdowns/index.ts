@@ -11,6 +11,7 @@ type ColorValues =
 
 export type DropdownBase = {
   bg: ColorValues;
+  hoverBg: ColorValues;
 };
 
 interface DropdownProps {
@@ -36,7 +37,8 @@ export default function genDropdownProps({
   overrides = {}
 }: DropdownProps): DropdownBase {
   const defaultDropdownProps: DropdownBase = {
-    bg: colors.white
+    bg: colors.white,
+    hoverBg: themeColors.primary
   };
 
   if (isFunction(overrides)) {

@@ -78,12 +78,12 @@ const DropdownItem = createThemedComponent<
       cascadeStateProps: {
         bg: {
           _hover: () => {
-            return theme.primary;
+            return theme.components.dropdowns.hoverBg;
           }
         },
         textColor: {
-          _hover: ({ contrastColor, theme: { primary } }) => {
-            return contrastColor(primary);
+          _hover: ({ contrastColor }) => {
+            return contrastColor(theme.components.dropdowns.hoverBg);
           }
         }
       },
