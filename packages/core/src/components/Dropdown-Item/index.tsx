@@ -35,6 +35,14 @@ const DropdownItemComponent = styled(DropdownItemFunction)<
   font-weight: 300;
   display: flex;
 
+  svg:first-child {
+    margin-right: 10px;
+  }
+
+  svg:last-child {
+    margin-left: auto;
+  }
+
   &:hover {
     cursor: pointer;
   }
