@@ -8,6 +8,7 @@ import DropdownList from '../Dropdown-List';
 import DropdownItem from '../Dropdown-Item';
 import Icon from '../Icon';
 import DropdownDivider from '../Dropdown-Divider';
+import DropdownGroup from '../Dropdown-Group';
 
 const OuterWrapper = styled.div`
   display: flex;

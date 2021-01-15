@@ -11,6 +11,7 @@ export { default as DropdownMenu } from './components/Dropdown-Menu';
 export { default as DropdownList } from './components/Dropdown-List';
 export { default as DropdownItem } from './components/Dropdown-Item';
 export { default as DropdownDivider } from './components/Dropdown-Divider';
+export { default as DropdownGroup } from './components/Dropdown-Group';
 
 // theme
 export { default as theme } from './theme';
