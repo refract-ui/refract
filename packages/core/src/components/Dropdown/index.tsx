@@ -10,22 +10,22 @@ import {
 } from '../../theme/containers';
 import useOutsideClick from '../../hooks/useOutsideClick';
 
-type DropdownMenuTheme = {};
+type DropdownTheme = {};
 
-type DropdownMenuProps = {
+type DropdownProps = {
   children?: any;
 };
 
-type DropdownMenuVariants = {};
+type DropdownVariants = {};
 
-type DropdownMenuStates = '_hover' | '_active' | '_focus';
+type DropdownStates = '_hover' | '_active' | '_focus';
 
 export const DropdownContext = createContext({});
 
-function DropdownMenuFunction({
+function DropdownFunction({
   children,
   ...props
-}: DropdownMenuProps & DropdownMenuVariants): JSX.Element {
+}: DropdownProps & DropdownVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -46,17 +46,17 @@ function DropdownMenuFunction({
   );
 }
 
-const DropdownMenuComponent = styled(DropdownMenuFunction)<
-  ThemeComponent & DropdownMenuProps
+const DropdownComponent = styled(DropdownFunction)<
+  ThemeComponent & DropdownProps
 >`
   ${({ componentCss }) => componentCss};
 `;
 
-const DropdownMenu = createThemedComponent<
-  DropdownMenuTheme,
-  DropdownMenuVariants,
-  DropdownMenuStates,
-  DropdownMenuProps,
+const Dropdown = createThemedComponent<
+  DropdownTheme,
+  DropdownVariants,
+  DropdownStates,
+  DropdownProps,
   Container
 >({
   defaultVariants: {},
@@ -64,7 +64,7 @@ const DropdownMenu = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: DropdownMenuComponent,
+      Component: DropdownComponent,
 
       variantMapping: {},
 
@@ -82,4 +82,4 @@ const DropdownMenu = createThemedComponent<
   }
 });
 
-export default DropdownMenu;
+export default Dropdown;

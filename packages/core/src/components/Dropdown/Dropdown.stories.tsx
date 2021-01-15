@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
 import DropdownButton from '../Dropdown-Button';
-import DropdownMenu from './index';
+import Dropdown from './index';
 import DropdownList from '../Dropdown-List';
 import DropdownItem from '../Dropdown-Item';
 import Icon from '../Icon';
@@ -24,11 +24,11 @@ const ComponentWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('DropdownMenu', module)
+storiesOf('Dropdown', module)
   .add('Default', () => (
     <OuterWrapper>
       <ComponentWrapper>
-        <DropdownMenu>
+        <Dropdown>
           <DropdownButton
             color="secondary"
             icon={{ icon: 'SimpleArrowDown', position: 'right' }}
@@ -44,10 +44,10 @@ storiesOf('DropdownMenu', module)
             <DropdownItem isSelected>Delicate Fourth</DropdownItem>
             <DropdownItem>Eager Five</DropdownItem>
           </DropdownList>
-        </DropdownMenu>
+        </Dropdown>
       </ComponentWrapper>
       <ComponentWrapper>
-        <DropdownMenu>
+        <Dropdown>
           <DropdownButton
             color="secondary"
             icon={{ icon: 'SimpleArrowDown', position: 'right' }}
@@ -76,10 +76,10 @@ storiesOf('DropdownMenu', module)
               <span>Eager Five</span>
             </DropdownItem>
           </DropdownList>
-        </DropdownMenu>
+        </Dropdown>
       </ComponentWrapper>
       <ComponentWrapper>
-        <DropdownMenu>
+        <Dropdown>
           <DropdownButton
             color="secondary"
             icon={{ icon: 'SimpleArrowDown', position: 'right' }}
@@ -108,10 +108,10 @@ storiesOf('DropdownMenu', module)
               <Icon name="Image" />
             </DropdownItem>
           </DropdownList>
-        </DropdownMenu>
+        </Dropdown>
       </ComponentWrapper>
       <ComponentWrapper>
-        <DropdownMenu>
+        <Dropdown>
           <DropdownButton color="dark">Items</DropdownButton>
           <DropdownList>
             <DropdownItem>
@@ -136,10 +136,10 @@ storiesOf('DropdownMenu', module)
               <span>Eager Five</span>
             </DropdownItem>
           </DropdownList>
-        </DropdownMenu>
+        </Dropdown>
       </ComponentWrapper>
       <ComponentWrapper>
-        <DropdownMenu>
+        <Dropdown>
           <DropdownButton>Entries</DropdownButton>
           <DropdownList>
             <DropdownItem>
@@ -164,14 +164,14 @@ storiesOf('DropdownMenu', module)
               <Icon name="Image" />
             </DropdownItem>
           </DropdownList>
-        </DropdownMenu>
+        </Dropdown>
       </ComponentWrapper>
     </OuterWrapper>
   ))
   .add('Dropdown w/ Groups', () => (
     <OuterWrapper>
       <ComponentWrapper>
-        <DropdownMenu>
+        <Dropdown>
           <DropdownButton>Groups</DropdownButton>
           <DropdownList xs={{ maxH: '360px' }}>
             <DropdownGroup title="Group One">
@@ -191,7 +191,7 @@ storiesOf('DropdownMenu', module)
               </DropdownGroup>
             </DropdownGroup>
           </DropdownList>
-        </DropdownMenu>
+        </Dropdown>
       </ComponentWrapper>
     </OuterWrapper>
   ));

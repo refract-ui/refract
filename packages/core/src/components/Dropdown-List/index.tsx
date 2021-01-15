@@ -8,7 +8,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { DropdownContext } from '../Dropdown-Menu';
+import { DropdownContext } from '../Dropdown';
 
 type DropdownListTheme = {
   border?: Partial<BorderBreakpointStyle>;

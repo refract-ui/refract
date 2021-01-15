@@ -8,7 +8,7 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import Button from '../Button';
-import { DropdownContext } from '../Dropdown-Menu';
+import { DropdownContext } from '../Dropdown';
 import { Icons } from '../Icons/icons';
 import { ThemeColors } from '../../theme/themeColors';
 
