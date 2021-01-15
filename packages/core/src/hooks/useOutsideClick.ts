@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
 
-const useOutsideClick = (ref: any, isActive: boolean, callback: any) => {
+type returnValueTypes = void | (() => void);
+
+const useOutsideClick = (
+  ref: React.MutableRefObject<any>,
+  isActive: boolean,
+  callback: () => void
+): returnValueTypes => {
   const handleClick = (e: MouseEvent): void => {
     if (ref.current && !ref.current.contains(e.target)) {
       callback();
