@@ -11,7 +11,7 @@ import {
 import { DropdownContext } from '../Dropdown-Menu';
 
 type DropdownListTheme = {
-  border: Partial<BorderBreakpointStyle>;
+  border?: Partial<BorderBreakpointStyle>;
 };
 
 type DropdownListProps = {
@@ -44,6 +44,7 @@ const DropdownListComponent = styled(DropdownListFunction)<
   ${({ componentCss }) => componentCss};
   box-shadow: 0 2px 6px 0 rgba(45, 45, 49, 0.13);
   position: absolute;
+  overflow-y: scroll;
 `;
 
 const DropdownList = createThemedComponent<

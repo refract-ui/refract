@@ -64,7 +64,6 @@ const DropdownItem = createThemedComponent<
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    console.log('In index.tsx, this is variant: ', variant);
     return {
       Component: DropdownItemComponent,
 

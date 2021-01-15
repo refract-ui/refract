@@ -171,7 +171,7 @@ storiesOf('DropdownMenu', module)
       <ComponentWrapper>
         <DropdownMenu>
           <DropdownButton>Groups</DropdownButton>
-          <DropdownList>
+          <DropdownList xs={{ maxH: '360px' }}>
             <DropdownGroup title="Group One">
               <DropdownItem>A first group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
@@ -183,6 +183,9 @@ storiesOf('DropdownMenu', module)
               <DropdownDivider />
               <DropdownGroup title="Group Two">
                 <DropdownItem>Element of the second group</DropdownItem>
+                <DropdownItem>A second group element, hover</DropdownItem>
+                <DropdownItem>Beware of the second element</DropdownItem>
+                <DropdownItem>Can be a third element</DropdownItem>
               </DropdownGroup>
             </DropdownGroup>
           </DropdownList>

@@ -8,7 +8,9 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
-type DropdownGroupTheme = {};
+type DropdownGroupTheme = {
+  textColor?: string;
+};
 type DropdownGroupProps = {
   children?: React.ReactNode;
   title?: string;
@@ -57,13 +59,20 @@ const DropdownGroup = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'inherit',
+          bg: theme.components.dropdowns.bg,
+          textColor: ({ contrastColor, bg }) => contrastColor(bg),
           px: theme.spacing['3'],
           py: '0'
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        textColor: ({ textColor }) => {
+          return css`
+            color: ${textColor};
+          `;
+        }
+      }
     };
   }
 });
