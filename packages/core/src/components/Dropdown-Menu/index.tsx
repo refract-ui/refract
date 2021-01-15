@@ -1,4 +1,4 @@
-import React, { useState, createContext, useRef, useEffect } from 'react';
+import React, { useState, createContext, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -8,6 +8,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
+import useOutsideClick from '../../hooks/useOutsideClick';
 
 type DropdownMenuTheme = {};
 
@@ -32,24 +33,8 @@ function DropdownMenuFunction({
 
   const ddRef = useRef(null);
 
-  const handleClickOutside = (e: MouseEvent): void => {
-    if (ddRef.current && ddRef.current.contains(e.target)) {
-      // inside click
-      return;
-    }
-    // outside click
+  useOutsideClick(ddRef, ddCtx.isOpen, () => {
     ddCtx.setIsOpen(false);
-  };
-
-  useEffect(() => {
-    if (ddCtx.isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-    } else {
-      document.removeEventListener('mousedown', handleClickOutside);
-    }
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
   });
 
   return (

@@ -25,6 +25,7 @@ const DropdownDividerComponent = styled(DropdownDividerFunction)<
   ThemeComponent & DropdownDividerProps
 >`
   ${({ componentCss }) => componentCss};
+  opacity: 0.5;
 `;
 
 const DropdownDivider = createThemedComponent<
