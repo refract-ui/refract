@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
+import lightenOrDarken from '../../utils/lightenOrDarken';
 import createThemedComponent from '../../utils/createThemedComponent';
 import {
   Container,
@@ -15,7 +15,9 @@ type DropdownItemTheme = {
 type DropdownItemProps = {
   children?: string | React.ReactNode;
 };
-type DropdownItemVariants = {};
+type DropdownItemVariants = {
+  isSelected?: boolean;
+};
 type DropdownItemStates = '_hover' | '_active' | '_focus';
 
 function DropdownItemFunction({
@@ -55,35 +57,48 @@ const DropdownItem = createThemedComponent<
   DropdownItemProps,
   Container
 >({
-  defaultVariants: {},
+  defaultVariants: {
+    isSelected: false
+  },
   states: ['_hover', '_active', '_focus'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
+    console.log('In index.tsx, this is variant: ', variant);
     return {
       Component: DropdownItemComponent,
 
-      variantMapping: {},
+      variantMapping: {
+        isSelected: ({ isSelected }) => {
+          if (isSelected) {
+            return {
+              bg: theme.components.dropdowns.selectedItemBg
+            };
+          }
+        }
+      },
 
       defaultStyleMapping: {
         xs: {
-          bg: 'inherit',
+          bg: theme.components.dropdowns.bg,
           px: theme.spacing['3'],
           py: theme.spacing['2'],
-          textColor: ({ contrastColor }) =>
-            contrastColor(theme.components.dropdowns.bg),
+          textColor: ({ contrastColor, bg }) => contrastColor(bg),
           w: 'auto'
         }
       },
 
       cascadeStateProps: {
         bg: {
-          _hover: () => {
-            return theme.components.dropdowns.hoverBg;
+          _hover: ({ bg }) => {
+            return lightenOrDarken({
+              color: bg,
+              amount: 10
+            });
           }
         },
         textColor: {
-          _hover: ({ contrastColor }) => {
-            return contrastColor(theme.components.dropdowns.hoverBg);
+          _hover: ({ contrastColor, bg }) => {
+            return contrastColor(bg);
           }
         }
       },

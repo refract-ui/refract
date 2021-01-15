@@ -39,7 +39,7 @@ storiesOf('DropdownMenu', module)
             <DropdownItem>A First One</DropdownItem>
             <DropdownItem>Boom Second</DropdownItem>
             <DropdownItem>Cool Third</DropdownItem>
-            <DropdownItem>Delicate Fourth</DropdownItem>
+            <DropdownItem isSelected>Delicate Fourth</DropdownItem>
             <DropdownItem>Eager Five</DropdownItem>
           </DropdownList>
         </DropdownMenu>
@@ -65,7 +65,7 @@ storiesOf('DropdownMenu', module)
               <Icon name="Eye" />
               <span>Cool Third</span>
             </DropdownItem>
-            <DropdownItem>
+            <DropdownItem isSelected>
               <Icon name="Image" />
               <span>Delicate Fourth</span>
             </DropdownItem>
@@ -97,7 +97,7 @@ storiesOf('DropdownMenu', module)
               <span>Cool Third</span>
               <Icon name="Eye" />
             </DropdownItem>
-            <DropdownItem>
+            <DropdownItem isSelected>
               <span>Delicate Fourth</span>
               <Icon name="Image" />
             </DropdownItem>
@@ -176,7 +176,9 @@ storiesOf('DropdownMenu', module)
               <DropdownItem>A first group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
               <DropdownItem>Can be a third element</DropdownItem>
-              <DropdownItem>Delicate fourth element, active</DropdownItem>
+              <DropdownItem isSelected>
+                Delicate fourth element, active
+              </DropdownItem>
               <DropdownItem>Eager fifth element</DropdownItem>
               <DropdownDivider />
               <DropdownGroup title="Group Two">
