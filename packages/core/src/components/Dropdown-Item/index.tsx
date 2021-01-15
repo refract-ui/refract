@@ -11,6 +11,7 @@ import {
 
 type DropdownItemTheme = {
   textColor?: string;
+  iconColor?: string;
 };
 type DropdownItemProps = {
   children?: string | React.ReactNode;
@@ -71,7 +72,11 @@ const DropdownItem = createThemedComponent<
         isSelected: ({ isSelected }) => {
           if (isSelected) {
             return {
-              bg: theme.components.dropdowns.selectedItemBg
+              bg: theme.components.dropdowns.selectedItemBg,
+              iconColor: lightenOrDarken({
+                color: theme.components.dropdowns.selectedItemBg,
+                amount: 30
+              })
             };
           }
         }
@@ -83,6 +88,8 @@ const DropdownItem = createThemedComponent<
           px: theme.spacing['3'],
           py: theme.spacing['2'],
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
+          iconColor: ({ textColor }) =>
+            lightenOrDarken({ color: textColor, amount: 30 }),
           w: 'auto'
         }
       },
@@ -107,9 +114,13 @@ const DropdownItem = createThemedComponent<
         textColor: ({ textColor }) => {
           return css`
             color: ${textColor};
+          `;
+        },
+        iconColor: ({ iconColor }) => {
+          return css`
             svg {
               path {
-                fill: ${textColor};
+                fill: ${iconColor};
               }
             }
           `;
