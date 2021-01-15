@@ -15,6 +15,7 @@ type DropdownItemTheme = {
 };
 type DropdownItemProps = {
   children?: string | React.ReactNode;
+  onClick?: () => void;
 };
 type DropdownItemVariants = {
   isSelected?: boolean;
@@ -22,13 +23,14 @@ type DropdownItemVariants = {
 type DropdownItemStates = '_hover' | '_active' | '_focus';
 
 function DropdownItemFunction({
+  onClick,
   children,
   ...props
 }: DropdownItemProps & DropdownItemVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   return (
-    <div className={className} role="menuitem">
+    <div className={className} role="menuitem" onClick={onClick}>
       {children}
     </div>
   );

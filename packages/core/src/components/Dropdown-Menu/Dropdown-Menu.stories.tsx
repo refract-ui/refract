@@ -36,7 +36,9 @@ storiesOf('DropdownMenu', module)
             Open
           </DropdownButton>
           <DropdownList>
-            <DropdownItem>A First One</DropdownItem>
+            <DropdownItem onClick={() => alert('clicked')}>
+              A First One
+            </DropdownItem>
             <DropdownItem>Boom Second</DropdownItem>
             <DropdownItem>Cool Third</DropdownItem>
             <DropdownItem isSelected>Delicate Fourth</DropdownItem>
