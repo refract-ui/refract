@@ -43,6 +43,7 @@ const DropdownListComponent = styled(DropdownListFunction)<
 >`
   ${({ componentCss }) => componentCss};
   box-shadow: 0 2px 6px 0 rgba(45, 45, 49, 0.13);
+  position: absolute;
 `;
 
 const DropdownList = createThemedComponent<
