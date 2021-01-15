@@ -11,23 +11,33 @@ import {
 type DropdownGroupTheme = {};
 type DropdownGroupProps = {
   children?: React.ReactNode;
+  title?: string;
 };
 type DropdownGroupVariants = {};
 type DropdownGroupStates = '_hover' | '_active' | '_focus';
 
 function DropdownGroupFunction({
+  title,
   children,
   ...props
 }: DropdownGroupProps & DropdownGroupVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div>
+      {title && <p className={`${className} gfx-menu-group-title`}>{title}</p>}
+      {children}
+    </div>
+  );
 }
 
 const DropdownGroupComponent = styled(DropdownGroupFunction)<
   ThemeComponent & DropdownGroupProps
 >`
   ${({ componentCss }) => componentCss};
+  font-family: 'Work Sans', sans serif;
+  font-weight: 500;
+  text-transform: uppercase;
 `;
 
 const DropdownGroup = createThemedComponent<
@@ -46,7 +56,9 @@ const DropdownGroup = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'none'
+          bg: 'inherit',
+          px: theme.spacing['3'],
+          py: '0'
         }
       },
       cascadeStateProps: {},
