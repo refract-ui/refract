@@ -27,7 +27,11 @@ function DropdownItemFunction({
 }: DropdownItemProps & DropdownItemVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <div className={className}>{children}</div>;
+  return (
+    <div className={className} role="menuitem">
+      {children}
+    </div>
+  );
 }
 
 const DropdownItemComponent = styled(DropdownItemFunction)<

@@ -35,7 +35,13 @@ function DropdownListFunction({
 
   const ddCtx: DropdownCtx = useContext(DropdownContext);
 
-  return ddCtx.isOpen && <div className={className}>{children}</div>;
+  return (
+    ddCtx.isOpen && (
+      <div className={className} role="menu" aria-orientation="vertical">
+        {children}
+      </div>
+    )
+  );
 }
 
 const DropdownListComponent = styled(DropdownListFunction)<
