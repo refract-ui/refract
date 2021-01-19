@@ -43,6 +43,7 @@ const DropdownItemComponent = styled(DropdownItemFunction)<
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
   display: flex;
+  transition: all 0.1s ease-in-out;
 
   svg:first-child {
     margin-right: 10px;

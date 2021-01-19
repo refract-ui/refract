@@ -1,8 +1,7 @@
-import React, { useState, createContext, useRef } from 'react';
+import React, { useState, createContext, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import {
   Container,
@@ -14,6 +13,7 @@ type DropdownTheme = {};
 
 type DropdownProps = {
   children?: any;
+  closeOnSelect?: boolean;
 };
 
 type DropdownVariants = {};
@@ -23,6 +23,7 @@ type DropdownStates = '_hover' | '_active' | '_focus';
 export const DropdownContext = createContext({});
 
 function DropdownFunction({
+  closeOnSelect,
   children,
   ...props
 }: DropdownProps & DropdownVariants): JSX.Element {
@@ -33,9 +34,25 @@ function DropdownFunction({
 
   const ddRef = useRef(null);
 
-  useOutsideClick(ddRef, ddCtx.isOpen, () => {
+  const closeDropdown = (): void => {
     ddCtx.setIsOpen(false);
-  });
+  };
+
+  if (closeOnSelect) {
+    useEffect(() => {
+      if (ddCtx.isOpen) {
+        document.addEventListener('click', closeDropdown);
+      } else {
+        document.removeEventListener('click', closeDropdown);
+      }
+
+      return () => {
+        document.removeEventListener('click', closeDropdown);
+      };
+    });
+  } else {
+    useOutsideClick(ddRef, ddCtx.isOpen, closeDropdown);
+  }
 
   return (
     <DropdownContext.Provider value={ddCtx}>
@@ -45,6 +62,11 @@ function DropdownFunction({
     </DropdownContext.Provider>
   );
 }
+
+DropdownFunction.defaultProps = {
+  closeOnSelect: false,
+  children: null
+};
 
 const DropdownComponent = styled(DropdownFunction)<
   ThemeComponent & DropdownProps
