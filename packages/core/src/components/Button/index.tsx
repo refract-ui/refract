@@ -39,12 +39,14 @@ type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
   icon?: keyof Icons | IconObject | null;
+  ariaExpanded?: boolean;
 };
 
 function ButtonFunction({
   children,
   onClick,
   icon,
+  ariaExpanded,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -54,7 +56,11 @@ function ButtonFunction({
   // console.log('{ useIcon, iconPosition }', { useIcon, iconPosition });
 
   return (
-    <button className={className} onClick={onClick}>
+    <button
+      className={className}
+      onClick={onClick}
+      aria-expanded={ariaExpanded}
+    >
       {icon && iconPosition === 'left' && children && (
         <Icon name={useIcon as keyof Icons} />
       )}

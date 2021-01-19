@@ -49,6 +49,7 @@ function DropdownButtonFunction({
       icon={icon}
       color={color}
       onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}
+      ariaExpanded={ddCtx.isOpen}
     >
       {children}
     </Button>
