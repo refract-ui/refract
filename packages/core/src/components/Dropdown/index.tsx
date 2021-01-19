@@ -64,7 +64,7 @@ function DropdownFunction({
 }
 
 DropdownFunction.defaultProps = {
-  closeOnSelect: false,
+  closeOnSelect: true,
   children: null
 };
 

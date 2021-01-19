@@ -28,7 +28,7 @@ storiesOf('Dropdown', module)
   .add('Default', () => (
     <OuterWrapper>
       <ComponentWrapper>
-        <Dropdown closeOnSelect>
+        <Dropdown closeOnSelect={false}>
           <DropdownButton
             color="secondary"
             icon={{ icon: 'SimpleArrowDown', position: 'right' }}
@@ -168,7 +168,7 @@ storiesOf('Dropdown', module)
       </ComponentWrapper>
     </OuterWrapper>
   ))
-  .add('Dropdown w/ Groups', () => (
+  .add('w/ Groups', () => (
     <OuterWrapper>
       <ComponentWrapper>
         <Dropdown>
