@@ -44,6 +44,7 @@ function DropdownListFunction({
         role="menu"
         aria-orientation="vertical"
         id={id}
+        tabIndex={-1}
       >
         {children}
       </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
+import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 import createThemedComponent from '../../utils/createThemedComponent';
 import {
@@ -12,6 +13,8 @@ import {
 type DropdownItemTheme = {
   textColor?: string;
   iconColor?: string;
+  border?: Partial<BorderBreakpointStyle>;
+  fontSize?: string;
 };
 type DropdownItemProps = {
   children?: string | React.ReactNode;
@@ -30,9 +33,9 @@ function DropdownItemFunction({
   const className = get(props, 'className', null);
 
   return (
-    <div className={className} role="menuitem" onClick={onClick}>
+    <button className={className} role="menuitem" onClick={onClick}>
       {children}
-    </div>
+    </button>
   );
 }
 
@@ -91,12 +94,17 @@ const DropdownItem = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: theme.components.dropdowns.bg,
+          border: {
+            ...theme.borders.xs,
+            borderWidth: '0'
+          },
+          fontSize: '1rem',
           px: theme.spacing['3'],
           py: theme.spacing['2'],
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           iconColor: ({ textColor }) =>
             lightenOrDarken({ color: textColor, amount: 30 }),
-          w: 'auto'
+          w: '100%'
         }
       },
 
@@ -129,6 +137,14 @@ const DropdownItem = createThemedComponent<
                 fill: ${iconColor};
               }
             }
+          `;
+        },
+        border: ({ border }) => {
+          return applyBorderStyle(border);
+        },
+        fontSize: ({ fontSize }) => {
+          return css`
+            font-size: ${fontSize};
           `;
         }
       }
