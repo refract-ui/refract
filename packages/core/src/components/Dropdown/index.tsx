@@ -12,7 +12,7 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 type DropdownTheme = {};
 
 type DropdownProps = {
-  children?: any;
+  children?: React.ReactNode;
   closeOnSelect?: boolean;
 };
 
