@@ -16,6 +16,7 @@ type DropdownListTheme = {
 
 type DropdownListProps = {
   children?: React.ReactNode;
+  id?: string;
 };
 
 type DropdownListVariants = {};
@@ -29,6 +30,7 @@ type DropdownCtx = {
 
 function DropdownListFunction({
   children,
+  id,
   ...props
 }: DropdownListProps & DropdownListVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -37,7 +39,12 @@ function DropdownListFunction({
 
   return (
     ddCtx.isOpen && (
-      <div className={className} role="menu" aria-orientation="vertical">
+      <div
+        className={className}
+        role="menu"
+        aria-orientation="vertical"
+        id={id}
+      >
         {children}
       </div>
     )

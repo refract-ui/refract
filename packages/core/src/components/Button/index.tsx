@@ -40,6 +40,7 @@ type ButtonProps = {
   onClick?: () => void;
   icon?: keyof Icons | IconObject | null;
   ariaExpanded?: boolean;
+  ariaControls?: string;
 };
 
 function ButtonFunction({
@@ -47,6 +48,7 @@ function ButtonFunction({
   onClick,
   icon,
   ariaExpanded,
+  ariaControls,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -60,6 +62,7 @@ function ButtonFunction({
       className={className}
       onClick={onClick}
       aria-expanded={ariaExpanded}
+      aria-controls={ariaControls}
     >
       {icon && iconPosition === 'left' && children && (
         <Icon name={useIcon as keyof Icons} />

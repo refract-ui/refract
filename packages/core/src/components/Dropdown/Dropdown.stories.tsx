@@ -32,10 +32,11 @@ storiesOf('Dropdown', module)
           <DropdownButton
             color="secondary"
             icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            ariaControls="dropdown-1"
           >
             Open
           </DropdownButton>
-          <DropdownList>
+          <DropdownList id="dropdown-1">
             <DropdownItem onClick={() => alert('clicked')}>
               A First One
             </DropdownItem>

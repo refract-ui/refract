@@ -23,6 +23,7 @@ type DropdownButtonProps = {
   icon?: keyof Icons | IconObject | null;
   color?: keyof ThemeColors;
   children?: string;
+  ariaControls?: string;
 };
 
 type DropdownButtonVariants = {};
@@ -38,6 +39,7 @@ function DropdownButtonFunction({
   children,
   color,
   icon,
+  ariaControls,
   ...props
 }: DropdownButtonProps & DropdownButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -50,6 +52,7 @@ function DropdownButtonFunction({
       color={color}
       onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}
       ariaExpanded={ddCtx.isOpen}
+      ariaControls={ariaControls}
     >
       {children}
     </Button>
