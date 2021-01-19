@@ -193,5 +193,70 @@ storiesOf('Dropdown', module)
           </DropdownList>
         </Dropdown>
       </ComponentWrapper>
+
+      <ComponentWrapper>
+        <Dropdown closeOnSelect>
+          <DropdownButton
+            color="secondary"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+          >
+            Click Me
+          </DropdownButton>
+          <DropdownList xs={{ maxH: '360px' }}>
+            <DropdownGroup title="Group One">
+              <DropdownItem onClick={() => alert('clicked')}>
+                <Icon name="Person" />
+                <span>A First One</span>
+              </DropdownItem>
+              <DropdownItem onClick={() => alert('clicked')}>
+                <Icon name="Calendar" />
+                <span>Boom Second</span>
+              </DropdownItem>
+              <DropdownItem onClick={() => alert('clicked')}>
+                <Icon name="Eye" />
+                <span>Cool Third</span>
+              </DropdownItem>
+              <DropdownItem isSelected onClick={() => alert('clicked')}>
+                <Icon name="Image" />
+                <span>Delicate Fourth</span>
+              </DropdownItem>
+              <DropdownItem onClick={() => alert('clicked')}>
+                <Icon name="Image" />
+                <span>Eager Five</span>
+              </DropdownItem>
+              <DropdownDivider />
+              <DropdownGroup title="Group Two">
+                <DropdownItem>Element of the second group</DropdownItem>
+                <DropdownItem>A second group element, hover</DropdownItem>
+                <DropdownItem>Beware of the second element</DropdownItem>
+                <DropdownItem>Can be a third element</DropdownItem>
+              </DropdownGroup>
+              <DropdownDivider />
+              <DropdownGroup title="Group Three">
+                <DropdownItem>
+                  <span>A First One</span>
+                  <Icon name="Person" />
+                </DropdownItem>
+                <DropdownItem>
+                  <span>Boom Second</span>
+                  <Icon name="Calendar" />
+                </DropdownItem>
+                <DropdownItem>
+                  <span>Cool Third</span>
+                  <Icon name="Eye" />
+                </DropdownItem>
+                <DropdownItem isSelected>
+                  <span>Delicate Fourth</span>
+                  <Icon name="Image" />
+                </DropdownItem>
+                <DropdownItem>
+                  <span>Eager Five</span>
+                  <Icon name="Image" />
+                </DropdownItem>
+              </DropdownGroup>
+            </DropdownGroup>
+          </DropdownList>
+        </Dropdown>
+      </ComponentWrapper>
     </OuterWrapper>
   ));
