@@ -37,10 +37,6 @@ function DropdownListWrapperFunction({
 }: DropdownListWrapperProps & DropdownListWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  const ddCtx: DropdownCtx = useContext(DropdownContext);
-
-  console.log('dropdownListWrapper render');
-
   return (
     <div
       className={className}
