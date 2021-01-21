@@ -1,4 +1,11 @@
-import React, { useState, createContext, useEffect, useRef } from 'react';
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  useRef,
+  LegacyRef,
+  ReactElement
+} from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -41,8 +48,8 @@ export type PlacementTypes =
 export type DropdownCtxTypes = {
   isOpen?: boolean;
   setIsOpen?: (arg0: boolean) => boolean;
-  referenceRef?: any;
-  popperRef?: any;
+  referenceRef?: React.MutableRefObject<HTMLButtonElement>;
+  popperRef?: React.MutableRefObject<HTMLDivElement>;
   placement?: PlacementTypes;
 };
 
@@ -56,9 +63,9 @@ function DropdownFunction({
 }: DropdownProps & DropdownVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  const ddRef = useRef(null);
-  const referenceRef = useRef(null);
-  const popperRef = useRef(null);
+  const ddRef = useRef<HTMLDivElement>(null);
+  const referenceRef = useRef<HTMLButtonElement>(null);
+  const popperRef = useRef<HTMLDivElement>(null);
 
   const [isOpen, setIsOpen] = useState(false);
 
