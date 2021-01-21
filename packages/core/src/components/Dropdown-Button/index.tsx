@@ -1,6 +1,5 @@
 import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
-import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import createThemedComponent from '../../utils/createThemedComponent';
 import {
@@ -8,7 +7,7 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import Button from '../Button';
-import { DropdownContext } from '../Dropdown';
+import { DropdownContext, DropdownCtxTypes } from '../Dropdown';
 import { Icons } from '../Icons/icons';
 import { ThemeColors } from '../../theme/themeColors';
 
@@ -19,8 +18,11 @@ type IconObject = {
   position: 'left' | 'right' | null;
 };
 
+type IconType = keyof Icons | IconObject | null;
+
 type DropdownButtonProps = {
-  icon?: keyof Icons | IconObject | null;
+  activeIcon?: IconType;
+  closedIcon?: IconType;
   color?: keyof ThemeColors;
   children?: string;
   ariaControls?: string;
@@ -30,26 +32,37 @@ type DropdownButtonVariants = {};
 
 type DropdownButtonStates = '_hover' | '_active' | '_focus';
 
-type DropdownCtx = {
-  isOpen?: boolean;
-  setIsOpen?: (arg0: boolean) => boolean;
-  referenceRef?: any;
-};
+function renderIcon(
+  isOpen: boolean,
+  closedIcon: IconType,
+  activeIcon: IconType
+): IconType {
+  let icon;
+  if (closedIcon && !activeIcon) {
+    icon = closedIcon;
+  }
+  if (!isOpen && closedIcon && activeIcon) {
+    icon = closedIcon;
+  }
+  if (isOpen && closedIcon && activeIcon) {
+    icon = activeIcon;
+  }
+  return icon;
+}
 
 function DropdownButtonFunction({
   children,
   color,
-  icon,
   ariaControls,
+  activeIcon,
+  closedIcon,
   ...props
 }: DropdownButtonProps & DropdownButtonVariants): JSX.Element {
-  const className = get(props, 'className', null);
-
-  const ddCtx: DropdownCtx = useContext(DropdownContext);
+  const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
 
   return (
     <Button
-      icon={icon}
+      icon={renderIcon(ddCtx.isOpen, closedIcon, activeIcon)}
       color={color}
       onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}
       ariaExpanded={ddCtx.isOpen}

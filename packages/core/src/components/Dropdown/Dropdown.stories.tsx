@@ -45,7 +45,8 @@ const dropdownFn = (placement?: PlacementTypes) => (
   <Dropdown placement={placement}>
     <DropdownButton
       color="info"
-      icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+      activeIcon={{ icon: 'SimpleArrowUp', position: 'right' }}
+      closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
     >
       {placement ? placement : 'Default'}
     </DropdownButton>
@@ -81,7 +82,7 @@ storiesOf('Dropdown', module)
         <Dropdown closeOnSelect={false}>
           <DropdownButton
             color="secondary"
-            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
             ariaControls="dropdown-1"
           >
             Open
@@ -101,7 +102,7 @@ storiesOf('Dropdown', module)
         <Dropdown>
           <DropdownButton
             color="secondary"
-            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             Open
           </DropdownButton>
@@ -133,7 +134,7 @@ storiesOf('Dropdown', module)
         <Dropdown>
           <DropdownButton
             color="secondary"
-            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             Open
           </DropdownButton>
@@ -249,7 +250,7 @@ storiesOf('Dropdown', module)
         <Dropdown closeOnSelect>
           <DropdownButton
             color="secondary"
-            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             Click Me
           </DropdownButton>
