@@ -8,7 +8,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { DropdownContext } from '../Dropdown';
+import { DropdownContext, DropdownCtxTypes } from '../Dropdown';
 import DropdownListWrapper from '../Dropdown-List-Wrapper';
 import { usePopper } from 'react-popper';
 
@@ -25,13 +25,6 @@ type DropdownListVariants = {};
 
 type DropdownListStates = '_hover' | '_active' | '_focus';
 
-type DropdownCtx = {
-  isOpen?: boolean;
-  setIsOpen?: (arg0: boolean) => boolean;
-  referenceRef?: any;
-  popperRef?: any;
-};
-
 function DropdownListFunction({
   children,
   id,
@@ -39,13 +32,13 @@ function DropdownListFunction({
 }: DropdownListProps & DropdownListVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  const ddCtx: DropdownCtx = useContext(DropdownContext);
+  const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
 
   const { styles, attributes } = usePopper(
     ddCtx.referenceRef.current,
     ddCtx.popperRef.current,
     {
-      placement: 'bottom-start',
+      placement: ddCtx.placement,
       modifiers: [
         {
           name: 'offset',
@@ -70,12 +63,17 @@ function DropdownListFunction({
   );
 }
 
+DropdownListFunction.defaultProps = {
+  placement: 'bottom-start'
+};
+
 const DropdownListComponent = styled(DropdownListFunction)<
   ThemeComponent & DropdownListProps
 >`
+  z-index: 1;
   ${({ componentCss }) => componentCss};
   ${() => {
-    const ddCtx: DropdownCtx = useContext(DropdownContext);
+    const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
     if (ddCtx.isOpen) {
       return css`
         visibility: visible;

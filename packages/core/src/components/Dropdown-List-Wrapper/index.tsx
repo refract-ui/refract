@@ -8,7 +8,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { DropdownContext } from '../Dropdown';
+import { DropdownContext, DropdownCtxTypes } from '../Dropdown';
 
 type DropdownListWrapperTheme = {
   border?: Partial<BorderBreakpointStyle>;
@@ -22,13 +22,6 @@ type DropdownListWrapperProps = {
 type DropdownListWrapperVariants = {};
 
 type DropdownListWrapperStates = '_hover' | '_active' | '_focus';
-
-type DropdownCtx = {
-  isOpen?: boolean;
-  setIsOpen?: (arg0: boolean) => boolean;
-  referenceRef?: any;
-  popperRef?: any;
-};
 
 function DropdownListWrapperFunction({
   children,
@@ -55,7 +48,7 @@ const DropdownListWrapperComponent = styled(DropdownListWrapperFunction)<
 >`
   ${({ componentCss }) => componentCss};
   ${() => {
-    const ddCtx: DropdownCtx = useContext(DropdownContext);
+    const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
     if (ddCtx.isOpen) {
       return css`
         opacity: 1;

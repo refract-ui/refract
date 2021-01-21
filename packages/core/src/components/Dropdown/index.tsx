@@ -14,17 +14,44 @@ type DropdownTheme = {};
 type DropdownProps = {
   children?: React.ReactNode;
   closeOnSelect?: boolean;
+  placement?: PlacementTypes;
 };
 
 type DropdownVariants = {};
 
 type DropdownStates = '_hover' | '_active' | '_focus';
 
+export type PlacementTypes =
+  | 'auto'
+  | 'auto-start'
+  | 'auto-end'
+  | 'top'
+  | 'top-start'
+  | 'top-end'
+  | 'bottom'
+  | 'bottom-start'
+  | 'bottom-end'
+  | 'right'
+  | 'right-start'
+  | 'right-end'
+  | 'left'
+  | 'left-start'
+  | 'left-end';
+
+export type DropdownCtxTypes = {
+  isOpen?: boolean;
+  setIsOpen?: (arg0: boolean) => boolean;
+  referenceRef?: any;
+  popperRef?: any;
+  placement?: PlacementTypes;
+};
+
 export const DropdownContext = createContext({});
 
 function DropdownFunction({
   closeOnSelect,
   children,
+  placement,
   ...props
 }: DropdownProps & DropdownVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -39,7 +66,8 @@ function DropdownFunction({
     isOpen,
     setIsOpen,
     referenceRef,
-    popperRef
+    popperRef,
+    placement
   };
 
   const closeDropdown = (): void => {
@@ -73,13 +101,15 @@ function DropdownFunction({
 
 DropdownFunction.defaultProps = {
   closeOnSelect: true,
-  children: null
+  children: null,
+  placement: 'bottom-start'
 };
 
 const DropdownComponent = styled(DropdownFunction)<
   ThemeComponent & DropdownProps
 >`
   ${({ componentCss }) => componentCss};
+  position: relative;
 `;
 
 const Dropdown = createThemedComponent<
