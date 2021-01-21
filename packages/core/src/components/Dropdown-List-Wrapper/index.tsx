@@ -9,21 +9,19 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import { DropdownContext } from '../Dropdown';
-import DropdownListWrapper from '../Dropdown-List-Wrapper';
-import { usePopper } from 'react-popper';
 
-type DropdownListTheme = {
+type DropdownListWrapperTheme = {
   border?: Partial<BorderBreakpointStyle>;
 };
 
-type DropdownListProps = {
+type DropdownListWrapperProps = {
   children?: React.ReactNode;
   id?: string;
 };
 
-type DropdownListVariants = {};
+type DropdownListWrapperVariants = {};
 
-type DropdownListStates = '_hover' | '_active' | '_focus';
+type DropdownListWrapperStates = '_hover' | '_active' | '_focus';
 
 type DropdownCtx = {
   isOpen?: boolean;
@@ -32,67 +30,57 @@ type DropdownCtx = {
   popperRef?: any;
 };
 
-function DropdownListFunction({
+function DropdownListWrapperFunction({
   children,
   id,
   ...props
-}: DropdownListProps & DropdownListVariants): JSX.Element {
+}: DropdownListWrapperProps & DropdownListWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   const ddCtx: DropdownCtx = useContext(DropdownContext);
 
-  const { styles, attributes } = usePopper(
-    ddCtx.referenceRef.current,
-    ddCtx.popperRef.current,
-    {
-      placement: 'bottom-start',
-      modifiers: [
-        {
-          name: 'offset',
-          enabled: true,
-          options: {
-            offset: [0, 0]
-          }
-        }
-      ]
-    }
-  );
+  console.log('dropdownListWrapper render');
 
   return (
     <div
       className={className}
-      ref={ddCtx.popperRef}
-      style={styles.popper}
-      {...attributes.popper}
+      role="menu"
+      aria-orientation="vertical"
+      id={id}
+      tabIndex={-1}
     >
-      <DropdownListWrapper id={id}>{children}</DropdownListWrapper>
+      {children}
     </div>
   );
 }
 
-const DropdownListComponent = styled(DropdownListFunction)<
-  ThemeComponent & DropdownListProps
+const DropdownListWrapperComponent = styled(DropdownListWrapperFunction)<
+  ThemeComponent & DropdownListWrapperProps
 >`
   ${({ componentCss }) => componentCss};
   ${() => {
     const ddCtx: DropdownCtx = useContext(DropdownContext);
     if (ddCtx.isOpen) {
       return css`
+        opacity: 1;
         visibility: visible;
       `;
     } else {
       return css`
+        opacity: 0;
         visibility: hidden;
       `;
     }
   }}
+  box-shadow: 0 2px 6px 0 rgba(45, 45, 49, 0.13);
+  overflow-y: scroll;
 `;
 
-const DropdownList = createThemedComponent<
-  DropdownListTheme,
-  DropdownListVariants,
-  DropdownListStates,
-  DropdownListProps,
+const DropdownListWrapper = createThemedComponent<
+  DropdownListWrapperTheme,
+  DropdownListWrapperVariants,
+  DropdownListWrapperStates,
+  DropdownListWrapperProps,
   Container
 >({
   defaultVariants: {},
@@ -100,17 +88,28 @@ const DropdownList = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: DropdownListComponent,
+      Component: DropdownListWrapperComponent,
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'none'
+          bg: theme.components.dropdowns.bg,
+          border: {
+            ...theme.borders.md,
+            borderWidth: '0'
+          },
+          minW: '200px',
+          minH: '100px',
+          py: theme.spacing['3']
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        border: ({ border, ...props }) => {
+          return applyBorderStyle(border);
+        }
+      }
     };
   }
 });
 
-export default DropdownList;
+export default DropdownListWrapper;

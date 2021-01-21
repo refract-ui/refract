@@ -24,9 +24,15 @@ const ComponentWrapper = styled.div`
   padding: 1rem;
 `;
 
+const Spacer = styled(ComponentWrapper)`
+  height: 1000px;
+  width: 100%;
+`;
+
 storiesOf('Dropdown', module)
   .add('Default', () => (
     <OuterWrapper>
+      <Spacer />
       <ComponentWrapper>
         <Dropdown closeOnSelect={false}>
           <DropdownButton

@@ -29,10 +29,18 @@ function DropdownFunction({
 }: DropdownProps & DropdownVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const ddCtx = { isOpen, setIsOpen };
-
   const ddRef = useRef(null);
+  const referenceRef = useRef(null);
+  const popperRef = useRef(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const ddCtx = {
+    isOpen,
+    setIsOpen,
+    referenceRef,
+    popperRef
+  };
 
   const closeDropdown = (): void => {
     ddCtx.setIsOpen(false);

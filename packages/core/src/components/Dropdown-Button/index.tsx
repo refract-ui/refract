@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import styled from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -33,6 +33,7 @@ type DropdownButtonStates = '_hover' | '_active' | '_focus';
 type DropdownCtx = {
   isOpen?: boolean;
   setIsOpen?: (arg0: boolean) => boolean;
+  referenceRef?: any;
 };
 
 function DropdownButtonFunction({
