@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
 import DropdownButton from '../Dropdown-Button';
-import Dropdown from './index';
+import Dropdown, { PlacementTypes } from './index';
 import DropdownList from '../Dropdown-List';
 import DropdownItem from '../Dropdown-Item';
 import Icon from '../Icon';
@@ -20,19 +20,63 @@ const ComponentWrapper = styled.div`
   border-radius: 16px;
   box-shadow: 0 7px 11px 0 rgba(45, 45, 49, 0.1);
   display: flex;
+  flex-direction: column;
   margin: 1rem;
   padding: 1rem;
 `;
 
-const Spacer = styled(ComponentWrapper)`
-  height: 1000px;
+const LargeWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  height: 400px;
+  justify-content: space-between;
   width: 100%;
 `;
+
+const Header = styled.h1`
+  border-bottom: 1px solid #575c64;
+  color: #575c64;
+  font-family: 'Work Sans', sans serif;
+  font-size: 3rem;
+  font-weight: 300;
+`;
+
+const dropdownFn = (placement?: PlacementTypes) => (
+  <Dropdown placement={placement}>
+    <DropdownButton
+      color="info"
+      icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+    >
+      {placement ? placement : 'Default'}
+    </DropdownButton>
+    <DropdownList>
+      <DropdownItem>
+        <Icon name="Person" />
+        <span>A First One</span>
+      </DropdownItem>
+      <DropdownItem>
+        <Icon name="Calendar" />
+        <span>Boom Second</span>
+      </DropdownItem>
+      <DropdownItem>
+        <Icon name="Eye" />
+        <span>Cool Third</span>
+      </DropdownItem>
+      <DropdownItem isSelected>
+        <Icon name="Image" />
+        <span>Delicate Fourth</span>
+      </DropdownItem>
+      <DropdownItem>
+        <Icon name="Image" />
+        <span>Eager Five</span>
+      </DropdownItem>
+    </DropdownList>
+  </Dropdown>
+);
 
 storiesOf('Dropdown', module)
   .add('Default', () => (
     <OuterWrapper>
-      <Spacer />
       <ComponentWrapper>
         <Dropdown closeOnSelect={false}>
           <DropdownButton
@@ -264,6 +308,82 @@ storiesOf('Dropdown', module)
             </DropdownGroup>
           </DropdownList>
         </Dropdown>
+      </ComponentWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Positioning', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <Header>Default / Bottom-Start</Header>
+        <LargeWrapper>
+          {dropdownFn()}
+          {dropdownFn()}
+          {dropdownFn()}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn()}
+          {dropdownFn()}
+          {dropdownFn()}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn()}
+          {dropdownFn()}
+          {dropdownFn()}
+        </LargeWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Header>Top-Start</Header>
+        <LargeWrapper>
+          {dropdownFn('top-start')}
+          {dropdownFn('top-start')}
+          {dropdownFn('top-start')}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn('top-start')}
+          {dropdownFn('top-start')}
+          {dropdownFn('top-start')}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn('top-start')}
+          {dropdownFn('top-start')}
+          {dropdownFn('top-start')}
+        </LargeWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Header>Right</Header>
+        <LargeWrapper>
+          {dropdownFn('right')}
+          {dropdownFn('right')}
+          {dropdownFn('right')}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn('right')}
+          {dropdownFn('right')}
+          {dropdownFn('right')}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn('right')}
+          {dropdownFn('right')}
+          {dropdownFn('right')}
+        </LargeWrapper>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Header>Left</Header>
+        <LargeWrapper>
+          {dropdownFn('left')}
+          {dropdownFn('left')}
+          {dropdownFn('left')}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn('left')}
+          {dropdownFn('left')}
+          {dropdownFn('left')}
+        </LargeWrapper>
+        <LargeWrapper>
+          {dropdownFn('left')}
+          {dropdownFn('left')}
+          {dropdownFn('left')}
+        </LargeWrapper>
       </ComponentWrapper>
     </OuterWrapper>
   ));
