@@ -70,6 +70,8 @@ DropdownListFunction.defaultProps = {
 const DropdownListComponent = styled(DropdownListFunction)<
   ThemeComponent & DropdownListProps
 >`
+  box-shadow: 0 2px 6px 0 rgba(45, 45, 49, 0.13);
+  overflow-y: scroll;
   z-index: 1;
   ${({ componentCss }) => componentCss};
   ${() => {
@@ -102,11 +104,20 @@ const DropdownList = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'none'
+          bg: theme.components.dropdowns.bg,
+          border: {
+            ...theme.borders.md,
+            borderWidth: '0',
+            py: theme.spacing['3']
+          }
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        border: ({ border }) => {
+          return applyBorderStyle(border);
+        }
+      }
     };
   }
 });

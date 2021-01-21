@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import {
   Container,
@@ -10,9 +9,7 @@ import {
 } from '../../theme/containers';
 import { DropdownContext, DropdownCtxTypes } from '../Dropdown';
 
-type DropdownListWrapperTheme = {
-  border?: Partial<BorderBreakpointStyle>;
-};
+type DropdownListWrapperTheme = {};
 
 type DropdownListWrapperProps = {
   children?: React.ReactNode;
@@ -61,8 +58,6 @@ const DropdownListWrapperComponent = styled(DropdownListWrapperFunction)<
       `;
     }
   }}
-  box-shadow: 0 2px 6px 0 rgba(45, 45, 49, 0.13);
-  overflow-y: scroll;
 `;
 
 const DropdownListWrapper = createThemedComponent<
@@ -82,21 +77,13 @@ const DropdownListWrapper = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: theme.components.dropdowns.bg,
-          border: {
-            ...theme.borders.md,
-            borderWidth: '0'
-          },
           minW: '200px',
           minH: '100px',
           py: theme.spacing['3']
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {
-        border: ({ border, ...props }) => {
-          return applyBorderStyle(border);
-        }
-      }
+      mapPropsToStyle: {}
     };
   }
 });

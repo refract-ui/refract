@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  createContext,
-  useEffect,
-  useRef,
-  LegacyRef,
-  ReactElement
-} from 'react';
+import React, { useState, createContext, useEffect, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
