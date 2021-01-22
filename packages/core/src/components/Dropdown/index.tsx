@@ -12,7 +12,9 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 type DropdownTheme = {};
 
 type DropdownProps = {
-  children?: React.ReactNode | ((props: any) => any);
+  children?:
+    | React.ReactNode
+    | (({ isOpen }: { isOpen: boolean }) => React.ReactNode);
   closeOnSelect?: boolean;
   placement?: PlacementTypes;
   isDeferred?: boolean;

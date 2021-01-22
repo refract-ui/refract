@@ -416,12 +416,12 @@ storiesOf('Dropdown', module)
       <ComponentWrapper>{lazyDropdownFn(true, 'Deferred')}</ComponentWrapper>
     </OuterWrapper>
   ))
-  .add('Render Function', () => (
+  .add('Render Prop', () => (
     <OuterWrapper>
       <ComponentWrapper>
         <Dropdown>
-          {(props: any) => {
-            console.log('props', props);
+          {({ isOpen }) => {
+            console.log('isOpen', isOpen);
             return (
               <>
                 <DropdownButton
@@ -429,16 +429,14 @@ storiesOf('Dropdown', module)
                   activeIcon={{ icon: 'SimpleArrowUp', position: 'right' }}
                   closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
                 >
-                  {props.isOpen ? 'Open' : `Closed`}
+                  {isOpen ? 'Open' : `Closed`}
                 </DropdownButton>
                 <DropdownList>
                   <DropdownItem>
                     <span>Item One</span>
                   </DropdownItem>
                   <DropdownItem>
-                    <span>
-                      {props.isOpen ? 'Open Dropdown' : 'Closed Dropdown'}
-                    </span>
+                    <span>{isOpen ? 'Open Dropdown' : 'Closed Dropdown'}</span>
                   </DropdownItem>
                 </DropdownList>
               </>
