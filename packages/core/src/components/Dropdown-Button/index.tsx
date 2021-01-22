@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { ThemeComponent } from '../../theme';
 import createThemedComponent from '../../utils/createThemedComponent';
@@ -60,14 +60,16 @@ function DropdownButtonFunction({
 }: DropdownButtonProps & DropdownButtonVariants): JSX.Element {
   const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
 
+  const { isOpen, setIsOpen, referenceRef } = ddCtx;
+
   return (
     <Button
-      icon={renderIcon(ddCtx.isOpen, closedIcon, activeIcon)}
+      icon={renderIcon(isOpen, closedIcon, activeIcon)}
       color={color}
-      onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}
-      ariaExpanded={ddCtx.isOpen}
+      onClick={() => setIsOpen(!isOpen)}
+      ariaExpanded={isOpen}
       ariaControls={ariaControls}
-      buttonRef={ddCtx.referenceRef}
+      buttonRef={referenceRef}
     >
       {children}
     </Button>
