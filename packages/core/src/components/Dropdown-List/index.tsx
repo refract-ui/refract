@@ -34,11 +34,13 @@ function DropdownListFunction({
 
   const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
 
+  const { referenceRef, popperRef, placement } = ddCtx;
+
   const { styles, attributes } = usePopper(
-    ddCtx.referenceRef.current,
-    ddCtx.popperRef.current,
+    referenceRef.current,
+    popperRef.current,
     {
-      placement: ddCtx.placement,
+      placement: placement,
       modifiers: [
         {
           name: 'offset',
@@ -54,7 +56,7 @@ function DropdownListFunction({
   return (
     <div
       className={className}
-      ref={ddCtx.popperRef}
+      ref={popperRef}
       style={styles.popper}
       {...attributes.popper}
     >
