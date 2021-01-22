@@ -445,4 +445,37 @@ storiesOf('Dropdown', module)
         </Dropdown>
       </ComponentWrapper>
     </OuterWrapper>
+  ))
+  .add('w/ Links', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <Dropdown>
+          <DropdownButton
+            color="info"
+            activeIcon={{ icon: 'SimpleArrowUp', position: 'right' }}
+            closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
+          >
+            Links
+          </DropdownButton>
+          <DropdownList>
+            <DropdownItem>
+              <Icon name="Website" />
+              <a
+                href="https://www.google.com/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Google
+              </a>
+            </DropdownItem>
+            <DropdownItem>
+              <Icon name="Slack" />
+              <a href="https://slack.com/" target="_blank" rel="noreferrer">
+                Slack
+              </a>
+            </DropdownItem>
+          </DropdownList>
+        </Dropdown>
+      </ComponentWrapper>
+    </OuterWrapper>
   ));
