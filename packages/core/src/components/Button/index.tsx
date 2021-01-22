@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { get, isObject } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -13,7 +13,6 @@ import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 import { Icons } from '../Icons/icons';
 import Icon from '../Icons';
-import { DropdownContext } from '../Dropdown';
 
 // reduce to sets of types (text, box, etc.)?
 type ButtonTheme = {
@@ -42,13 +41,13 @@ type ButtonProps = {
   icon?: keyof Icons | IconObject | null;
   ariaExpanded?: boolean;
   ariaControls?: string;
-  ref?: any;
+  buttonRef?: any;
 };
 
 type DropdownCtx = {
   isOpen?: boolean;
   setIsOpen?: (arg0: boolean) => boolean;
-  referenceRef?: any;
+  referenceRef?: React.MutableRefObject<HTMLButtonElement> | null;
   popperRef?: any;
 };
 
@@ -58,6 +57,7 @@ function ButtonFunction({
   icon,
   ariaExpanded,
   ariaControls,
+  buttonRef,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -65,8 +65,6 @@ function ButtonFunction({
   const useIcon = isObject(icon) ? get(icon, 'icon', null) : icon;
   const iconPosition = isObject(icon) ? get(icon, 'position', 'left') : 'left';
   // console.log('{ useIcon, iconPosition }', { useIcon, iconPosition });
-  const ddCtx: DropdownCtx = useContext(DropdownContext);
-  // const referenceRef = useRef(null);
 
   return (
     <button
@@ -74,7 +72,7 @@ function ButtonFunction({
       onClick={onClick}
       aria-expanded={ariaExpanded}
       aria-controls={ariaControls}
-      ref={ddCtx.referenceRef}
+      ref={buttonRef}
     >
       {icon && iconPosition === 'left' && children && (
         <Icon name={useIcon as keyof Icons} />

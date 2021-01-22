@@ -67,6 +67,7 @@ function DropdownButtonFunction({
       onClick={() => ddCtx.setIsOpen(!ddCtx.isOpen)}
       ariaExpanded={ddCtx.isOpen}
       ariaControls={ariaControls}
+      buttonRef={ddCtx.referenceRef}
     >
       {children}
     </Button>
