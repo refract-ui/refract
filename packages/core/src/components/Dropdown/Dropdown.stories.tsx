@@ -229,11 +229,11 @@ storiesOf('Dropdown', module)
               <Icon name="Eye" />
             </DropdownItem>
             <DropdownDivider />
-            <DropdownItem>
-              <span>Delicate Fourth</span>
+            <DropdownItem isDisabled>
+              <span>Disabled Fourth</span>
               <Icon name="Image" />
             </DropdownItem>
-            <DropdownItem>
+            <DropdownItem isSelected>
               <span>Eager Five</span>
               <Icon name="Image" />
             </DropdownItem>

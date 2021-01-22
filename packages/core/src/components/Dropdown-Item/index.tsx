@@ -10,30 +10,40 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 
+type PointerEventTypes = 'auto' | 'none' | 'initial' | 'inherit';
+
 type DropdownItemTheme = {
   textColor?: string;
   iconColor?: string;
   border?: Partial<BorderBreakpointStyle>;
   fontSize?: string;
+  pointerEvents: PointerEventTypes;
 };
 type DropdownItemProps = {
   children?: string | React.ReactNode;
   onClick?: () => void;
+  isDisabled?: boolean;
 };
 type DropdownItemVariants = {
   isSelected?: boolean;
 };
-type DropdownItemStates = '_hover' | '_active' | '_focus';
+type DropdownItemStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function DropdownItemFunction({
   onClick,
   children,
+  isDisabled,
   ...props
 }: DropdownItemProps & DropdownItemVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   return (
-    <button className={className} role="menuitem" onClick={onClick}>
+    <button
+      className={className}
+      role="menuitem"
+      onClick={onClick}
+      disabled={isDisabled}
+    >
       {children}
     </button>
   );
@@ -71,7 +81,7 @@ const DropdownItem = createThemedComponent<
   defaultVariants: {
     isSelected: false
   },
-  states: ['_hover', '_active', '_focus'],
+  states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
@@ -104,7 +114,9 @@ const DropdownItem = createThemedComponent<
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           iconColor: ({ textColor }) =>
             lightenOrDarken({ color: textColor, amount: 30 }),
-          w: '100%'
+          w: '100%',
+          opacity: '1',
+          pointerEvents: 'auto'
         }
       },
 
@@ -121,6 +133,14 @@ const DropdownItem = createThemedComponent<
           _hover: ({ contrastColor, bg }) => {
             return contrastColor(bg);
           }
+        },
+        opacity: {
+          _disabled: () => {
+            return '0.5';
+          }
+        },
+        pointerEvents: {
+          _disabled: () => 'none'
         }
       },
 
@@ -145,6 +165,11 @@ const DropdownItem = createThemedComponent<
         fontSize: ({ fontSize }) => {
           return css`
             font-size: ${fontSize};
+          `;
+        },
+        pointerEvents: ({ pointerEvents }) => {
+          return css`
+            pointer-events: ${pointerEvents};
           `;
         }
       }
