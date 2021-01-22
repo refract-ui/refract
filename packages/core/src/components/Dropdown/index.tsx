@@ -15,6 +15,7 @@ type DropdownProps = {
   children?: React.ReactNode;
   closeOnSelect?: boolean;
   placement?: PlacementTypes;
+  isDeferred?: boolean;
 };
 
 type DropdownVariants = {};
@@ -44,6 +45,7 @@ export type DropdownCtxTypes = {
   referenceRef?: React.MutableRefObject<HTMLButtonElement>;
   popperRef?: React.MutableRefObject<HTMLDivElement>;
   placement?: PlacementTypes;
+  isDeferred?: boolean;
 };
 
 export const DropdownContext = createContext({});
@@ -52,6 +54,7 @@ function DropdownFunction({
   closeOnSelect,
   children,
   placement,
+  isDeferred,
   ...props
 }: DropdownProps & DropdownVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -67,7 +70,8 @@ function DropdownFunction({
     setIsOpen,
     referenceRef,
     popperRef,
-    placement
+    placement,
+    isDeferred
   };
 
   const closeDropdown = (): void => {
@@ -102,7 +106,8 @@ function DropdownFunction({
 DropdownFunction.defaultProps = {
   closeOnSelect: true,
   children: null,
-  placement: 'bottom-start'
+  placement: 'bottom-start',
+  isDeferred: false
 };
 
 const DropdownComponent = styled(DropdownFunction)<

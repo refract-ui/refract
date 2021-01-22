@@ -27,17 +27,37 @@ function DropdownListWrapperFunction({
 }: DropdownListWrapperProps & DropdownListWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return (
-    <div
-      className={className}
-      role="menu"
-      aria-orientation="vertical"
-      id={id}
-      tabIndex={-1}
-    >
-      {children}
-    </div>
-  );
+  const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
+
+  const { isDeferred, isOpen } = ddCtx;
+
+  if (isDeferred) {
+    return (
+      isOpen && (
+        <div
+          className={className}
+          role="menu"
+          aria-orientation="vertical"
+          id={id}
+          tabIndex={-1}
+        >
+          {children}
+        </div>
+      )
+    );
+  } else {
+    return (
+      <div
+        className={className}
+        role="menu"
+        aria-orientation="vertical"
+        id={id}
+        tabIndex={-1}
+      >
+        {children}
+      </div>
+    );
+  }
 }
 
 const DropdownListWrapperComponent = styled(DropdownListWrapperFunction)<

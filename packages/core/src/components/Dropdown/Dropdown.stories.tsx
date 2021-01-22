@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
+import faker from 'faker';
 
 import DropdownButton from '../Dropdown-Button';
 import Dropdown, { PlacementTypes } from './index';
@@ -9,6 +10,7 @@ import DropdownItem from '../Dropdown-Item';
 import Icon from '../Icon';
 import DropdownDivider from '../Dropdown-Divider';
 import DropdownGroup from '../Dropdown-Group';
+import { range } from 'lodash';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -71,6 +73,26 @@ const dropdownFn = (placement?: PlacementTypes) => (
         <Icon name="Image" />
         <span>Eager Five</span>
       </DropdownItem>
+    </DropdownList>
+  </Dropdown>
+);
+
+const lazyDropdownFn = (isDeferred: boolean, text: string) => (
+  <Dropdown isDeferred={isDeferred}>
+    <DropdownButton
+      color="info"
+      activeIcon={{ icon: 'SimpleArrowUp', position: 'right' }}
+      closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
+    >
+      {text ? text : ''}
+    </DropdownButton>
+    <DropdownList xs={{ maxH: '300px' }}>
+      {range(30).map(i => (
+        <DropdownItem key={i} onClick={() => alert('clicked')}>
+          <Icon name="Table" />
+          <span>{faker.lorem.words(2)}</span>
+        </DropdownItem>
+      ))}
     </DropdownList>
   </Dropdown>
 );
@@ -386,5 +408,11 @@ storiesOf('Dropdown', module)
           {dropdownFn('left')}
         </LargeWrapper>
       </ComponentWrapper>
+    </OuterWrapper>
+  ))
+  .add('Lazy Loading', () => (
+    <OuterWrapper>
+      <ComponentWrapper>{lazyDropdownFn(false, 'Normal')}</ComponentWrapper>
+      <ComponentWrapper>{lazyDropdownFn(true, 'Deferred')}</ComponentWrapper>
     </OuterWrapper>
   ));
