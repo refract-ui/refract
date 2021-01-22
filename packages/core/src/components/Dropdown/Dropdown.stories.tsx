@@ -415,4 +415,36 @@ storiesOf('Dropdown', module)
       <ComponentWrapper>{lazyDropdownFn(false, 'Normal')}</ComponentWrapper>
       <ComponentWrapper>{lazyDropdownFn(true, 'Deferred')}</ComponentWrapper>
     </OuterWrapper>
+  ))
+  .add('Render Function', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <Dropdown>
+          {(props: any) => {
+            console.log('props', props);
+            return (
+              <>
+                <DropdownButton
+                  color="info"
+                  activeIcon={{ icon: 'SimpleArrowUp', position: 'right' }}
+                  closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
+                >
+                  {props.isOpen ? 'Open' : `Closed`}
+                </DropdownButton>
+                <DropdownList>
+                  <DropdownItem>
+                    <span>Item One</span>
+                  </DropdownItem>
+                  <DropdownItem>
+                    <span>
+                      {props.isOpen ? 'Open Dropdown' : 'Closed Dropdown'}
+                    </span>
+                  </DropdownItem>
+                </DropdownList>
+              </>
+            );
+          }}
+        </Dropdown>
+      </ComponentWrapper>
+    </OuterWrapper>
   ));

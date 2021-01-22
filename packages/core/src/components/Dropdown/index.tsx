@@ -12,7 +12,7 @@ import useOutsideClick from '../../hooks/useOutsideClick';
 type DropdownTheme = {};
 
 type DropdownProps = {
-  children?: React.ReactNode;
+  children?: React.ReactNode | ((props: any) => any);
   closeOnSelect?: boolean;
   placement?: PlacementTypes;
   isDeferred?: boolean;
@@ -97,7 +97,9 @@ function DropdownFunction({
   return (
     <DropdownContext.Provider value={ddCtx}>
       <div className={className} ref={ddRef}>
-        {children}
+        {typeof children === 'function'
+          ? children({ isOpen: ddCtx.isOpen })
+          : children}
       </div>
     </DropdownContext.Provider>
   );
