@@ -98,7 +98,6 @@ const DropdownListWrapper = createThemedComponent<
         xs: {
           bg: theme.components.dropdowns.bg,
           minW: '200px',
-          minH: '100px',
           py: theme.spacing['3']
         }
       },

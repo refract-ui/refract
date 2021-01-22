@@ -224,17 +224,17 @@ storiesOf('Dropdown', module)
               <span>Boom Second</span>
               <Icon name="Calendar" />
             </DropdownItem>
-            <DropdownItem>
-              <span>Cool Third</span>
+            <DropdownItem isSelected isDisabled>
+              <span>Select and Disable</span>
               <Icon name="Eye" />
             </DropdownItem>
             <DropdownDivider />
             <DropdownItem isDisabled>
-              <span>Disabled Fourth</span>
+              <span>Disabled </span>
               <Icon name="Image" />
             </DropdownItem>
             <DropdownItem isSelected>
-              <span>Eager Five</span>
+              <span>Selected</span>
               <Icon name="Image" />
             </DropdownItem>
           </DropdownList>
