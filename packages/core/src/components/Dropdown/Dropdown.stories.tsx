@@ -10,6 +10,7 @@ import DropdownItem from '../Dropdown-Item';
 import Icon from '../Icon';
 import DropdownDivider from '../Dropdown-Divider';
 import DropdownGroup from '../Dropdown-Group';
+import CollapsingSection from '../Collapsing-Section';
 import { range } from 'lodash';
 
 const OuterWrapper = styled.div`
@@ -260,8 +261,10 @@ storiesOf('Dropdown', module)
               <DropdownGroup title="Group Two">
                 <DropdownItem>Element of the second group</DropdownItem>
                 <DropdownItem>A second group element, hover</DropdownItem>
-                <DropdownItem>Beware of the second element</DropdownItem>
-                <DropdownItem>Can be a third element</DropdownItem>
+                <DropdownGroup title="Nested">
+                  <DropdownItem>Beware of the second element</DropdownItem>
+                  <DropdownItem>Can be a third element</DropdownItem>
+                </DropdownGroup>
               </DropdownGroup>
             </DropdownGroup>
           </DropdownList>
@@ -329,6 +332,57 @@ storiesOf('Dropdown', module)
                 </DropdownItem>
               </DropdownGroup>
             </DropdownGroup>
+          </DropdownList>
+        </Dropdown>
+      </ComponentWrapper>
+
+      <ComponentWrapper>
+        <Dropdown>
+          <DropdownButton>Groups</DropdownButton>
+          <DropdownList xs={{ maxH: '360px' }}>
+            <DropdownGroup title="Group One">
+              <DropdownItem>A first group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+              <DropdownItem isSelected>
+                Delicate fourth element, active
+              </DropdownItem>
+              <DropdownItem>Eager fifth element</DropdownItem>
+              <DropdownDivider />
+              <DropdownGroup title="Group Two">
+                <DropdownItem>Element of the second group</DropdownItem>
+                <DropdownItem>A second group element, hover</DropdownItem>
+                <DropdownItem>Beware of the second element</DropdownItem>
+                <DropdownItem>Can be a third element</DropdownItem>
+              </DropdownGroup>
+            </DropdownGroup>
+          </DropdownList>
+        </Dropdown>
+      </ComponentWrapper>
+    </OuterWrapper>
+  ))
+  .add('w/ Collapsing Sections', () => (
+    <OuterWrapper>
+      <ComponentWrapper>
+        <Dropdown closeOnSelect={false}>
+          <DropdownButton>Collapsing</DropdownButton>
+          <DropdownList>
+            <CollapsingSection title="Group One">
+              <DropdownItem>A first group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+              <DropdownItem isSelected>
+                Delicate fourth element, active
+              </DropdownItem>
+              <DropdownItem>Eager fifth element</DropdownItem>
+            </CollapsingSection>
+            <DropdownDivider />
+            <CollapsingSection title="Group Two">
+              <DropdownItem>Element of the second group</DropdownItem>
+              <DropdownItem>A second group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+            </CollapsingSection>
           </DropdownList>
         </Dropdown>
       </ComponentWrapper>
