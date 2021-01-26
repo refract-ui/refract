@@ -367,7 +367,14 @@ storiesOf('Dropdown', module)
         <Dropdown closeOnSelect={false}>
           <DropdownButton>Collapsing</DropdownButton>
           <DropdownList>
-            <CollapsingSection title="Group One">
+            <CollapsingSection
+              icon={{
+                icon: 'SimpleArrowDown',
+                position: 'right',
+                isRotating: true
+              }}
+              title="Group One"
+            >
               <DropdownItem>A first group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
               <DropdownItem>Can be a third element</DropdownItem>
@@ -376,8 +383,14 @@ storiesOf('Dropdown', module)
               </DropdownItem>
               <DropdownItem>Eager fifth element</DropdownItem>
             </CollapsingSection>
-            <DropdownDivider />
-            <CollapsingSection title="Group Two">
+            <CollapsingSection
+              title="Group Two"
+              icon={{
+                icon: 'SimpleArrowDown',
+                position: 'right',
+                isRotating: true
+              }}
+            >
               <DropdownItem>Element of the second group</DropdownItem>
               <DropdownItem>A second group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
@@ -483,7 +496,7 @@ storiesOf('Dropdown', module)
                   activeIcon={{ icon: 'SimpleArrowUp', position: 'right' }}
                   closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
                 >
-                  {isOpen ? 'Open' : `Closed`}
+                  {isOpen ? 'Open' : 'Closed'}
                 </DropdownButton>
                 <DropdownList>
                   <DropdownItem>
