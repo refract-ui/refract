@@ -13,7 +13,7 @@ export { default as DropdownItem } from './components/Dropdown-Item';
 export { default as DropdownDivider } from './components/Dropdown-Divider';
 export { default as DropdownGroup } from './components/Dropdown-Group';
 export { default as DropdownList } from './components/Dropdown-List';
-export { default as CollapsingSection } from './components/Collapsing-Section';
+export { default as CollapsingList } from './components/Collapsing-List';
 
 // theme
 export { default as theme } from './theme';

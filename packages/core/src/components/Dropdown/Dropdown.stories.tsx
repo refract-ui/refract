@@ -10,7 +10,7 @@ import DropdownItem from '../Dropdown-Item';
 import Icon from '../Icon';
 import DropdownDivider from '../Dropdown-Divider';
 import DropdownGroup from '../Dropdown-Group';
-import CollapsingSection from '../Collapsing-Section';
+import CollapsingList from '../Collapsing-List';
 import { range } from 'lodash';
 
 const OuterWrapper = styled.div`
@@ -361,13 +361,13 @@ storiesOf('Dropdown', module)
       </ComponentWrapper>
     </OuterWrapper>
   ))
-  .add('w/ Collapsing Sections', () => (
+  .add('w/ Collapsing Lists', () => (
     <OuterWrapper>
       <ComponentWrapper>
         <Dropdown closeOnSelect={false}>
           <DropdownButton>Collapsing</DropdownButton>
           <DropdownList>
-            <CollapsingSection
+            <CollapsingList
               icon={{
                 icon: 'SimpleArrowDown',
                 position: 'right',
@@ -382,8 +382,8 @@ storiesOf('Dropdown', module)
                 Delicate fourth element, active
               </DropdownItem>
               <DropdownItem>Eager fifth element</DropdownItem>
-            </CollapsingSection>
-            <CollapsingSection
+            </CollapsingList>
+            <CollapsingList
               title="Group Two"
               icon={{
                 icon: 'SimpleArrowDown',
@@ -395,7 +395,7 @@ storiesOf('Dropdown', module)
               <DropdownItem>A second group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
               <DropdownItem>Can be a third element</DropdownItem>
-            </CollapsingSection>
+            </CollapsingList>
           </DropdownList>
         </Dropdown>
       </ComponentWrapper>
