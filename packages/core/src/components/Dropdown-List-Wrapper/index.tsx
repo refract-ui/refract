@@ -63,6 +63,9 @@ function DropdownListWrapperFunction({
 const DropdownListWrapperComponent = styled(DropdownListWrapperFunction)<
   ThemeComponent & DropdownListWrapperProps
 >`
+  // overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
   ${({ componentCss }) => componentCss};
   ${() => {
     const ddCtx: DropdownCtxTypes = useContext(DropdownContext);

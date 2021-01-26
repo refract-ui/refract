@@ -103,8 +103,8 @@ function CollapsingSectionFunction({
         <div
           style={
             isSectionOpen
-              ? { maxHeight: '1000px' }
-              : { maxHeight: '0', overflow: 'hidden' }
+              ? { maxHeight: '1000px', marginLeft: '16px' }
+              : { maxHeight: '0', overflow: 'hidden', marginLeft: '16px' }
           }
         >
           {children}
@@ -168,12 +168,12 @@ const CollapsingSection = createThemedComponent<
           fontSize: '1rem',
           my: '0',
           pr: theme.spacing['3'],
+          pl: '0',
           ml: theme.spacing['3'],
           py: theme.spacing['2'],
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           iconColor: ({ textColor }) =>
             lightenOrDarken({ color: textColor, amount: 30 }),
-          w: '100%',
           opacity: '1',
           pointerEvents: 'auto'
         }

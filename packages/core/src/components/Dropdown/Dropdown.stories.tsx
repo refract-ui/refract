@@ -365,7 +365,7 @@ storiesOf('Dropdown', module)
     <OuterWrapper>
       <ComponentWrapper>
         <Dropdown>
-          <DropdownButton>Collapsing</DropdownButton>
+          <DropdownButton>Right Icons</DropdownButton>
           <DropdownList>
             <CollapsingList
               icon={{
@@ -391,6 +391,96 @@ storiesOf('Dropdown', module)
                 isRotating: true
               }}
             >
+              <DropdownItem>Element of the second group</DropdownItem>
+              <DropdownItem>A second group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+            </CollapsingList>
+            <CollapsingList
+              title="Group Three"
+              icon={{
+                icon: 'SimpleArrowDown',
+                position: 'right',
+                isRotating: true
+              }}
+            >
+              <DropdownItem>Element of the second group</DropdownItem>
+              <DropdownItem>A second group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+            </CollapsingList>
+          </DropdownList>
+        </Dropdown>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Dropdown>
+          <DropdownButton>Left Icons</DropdownButton>
+          <DropdownList>
+            <CollapsingList
+              icon={{
+                icon: 'SimpleArrowDown',
+                position: 'left',
+                isRotating: true
+              }}
+              title="Group One"
+            >
+              <DropdownItem>A first group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+              <DropdownItem isSelected>
+                Delicate fourth element, active
+              </DropdownItem>
+              <DropdownItem>Eager fifth element</DropdownItem>
+            </CollapsingList>
+            <CollapsingList
+              title="Group Two"
+              icon={{
+                icon: 'SimpleArrowDown',
+                position: 'left',
+                isRotating: true
+              }}
+            >
+              <DropdownItem>Element of the second group</DropdownItem>
+              <DropdownItem>A second group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+            </CollapsingList>
+            <CollapsingList
+              title="Group Three"
+              icon={{
+                icon: 'SimpleArrowDown',
+                position: 'left',
+                isRotating: true
+              }}
+            >
+              <DropdownItem>Element of the second group</DropdownItem>
+              <DropdownItem>A second group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+            </CollapsingList>
+          </DropdownList>
+        </Dropdown>
+      </ComponentWrapper>
+      <ComponentWrapper>
+        <Dropdown>
+          <DropdownButton>No Icons</DropdownButton>
+          <DropdownList>
+            <CollapsingList title="Group One">
+              <DropdownItem>A first group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+              <DropdownItem isSelected>
+                Delicate fourth element, active
+              </DropdownItem>
+              <DropdownItem>Eager fifth element</DropdownItem>
+            </CollapsingList>
+            <CollapsingList title="Group Two">
+              <DropdownItem>Element of the second group</DropdownItem>
+              <DropdownItem>A second group element, hover</DropdownItem>
+              <DropdownItem>Beware of the second element</DropdownItem>
+              <DropdownItem>Can be a third element</DropdownItem>
+            </CollapsingList>
+            <CollapsingList title="Group Three">
               <DropdownItem>Element of the second group</DropdownItem>
               <DropdownItem>A second group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
