@@ -194,6 +194,15 @@ const CollapsingSection = createThemedComponent<
             color: ${textColor};
           `;
         },
+        iconColor: ({ iconColor }) => {
+          return css`
+            svg {
+              path {
+                fill: ${iconColor};
+              }
+            }
+          `;
+        },
         fontSize: ({ fontSize }) => {
           return css`
             font-size: ${fontSize};
