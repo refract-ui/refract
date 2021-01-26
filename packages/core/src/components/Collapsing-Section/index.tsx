@@ -79,6 +79,7 @@ function CollapsingSectionFunction({
             <Icon name={useIcon as keyof Icons} />
           </div>
         )}
+
         {title && <span>{title}</span>}
 
         {icon && iconPosition === 'right' && (
@@ -100,7 +101,17 @@ function CollapsingSectionFunction({
           </div>
         )}
       </button>
-      {isSectionOpen && <div>{children}</div>}
+      {
+        <div
+          style={
+            isSectionOpen
+              ? { maxHeight: '1000px' }
+              : { maxHeight: '0', overflow: 'hidden' }
+          }
+        >
+          {children}
+        </div>
+      }
     </>
   );
 }
