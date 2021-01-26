@@ -46,6 +46,7 @@ const DropdownDivider = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
+          mx: '0',
           bg: ({ contrastColor }) =>
             contrastColor(theme.components.dropdowns.bg)
         }

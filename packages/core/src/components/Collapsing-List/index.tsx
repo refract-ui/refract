@@ -12,6 +12,7 @@ import {
 import lightenOrDarken from '../../utils/lightenOrDarken';
 import { Icons } from '../Icons/icons';
 import Icon from '../Icons';
+import CollapsingListContainer from '../Collapsing-List-Container';
 
 type CollapsingSectionTheme = {
   textColor?: string;
@@ -100,15 +101,9 @@ function CollapsingSectionFunction({
         )}
       </button>
       {
-        <div
-          style={
-            isSectionOpen
-              ? { maxHeight: '1000px', marginLeft: '16px' }
-              : { maxHeight: '0', overflow: 'hidden', marginLeft: '16px' }
-          }
-        >
+        <CollapsingListContainer isSectionOpen={isSectionOpen}>
           {children}
-        </div>
+        </CollapsingListContainer>
       }
     </>
   );
