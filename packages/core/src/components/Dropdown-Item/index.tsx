@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -9,6 +9,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
+import { DropdownContext, DropdownCtxTypes } from '../Dropdown';
 
 type PointerEventTypes = 'auto' | 'none' | 'initial' | 'inherit';
 
@@ -21,7 +22,7 @@ type DropdownItemTheme = {
 };
 type DropdownItemProps = {
   children?: string | React.ReactNode;
-  onClick?: () => void;
+  onClick?: any;
   isDisabled?: boolean;
 };
 type DropdownItemVariants = {
@@ -37,11 +38,18 @@ function DropdownItemFunction({
 }: DropdownItemProps & DropdownItemVariants): JSX.Element {
   const className = get(props, 'className', null);
 
+  const ddCtx: DropdownCtxTypes = useContext(DropdownContext);
+
+  const { closeOnSelect, setIsOpen } = ddCtx;
+
   return (
     <button
       className={className}
       role="menuitem"
-      onClick={onClick}
+      onClick={() => {
+        closeOnSelect ? setIsOpen(false) : null;
+        onClick ? onClick() : null;
+      }}
       disabled={isDisabled}
     >
       {children}

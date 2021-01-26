@@ -102,7 +102,7 @@ storiesOf('Dropdown', module)
   .add('Default', () => (
     <OuterWrapper>
       <ComponentWrapper>
-        <Dropdown closeOnSelect={false}>
+        <Dropdown>
           <DropdownButton
             color="secondary"
             closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
@@ -272,7 +272,7 @@ storiesOf('Dropdown', module)
       </ComponentWrapper>
 
       <ComponentWrapper>
-        <Dropdown closeOnSelect>
+        <Dropdown>
           <DropdownButton
             color="secondary"
             closedIcon={{ icon: 'SimpleArrowDown', position: 'right' }}
@@ -364,7 +364,7 @@ storiesOf('Dropdown', module)
   .add('w/ Collapsing Lists', () => (
     <OuterWrapper>
       <ComponentWrapper>
-        <Dropdown closeOnSelect={false}>
+        <Dropdown>
           <DropdownButton>Collapsing</DropdownButton>
           <DropdownList>
             <CollapsingList

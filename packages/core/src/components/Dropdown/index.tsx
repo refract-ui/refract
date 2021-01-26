@@ -48,6 +48,7 @@ export type DropdownCtxTypes = {
   popperRef?: React.MutableRefObject<HTMLDivElement>;
   placement?: PlacementTypes;
   isDeferred?: boolean;
+  closeOnSelect?: boolean;
 };
 
 export const DropdownContext = createContext({});
@@ -73,28 +74,15 @@ function DropdownFunction({
     referenceRef,
     popperRef,
     placement,
-    isDeferred
+    isDeferred,
+    closeOnSelect
   };
 
-  const closeDropdown = (): void => {
+  const closeDropdown = (e: MouseEvent): void => {
     ddCtx.setIsOpen(false);
   };
 
-  if (closeOnSelect) {
-    useEffect(() => {
-      if (ddCtx.isOpen) {
-        document.addEventListener('click', closeDropdown);
-      } else {
-        document.removeEventListener('click', closeDropdown);
-      }
-
-      return () => {
-        document.removeEventListener('click', closeDropdown);
-      };
-    });
-  } else {
-    useOutsideClick(ddRef, ddCtx.isOpen, closeDropdown);
-  }
+  useOutsideClick(ddRef, ddCtx.isOpen, closeDropdown);
 
   return (
     <DropdownContext.Provider value={ddCtx}>

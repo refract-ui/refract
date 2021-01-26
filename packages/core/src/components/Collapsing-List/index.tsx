@@ -55,11 +55,9 @@ function CollapsingSectionFunction({
   return (
     <>
       <button
+        aria-expanded={isSectionOpen}
         className={className}
-        onClick={e => {
-          e.stopPropagation();
-          setIsSectionOpen(!isSectionOpen);
-        }}
+        onClick={() => setIsSectionOpen(!isSectionOpen)}
       >
         {icon && iconPosition === 'left' && (
           <div
