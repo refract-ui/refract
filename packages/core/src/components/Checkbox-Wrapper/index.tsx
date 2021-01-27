@@ -11,47 +11,37 @@ import {
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
-import CheckboxWrapper from '../Checkbox-Wrapper';
 
-type CheckboxTheme = {};
+type CheckboxWrapperTheme = {};
 
-type CheckboxProps = {};
+type CheckboxWrapperProps = {
+  children?: any;
+};
 
-type CheckboxVariants = {};
+type CheckboxWrapperVariants = {};
 
-type CheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
+type CheckboxWrapperStates = '_hover' | '_active' | '_focus' | '_disabled';
 
-function CheckboxFunction({
+function CheckboxWrapperFunction({
+  children,
   ...props
-}: CheckboxProps & CheckboxVariants): JSX.Element {
+}: CheckboxWrapperProps & CheckboxWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return (
-    <label className={className}>
-      <input type="checkbox" className="" />
-      <CheckboxWrapper>Checkbox</CheckboxWrapper>
-    </label>
-  );
+  return <div className={className}>{children}</div>;
 }
 
-const CheckboxComponent = styled(CheckboxFunction)<
-  ThemeComponent & CheckboxProps
+const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
+  ThemeComponent & CheckboxWrapperProps
 >`
   ${({ componentCss }) => componentCss};
-  display: inline-flex;
-  font-family: 'Work Sans', sans serif;
-  font-weight: 300;
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
-const Checkbox = createThemedComponent<
-  CheckboxTheme,
-  CheckboxVariants,
-  CheckboxStates,
-  CheckboxProps,
+const CheckboxWrapper = createThemedComponent<
+  CheckboxWrapperTheme,
+  CheckboxWrapperVariants,
+  CheckboxWrapperStates,
+  CheckboxWrapperProps,
   Container
 >({
   defaultVariants: {},
@@ -59,7 +49,7 @@ const Checkbox = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: CheckboxComponent,
+      Component: CheckboxWrapperComponent,
 
       variantMapping: {},
       defaultStyleMapping: {
@@ -73,4 +63,4 @@ const Checkbox = createThemedComponent<
   }
 });
 
-export default Checkbox;
+export default CheckboxWrapper;
