@@ -12,7 +12,9 @@ import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 
-type CheckboxWrapperTheme = {};
+type CheckboxWrapperTheme = {
+  border?: Partial<BorderBreakpointStyle>;
+};
 
 type CheckboxWrapperProps = {
   children?: any;
@@ -28,7 +30,12 @@ function CheckboxWrapperFunction({
 }: CheckboxWrapperProps & CheckboxWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  return <div className={className}>{children}</div>;
+  return (
+    <>
+      <div className={className}></div>
+      <div className="gfx-checkbox-wrapper">{children}</div>
+    </>
+  );
 }
 
 const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
@@ -54,11 +61,23 @@ const CheckboxWrapper = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'none'
+          bg: 'navajowhite',
+          border: {
+            ...theme.borders.xs,
+            borderWidth: '1px',
+            borderColor: theme.secondary
+          },
+          h: '10px',
+          mr: theme.spacing['2'],
+          w: '10px'
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        border: ({ border }) => {
+          return applyBorderStyle(border);
+        }
+      }
     };
   }
 });
