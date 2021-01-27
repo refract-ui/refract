@@ -18,10 +18,24 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 `;
 
-storiesOf('Checkbox', module).add('default', () => (
-  <OuterWrapper>
-    <SectionWrapper>
-      <Checkbox />
-    </SectionWrapper>
-  </OuterWrapper>
-));
+storiesOf('Checkbox', module).add('default', () => {
+  function Parent({ children }: any): any {
+    const [state, setState] = useState({ value: false });
+    return <div>{children(state, setState)}</div>;
+  }
+
+  return (
+    <OuterWrapper>
+      <Parent>
+        {(state: any, setState: any) => (
+          <SectionWrapper>
+            <Checkbox
+              isChecked={state.value}
+              onChange={() => setState({ value: !state.value })}
+            />
+          </SectionWrapper>
+        )}
+      </Parent>
+    </OuterWrapper>
+  );
+});

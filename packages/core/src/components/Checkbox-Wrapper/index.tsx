@@ -1,16 +1,15 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { get, isObject } from 'lodash';
+import styled from 'styled-components';
+import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { ThemeColors } from '../../theme/themeColors';
-import { ThemeColorShades } from '../../theme/themeColorShades';
 import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
-import lightenOrDarken from '../../utils/lightenOrDarken';
+
+import Icon from '../Icons';
 
 type CheckboxWrapperTheme = {
   border?: Partial<BorderBreakpointStyle>;
@@ -18,21 +17,36 @@ type CheckboxWrapperTheme = {
 
 type CheckboxWrapperProps = {
   children?: any;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  name?: string;
+  onChange?: (event: any) => void;
+  value?: string | number;
 };
 
-type CheckboxWrapperVariants = {};
+type CheckboxWrapperVariants = {
+  isChecked?: boolean;
+};
 
 type CheckboxWrapperStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function CheckboxWrapperFunction({
   children,
+  isChecked,
+  isDisabled,
+  isRequired,
+  name,
+  onChange,
+  value,
   ...props
 }: CheckboxWrapperProps & CheckboxWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   return (
     <>
-      <div className={className}></div>
+      <div className={className}>
+        {isChecked && <Icon name="Check" iconColor="white" />}
+      </div>
       <div className="gfx-checkbox-wrapper">{children}</div>
     </>
   );
@@ -41,7 +55,13 @@ function CheckboxWrapperFunction({
 const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
   ThemeComponent & CheckboxWrapperProps
 >`
-  ${({ componentCss }) => componentCss};
+  ${({ componentCss, ...props }) => {
+    console.log('props are: ', props);
+    return componentCss;
+  }};
+  align-items: center;
+  display: flex;
+  justify-content: center;
 `;
 
 const CheckboxWrapper = createThemedComponent<
@@ -51,17 +71,27 @@ const CheckboxWrapper = createThemedComponent<
   CheckboxWrapperProps,
   Container
 >({
-  defaultVariants: {},
+  defaultVariants: {
+    isChecked: false
+  },
   states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
       Component: CheckboxWrapperComponent,
 
-      variantMapping: {},
+      variantMapping: {
+        isChecked: ({ isChecked }) => {
+          if (isChecked) {
+            return {
+              bg: theme.primary
+            };
+          }
+        }
+      },
       defaultStyleMapping: {
         xs: {
-          bg: 'navajowhite',
+          bg: 'none',
           border: {
             ...theme.borders.xs,
             borderWidth: '1px',
@@ -74,7 +104,7 @@ const CheckboxWrapper = createThemedComponent<
       },
       cascadeStateProps: {},
       mapPropsToStyle: {
-        border: ({ border }) => {
+        border: ({ border, ...props }) => {
           return applyBorderStyle(border);
         }
       }

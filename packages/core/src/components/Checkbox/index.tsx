@@ -1,38 +1,74 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
-import { get, isObject } from 'lodash';
+import styled from 'styled-components';
+import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
-import { ThemeColors } from '../../theme/themeColors';
-import { ThemeColorShades } from '../../theme/themeColorShades';
 import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
-import lightenOrDarken from '../../utils/lightenOrDarken';
 import CheckboxWrapper from '../Checkbox-Wrapper';
 
 type CheckboxTheme = {};
 
-type CheckboxProps = {};
+type CheckboxProps = {
+  isChecked?: boolean;
+  isDisabled?: boolean;
+  isRequired?: boolean;
+  name?: string;
+  onChange?: (event?: any) => void;
+  value?: string | number;
+};
 
 type CheckboxVariants = {};
 
 type CheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function CheckboxFunction({
+  isChecked,
+  isDisabled,
+  isRequired,
+  name,
+  onChange,
+  value,
   ...props
 }: CheckboxProps & CheckboxVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   return (
-    <label className={className}>
-      <input type="checkbox" className="" />
-      <CheckboxWrapper>Checkbox</CheckboxWrapper>
+    <label
+      className={className}
+      htmlFor="gfx-checkbox"
+      onClick={e => {
+        e.preventDefault();
+        onChange();
+      }}
+    >
+      <input
+        type="checkbox"
+        id="gfx-checkbox"
+        // checked={isChecked}
+        // onChange={() => null}
+      />
+      <CheckboxWrapper
+        isChecked={isChecked}
+        isDisabled={isDisabled}
+        isRequired={isRequired}
+        name={name}
+        value={value}
+        // onChange={onChange}
+      >
+        Checkbox
+      </CheckboxWrapper>
     </label>
   );
 }
+
+CheckboxFunction.defaultProps = {
+  isChecked: false,
+  isDisabled: false,
+  isRequired: false
+};
 
 const CheckboxComponent = styled(CheckboxFunction)<
   ThemeComponent & CheckboxProps
@@ -44,8 +80,6 @@ const CheckboxComponent = styled(CheckboxFunction)<
   font-weight: 300;
   position: relative;
   vertical-align: top;
-
-  border: 1px dotted blue;
 
   input[type='checkbox'] {
     border: 0px;
