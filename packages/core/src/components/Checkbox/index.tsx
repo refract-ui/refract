@@ -48,8 +48,6 @@ function CheckboxFunction({
         isChecked={isChecked}
         isDisabled={isDisabled}
         isRequired={isRequired}
-        // name={name}
-        // value={value}
       >
         Checkbox
       </CheckboxWrapper>

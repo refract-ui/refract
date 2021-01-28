@@ -44,7 +44,7 @@ function CheckboxWrapperFunction({
 
   return (
     <>
-      <div className={className}>
+      <div className={className} aria-hidden>
         {isChecked && <Icon name="Check" iconColor="white" />}
       </div>
       <div className="gfx-checkbox-wrapper">{children}</div>
