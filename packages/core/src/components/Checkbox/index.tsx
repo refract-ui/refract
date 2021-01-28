@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import {
@@ -9,7 +9,10 @@ import {
 import createThemedComponent from '../../utils/createThemedComponent';
 import CheckboxWrapper from '../Checkbox-Wrapper';
 
-type CheckboxTheme = {};
+type CheckboxTheme = {
+  cursor?: string;
+  labelStyles?: string;
+};
 
 type CheckboxProps = {
   children?: any;
@@ -50,6 +53,7 @@ function CheckboxFunction({
         value={value}
         onFocus={() => setIsInputFocused(true)}
         onBlur={() => setIsInputFocused(false)}
+        required={isRequired}
       />
       <CheckboxWrapper
         isChecked={isChecked}
@@ -95,10 +99,6 @@ const CheckboxComponent = styled(CheckboxFunction)<
   //   white-space: nowrap;
   //   width: 1px;
   // }
-
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const Checkbox = createThemedComponent<
@@ -118,11 +118,33 @@ const Checkbox = createThemedComponent<
       variantMapping: {},
       defaultStyleMapping: {
         xs: {
-          bg: 'none'
+          bg: 'none',
+          cursor: 'pointer',
+          labelStyles: '1'
         }
       },
       cascadeStateProps: {},
-      mapPropsToStyle: {}
+      mapPropsToStyle: {
+        cursor: ({ cursor, componentProps: { isDisabled } }) => {
+          let updatedCursor = cursor;
+          if (isDisabled) {
+            updatedCursor = 'not-allowed';
+          }
+          return css`
+            &:hover {
+              cursor: ${updatedCursor};
+            }
+          `;
+        },
+        labelStyles: ({ componentProps: { isDisabled } }) => {
+          console.log('In index.tsx, this is isDisabled: ', isDisabled);
+          return css`
+            & > div {
+              opacity: ${isDisabled ? '0.4' : '1'};
+            }
+          `;
+        }
+      }
     };
   }
 });

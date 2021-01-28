@@ -59,7 +59,6 @@ const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
   ThemeComponent & CheckboxWrapperProps
 >`
   ${({ componentCss, ...props }) => {
-    console.log('props are: ', props);
     return componentCss;
   }};
   align-items: center;
@@ -115,7 +114,7 @@ const CheckboxWrapper = createThemedComponent<
         outline: ({ componentProps: { isFocused }, outlineColor }) => {
           if (isFocused) {
             return css`
-              box-shadow: 0 0px 8px ${outlineColor};
+              box-shadow: 0 0px 3px ${outlineColor};
               /* outline: ${outlineColor} solid 1px; */
             `;
           }
