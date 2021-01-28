@@ -28,12 +28,17 @@ storiesOf('Checkbox', module).add('default', () => {
     <OuterWrapper>
       <Parent>
         {(state: any, setState: any) => (
-          <SectionWrapper>
-            <Checkbox
-              isChecked={state.value}
-              onChange={() => setState({ value: !state.value })}
-            />
-          </SectionWrapper>
+          <>
+            <SectionWrapper>
+              <Checkbox
+                isChecked={state.value}
+                onChange={() => setState({ value: !state.value })}
+                name="checkbox-1"
+                value={state.value}
+              />
+            </SectionWrapper>
+            <pre>Checkbox State in Story: {JSON.stringify(state)}</pre>
+          </>
         )}
       </Parent>
     </OuterWrapper>

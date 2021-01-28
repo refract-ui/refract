@@ -37,13 +37,19 @@ function CheckboxFunction({
 
   return (
     <label className={className}>
-      <input type="checkbox" checked={isChecked} onChange={onChange} />
+      <input
+        type="checkbox"
+        checked={isChecked}
+        onChange={onChange}
+        name={name}
+        value={value}
+      />
       <CheckboxWrapper
         isChecked={isChecked}
         isDisabled={isDisabled}
         isRequired={isRequired}
-        name={name}
-        value={value}
+        // name={name}
+        // value={value}
       >
         Checkbox
       </CheckboxWrapper>
