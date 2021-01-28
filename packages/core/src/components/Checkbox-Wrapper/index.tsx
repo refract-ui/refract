@@ -13,11 +13,14 @@ import Icon from '../Icons';
 
 type CheckboxWrapperTheme = {
   border?: Partial<BorderBreakpointStyle>;
+  outline?: string;
+  outlineColor?: string;
 };
 
 type CheckboxWrapperProps = {
   children?: any;
   isDisabled?: boolean;
+  isFocused?: boolean;
   isRequired?: boolean;
   name?: string;
   onChange?: (event: any) => void;
@@ -99,6 +102,8 @@ const CheckboxWrapper = createThemedComponent<
           },
           h: '10px',
           mr: theme.spacing['2'],
+          outline: 'none',
+          outlineColor: theme.primary,
           w: '10px'
         }
       },
@@ -106,6 +111,14 @@ const CheckboxWrapper = createThemedComponent<
       mapPropsToStyle: {
         border: ({ border, ...props }) => {
           return applyBorderStyle(border);
+        },
+        outline: ({ componentProps: { isFocused }, outlineColor }) => {
+          if (isFocused) {
+            return css`
+              box-shadow: 0 0px 8px ${outlineColor};
+              /* outline: ${outlineColor} solid 1px; */
+            `;
+          }
         }
       }
     };

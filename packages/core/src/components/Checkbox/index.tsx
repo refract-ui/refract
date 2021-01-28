@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { get } from 'lodash';
 import { ThemeComponent } from '../../theme';
@@ -12,6 +12,7 @@ import CheckboxWrapper from '../Checkbox-Wrapper';
 type CheckboxTheme = {};
 
 type CheckboxProps = {
+  children?: any;
   isChecked?: boolean;
   isDisabled?: boolean;
   isRequired?: boolean;
@@ -25,6 +26,7 @@ type CheckboxVariants = {};
 type CheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function CheckboxFunction({
+  children,
   isChecked,
   isDisabled,
   isRequired,
@@ -35,22 +37,27 @@ function CheckboxFunction({
 }: CheckboxProps & CheckboxVariants): JSX.Element {
   const className = get(props, 'className', null);
 
+  const [isInputFocused, setIsInputFocused] = useState(false);
+
   return (
     <label className={className}>
       <input
         type="checkbox"
         checked={isChecked}
+        disabled={isDisabled}
         onChange={onChange}
         name={name}
         value={value}
+        onFocus={() => setIsInputFocused(true)}
+        onBlur={() => setIsInputFocused(false)}
       />
       <CheckboxWrapper
         isChecked={isChecked}
         isDisabled={isDisabled}
         isRequired={isRequired}
-      >
-        Checkbox
-      </CheckboxWrapper>
+        isFocused={isInputFocused}
+      />
+      <div>{children}</div>
     </label>
   );
 }
@@ -71,6 +78,11 @@ const CheckboxComponent = styled(CheckboxFunction)<
   font-weight: 300;
   position: relative;
   vertical-align: top;
+
+  // input[type='checkbox']:focus + div {
+  //   outline: #5d9dd5 solid 1px;
+  //   box-shadow: 0 0px 8px #5e9ed6;
+  // }
 
   // input[type='checkbox'] {
   //   border: 0px;
