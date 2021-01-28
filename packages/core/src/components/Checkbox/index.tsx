@@ -36,27 +36,14 @@ function CheckboxFunction({
   const className = get(props, 'className', null);
 
   return (
-    <label
-      className={className}
-      htmlFor="gfx-checkbox"
-      onClick={e => {
-        e.preventDefault();
-        onChange();
-      }}
-    >
-      <input
-        type="checkbox"
-        id="gfx-checkbox"
-        // checked={isChecked}
-        // onChange={() => null}
-      />
+    <label className={className}>
+      <input type="checkbox" checked={isChecked} onChange={onChange} />
       <CheckboxWrapper
         isChecked={isChecked}
         isDisabled={isDisabled}
         isRequired={isRequired}
         name={name}
         value={value}
-        // onChange={onChange}
       >
         Checkbox
       </CheckboxWrapper>
@@ -81,17 +68,17 @@ const CheckboxComponent = styled(CheckboxFunction)<
   position: relative;
   vertical-align: top;
 
-  input[type='checkbox'] {
-    border: 0px;
-    clip: rect(0px, 0px, 0px, 0px);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0px;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
+  // input[type='checkbox'] {
+  //   border: 0px;
+  //   clip: rect(0px, 0px, 0px, 0px);
+  //   height: 1px;
+  //   margin: -1px;
+  //   overflow: hidden;
+  //   padding: 0px;
+  //   position: absolute;
+  //   white-space: nowrap;
+  //   width: 1px;
+  // }
 
   &:hover {
     cursor: pointer;
