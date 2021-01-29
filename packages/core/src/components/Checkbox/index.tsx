@@ -7,7 +7,7 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import createThemedComponent from '../../utils/createThemedComponent';
-import StyledCheckbox from '../Styled-Checkbox';
+import StyledCheckbox from './StyledCheckbox';
 import HiddenCheckbox from './HiddenCheckbox';
 import CheckboxLabel from './CheckboxLabel';
 
