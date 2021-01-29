@@ -19,6 +19,7 @@ type CheckboxWrapperTheme = {
 
 type CheckboxWrapperProps = {
   children?: any;
+  HiddenCheckbox?: any;
   isDisabled?: boolean;
   isFocused?: boolean;
   isRequired?: boolean;
@@ -37,11 +38,6 @@ type CheckboxWrapperStates = '_hover' | '_active' | '_focus' | '_disabled';
 function CheckboxWrapperFunction({
   children,
   isChecked,
-  isDisabled,
-  isRequired,
-  name,
-  onChange,
-  value,
   ...props
 }: CheckboxWrapperProps & CheckboxWrapperVariants): JSX.Element {
   const className = get(props, 'className', null);
@@ -60,6 +56,7 @@ const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
   ThemeComponent & CheckboxWrapperProps
 >`
   ${({ componentCss, ...props }) => {
+    console.log('In index.tsx, this is props: ', props);
     return componentCss;
   }};
   align-items: center;
@@ -123,13 +120,13 @@ const CheckboxWrapper = createThemedComponent<
         border: ({ border, ...props }) => {
           return applyBorderStyle(border);
         },
-        outline: ({ componentProps: { isFocused }, outlineColor }) => {
-          if (isFocused) {
-            return css`
+        outline: ({ componentProps: { HiddenCheckbox }, outlineColor }) => {
+          return css`
+            ${HiddenCheckbox}:focus + & {
               box-shadow: 0 0px 3px ${outlineColor};
               /* outline: ${outlineColor} solid 1px; */
-            `;
-          }
+            }
+          `;
         }
       }
     };

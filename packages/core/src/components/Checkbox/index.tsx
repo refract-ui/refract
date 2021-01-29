@@ -8,6 +8,7 @@ import {
 } from '../../theme/containers';
 import createThemedComponent from '../../utils/createThemedComponent';
 import CheckboxWrapper from '../Checkbox-Wrapper';
+import HiddenCheckbox from './HiddenCheckbox';
 
 type CheckboxTheme = {
   cursor?: string;
@@ -47,24 +48,23 @@ function CheckboxFunction({
 
   return (
     <label className={className}>
-      <input
-        aria-invalid={hasErrors}
-        checked={isChecked}
-        disabled={isDisabled}
+      <HiddenCheckbox
+        isChecked={isChecked}
+        isDisabled={isDisabled}
         name={name}
-        onBlur={() => setIsInputFocused(false)}
+        onFocusOut={() => setIsInputFocused(false)}
         onChange={onChange}
-        onFocus={() => setIsInputFocused(true)}
-        required={isRequired}
-        type="checkbox"
+        onFocusIn={() => setIsInputFocused(true)}
+        isRequired={isRequired}
         value={value}
       />
       <CheckboxWrapper
         hasErrors={hasErrors}
         isChecked={isChecked}
         isDisabled={isDisabled}
-        isFocused={isInputFocused}
+        // isFocused={isInputFocused}
         isRequired={isRequired}
+        HiddenCheckbox={HiddenCheckbox}
       />
       <div>{children}</div>
     </label>
@@ -92,18 +92,6 @@ const CheckboxComponent = styled(CheckboxFunction)<
   //   outline: #5d9dd5 solid 1px;
   //   box-shadow: 0 0px 8px #5e9ed6;
   // }
-
-  input[type='checkbox'] {
-    border: 0px;
-    clip: rect(0px, 0px, 0px, 0px);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0px;
-    position: absolute;
-    white-space: nowrap;
-    width: 1px;
-  }
 `;
 
 const Checkbox = createThemedComponent<
