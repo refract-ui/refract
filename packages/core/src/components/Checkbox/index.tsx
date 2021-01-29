@@ -25,6 +25,7 @@ type CheckboxProps = {
   iconName?: keyof Icons;
   isChecked?: boolean;
   isDisabled?: boolean;
+  isReadOnly?: boolean;
   isRequired?: boolean;
   name?: string;
   onChange?: (event?: any) => void;
@@ -44,6 +45,7 @@ function CheckboxFunction({
   iconName,
   isChecked,
   isDisabled,
+  isReadOnly,
   isRequired,
   name,
   onChange,
@@ -62,7 +64,7 @@ function CheckboxFunction({
         isDisabled={isDisabled}
         name={name}
         onFocusOut={() => setIsInputFocused(false)}
-        onChange={onChange}
+        onChange={isReadOnly ? () => false : onChange}
         onFocusIn={() => setIsInputFocused(true)}
         isRequired={isRequired}
         value={value}

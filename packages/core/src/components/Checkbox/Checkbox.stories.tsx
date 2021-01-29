@@ -37,7 +37,9 @@ storiesOf('Checkbox', module)
       const [state, setState] = useState({
         normalBox: false,
         disabledBox: false,
-        errorBox: false
+        errorBox: false,
+        readOnlyOneBox: false,
+        readOnlyTwoBox: true
       });
       return <div>{children(state, setState)}</div>;
     }
@@ -79,6 +81,34 @@ storiesOf('Checkbox', module)
                   value={state.errorBox}
                 >
                   Has Errors
+                </Checkbox>
+                <Checkbox
+                  isChecked={state.readOnlyOneBox}
+                  isReadOnly
+                  onChange={() =>
+                    setState({
+                      ...state,
+                      readOnlyOneBox: !state.readOnlyOneBox
+                    })
+                  }
+                  name="checkbox-3"
+                  value={state.readOnlyOneBox}
+                >
+                  Read Only
+                </Checkbox>
+                <Checkbox
+                  isChecked={state.readOnlyTwoBox}
+                  isReadOnly
+                  onChange={() =>
+                    setState({
+                      ...state,
+                      readOnlyTwoBox: !state.readOnlyTwoBox
+                    })
+                  }
+                  name="checkbox-3"
+                  value={state.readOnlyTwoBox}
+                >
+                  Read Only Checked
                 </Checkbox>
                 <StateLog>
                   Checkbox State in Story: {JSON.stringify(state, undefined, 2)}
