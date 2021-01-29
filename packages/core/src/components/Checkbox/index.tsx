@@ -7,7 +7,7 @@ import {
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
 import createThemedComponent from '../../utils/createThemedComponent';
-import CheckboxWrapper from '../Checkbox-Wrapper';
+import StyledCheckbox from '../Styled-Checkbox';
 import HiddenCheckbox from './HiddenCheckbox';
 
 type CheckboxTheme = {
@@ -58,7 +58,7 @@ function CheckboxFunction({
         isRequired={isRequired}
         value={value}
       />
-      <CheckboxWrapper
+      <StyledCheckbox
         hasErrors={hasErrors}
         isChecked={isChecked}
         isDisabled={isDisabled}

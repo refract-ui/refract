@@ -11,13 +11,13 @@ import createThemedComponent from '../../utils/createThemedComponent';
 
 import Icon from '../Icons';
 
-type CheckboxWrapperTheme = {
+type StyledCheckboxTheme = {
   border?: Partial<BorderBreakpointStyle>;
   outline?: string;
   outlineColor?: string;
 };
 
-type CheckboxWrapperProps = {
+type StyledCheckboxProps = {
   children?: any;
   HiddenCheckbox?: any;
   isDisabled?: boolean;
@@ -28,32 +28,29 @@ type CheckboxWrapperProps = {
   value?: string | number;
 };
 
-type CheckboxWrapperVariants = {
+type StyledCheckboxVariants = {
   hasErrors?: boolean;
   isChecked?: boolean;
 };
 
-type CheckboxWrapperStates = '_hover' | '_active' | '_focus' | '_disabled';
+type StyledCheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
-function CheckboxWrapperFunction({
+function StyledCheckboxFunction({
   children,
   isChecked,
   ...props
-}: CheckboxWrapperProps & CheckboxWrapperVariants): JSX.Element {
+}: StyledCheckboxProps & StyledCheckboxVariants): JSX.Element {
   const className = get(props, 'className', null);
 
   return (
-    <>
-      <div className={className} aria-hidden>
-        {isChecked && <Icon name="Check" iconColor="white" />}
-      </div>
-      <div className="gfx-checkbox-wrapper">{children}</div>
-    </>
+    <div className={className} aria-hidden>
+      {isChecked && <Icon name="Check" iconColor="white" />}
+    </div>
   );
 }
 
-const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
-  ThemeComponent & CheckboxWrapperProps
+const StyledCheckboxComponent = styled(StyledCheckboxFunction)<
+  ThemeComponent & StyledCheckboxProps
 >`
   ${({ componentCss, ...props }) => {
     console.log('In index.tsx, this is props: ', props);
@@ -64,11 +61,11 @@ const CheckboxWrapperComponent = styled(CheckboxWrapperFunction)<
   justify-content: center;
 `;
 
-const CheckboxWrapper = createThemedComponent<
-  CheckboxWrapperTheme,
-  CheckboxWrapperVariants,
-  CheckboxWrapperStates,
-  CheckboxWrapperProps,
+const StyledCheckbox = createThemedComponent<
+  StyledCheckboxTheme,
+  StyledCheckboxVariants,
+  StyledCheckboxStates,
+  StyledCheckboxProps,
   Container
 >({
   defaultVariants: {
@@ -79,7 +76,7 @@ const CheckboxWrapper = createThemedComponent<
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
-      Component: CheckboxWrapperComponent,
+      Component: StyledCheckboxComponent,
 
       variantMapping: {
         isChecked: ({ isChecked }) => {
@@ -133,4 +130,4 @@ const CheckboxWrapper = createThemedComponent<
   }
 });
 
-export default CheckboxWrapper;
+export default StyledCheckbox;
