@@ -53,7 +53,6 @@ const StyledCheckboxComponent = styled(StyledCheckboxFunction)<
   ThemeComponent & StyledCheckboxProps
 >`
   ${({ componentCss, ...props }) => {
-    console.log('In index.tsx, this is props: ', props);
     return componentCss;
   }};
   align-items: center;
@@ -100,8 +99,8 @@ const StyledCheckbox = createThemedComponent<
         size: ({ size }) => {
           if (size === 'sm') {
             return {
-              h: '5px',
-              w: '5px'
+              h: '12px',
+              w: '12px'
             };
           }
           if (size === 'md') {
@@ -123,11 +122,11 @@ const StyledCheckbox = createThemedComponent<
             borderWidth: '1px',
             borderColor: theme.secondary
           },
-          h: '10px',
+          h: '16px',
           mr: theme.spacing['2'],
           outline: 'none',
           outlineColor: theme.primary,
-          w: '10px'
+          w: '16px'
         }
       },
       cascadeStateProps: {},

@@ -17,6 +17,10 @@ const SectionWrapper = styled.div`
   flex-direction: column;
   margin: 1rem;
   padding: 1rem;
+
+  label {
+    margin: 20px 0;
+  }
 `;
 
 const StateLog = styled.pre`
