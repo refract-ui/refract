@@ -49,22 +49,22 @@ function CheckboxFunction({
     <label className={className}>
       <input
         aria-invalid={hasErrors}
-        type="checkbox"
         checked={isChecked}
         disabled={isDisabled}
-        onChange={onChange}
         name={name}
-        value={value}
-        onFocus={() => setIsInputFocused(true)}
         onBlur={() => setIsInputFocused(false)}
+        onChange={onChange}
+        onFocus={() => setIsInputFocused(true)}
         required={isRequired}
+        type="checkbox"
+        value={value}
       />
       <CheckboxWrapper
         hasErrors={hasErrors}
         isChecked={isChecked}
         isDisabled={isDisabled}
-        isRequired={isRequired}
         isFocused={isInputFocused}
+        isRequired={isRequired}
       />
       <div>{children}</div>
     </label>
