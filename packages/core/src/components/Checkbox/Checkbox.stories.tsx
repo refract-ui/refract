@@ -32,7 +32,7 @@ const StateLog = styled.pre`
 `;
 
 storiesOf('Checkbox', module)
-  .add('default', () => {
+  .add('Default / States', () => {
     function Parent({ children }: any): any {
       const [state, setState] = useState({
         normalBox: false,
@@ -90,7 +90,7 @@ storiesOf('Checkbox', module)
       </OuterWrapper>
     );
   })
-  .add('sizes', () => {
+  .add('Sizes', () => {
     function Parent({ children }: any): any {
       const [state, setState] = useState({
         smallBox: false,
@@ -138,6 +138,63 @@ storiesOf('Checkbox', module)
                   value={state.largeBox}
                 >
                   Large
+                </Checkbox>
+                <StateLog>
+                  Checkbox State in Story: {JSON.stringify(state)}
+                </StateLog>
+              </SectionWrapper>
+            </>
+          )}
+        </Parent>
+      </OuterWrapper>
+    );
+  })
+  .add('Colors & Icons', () => {
+    function Parent({ children }: any): any {
+      const [state, setState] = useState({
+        firstBox: false,
+        secondBox: false,
+        thirdBox: false
+      });
+      return <div>{children(state, setState)}</div>;
+    }
+
+    return (
+      <OuterWrapper>
+        <Parent>
+          {(state: any, setState: any) => (
+            <>
+              <SectionWrapper>
+                <Checkbox
+                  iconColor="orange"
+                  isChecked={state.firstBox}
+                  onChange={() =>
+                    setState({ ...state, firstBox: !state.firstBox })
+                  }
+                  name="checkbox-1"
+                  value={state.firstBox}
+                >
+                  First
+                </Checkbox>
+                <Checkbox
+                  isChecked={state.secondBox}
+                  onChange={() =>
+                    setState({ ...state, secondBox: !state.secondBox })
+                  }
+                  name="checkbox-1"
+                  value={state.secondBox}
+                >
+                  Second
+                </Checkbox>
+                <Checkbox
+                  isChecked={state.thirdBox}
+                  onChange={() =>
+                    setState({ ...state, thirdBox: !state.thirdBox })
+                  }
+                  name="checkbox-3"
+                  value={state.thirdBox}
+                >
+                  Third
                 </Checkbox>
                 <StateLog>
                   Checkbox State in Story: {JSON.stringify(state)}

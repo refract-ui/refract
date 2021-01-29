@@ -13,6 +13,7 @@ import Icon from '../Icons';
 
 type StyledCheckboxTheme = {
   border?: Partial<BorderBreakpointStyle>;
+  checkedIconColor?: string;
   outline?: string;
   outlineColor?: string;
 };
@@ -20,6 +21,7 @@ type StyledCheckboxTheme = {
 type StyledCheckboxProps = {
   children?: any;
   HiddenCheckbox?: any;
+  iconColor?: string;
   isDisabled?: boolean;
   isFocused?: boolean;
   isRequired?: boolean;
@@ -44,7 +46,7 @@ function StyledCheckboxFunction({
 
   return (
     <div className={className} aria-hidden>
-      {isChecked && <Icon name="Check" iconColor="white" />}
+      {isChecked && <Icon name="Check" />}
     </div>
   );
 }
@@ -83,7 +85,11 @@ const StyledCheckbox = createThemedComponent<
         isChecked: ({ isChecked }) => {
           if (isChecked) {
             return {
-              bg: theme.primary
+              bg: theme.primary,
+              border: {
+                ...theme.borders.xs,
+                borderWidth: '0'
+              }
             };
           }
         },
@@ -124,6 +130,7 @@ const StyledCheckbox = createThemedComponent<
             borderColor: theme.secondary
           },
           h: '16px',
+          checkedIconColor: theme.white,
           mr: theme.spacing['2'],
           outline: 'none',
           outlineColor: theme.primary,
@@ -140,6 +147,18 @@ const StyledCheckbox = createThemedComponent<
             ${HiddenCheckbox}:focus + & {
               box-shadow: 0 0px 3px ${outlineColor};
               /* outline: ${outlineColor} solid 1px; */
+            }
+          `;
+        },
+        checkedIconColor: ({
+          checkedIconColor,
+          componentProps: { iconColor }
+        }) => {
+          return css`
+            svg {
+              path {
+                fill: ${iconColor ? iconColor : checkedIconColor};
+              }
             }
           `;
         }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
-import { ThemeComponent } from '../../theme';
+import theme, { ThemeComponent } from '../../theme';
 import {
   Container,
   mapDivContainerPropsToStyles
@@ -19,6 +19,7 @@ type CheckboxTheme = {
 type CheckboxProps = {
   children?: any;
   hasErrors?: boolean;
+  iconColor?: string;
   isChecked?: boolean;
   isDisabled?: boolean;
   isRequired?: boolean;
@@ -35,6 +36,7 @@ type CheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 function CheckboxFunction({
   children,
   hasErrors,
+  iconColor,
   isChecked,
   isDisabled,
   isRequired,
@@ -62,12 +64,13 @@ function CheckboxFunction({
       />
       <StyledCheckbox
         hasErrors={hasErrors}
+        HiddenCheckbox={HiddenCheckbox}
+        iconColor={iconColor}
         isChecked={isChecked}
         isDisabled={isDisabled}
         // isFocused={isInputFocused}
         isRequired={isRequired}
         size={size}
-        HiddenCheckbox={HiddenCheckbox}
       />
       <CheckboxLabel hasErrors={hasErrors} size={size}>
         {children}
