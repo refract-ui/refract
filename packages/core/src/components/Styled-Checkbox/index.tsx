@@ -31,12 +31,12 @@ type StyledCheckboxProps = {
 type StyledCheckboxVariants = {
   hasErrors?: boolean;
   isChecked?: boolean;
+  size?: 'sm' | 'md' | 'lg';
 };
 
 type StyledCheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function StyledCheckboxFunction({
-  children,
   isChecked,
   ...props
 }: StyledCheckboxProps & StyledCheckboxVariants): JSX.Element {
@@ -70,7 +70,8 @@ const StyledCheckbox = createThemedComponent<
 >({
   defaultVariants: {
     hasErrors: false,
-    isChecked: false
+    isChecked: false,
+    size: 'md'
   },
   states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
@@ -93,6 +94,23 @@ const StyledCheckbox = createThemedComponent<
                 ...theme.borders.xs,
                 borderColor: theme.danger
               }
+            };
+          }
+        },
+        size: ({ size }) => {
+          if (size === 'sm') {
+            return {
+              h: '5px',
+              w: '5px'
+            };
+          }
+          if (size === 'md') {
+            return;
+          }
+          if (size === 'lg') {
+            return {
+              h: '20px',
+              w: '20px'
             };
           }
         }

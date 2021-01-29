@@ -24,6 +24,7 @@ type CheckboxProps = {
   isRequired?: boolean;
   name?: string;
   onChange?: (event?: any) => void;
+  size?: 'sm' | 'md' | 'lg';
   value?: string | number;
 };
 
@@ -39,6 +40,7 @@ function CheckboxFunction({
   isRequired,
   name,
   onChange,
+  size,
   value,
   ...props
 }: CheckboxProps & CheckboxVariants): JSX.Element {
@@ -64,6 +66,7 @@ function CheckboxFunction({
         isDisabled={isDisabled}
         // isFocused={isInputFocused}
         isRequired={isRequired}
+        size={size}
         HiddenCheckbox={HiddenCheckbox}
       />
       <div>{children}</div>
@@ -74,7 +77,8 @@ function CheckboxFunction({
 CheckboxFunction.defaultProps = {
   isChecked: false,
   isDisabled: false,
-  isRequired: false
+  isRequired: false,
+  size: 'md'
 };
 
 const CheckboxComponent = styled(CheckboxFunction)<
