@@ -69,7 +69,9 @@ function CheckboxFunction({
         size={size}
         HiddenCheckbox={HiddenCheckbox}
       />
-      <CheckboxLabel hasErrors={hasErrors}>{children}</CheckboxLabel>
+      <CheckboxLabel hasErrors={hasErrors} size={size}>
+        {children}
+      </CheckboxLabel>
     </label>
   );
 }

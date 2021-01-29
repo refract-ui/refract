@@ -56,6 +56,7 @@ const StyledCheckboxComponent = styled(StyledCheckboxFunction)<
     return componentCss;
   }};
   align-items: center;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
 `;

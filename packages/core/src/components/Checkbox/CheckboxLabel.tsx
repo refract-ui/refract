@@ -9,15 +9,18 @@ import {
 import createThemedComponent from '../../utils/createThemedComponent';
 
 type CheckboxLabelTheme = {
+  fontSize?: string;
   labelColor?: string;
 };
 
 type CheckboxLabelProps = {
-  children?: any;
+  children?: string | React.ReactNode;
   hasErrors?: boolean;
 };
 
-type CheckboxLabelVariants = {};
+type CheckboxLabelVariants = {
+  size?: 'sm' | 'md' | 'lg';
+};
 
 type CheckboxLabelStates = '_hover';
 
@@ -43,16 +46,35 @@ const CheckboxLabel = createThemedComponent<
   CheckboxLabelProps,
   Container
 >({
-  defaultVariants: {},
+  defaultVariants: {
+    size: 'md'
+  },
   states: ['_hover'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
     return {
       Component: CheckboxLabelComponent,
-      variantMapping: {},
+      variantMapping: {
+        size: ({ size }) => {
+          if (size === 'sm') {
+            return {
+              fontSize: '0.75rem'
+            };
+          }
+          if (size === 'md') {
+            return;
+          }
+          if (size === 'lg') {
+            return {
+              fontSize: '1rem'
+            };
+          }
+        }
+      },
       defaultStyleMapping: {
         xs: {
           bg: 'none',
+          fontSize: '0.875rem',
           labelColor: theme.dark
         }
       },
@@ -65,6 +87,11 @@ const CheckboxLabel = createThemedComponent<
         }) => {
           return css`
             color: ${hasErrors ? danger : labelColor};
+          `;
+        },
+        fontSize: ({ fontSize }) => {
+          return css`
+            font-size: ${fontSize};
           `;
         }
       }

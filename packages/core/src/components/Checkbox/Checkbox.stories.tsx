@@ -19,6 +19,7 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 
   label {
+    align-self: flex-start;
     margin: 20px 0;
   }
 `;
