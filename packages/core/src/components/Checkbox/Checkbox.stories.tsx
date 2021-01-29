@@ -81,7 +81,7 @@ storiesOf('Checkbox', module)
                   Has Errors
                 </Checkbox>
                 <StateLog>
-                  Checkbox State in Story: {JSON.stringify(state)}
+                  Checkbox State in Story: {JSON.stringify(state, undefined, 2)}
                 </StateLog>
               </SectionWrapper>
             </>
@@ -140,7 +140,7 @@ storiesOf('Checkbox', module)
                   Large
                 </Checkbox>
                 <StateLog>
-                  Checkbox State in Story: {JSON.stringify(state)}
+                  Checkbox State in Story: {JSON.stringify(state, undefined, 2)}
                 </StateLog>
               </SectionWrapper>
             </>
@@ -154,7 +154,10 @@ storiesOf('Checkbox', module)
       const [state, setState] = useState({
         firstBox: false,
         secondBox: false,
-        thirdBox: false
+        thirdBox: false,
+        fourthBox: false,
+        fifthBox: false,
+        sixthBox: false
       });
       return <div>{children(state, setState)}</div>;
     }
@@ -177,6 +180,8 @@ storiesOf('Checkbox', module)
                   First
                 </Checkbox>
                 <Checkbox
+                  checkedColor="#cccccc"
+                  iconName="Close"
                   isChecked={state.secondBox}
                   onChange={() =>
                     setState({ ...state, secondBox: !state.secondBox })
@@ -187,6 +192,8 @@ storiesOf('Checkbox', module)
                   Second
                 </Checkbox>
                 <Checkbox
+                  iconName="Menu"
+                  iconColor="violet"
                   isChecked={state.thirdBox}
                   onChange={() =>
                     setState({ ...state, thirdBox: !state.thirdBox })
@@ -196,8 +203,44 @@ storiesOf('Checkbox', module)
                 >
                   Third
                 </Checkbox>
+                <Checkbox
+                  checkedColor="yellow"
+                  iconName="Person"
+                  isChecked={state.fourthBox}
+                  onChange={() =>
+                    setState({ ...state, fourthBox: !state.fourthBox })
+                  }
+                  name="checkbox-1"
+                  value={state.fourthBox}
+                >
+                  Fourth
+                </Checkbox>
+                <Checkbox
+                  checkedColor="chartreuse"
+                  iconName="Dollar"
+                  isChecked={state.fifthBox}
+                  onChange={() =>
+                    setState({ ...state, fifthBox: !state.fifthBox })
+                  }
+                  name="checkbox-1"
+                  value={state.fifthBox}
+                >
+                  Fifth
+                </Checkbox>
+                <Checkbox
+                  checkedColor="#111111"
+                  iconName="Delete"
+                  isChecked={state.sixthBox}
+                  onChange={() =>
+                    setState({ ...state, sixthBox: !state.sixthBox })
+                  }
+                  name="checkbox-3"
+                  value={state.sixthBox}
+                >
+                  Sixth
+                </Checkbox>
                 <StateLog>
-                  Checkbox State in Story: {JSON.stringify(state)}
+                  Checkbox State in Story: {JSON.stringify(state, undefined, 2)}
                 </StateLog>
               </SectionWrapper>
             </>

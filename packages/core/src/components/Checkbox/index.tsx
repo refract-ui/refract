@@ -10,6 +10,7 @@ import createThemedComponent from '../../utils/createThemedComponent';
 import StyledCheckbox from './StyledCheckbox';
 import HiddenCheckbox from './HiddenCheckbox';
 import CheckboxLabel from './CheckboxLabel';
+import { Icons } from '../Icons/icons';
 
 type CheckboxTheme = {
   cursor?: string;
@@ -17,9 +18,11 @@ type CheckboxTheme = {
 };
 
 type CheckboxProps = {
+  checkedColor?: string;
   children?: any;
   hasErrors?: boolean;
   iconColor?: string;
+  iconName?: keyof Icons;
   isChecked?: boolean;
   isDisabled?: boolean;
   isRequired?: boolean;
@@ -34,9 +37,11 @@ type CheckboxVariants = {};
 type CheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function CheckboxFunction({
+  checkedColor,
   children,
   hasErrors,
   iconColor,
+  iconName,
   isChecked,
   isDisabled,
   isRequired,
@@ -63,9 +68,11 @@ function CheckboxFunction({
         value={value}
       />
       <StyledCheckbox
+        checkedColor={checkedColor}
         hasErrors={hasErrors}
         HiddenCheckbox={HiddenCheckbox}
         iconColor={iconColor}
+        iconName={iconName}
         isChecked={isChecked}
         isDisabled={isDisabled}
         // isFocused={isInputFocused}

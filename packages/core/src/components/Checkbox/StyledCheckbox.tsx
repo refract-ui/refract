@@ -10,6 +10,7 @@ import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 
 import Icon from '../Icons';
+import { Icons } from '../Icons/icons';
 
 type StyledCheckboxTheme = {
   border?: Partial<BorderBreakpointStyle>;
@@ -22,6 +23,7 @@ type StyledCheckboxProps = {
   children?: any;
   HiddenCheckbox?: any;
   iconColor?: string;
+  iconName?: keyof Icons;
   isDisabled?: boolean;
   isFocused?: boolean;
   isRequired?: boolean;
@@ -31,6 +33,7 @@ type StyledCheckboxProps = {
 };
 
 type StyledCheckboxVariants = {
+  checkedColor?: string;
   hasErrors?: boolean;
   isChecked?: boolean;
   size?: 'sm' | 'md' | 'lg';
@@ -39,6 +42,7 @@ type StyledCheckboxVariants = {
 type StyledCheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function StyledCheckboxFunction({
+  iconName,
   isChecked,
   ...props
 }: StyledCheckboxProps & StyledCheckboxVariants): JSX.Element {
@@ -46,7 +50,7 @@ function StyledCheckboxFunction({
 
   return (
     <div className={className} aria-hidden>
-      {isChecked && <Icon name="Check" />}
+      {isChecked && <Icon name={iconName ? iconName : 'Check'} />}
     </div>
   );
 }
@@ -71,6 +75,7 @@ const StyledCheckbox = createThemedComponent<
   Container
 >({
   defaultVariants: {
+    checkedColor: null,
     hasErrors: false,
     isChecked: false,
     size: 'md'
@@ -82,10 +87,10 @@ const StyledCheckbox = createThemedComponent<
       Component: StyledCheckboxComponent,
 
       variantMapping: {
-        isChecked: ({ isChecked }) => {
+        isChecked: ({ isChecked, checkedColor }) => {
           if (isChecked) {
             return {
-              bg: theme.primary,
+              bg: checkedColor ? checkedColor : theme.primary,
               border: {
                 ...theme.borders.xs,
                 borderWidth: '0'
@@ -156,6 +161,8 @@ const StyledCheckbox = createThemedComponent<
         }) => {
           return css`
             svg {
+              width: auto;
+              height: auto;
               path {
                 fill: ${iconColor ? iconColor : checkedIconColor};
               }
