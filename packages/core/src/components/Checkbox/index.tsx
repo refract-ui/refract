@@ -9,11 +9,11 @@ import {
 import createThemedComponent from '../../utils/createThemedComponent';
 import StyledCheckbox from '../Styled-Checkbox';
 import HiddenCheckbox from './HiddenCheckbox';
+import CheckboxLabel from './CheckboxLabel';
 
 type CheckboxTheme = {
   cursor?: string;
   labelOpacity?: string;
-  labelColor?: string;
 };
 
 type CheckboxProps = {
@@ -69,7 +69,7 @@ function CheckboxFunction({
         size={size}
         HiddenCheckbox={HiddenCheckbox}
       />
-      <div>{children}</div>
+      <CheckboxLabel hasErrors={hasErrors}>{children}</CheckboxLabel>
     </label>
   );
 }
@@ -117,8 +117,7 @@ const Checkbox = createThemedComponent<
         xs: {
           bg: 'none',
           cursor: 'pointer',
-          labelOpacity: '1',
-          labelColor: theme.dark
+          labelOpacity: '1'
         }
       },
       cascadeStateProps: {},
@@ -139,15 +138,6 @@ const Checkbox = createThemedComponent<
             & > div {
               opacity: ${isDisabled ? '0.4' : labelOpacity};
             }
-          `;
-        },
-        labelColor: ({
-          theme: { danger },
-          labelColor,
-          componentProps: { hasErrors }
-        }) => {
-          return css`
-            color: ${hasErrors ? danger : labelColor};
           `;
         }
       }
