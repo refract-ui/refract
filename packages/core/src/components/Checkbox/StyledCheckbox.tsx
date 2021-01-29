@@ -130,7 +130,7 @@ const StyledCheckbox = createThemedComponent<
             borderColor: theme.secondary
           },
           h: '16px',
-          checkedIconColor: theme.white,
+          checkedIconColor: ({ contrastColor, bg }) => contrastColor(bg),
           mr: theme.spacing['2'],
           outline: 'none',
           outlineColor: theme.primary,
