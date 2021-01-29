@@ -19,9 +19,20 @@ const SectionWrapper = styled.div`
   padding: 1rem;
 `;
 
+const StateLog = styled.pre`
+  background-color: #444444;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 10px;
+`;
+
 storiesOf('Checkbox', module).add('default', () => {
   function Parent({ children }: any): any {
-    const [state, setState] = useState({ one: false, two: false });
+    const [state, setState] = useState({
+      normalBox: false,
+      disabledBox: false,
+      errorBox: false
+    });
     return <div>{children(state, setState)}</div>;
   }
 
@@ -32,24 +43,41 @@ storiesOf('Checkbox', module).add('default', () => {
           <>
             <SectionWrapper>
               <Checkbox
-                isChecked={state.one}
-                onChange={() => setState({ one: !state.one })}
+                isChecked={state.normalBox}
+                onChange={() =>
+                  setState({ ...state, normalBox: !state.normalBox })
+                }
                 name="checkbox-1"
-                value={state.one}
+                value={state.normalBox}
               >
                 Normal
               </Checkbox>
               <Checkbox
-                isChecked={state.two}
+                isChecked={state.disabledBox}
                 isDisabled
-                onChange={() => setState({ value: !state.two })}
+                onChange={() =>
+                  setState({ ...state, disabledBox: !state.disabledBox })
+                }
                 name="checkbox-1"
-                value={state.two}
+                value={state.disabledBox}
               >
                 Disabled
               </Checkbox>
+              <Checkbox
+                hasErrors
+                isChecked={state.errorBox}
+                onChange={() =>
+                  setState({ ...state, errorBox: !state.errorBox })
+                }
+                name="checkbox-3"
+                value={state.errorBox}
+              >
+                Has Errors
+              </Checkbox>
+              <StateLog>
+                Checkbox State in Story: {JSON.stringify(state)}
+              </StateLog>
             </SectionWrapper>
-            <pre>Checkbox State in Story: {JSON.stringify(state)}</pre>
           </>
         )}
       </Parent>

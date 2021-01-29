@@ -11,11 +11,13 @@ import CheckboxWrapper from '../Checkbox-Wrapper';
 
 type CheckboxTheme = {
   cursor?: string;
-  labelStyles?: string;
+  labelOpacity?: string;
+  labelColor?: string;
 };
 
 type CheckboxProps = {
   children?: any;
+  hasErrors?: boolean;
   isChecked?: boolean;
   isDisabled?: boolean;
   isRequired?: boolean;
@@ -30,6 +32,7 @@ type CheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 
 function CheckboxFunction({
   children,
+  hasErrors,
   isChecked,
   isDisabled,
   isRequired,
@@ -45,6 +48,7 @@ function CheckboxFunction({
   return (
     <label className={className}>
       <input
+        aria-invalid={hasErrors}
         type="checkbox"
         checked={isChecked}
         disabled={isDisabled}
@@ -56,6 +60,7 @@ function CheckboxFunction({
         required={isRequired}
       />
       <CheckboxWrapper
+        hasErrors={hasErrors}
         isChecked={isChecked}
         isDisabled={isDisabled}
         isRequired={isRequired}
@@ -88,17 +93,17 @@ const CheckboxComponent = styled(CheckboxFunction)<
   //   box-shadow: 0 0px 8px #5e9ed6;
   // }
 
-  // input[type='checkbox'] {
-  //   border: 0px;
-  //   clip: rect(0px, 0px, 0px, 0px);
-  //   height: 1px;
-  //   margin: -1px;
-  //   overflow: hidden;
-  //   padding: 0px;
-  //   position: absolute;
-  //   white-space: nowrap;
-  //   width: 1px;
-  // }
+  input[type='checkbox'] {
+    border: 0px;
+    clip: rect(0px, 0px, 0px, 0px);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0px;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
 `;
 
 const Checkbox = createThemedComponent<
@@ -120,7 +125,8 @@ const Checkbox = createThemedComponent<
         xs: {
           bg: 'none',
           cursor: 'pointer',
-          labelStyles: '1'
+          labelOpacity: '1',
+          labelColor: theme.dark
         }
       },
       cascadeStateProps: {},
@@ -136,12 +142,20 @@ const Checkbox = createThemedComponent<
             }
           `;
         },
-        labelStyles: ({ componentProps: { isDisabled } }) => {
-          console.log('In index.tsx, this is isDisabled: ', isDisabled);
+        labelOpacity: ({ labelOpacity, componentProps: { isDisabled } }) => {
           return css`
             & > div {
-              opacity: ${isDisabled ? '0.4' : '1'};
+              opacity: ${isDisabled ? '0.4' : labelOpacity};
             }
+          `;
+        },
+        labelColor: ({
+          theme: { danger },
+          labelColor,
+          componentProps: { hasErrors }
+        }) => {
+          return css`
+            color: ${hasErrors ? danger : labelColor};
           `;
         }
       }

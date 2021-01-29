@@ -28,6 +28,7 @@ type CheckboxWrapperProps = {
 };
 
 type CheckboxWrapperVariants = {
+  hasErrors?: boolean;
   isChecked?: boolean;
 };
 
@@ -74,6 +75,7 @@ const CheckboxWrapper = createThemedComponent<
   Container
 >({
   defaultVariants: {
+    hasErrors: false,
     isChecked: false
   },
   states: ['_hover', '_active', '_focus', '_disabled'],
@@ -87,6 +89,16 @@ const CheckboxWrapper = createThemedComponent<
           if (isChecked) {
             return {
               bg: theme.primary
+            };
+          }
+        },
+        hasErrors: ({ hasErrors }) => {
+          if (hasErrors) {
+            return {
+              border: {
+                ...theme.borders.xs,
+                borderColor: theme.danger
+              }
             };
           }
         }
