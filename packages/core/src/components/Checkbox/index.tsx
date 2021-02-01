@@ -62,6 +62,7 @@ function CheckboxFunction({
   return (
     <label className={className}>
       <HiddenCheckbox
+        isIndeterminate={isIndeterminate}
         isChecked={isChecked}
         isDisabled={isDisabled}
         name={name}

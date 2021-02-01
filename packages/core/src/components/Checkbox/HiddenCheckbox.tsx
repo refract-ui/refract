@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { get } from 'lodash';
 
@@ -7,6 +7,7 @@ type HiddenCheckboxProps = {
   hasErrors?: boolean;
   isChecked?: boolean;
   isDisabled?: boolean;
+  isIndeterminate?: boolean;
   isRequired?: boolean;
   name?: string;
   onChange?: (event?: any) => void;
@@ -19,6 +20,7 @@ function HiddenCheckboxFunction({
   hasErrors,
   isChecked,
   isDisabled,
+  isIndeterminate,
   isRequired,
   name,
   onChange,
@@ -28,6 +30,17 @@ function HiddenCheckboxFunction({
   ...props
 }: HiddenCheckboxProps): JSX.Element {
   const className = get(props, 'className', null);
+
+  const checkRef: React.MutableRefObject<HTMLInputElement> = useRef();
+
+  useEffect(() => {
+    if (isIndeterminate) {
+      checkRef.current.indeterminate = true;
+    }
+    if (!isIndeterminate) {
+      checkRef.current.indeterminate = false;
+    }
+  }, [isIndeterminate]);
 
   return (
     <input
@@ -39,6 +52,7 @@ function HiddenCheckboxFunction({
       onBlur={onFocusOut}
       onChange={onChange}
       onFocus={onFocusIn}
+      ref={checkRef}
       required={isRequired}
       type="checkbox"
       value={value}
