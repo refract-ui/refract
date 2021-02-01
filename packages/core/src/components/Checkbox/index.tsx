@@ -25,6 +25,7 @@ type CheckboxProps = {
   iconName?: keyof Icons;
   isChecked?: boolean;
   isDisabled?: boolean;
+  isIndeterminate?: boolean;
   isReadOnly?: boolean;
   isRequired?: boolean;
   name?: string;
@@ -45,6 +46,7 @@ function CheckboxFunction({
   iconName,
   isChecked,
   isDisabled,
+  isIndeterminate,
   isReadOnly,
   isRequired,
   name,
@@ -77,6 +79,7 @@ function CheckboxFunction({
         iconName={iconName}
         isChecked={isChecked}
         isDisabled={isDisabled}
+        isIndeterminate={isIndeterminate}
         // isFocused={isInputFocused}
         isRequired={isRequired}
         size={size}

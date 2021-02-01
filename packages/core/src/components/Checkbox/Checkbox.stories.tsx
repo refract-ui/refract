@@ -9,6 +9,12 @@ const OuterWrapper = styled.div`
   flex-direction: column;
 `;
 
+const NestedBoxes = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+`;
+
 const SectionWrapper = styled.div`
   border: 1px solid rgba(243, 245, 250, 1);
   border-radius: 16px;
@@ -271,6 +277,72 @@ storiesOf('Checkbox', module)
                 </Checkbox>
                 <StateLog>
                   Checkbox State in Story: {JSON.stringify(state, undefined, 2)}
+                </StateLog>
+              </SectionWrapper>
+            </>
+          )}
+        </Parent>
+      </OuterWrapper>
+    );
+  })
+  .add('Indeterminate', () => {
+    function Parent({ children }: any): any {
+      const [checkedItems, setCheckedItems] = React.useState([false, false]);
+
+      const allChecked = checkedItems.every(Boolean);
+      const isIndeterminate = checkedItems.some(Boolean) && !allChecked;
+
+      return (
+        <div>
+          {children(checkedItems, setCheckedItems, allChecked, isIndeterminate)}
+        </div>
+      );
+    }
+
+    return (
+      <OuterWrapper>
+        <Parent>
+          {(
+            checkedItems: any,
+            setCheckedItems: any,
+            allChecked: any,
+            isIndeterminate: any
+          ) => (
+            <>
+              <SectionWrapper>
+                <Checkbox
+                  isChecked={allChecked}
+                  isIndeterminate={isIndeterminate}
+                  onChange={e =>
+                    setCheckedItems([e.target.checked, e.target.checked])
+                  }
+                  name="checkbox-1"
+                >
+                  Outer Checkbox
+                </Checkbox>
+                <NestedBoxes>
+                  <Checkbox
+                    isChecked={checkedItems[0]}
+                    onChange={e =>
+                      setCheckedItems([e.target.checked, checkedItems[1]])
+                    }
+                    name="checkbox-1"
+                  >
+                    First Nested Checkbox
+                  </Checkbox>
+                  <Checkbox
+                    isChecked={checkedItems[1]}
+                    onChange={e =>
+                      setCheckedItems([checkedItems[0], e.target.checked])
+                    }
+                    name="checkbox-3"
+                  >
+                    Second Nested Checkbox
+                  </Checkbox>
+                </NestedBoxes>
+                <StateLog>
+                  Checkbox State in Story:{' '}
+                  {JSON.stringify(checkedItems, undefined, 2)}
                 </StateLog>
               </SectionWrapper>
             </>

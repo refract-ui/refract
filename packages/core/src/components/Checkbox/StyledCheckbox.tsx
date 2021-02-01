@@ -36,6 +36,7 @@ type StyledCheckboxVariants = {
   checkedColor?: string;
   hasErrors?: boolean;
   isChecked?: boolean;
+  isIndeterminate?: boolean;
   size?: 'sm' | 'md' | 'lg';
 };
 
@@ -44,13 +45,24 @@ type StyledCheckboxStates = '_hover' | '_active' | '_focus' | '_disabled';
 function StyledCheckboxFunction({
   iconName,
   isChecked,
+  isIndeterminate,
   ...props
 }: StyledCheckboxProps & StyledCheckboxVariants): JSX.Element {
   const className = get(props, 'className', null);
 
+  let renderedIcon: React.ReactNode;
+
+  if (isIndeterminate) {
+    renderedIcon = <Icon name="DotsHorizontal" />;
+  }
+
+  if (!isIndeterminate && isChecked) {
+    renderedIcon = <Icon name={iconName ? iconName : 'Check'} />;
+  }
+
   return (
     <div className={className} aria-hidden>
-      {isChecked && <Icon name={iconName ? iconName : 'Check'} />}
+      {renderedIcon}
     </div>
   );
 }
@@ -78,6 +90,7 @@ const StyledCheckbox = createThemedComponent<
     checkedColor: null,
     hasErrors: false,
     isChecked: false,
+    isIndeterminate: false,
     size: 'md'
   },
   states: ['_hover', '_active', '_focus', '_disabled'],
@@ -87,8 +100,8 @@ const StyledCheckbox = createThemedComponent<
       Component: StyledCheckboxComponent,
 
       variantMapping: {
-        isChecked: ({ isChecked, checkedColor }) => {
-          if (isChecked) {
+        isChecked: ({ isChecked, isIndeterminate, checkedColor }) => {
+          if (isChecked || isIndeterminate) {
             return {
               bg: checkedColor ? checkedColor : theme.primary,
               border: {
