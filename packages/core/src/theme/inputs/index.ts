@@ -10,9 +10,15 @@ type ColorValues =
   | ValueOf<Colors>
   | ValueOf<ColorShades>;
 
+type CheckboxBase = {
+  borders?: BorderBreakpointStyle;
+  checkedBg?: ColorValues;
+};
+
 export type InputBase = {
   borders?: BorderBreakpointStyle;
   bg: ColorValues;
+  checkbox?: CheckboxBase;
 };
 
 interface InputBorderProps {
@@ -42,7 +48,16 @@ export default function genInputProps({
       borderStyle: 'solid',
       borderRadius: '0.5rem'
     },
-    bg: 'none'
+    bg: 'none',
+    checkbox: {
+      checkedBg: themeColors.primary,
+      borders: {
+        borderColor: themeColors.secondary,
+        borderRadius: '0.2rem',
+        borderStyle: 'solid',
+        borderWidth: '1px'
+      }
+    }
   };
 
   if (isFunction(overrides)) {

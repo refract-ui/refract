@@ -103,9 +103,11 @@ const StyledCheckbox = createThemedComponent<
         isChecked: ({ isChecked, isIndeterminate, checkedColor }) => {
           if (isChecked || isIndeterminate) {
             return {
-              bg: checkedColor ? checkedColor : theme.primary,
+              bg: checkedColor
+                ? checkedColor
+                : theme.components.inputs.checkbox.checkedBg,
               border: {
-                ...theme.borders.xs,
+                ...theme.components.inputs.checkbox.borders,
                 borderWidth: '0'
               }
             };
@@ -115,7 +117,7 @@ const StyledCheckbox = createThemedComponent<
           if (hasErrors) {
             return {
               border: {
-                ...theme.borders.xs,
+                ...theme.components.inputs.checkbox.borders,
                 borderColor: theme.danger
               }
             };
@@ -143,15 +145,13 @@ const StyledCheckbox = createThemedComponent<
         xs: {
           bg: 'none',
           border: {
-            ...theme.borders.xs,
-            borderWidth: '1px',
-            borderColor: theme.secondary
+            ...theme.components.inputs.checkbox.borders
           },
           h: '16px',
           checkedIconColor: ({ contrastColor, bg }) => contrastColor(bg),
           mr: theme.spacing['2'],
           outline: 'none',
-          outlineColor: theme.primary,
+          outlineColor: theme.components.inputs.checkbox.checkedBg,
           w: '16px'
         }
       },
