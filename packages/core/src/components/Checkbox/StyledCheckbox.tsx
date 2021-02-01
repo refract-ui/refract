@@ -174,7 +174,6 @@ const StyledCheckbox = createThemedComponent<
         }) => {
           return css`
             svg {
-              width: auto;
               height: auto;
               path {
                 fill: ${iconColor ? iconColor : checkedIconColor};
