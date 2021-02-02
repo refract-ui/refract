@@ -66,11 +66,11 @@ const DropdownItemComponent = styled(DropdownItemFunction)<
   display: flex;
   transition: all 0.1s ease-in-out;
 
-  svg:first-child {
+  svg:first-child:not(label svg) {
     margin-right: 10px;
   }
 
-  svg:last-child {
+  svg:last-child:not(label svg) {
     margin-left: auto;
   }
 
@@ -160,7 +160,7 @@ const DropdownItem = createThemedComponent<
         },
         iconColor: ({ iconColor }) => {
           return css`
-            svg {
+            & > svg:not(label svg) {
               path {
                 fill: ${iconColor};
               }

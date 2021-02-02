@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import faker from 'faker';
@@ -12,6 +12,7 @@ import DropdownDivider from '../Dropdown-Divider';
 import DropdownGroup from '../Dropdown-Group';
 import CollapsingList from '../Collapsing-List';
 import { range } from 'lodash';
+import Checkbox from '../Checkbox';
 
 const OuterWrapper = styled.div`
   display: flex;
@@ -250,7 +251,7 @@ storiesOf('Dropdown', module)
           <DropdownButton>Groups</DropdownButton>
           <DropdownList xs={{ maxH: '360px' }}>
             <DropdownGroup title="Group One">
-              <DropdownItem>A first group element, hover</DropdownItem>
+              <DropdownItem> A first group element, hover</DropdownItem>
               <DropdownItem>Beware of the second element</DropdownItem>
               <DropdownItem>Can be a third element</DropdownItem>
               <DropdownItem isSelected>
@@ -635,4 +636,99 @@ storiesOf('Dropdown', module)
         </Dropdown>
       </ComponentWrapper>
     </OuterWrapper>
-  ));
+  ))
+  .add('w/ Checkboxes', () => {
+    function Parent({ children }: any): any {
+      const [state, setState] = useState({
+        firstOption: false,
+        secondOption: false,
+        thirdOption: false,
+        fourthOption: false,
+        fifthOption: true
+      });
+      return <div>{children(state, setState)}</div>;
+    }
+
+    return (
+      <OuterWrapper>
+        <Parent>
+          {(state: any, setState: any) => (
+            <ComponentWrapper>
+              <Dropdown closeOnSelect={false}>
+                <DropdownButton>Checkboxes</DropdownButton>
+                <DropdownList>
+                  <DropdownGroup title="Group One">
+                    <DropdownItem>
+                      <Checkbox
+                        isChecked={state.firstOption}
+                        onChange={() =>
+                          setState({
+                            ...state,
+                            firstOption: !state.firstOption
+                          })
+                        }
+                      >
+                        A first group element, hover
+                      </Checkbox>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Checkbox
+                        isChecked={state.secondOption}
+                        onChange={() =>
+                          setState({
+                            ...state,
+                            secondOption: !state.secondOption
+                          })
+                        }
+                      >
+                        Beware of the second element
+                      </Checkbox>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Checkbox
+                        isChecked={state.thirdOption}
+                        onChange={() =>
+                          setState({
+                            ...state,
+                            thirdOption: !state.thirdOption
+                          })
+                        }
+                      >
+                        Can be a third element
+                      </Checkbox>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Checkbox
+                        isChecked={state.fourthOption}
+                        onChange={() =>
+                          setState({
+                            ...state,
+                            fourthOption: !state.fourthOption
+                          })
+                        }
+                      >
+                        Delicate fourth element, active
+                      </Checkbox>
+                    </DropdownItem>
+                    <DropdownItem>
+                      <Checkbox
+                        isChecked={state.fifthOption}
+                        onChange={() =>
+                          setState({
+                            ...state,
+                            fifthOption: !state.fifthOption
+                          })
+                        }
+                      >
+                        Eager fifth element
+                      </Checkbox>
+                    </DropdownItem>
+                  </DropdownGroup>
+                </DropdownList>
+              </Dropdown>
+            </ComponentWrapper>
+          )}
+        </Parent>
+      </OuterWrapper>
+    );
+  });
