@@ -108,12 +108,8 @@ const CheckboxComponent = styled(CheckboxFunction)<
   font-family: 'Work Sans', sans serif;
   font-weight: 300;
   position: relative;
+  user-select: none;
   vertical-align: top;
-
-  // input[type='checkbox']:focus + div {
-  //   outline: #5d9dd5 solid 1px;
-  //   box-shadow: 0 0px 8px #5e9ed6;
-  // }
 `;
 
 const Checkbox = createThemedComponent<
