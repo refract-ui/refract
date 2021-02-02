@@ -47,7 +47,10 @@ import genBlockElementMappings, {
 
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
-import genTextInputProps, { TextInputBase, TextInputOverrideProps } from './inputs';
+import genTextInputProps, {
+  TextInputBase,
+  TextInputOverrideProps
+} from './textInputs';
 import genDropdownProps, {
   DropdownBase,
   DropdownOverrideProps
