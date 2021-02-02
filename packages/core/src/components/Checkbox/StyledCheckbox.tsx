@@ -25,7 +25,6 @@ type StyledCheckboxProps = {
   iconColor?: string;
   iconName?: keyof Icons;
   isDisabled?: boolean;
-  isFocused?: boolean;
   isRequired?: boolean;
   name?: string;
   onChange?: (event: any) => void;

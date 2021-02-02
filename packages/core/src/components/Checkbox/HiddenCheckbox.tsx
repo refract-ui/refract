@@ -11,8 +11,6 @@ type HiddenCheckboxProps = {
   isRequired?: boolean;
   name?: string;
   onChange?: (event?: any) => void;
-  onFocusIn?: any;
-  onFocusOut?: any;
   value?: string | number;
 };
 
@@ -24,8 +22,6 @@ function HiddenCheckboxFunction({
   isRequired,
   name,
   onChange,
-  onFocusIn,
-  onFocusOut,
   value,
   ...props
 }: HiddenCheckboxProps): JSX.Element {
@@ -49,9 +45,7 @@ function HiddenCheckboxFunction({
       className={className}
       disabled={isDisabled}
       name={name}
-      onBlur={onFocusOut}
       onChange={onChange}
-      onFocus={onFocusIn}
       ref={checkRef}
       required={isRequired}
       type="checkbox"

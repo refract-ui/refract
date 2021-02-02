@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled, { css } from 'styled-components';
 import { get } from 'lodash';
 import theme, { ThemeComponent } from '../../theme';
@@ -57,8 +57,6 @@ function CheckboxFunction({
 }: CheckboxProps & CheckboxVariants): JSX.Element {
   const className = get(props, 'className', null);
 
-  const [isInputFocused, setIsInputFocused] = useState(false);
-
   return (
     <label className={className}>
       <HiddenCheckbox
@@ -66,9 +64,7 @@ function CheckboxFunction({
         isChecked={isChecked}
         isDisabled={isDisabled}
         name={name}
-        onFocusOut={() => setIsInputFocused(false)}
         onChange={isReadOnly ? () => false : onChange}
-        onFocusIn={() => setIsInputFocused(true)}
         isRequired={isRequired}
         value={value}
       />
@@ -81,7 +77,6 @@ function CheckboxFunction({
         isChecked={isChecked}
         isDisabled={isDisabled}
         isIndeterminate={isIndeterminate}
-        // isFocused={isInputFocused}
         isRequired={isRequired}
         size={size}
       />
