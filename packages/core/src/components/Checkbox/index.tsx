@@ -118,7 +118,6 @@ const Checkbox = createThemedComponent<
   states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
-    console.log('In index.tsx, this is theme: ', theme);
     return {
       Component: CheckboxComponent,
 

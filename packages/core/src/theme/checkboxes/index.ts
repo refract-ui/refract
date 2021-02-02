@@ -38,7 +38,7 @@ export default function genCheckboxProps({
   overrides = {}
 }: CheckboxBorderProps): CheckboxBase {
   const defaultCheckboxProps: CheckboxBase = {
-    checkedBg: themeColors.primary,
+    checkedBg: undefined,
     borders: {
       borderColor: themeColors.secondary,
       borderRadius: '0.2rem',

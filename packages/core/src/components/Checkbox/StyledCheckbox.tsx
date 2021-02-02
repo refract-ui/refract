@@ -95,6 +95,9 @@ const StyledCheckbox = createThemedComponent<
   states: ['_hover', '_active', '_focus', '_disabled'],
   extend: mapDivContainerPropsToStyles,
   compose: ({ theme, variant }) => {
+    const themeColorToUse = theme.components.checkboxes.checkedBg
+      ? theme.components.checkboxes.checkedBg
+      : theme.components.inputs.activeColor;
     return {
       Component: StyledCheckboxComponent,
 
@@ -102,9 +105,7 @@ const StyledCheckbox = createThemedComponent<
         isChecked: ({ isChecked, isIndeterminate, checkedColor }) => {
           if (isChecked || isIndeterminate) {
             return {
-              bg: checkedColor
-                ? checkedColor
-                : theme.components.checkboxes.checkedBg,
+              bg: checkedColor ? checkedColor : themeColorToUse,
               border: {
                 ...theme.components.checkboxes.borders,
                 borderWidth: '0'
@@ -150,7 +151,7 @@ const StyledCheckbox = createThemedComponent<
           checkedIconColor: ({ contrastColor, bg }) => contrastColor(bg),
           mr: theme.spacing['2'],
           outline: 'none',
-          outlineColor: theme.components.checkboxes.checkedBg,
+          outlineColor: themeColorToUse,
           w: '16px'
         }
       },
