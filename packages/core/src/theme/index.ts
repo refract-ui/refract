@@ -59,12 +59,14 @@ import genCheckboxProps, {
   CheckboxBase,
   CheckboxOverrideProps
 } from './checkboxes';
+import genInputProps, { InputBase, InputOverrideProps } from './inputs';
 
 type Components = {
   icons?: IconBase;
   textInputs?: TextInputBase;
   dropdowns?: DropdownBase;
   checkboxes?: CheckboxBase;
+  inputs?: InputBase;
 };
 
 export interface ThemeProps {
@@ -113,6 +115,7 @@ export interface ThemeProps {
   checkboxes?:
     | ((props: CheckboxOverrideProps) => CheckboxBase)
     | Partial<CheckboxBase>;
+  inputs?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
 }
 
 export type Theme = Colors &
@@ -160,7 +163,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     icons: iconOverrides,
     textInputs: textInputOverrides,
     dropdowns: dropdownOverrides,
-    checkboxes: checkboxOverrides
+    checkboxes: checkboxOverrides,
+    inputs: inputOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -249,6 +253,13 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: checkboxOverrides
   });
 
+  const inputs = genInputProps({
+    colors,
+    colorShades,
+    themeColors,
+    overrides: inputOverrides
+  });
+
   const mq = genMediaQueries({ breakpoints });
 
   return {
@@ -272,7 +283,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
       icons,
       textInputs,
       dropdowns,
-      checkboxes
+      checkboxes,
+      inputs
     }
   };
 }
