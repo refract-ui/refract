@@ -116,10 +116,10 @@ const TextInput = createThemedComponent<
             };
           } else {
             return {
-              bg: theme.components.inputs.bg,
+              bg: theme.components.textInputs.bg,
               textColor: theme['dark'],
               border: {
-                borderColor: theme.components.inputs.borders.borderColor
+                borderColor: theme.components.textInputs.borders.borderColor
               }
             };
           }
@@ -147,10 +147,10 @@ const TextInput = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          bg: theme.components.inputs.bg,
+          bg: theme.components.textInputs.bg,
           textColor: ({ contrastColor, bg }) => contrastColor(bg),
           h: '54px',
-          border: theme.components.inputs.borders,
+          border: theme.components.textInputs.borders,
           py: `0`,
           w: '100%'
         },

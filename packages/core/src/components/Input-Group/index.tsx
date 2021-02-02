@@ -98,7 +98,7 @@ const InputGroup = createThemedComponent<
               bg: 'transparent',
               textColor: theme['dark'],
               border: {
-                borderColor: theme.components.inputs.borders.borderColor
+                borderColor: theme.components.textInputs.borders.borderColor
               }
             };
           }
@@ -108,7 +108,7 @@ const InputGroup = createThemedComponent<
       defaultStyleMapping: {
         xs: {
           bg: 'none',
-          border: theme.components.inputs.borders,
+          border: theme.components.textInputs.borders,
           py: `0`
         }
       },

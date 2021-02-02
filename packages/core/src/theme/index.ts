@@ -47,7 +47,7 @@ import genBlockElementMappings, {
 
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
-import genInputProps, { InputBase, InputOverrideProps } from './inputs';
+import genTextInputProps, { TextInputBase, TextInputOverrideProps } from './inputs';
 import genDropdownProps, {
   DropdownBase,
   DropdownOverrideProps
@@ -59,7 +59,7 @@ import genCheckboxProps, {
 
 type Components = {
   icons?: IconBase;
-  inputs?: InputBase;
+  textInputs?: TextInputBase;
   dropdowns?: DropdownBase;
   checkboxes?: CheckboxBase;
 };
@@ -101,7 +101,9 @@ export interface ThemeProps {
     | ((props: BlockElementMappingOverrideProps) => BlockElementMappings)
     | Partial<BlockElementMappings>;
   icons?: ((props: IconOverrideProps) => IconBase) | Partial<IconBase>;
-  inputs?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
+  textInputs?:
+    | ((props: TextInputOverrideProps) => TextInputBase)
+    | Partial<TextInputBase>;
   dropdowns?:
     | ((props: DropdownOverrideProps) => DropdownBase)
     | Partial<DropdownBase>;
@@ -153,7 +155,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     fontTagMappings: fontTagMappingOverrides,
     blockElementMappings: blockElementMappingOverrides,
     icons: iconOverrides,
-    inputs: inputOverrides,
+    textInputs: textInputOverrides,
     dropdowns: dropdownOverrides,
     checkboxes: checkboxOverrides
   } = settings;
@@ -223,11 +225,11 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: iconOverrides
   });
 
-  const inputs = genInputProps({
+  const textInputs = genTextInputProps({
     colors,
     colorShades,
     themeColors,
-    overrides: inputOverrides
+    overrides: textInputOverrides
   });
 
   const dropdowns = genDropdownProps({
@@ -265,7 +267,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     blockElementMappings,
     components: {
       icons,
-      inputs,
+      textInputs,
       dropdowns,
       checkboxes
     }

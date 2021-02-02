@@ -81,10 +81,10 @@ const InputAddon = createThemedComponent<
 
       defaultStyleMapping: {
         xs: {
-          bg: theme.components.inputs.bg,
+          bg: theme.components.textInputs.bg,
           textColor: theme.secondary,
           border: {
-            ...theme.components.inputs.borders,
+            ...theme.components.textInputs.borders,
             borderRadius: `0`
           }
         }

@@ -10,32 +10,34 @@ type ColorValues =
   | ValueOf<Colors>
   | ValueOf<ColorShades>;
 
-export type InputBase = {
+export type TextInputBase = {
   borders?: BorderBreakpointStyle;
   bg: ColorValues;
 };
 
-interface InputBorderProps {
+interface TextInputBorderProps {
   colors?: Colors;
   colorShades?: ColorShades;
   themeColors?: ThemeColors;
-  overrides?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
+  overrides?:
+    | ((props: TextInputOverrideProps) => TextInputBase)
+    | Partial<TextInputBase>;
 }
 
-export interface InputOverrideProps {
+export interface TextInputOverrideProps {
   colors?: Colors;
   colorShades?: ColorShades;
   themeColors?: ThemeColors;
-  defaults?: InputBase;
+  defaults?: TextInputBase;
 }
 
-export default function genInputProps({
+export default function genTextInputProps({
   colors,
   colorShades,
   themeColors,
   overrides = {}
-}: InputBorderProps): InputBase {
-  const defaultInputProps: InputBase = {
+}: TextInputBorderProps): TextInputBase {
+  const defaultTextInputProps: TextInputBase = {
     borders: {
       borderColor: themeColors.secondary,
       borderWidth: '2px',
@@ -46,8 +48,8 @@ export default function genInputProps({
   };
 
   if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: defaultInputProps });
+    return overrides({ colors, colorShades, defaults: defaultTextInputProps });
   }
 
-  return defaults(overrides, defaultInputProps);
+  return defaults(overrides, defaultTextInputProps);
 }
