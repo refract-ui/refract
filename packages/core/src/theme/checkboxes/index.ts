@@ -10,44 +10,46 @@ type ColorValues =
   | ValueOf<Colors>
   | ValueOf<ColorShades>;
 
-export type InputBase = {
+export type CheckboxBase = {
   borders?: BorderBreakpointStyle;
-  bg: ColorValues;
+  checkedBg?: ColorValues;
 };
 
-interface InputBorderProps {
+interface CheckboxBorderProps {
   colors?: Colors;
   colorShades?: ColorShades;
   themeColors?: ThemeColors;
-  overrides?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
+  overrides?:
+    | ((props: CheckboxOverrideProps) => CheckboxBase)
+    | Partial<CheckboxBase>;
 }
 
-export interface InputOverrideProps {
+export interface CheckboxOverrideProps {
   colors?: Colors;
   colorShades?: ColorShades;
   themeColors?: ThemeColors;
-  defaults?: InputBase;
+  defaults?: CheckboxBase;
 }
 
-export default function genInputProps({
+export default function genCheckboxProps({
   colors,
   colorShades,
   themeColors,
   overrides = {}
-}: InputBorderProps): InputBase {
-  const defaultInputProps: InputBase = {
+}: CheckboxBorderProps): CheckboxBase {
+  const defaultCheckboxProps: CheckboxBase = {
+    checkedBg: themeColors.primary,
     borders: {
       borderColor: themeColors.secondary,
-      borderWidth: '2px',
+      borderRadius: '0.2rem',
       borderStyle: 'solid',
-      borderRadius: '0.5rem'
-    },
-    bg: 'none'
+      borderWidth: '1px'
+    }
   };
 
   if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: defaultInputProps });
+    return overrides({ colors, colorShades, defaults: defaultCheckboxProps });
   }
 
-  return defaults(overrides, defaultInputProps);
+  return defaults(overrides, defaultCheckboxProps);
 }

@@ -48,12 +48,20 @@ import genBlockElementMappings, {
 // components
 import genIconProps, { IconBase, IconOverrideProps } from './icons';
 import genInputProps, { InputBase, InputOverrideProps } from './inputs';
-import genDropdownProps, { DropdownBase, DropdownOverrideProps } from './dropdowns';
+import genDropdownProps, {
+  DropdownBase,
+  DropdownOverrideProps
+} from './dropdowns';
+import genCheckboxProps, {
+  CheckboxBase,
+  CheckboxOverrideProps
+} from './checkboxes';
 
 type Components = {
   icons?: IconBase;
   inputs?: InputBase;
   dropdowns?: DropdownBase;
+  checkboxes?: CheckboxBase;
 };
 
 export interface ThemeProps {
@@ -97,6 +105,9 @@ export interface ThemeProps {
   dropdowns?:
     | ((props: DropdownOverrideProps) => DropdownBase)
     | Partial<DropdownBase>;
+  checkboxes?:
+    | ((props: CheckboxOverrideProps) => CheckboxBase)
+    | Partial<CheckboxBase>;
 }
 
 export type Theme = Colors &
@@ -143,7 +154,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     blockElementMappings: blockElementMappingOverrides,
     icons: iconOverrides,
     inputs: inputOverrides,
-    dropdowns: dropdownOverrides
+    dropdowns: dropdownOverrides,
+    checkboxes: checkboxOverrides
   } = settings;
 
   const colors = genColors({ overrides: colorOverrides });
@@ -225,6 +237,13 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: dropdownOverrides
   });
 
+  const checkboxes = genCheckboxProps({
+    colors,
+    colorShades,
+    themeColors,
+    overrides: checkboxOverrides
+  });
+
   const mq = genMediaQueries({ breakpoints });
 
   return {
@@ -247,7 +266,8 @@ export default function theme(settings: ThemeProps = {}): Theme {
     components: {
       icons,
       inputs,
-      dropdowns
+      dropdowns,
+      checkboxes
     }
   };
 }
