@@ -76,6 +76,7 @@ const StyledCheckboxComponent = styled(StyledCheckboxFunction)<
   box-sizing: border-box;
   display: flex;
   justify-content: center;
+  transition: background 0.2s;
 `;
 
 const StyledCheckbox = createThemedComponent<
