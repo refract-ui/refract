@@ -59,6 +59,7 @@ import genCheckboxProps, {
   CheckboxBase,
   CheckboxOverrideProps
 } from './checkboxes';
+import genRadioProps, { RadioBase, RadioOverrideProps } from './radios';
 import genInputProps, { InputBase, InputOverrideProps } from './inputs';
 
 type Components = {
@@ -66,6 +67,7 @@ type Components = {
   textInputs?: TextInputBase;
   dropdowns?: DropdownBase;
   checkboxes?: CheckboxBase;
+  radios?: RadioBase;
   inputs?: InputBase;
 };
 
@@ -115,6 +117,7 @@ export interface ThemeProps {
   checkboxes?:
     | ((props: CheckboxOverrideProps) => CheckboxBase)
     | Partial<CheckboxBase>;
+  radios?: ((props: RadioOverrideProps) => RadioBase) | Partial<RadioBase>;
   inputs?: ((props: InputOverrideProps) => InputBase) | Partial<InputBase>;
 }
 
@@ -164,6 +167,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
     textInputs: textInputOverrides,
     dropdowns: dropdownOverrides,
     checkboxes: checkboxOverrides,
+    radios: radioOverrides,
     inputs: inputOverrides
   } = settings;
 
@@ -253,6 +257,13 @@ export default function theme(settings: ThemeProps = {}): Theme {
     overrides: checkboxOverrides
   });
 
+  const radios = genRadioProps({
+    colors,
+    colorShades,
+    themeColors,
+    overrides: radioOverrides
+  });
+
   const inputs = genInputProps({
     colors,
     colorShades,
@@ -261,7 +272,6 @@ export default function theme(settings: ThemeProps = {}): Theme {
   });
 
   const mq = genMediaQueries({ breakpoints });
-
   return {
     settings,
     ...colors,
@@ -284,6 +294,7 @@ export default function theme(settings: ThemeProps = {}): Theme {
       textInputs,
       dropdowns,
       checkboxes,
+      radios,
       inputs
     }
   };
