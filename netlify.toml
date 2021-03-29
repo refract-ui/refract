@@ -1,5 +1,5 @@
 [build]
-  command = "yarn build-storybooks"
+  command = "yarn build-storybook"
 [build.environment]
   NODE_VERSION = "10"
   YARN_VERSION = "1.22.10"
