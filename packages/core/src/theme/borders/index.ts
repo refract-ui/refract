@@ -4,10 +4,10 @@ import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 
 export type BorderBreakpointStyle = {
-  borderWidth: string;
-  borderStyle: string;
   borderColor: string;
   borderRadius: string;
+  borderStyle: string;
+  borderWidth: string;
 };
 
 export type Borders = {
@@ -66,6 +66,13 @@ export function applyBorderStyle(
         border-radius: ${border.borderRadius};
       `
     }
+
+    ${
+      border.borderStyle &&
+      css`
+        border-style: ${border.borderStyle};
+      `
+    }
   `;
 }
 
@@ -77,6 +84,7 @@ export default function borders({
   const defaultBorders: Borders = {
     xs: {
       borderWidth: '1px',
+      borderStyle: 'solid',
       borderColor: colorShades.gray300,
       borderStyle: 'solid',
       borderRadius: '0.2rem'
