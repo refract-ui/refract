@@ -95,42 +95,32 @@ storiesOf('Button', module)
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="link">
-            link {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button color={color} key={color} iconLeft="Close">
+          <Button color={color} key={color} icon="Close">
             leading icon {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="subtle" iconLeft="Close">
+          <Button color={color} key={color} variant="subtle" icon="Close">
             leading icon {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="outline" iconLeft="Close">
+          <Button color={color} key={color} variant="outline" icon="Close">
             leading icon {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="link" iconLeft="Close">
-            leading icon {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button color={color} key={color} iconRight="SimpleArrowDown">
+          <Button
+            color={color}
+            key={color}
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+          >
             trailing icon {color}
           </Button>
         ))}
@@ -141,7 +131,7 @@ storiesOf('Button', module)
             color={color}
             key={color}
             variant="subtle"
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             trailing icon {color}
           </Button>
@@ -153,19 +143,7 @@ storiesOf('Button', module)
             color={color}
             key={color}
             variant="outline"
-            iconRight="SimpleArrowDown"
-          >
-            trailing icon {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button
-            color={color}
-            key={color}
-            variant="link"
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             trailing icon {color}
           </Button>
