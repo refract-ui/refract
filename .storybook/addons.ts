@@ -1,2 +1,2 @@
 import '@storybook/addon-actions/register';
-import 'themeprovider-storybook/register';
+import '@storybook/addon-toolbars/register';
