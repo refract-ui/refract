@@ -3,6 +3,10 @@ import { get } from 'lodash';
 import styled, { css } from 'styled-components';
 import { ThemeComponent } from '../../theme';
 import { ThemeColors } from '../../theme/themeColors';
+import {
+  Container,
+  mapDivContainerPropsToStyles
+} from '../../theme/containers';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
@@ -11,17 +15,8 @@ import Icon from '../Icon';
 
 // reduce to sets of types (text, box, etc.)?
 type ButtonTheme = {
-  backgroundColor: string;
   border: Partial<BorderBreakpointStyle>;
-  height: string;
-  px: string;
-  py: string;
   textColor?: string;
-  fontSize?: string;
-  width?: string;
-  leftIcon?: boolean;
-  rightIcon?: boolean;
-  hasIcon?: boolean;
 };
 
 type ButtonVariants = {
@@ -83,7 +78,8 @@ const Button = createThemedComponent<
   ButtonTheme,
   ButtonVariants,
   ButtonStates,
-  ButtonProps
+  ButtonProps,
+  Container
 >({
   defaultVariants: {
     color: 'primary',
@@ -94,149 +90,61 @@ const Button = createThemedComponent<
     iconRight: null
   },
   states: ['_hover', '_active'],
-  compose: ({ theme, variant }) => {
-    return {
-      Component: ButtonComponent,
+  extend: mapDivContainerPropsToStyles(),
+  compose: ({ theme, variant }) => ({
+    Component: ButtonComponent,
 
-      // variants aren't derived from single values, but the intersection of values
-      // move these hardcoded values into theme object
-      variantMapping: {
-        color: ({ size, color, variant, icon }) => {
-          const sizeProps = {
-            height: size === 'md' ? '52px' : '42px',
-            py: size === 'md' ? '0.5rem' : '0.6875rem',
-            px: size === 'md' ? '1rem' : '0.75rem'
-          };
+    variantMapping: {
+      color: ({ color }) => ({
+        bg: theme[color]
+      }),
+      size: ({ size }) => ({
+        h: size === 'md' ? '52px' : '42px',
+        py: size === 'md' ? `${theme.spacing['2']}` : `${theme.spacing['1']}`,
+        width: '100%'
+      })
+    },
 
-          if (variant === 'outline') {
-            return {
-              backgroundColor: theme.white,
-              textColor: theme.darkColors[color],
-              borderColor: theme.darkColors[color],
-              border: {
-                ...theme.borders.md,
-                borderWidth: icon ? '2px' : '1px'
-              },
-              ...sizeProps
-            };
-          }
-
-          if (variant === 'link') {
-            return {
-              backgroundColor: theme.white,
-              textColor: theme.darkColors[color],
-              border: {
-                ...theme.borders.md,
-                borderStyle: 'none'
-              },
-              py: '0',
-              px: '0',
-              height: 'initial',
-              width: 'initial !important'
-            };
-          }
-
-          if (variant === 'subtle') {
-            return {
-              backgroundColor: theme.subtleColors[color],
-              borderColor: theme.subtleColors[color],
-              textColor: theme.darkColors[color],
-              ...sizeProps
-            };
-          }
-
-          return {
-            backgroundColor: theme[color],
-            borderColor: theme[color],
-            textColor: theme.white,
-            ...sizeProps
-          };
-        }
+    defaultStyleMapping: {
+      xs: {
+        bg: theme[variant.color],
+        textColor: ({ contrastColor, bg }) => contrastColor(bg),
+        border: theme.borders.md,
+        h: '42px',
+        px: `${theme.spacing['3']}`,
+        py: `${theme.spacing['2']}`,
+        w: '100%'
       },
 
-      // theme function?
-      // genButton({ color, backgroundColor, variant })
-      defaultStyleMapping: {
-        xs: {
-          backgroundColor: theme[variant.color],
-          textColor: ({ contrastColor, backgroundColor }) =>
-            contrastColor(backgroundColor),
-          fontSize: '1rem',
-          border: {
-            ...theme.borders.md
-          },
-          height: '42px',
-          px: '1rem',
-          py: '1rem',
-          width: '100%',
-          leftIcon: !!variant.iconLeft,
-          rightIcon: !!variant.iconRight,
-          hasIcon: !!variant.icon || !!variant.iconLeft || !!variant.iconRight
-        },
-
-        md: {
-          width: '300px'
-        }
-      },
-
-      cascadeStateProps: {
-        backgroundColor: {
-          _hover: ({ backgroundColor }) =>
-            lightenOrDarken({ color: backgroundColor, amount: 10 }),
-          _active: ({ _hover: { backgroundColor } }) =>
-            lightenOrDarken({ color: backgroundColor, amount: 10 })
-        }
-      },
-
-      mapPropsToStyle: {
-        backgroundColor: ({ backgroundColor }) => css`
-          background-color: ${backgroundColor};
-        `,
-        textColor: ({ textColor }) => css`
-          color: ${textColor};
-          svg {
-            path {
-              fill: ${textColor};
-            }
-          }
-        `,
-        fontSize: ({ fontSize, leftIcon, rightIcon }) => css`
-          font-size: ${fontSize};
-          svg {
-            height: ${fontSize};
-            width: ${fontSize};
-            margin-right: ${leftIcon && `${fontSize}`};
-            margin-left: ${rightIcon && `${fontSize}`};
-          }
-        `,
-        height: ({ height }) => css`
-          height: ${height};
-        `,
-        border: props => {
-          console.log('props', props);
-          return applyBorderStyle({
-            borderColor:
-              variant.variant === 'outline'
-                ? props.textColor
-                : props.backgroundColor,
-            ...props.border
-          });
-        },
-        px: ({ px }) => css`
-          padding-left: ${px};
-          padding-right: ${px};
-        `,
-        py: ({ py }) => css`
-          padding-top: ${py};
-          padding-bottom: ${py};
-        `,
-        width: ({ width, height, hasIcon }) => css`
-          min-width: ${width};
-          min-width: ${hasIcon && `${height} !important`};
-        `
+      md: {
+        px: `${theme.spacing['4']}`,
+        py: `${theme.spacing['3']}`,
+        w: '300px'
       }
-    };
-  }
+    },
+
+    cascadeStateProps: {
+      bg: {
+        _hover: ({ bg }) => lightenOrDarken({ color: bg, amount: 10 }),
+        _active: ({ _hover: { bg } }) =>
+          lightenOrDarken({ color: bg, amount: 10 })
+      }
+    },
+
+    mapPropsToStyle: {
+      textColor: ({ bg, contrastColor }) => css`
+        color: ${contrastColor(bg)};
+        font-family: 'Work Sans', sans serif;
+        font-size: 1rem;
+        line-height: 19px;
+      `,
+      border: props =>
+        applyBorderStyle({
+          borderColor: props.bg,
+          ...props.border
+        })
+    }
+  })
 });
 
 export default Button;

@@ -24,6 +24,7 @@ import {
 } from '../../utils/componentThemeBreakpoints';
 import contrastColor from '../../utils/contrastColor';
 import { Theme } from '../../theme';
+import { ContainerPropStyleMap } from '../../theme/containers';
 
 function isPseudoSelector(key: string): boolean {
   return /^_/.test(key);

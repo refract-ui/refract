@@ -101,6 +101,16 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme }) => {
           <span>{faker.lorem.sentence()}</span>
         </p>
       </Section>
+
+      <Section title="code">
+        <label>pre</label>
+        <pre>{faker.lorem.paragraph()}</pre>
+
+        <label>kbd</label>
+        <p>
+          Press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd>
+        </p>
+      </Section>
     </ThemeProvider>
   );
 };
