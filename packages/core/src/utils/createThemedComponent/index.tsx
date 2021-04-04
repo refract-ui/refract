@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
 import { ValuesType, PickByValue } from 'utility-types';
+import contrastColor from '../../utils/contrastColor';
 import { Theme, ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
@@ -10,12 +11,14 @@ import {
   ThemeExtension,
   ComponentThemeBreakpoint,
   ExtendTheme,
-  PseudoClass
+  PseudoClass,
+  ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
 import applyBreakpointStyles, {
   ThemePropStyleMapping,
   CascadeStateSettings
 } from '../../utils/applyBreakpointStyles';
+import { ContainerPropStyleMap } from '../../theme/containers';
 
 export type WithTheme = {
   theme: Theme;
@@ -31,64 +34,92 @@ type VariantMap<TVariants, TTheme> = {
   ) => Partial<TTheme>;
 };
 
+// TODO: figure out how to do this without generic Function
+type SansFunctions<T> = {
+  /* eslint-disable @typescript-eslint/ban-types */
+  [P in keyof T]: Exclude<T[P], Function>;
+  /* eslint-enable @typescript-eslint/ban-types */
+};
+
 interface ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps> {
   Component: React.FC<ThemeComponent & TProps>;
   defaultStyleMapping: ThemeBreakpoints<TThemeBreakpoint>;
-  mapPropsToStyle: ThemePropStyleMapping<TThemeBreakpoint>;
-  cascadeStateProps: CascadeStateSettings<
+  mapPropsToStyle: ThemePropStyleMapping<TThemeBreakpoint, TProps>;
+  cascadeStateProps?: CascadeStateSettings<
     TThemeBreakpoint,
     ThemeExtension<TThemeBreakpoint>
   >;
-  variantMapping: VariantMap<TVariants, TTheme>;
+  variantMapping?: VariantMap<TVariants, TTheme>;
 }
 
-type CreateThemedComponentProps<TTheme, TVariants, TThemeBreakpoint, TProps> = {
-  defaultVariants: TVariants;
-  states: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
+type CreateThemedComponentProps<
+  TTheme,
+  TVariants,
+  TThemeBreakpoint,
+  TProps,
+  TExtends
+> = {
+  defaultVariants?: TVariants;
+  states?: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
+  extend?: (
+    props: ThemeExtensionHelperMethods
+  ) => ContainerPropStyleMap<TExtends>;
   compose: ({
     theme,
+    contrastColor,
     variant
-  }: WithTheme & { variant: TVariants }) => ComponentGeneratorProps<
-    TTheme,
-    TVariants,
-    TThemeBreakpoint,
-    TProps
-  >;
+  }: ThemeExtensionHelperMethods & {
+    variant: TVariants;
+  }) => ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps>;
 };
 
 export default function createThemedComponent<
   TTheme,
-  TVariants,
-  TStates extends string,
-  TProps,
-  TThemeBreakpoint = ComponentThemeBreakpoint<TTheme, TStates>,
+  TVariants = unknown,
+  TStates extends string = '',
+  TProps = unknown,
+  TExtends = unknown,
+  TThemeBreakpoint = ComponentThemeBreakpoint<
+    TTheme & Partial<SansFunctions<TExtends>>,
+    TStates
+  >,
   TExtendedTheme = ExtendTheme<TThemeBreakpoint>,
-  TComponentProps = Partial<WithTheme & TExtendedTheme & TVariants>
+  TComponentProps = Partial<
+    ThemeExtensionHelperMethods & TExtendedTheme & TVariants
+  >
 >({
-  defaultVariants,
-  states,
+  defaultVariants = undefined,
+  states = [],
+  extend,
   compose
 }: CreateThemedComponentProps<
-  TTheme,
+  TTheme & Partial<TExtends>,
   TVariants,
   TThemeBreakpoint,
-  TProps
+  TProps,
+  TExtends
 >): React.FC<TComponentProps & TProps> {
   const ThemedComponent: React.FC<TComponentProps & TProps> = props => {
     const theme = get(props, 'theme', useContext(ThemeContext)) as Theme;
-    const variantPropKeys = Object.keys(defaultVariants);
+    const variantPropKeys = Object.keys(defaultVariants || {});
     let variant = defaultsDeep(
       pick(props, variantPropKeys) as TVariants,
       defaultVariants
     );
 
+    // define convenience methods passed along to each prop / style mapping
+    const helperMethods = {
+      theme,
+      contrastColor: (color: string) => contrastColor({ color, theme })
+    } as ThemeExtensionHelperMethods;
+
     const {
       Component,
       defaultStyleMapping,
       mapPropsToStyle,
-      cascadeStateProps,
-      variantMapping
-    } = compose({ theme, variant });
+      cascadeStateProps = {},
+      variantMapping = {}
+    } = compose({ ...helperMethods, variant });
 
     variant = defaultsDeep(variant, defaultVariants);
 
@@ -127,11 +158,13 @@ export default function createThemedComponent<
     const componentProps = pick(props, componentPropKeys) as TProps;
 
     const applyThemeBreakpoint = (theme: Theme, props: TThemeBreakpoint) =>
-      applyBreakpointStyles<TThemeBreakpoint>({
+      applyBreakpointStyles<TThemeBreakpoint, TExtends, TProps>({
         theme,
         props,
-        apply: mapPropsToStyle,
-        cascade: cascadeStateProps
+        helperMethods,
+        apply: { ...mapPropsToStyle, ...(extend ? extend(helperMethods) : {}) },
+        cascade: cascadeStateProps,
+        componentProps
       });
 
     const componentCss = applyComponentTheme<TThemeBreakpoint>({

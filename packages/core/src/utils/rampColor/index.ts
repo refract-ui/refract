@@ -1,6 +1,7 @@
 import { map, range, reduce } from 'lodash';
 import { ColorShades } from '../../theme/colorShades';
 import { Colors } from '../../theme/colors';
+import { ThemeColors } from '../../theme/themeColors';
 import tc from 'tinycolor2';
 
 export type ColorRamp = {
@@ -8,7 +9,7 @@ export type ColorRamp = {
 };
 
 interface RampColorProps {
-  name: keyof Colors;
+  name: keyof Colors | keyof ThemeColors;
   startColor: string;
   step?: number;
 }

@@ -1,36 +1,36 @@
 import React from 'react';
-import { get } from 'lodash';
 import styled, { css } from 'styled-components';
+import { get, isObject } from 'lodash';
 import { ThemeComponent } from '../../theme';
 import { ThemeColors } from '../../theme/themeColors';
+import { ThemeColorShades } from '../../theme/themeColorShades';
+import {
+  Container,
+  mapDivContainerPropsToStyles
+} from '../../theme/containers';
 import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
-import { Icons } from '../Icon/icons';
-import Icon from '../Icon';
+import { Icons } from '../Icons/icons';
+import Icon from '../Icons';
 
 // reduce to sets of types (text, box, etc.)?
 type ButtonTheme = {
-  backgroundColor: string;
   border: Partial<BorderBreakpointStyle>;
-  height: string;
-  px: string;
-  py: string;
   textColor?: string;
   fontSize?: string;
   width?: string;
-  leftIcon?: boolean;
-  rightIcon?: boolean;
-  hasIcon?: boolean;
+};
+
+type IconObject = {
+  icon: keyof Icons;
+  position: 'left' | 'right' | null;
 };
 
 type ButtonVariants = {
   color: keyof ThemeColors;
-  size?: 'sm' | 'md';
-  variant?: 'outline' | 'subtle' | 'link' | null;
-  iconLeft?: keyof Icons | null;
-  iconRight?: keyof Icons | null;
-  icon?: keyof Icons | null;
+  size: 'sm' | 'md';
+  variant: 'outline' | 'subtle' | null;
 };
 
 type ButtonStates = '_hover' | '_active';
@@ -38,42 +38,48 @@ type ButtonStates = '_hover' | '_active';
 type ButtonProps = {
   children?: React.ReactNode;
   onClick?: () => void;
+  icon?: keyof Icons | IconObject | null;
 };
 
 function ButtonFunction({
   children,
   onClick,
   icon,
-  iconLeft,
-  iconRight,
   ...props
 }: ButtonProps & ButtonVariants): JSX.Element {
   const className = get(props, 'className', null);
+
+  const useIcon = isObject(icon) ? get(icon, 'icon', null) : icon;
+  const iconPosition = isObject(icon) ? get(icon, 'position', 'left') : 'left';
+  // console.log('{ useIcon, iconPosition }', { useIcon, iconPosition });
+
   return (
     <button className={className} onClick={onClick}>
-      {iconLeft && <Icon name={iconLeft} />}
-      {!children && icon && <Icon name={icon} />}
-      {children && children}
-      {iconRight && <Icon name={iconRight} />}
+      {icon && iconPosition === 'left' && children && (
+        <Icon name={useIcon as keyof Icons} />
+      )}
+      {children}
+      {icon && !children && <Icon name={useIcon as keyof Icons} />}
+      {icon && iconPosition === 'right' && children && (
+        <Icon name={useIcon as keyof Icons} />
+      )}
     </button>
   );
 }
 
 ButtonFunction.defaultProps = {
   children: null,
-  onClick: null
+  onClick: null,
+  icon: null
 };
 
-// move defaults to `text`
 const ButtonComponent = styled(ButtonFunction)<ThemeComponent & ButtonProps>`
   ${({ componentCss }) => componentCss};
-  // display: inline-flex;
-  font-family: 'Work Sans', sans serif;
-  font-size: 1rem;
-  line-height: 19px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  font-family: 'Work Sans', sans serif;
+  line-height: 18px;
   &:hover {
     cursor: pointer;
   }
@@ -83,124 +89,96 @@ const Button = createThemedComponent<
   ButtonTheme,
   ButtonVariants,
   ButtonStates,
-  ButtonProps
+  ButtonProps,
+  Container
 >({
   defaultVariants: {
     color: 'primary',
     size: 'md',
-    variant: null,
-    icon: null,
-    iconLeft: null,
-    iconRight: null
+    variant: null
   },
   states: ['_hover', '_active'],
-  compose: ({ theme, variant }) => {
-    return {
-      Component: ButtonComponent,
+  extend: mapDivContainerPropsToStyles,
+  compose: ({ theme, variant }) => ({
+    Component: ButtonComponent,
 
-      // variants aren't derived from single values, but the intersection of values
-      // move these hardcoded values into theme object
-      variantMapping: {
-        color: ({ size, color, variant, icon }) => {
-          const sizeProps = {
-            height: size === 'md' ? '52px' : '42px',
-            py: size === 'md' ? '0.5rem' : '0.6875rem',
-            px: size === 'md' ? '1rem' : '0.75rem'
-          };
-
-          if (variant === 'outline') {
-            return {
-              backgroundColor: theme.white,
-              textColor: theme.darkColors[color],
-              borderColor: theme.darkColors[color],
-              border: {
-                ...theme.borders.md,
-                borderWidth: icon ? '2px' : '1px'
-              },
-              ...sizeProps
-            };
-          }
-
-          if (variant === 'link') {
-            return {
-              backgroundColor: theme.white,
-              textColor: theme.darkColors[color],
-              border: {
-                ...theme.borders.md,
-                borderStyle: 'none'
-              },
-              py: '0',
-              px: '0',
-              height: 'initial',
-              width: 'initial !important'
-            };
-          }
-
-          if (variant === 'subtle') {
-            return {
-              backgroundColor: theme.subtleColors[color],
-              borderColor: theme.subtleColors[color],
-              textColor: theme.darkColors[color],
-              ...sizeProps
-            };
-          }
-
+    variantMapping: {
+      color: ({ color }) => ({
+        bg: theme[color]
+      }),
+      size: ({ size }) => ({
+        py: size === 'md' ? '1rem' : '0.6875rem',
+        px: size === 'md' ? '1rem' : '0.6875rem'
+      }),
+      variant: ({ variant, color }) => {
+        if (variant === 'outline') {
           return {
-            backgroundColor: theme[color],
-            borderColor: theme[color],
-            textColor: theme.white,
-            ...sizeProps
+            bg: theme.white,
+            textColor: theme[`${color}700` as keyof ThemeColorShades],
+            borderColor: theme[`${color}700` as keyof ThemeColorShades],
+            border: {
+              ...theme.borders.md
+            }
           };
         }
-      },
 
-      // theme function?
-      // genButton({ color, backgroundColor, variant })
-      defaultStyleMapping: {
-        xs: {
-          backgroundColor: theme[variant.color],
-          textColor: ({ contrastColor, backgroundColor }) =>
-            contrastColor(backgroundColor),
-          fontSize: '1rem',
-          border: {
-            ...theme.borders.md
-          },
-          height: '42px',
-          px: '1rem',
-          py: '1rem',
-          width: '100%',
-          leftIcon: !!variant.iconLeft,
-          rightIcon: !!variant.iconRight,
-          hasIcon: !!variant.icon || !!variant.iconLeft || !!variant.iconRight
+        if (variant === 'subtle') {
+          return {
+            bg: theme[`${color}400` as keyof ThemeColorShades],
+            borderColor: theme[`${color}400` as keyof ThemeColorShades],
+            textColor: theme[`${color}900` as keyof ThemeColorShades]
+          };
+        }
+
+        return {
+          bg: theme[color],
+          borderColor: theme[color],
+          textColor: theme.white
+        };
+      }
+    },
+
+    defaultStyleMapping: {
+      xs: {
+        bg: theme[variant.color],
+        textColor: ({ contrastColor, bg }) => contrastColor(bg),
+        border: {
+          ...theme.borders.md
         },
-
-        md: {
-          width: '300px'
-        }
+        fontSize: '1rem',
+        px: '1rem',
+        py: '0.75rem',
+        w: '100%',
+        width: 'unset'
       },
 
-      cascadeStateProps: {
-        backgroundColor: {
-          _hover: ({ backgroundColor }) =>
-            lightenOrDarken({ color: backgroundColor, amount: 10 }),
-          _active: ({ _hover: { backgroundColor } }) =>
-            lightenOrDarken({ color: backgroundColor, amount: 10 })
-        }
-      },
+      md: {
+        w: '300px'
+      }
+    },
 
-      mapPropsToStyle: {
-        backgroundColor: ({ backgroundColor }) => css`
-          background-color: ${backgroundColor};
-        `,
-        textColor: ({ textColor }) => css`
-          color: ${textColor};
-          svg {
-            path {
-              fill: ${textColor};
-            }
+    cascadeStateProps: {
+      bg: {
+        _hover: ({ bg }) => lightenOrDarken({ color: bg, amount: 10 }),
+        _active: ({ _hover: { bg } }) =>
+          lightenOrDarken({ color: bg, amount: 10 })
+      }
+    },
+
+    mapPropsToStyle: {
+      textColor: ({ textColor }) => css`
+        color: ${textColor};
+        svg {
+          path {
+            fill: ${textColor};
           }
-        `,
-        fontSize: ({ fontSize, leftIcon, rightIcon }) => css`
+        }
+      `,
+      fontSize: ({ fontSize, componentProps: { icon, children } }) => {
+        const iconPosition = get(icon, 'position', 'left');
+        const leftIcon = icon && children && iconPosition === 'left';
+        const rightIcon = icon && children && iconPosition === 'right';
+        return css`
           font-size: ${fontSize};
           svg {
             height: ${fontSize};
@@ -208,35 +186,27 @@ const Button = createThemedComponent<
             margin-right: ${leftIcon && `${fontSize}`};
             margin-left: ${rightIcon && `${fontSize}`};
           }
-        `,
-        height: ({ height }) => css`
-          height: ${height};
-        `,
-        border: props => {
-          console.log('props', props);
-          return applyBorderStyle({
-            borderColor:
-              variant.variant === 'outline'
-                ? props.textColor
-                : props.backgroundColor,
-            ...props.border
-          });
-        },
-        px: ({ px }) => css`
-          padding-left: ${px};
-          padding-right: ${px};
-        `,
-        py: ({ py }) => css`
-          padding-top: ${py};
-          padding-bottom: ${py};
-        `,
-        width: ({ width, height, hasIcon }) => css`
-          min-width: ${width};
-          min-width: ${hasIcon && `${height} !important`};
-        `
+        `;
+      },
+      border: props => {
+        const {
+          componentProps: { icon, children }
+        } = props;
+
+        return applyBorderStyle({
+          borderColor:
+            variant.variant === 'outline' ? props.textColor : props.bg,
+          borderWidth: icon && !children ? '2px' : '1px',
+          ...props.border
+        });
+      },
+      width: ({ componentProps: { icon } }) => {
+        return css`
+          width: ${icon && 'initial !important'};
+        `;
       }
-    };
-  }
+    }
+  })
 });
 
 export default Button;

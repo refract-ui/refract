@@ -41,24 +41,24 @@ storiesOf('Button', module)
 
       <br />
 
-      <Button backgroundColor="crimson">extended</Button>
+      <Button bg="crimson">extended</Button>
 
       <br />
 
-      <Button mdOnly={{ backgroundColor: 'pink' }}>pink at md</Button>
+      <Button mdOnly={{ bg: 'pink' }}>pink at md</Button>
 
       <br />
 
       <Button
-        backgroundColor={props => props.theme.cyan200}
-        _hover={{ backgroundColor: props => props.theme.blue }}
+        bg={props => props.theme.cyan200}
+        _hover={{ bg: props => props.theme.blue }}
         mdOnly={{
-          backgroundColor: props => props.theme.red900,
+          bg: props => props.theme.red900,
           _hover: {
-            backgroundColor: props => props.theme.cyan300
+            bg: props => props.theme.cyan300
           },
           _active: {
-            backgroundColor: 'chartreuse'
+            bg: 'chartreuse'
           }
         }}
       >
@@ -95,42 +95,32 @@ storiesOf('Button', module)
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="link">
-            link {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button color={color} key={color} iconLeft="Close">
+          <Button color={color} key={color} icon="Close">
             leading icon {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="subtle" iconLeft="Close">
+          <Button color={color} key={color} variant="subtle" icon="Close">
             leading icon {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="outline" iconLeft="Close">
+          <Button color={color} key={color} variant="outline" icon="Close">
             leading icon {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} key={color} variant="link" iconLeft="Close">
-            leading icon {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button color={color} key={color} iconRight="SimpleArrowDown">
+          <Button
+            color={color}
+            key={color}
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+          >
             trailing icon {color}
           </Button>
         ))}
@@ -141,7 +131,7 @@ storiesOf('Button', module)
             color={color}
             key={color}
             variant="subtle"
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             trailing icon {color}
           </Button>
@@ -153,19 +143,7 @@ storiesOf('Button', module)
             color={color}
             key={color}
             variant="outline"
-            iconRight="SimpleArrowDown"
-          >
-            trailing icon {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button
-            color={color}
-            key={color}
-            variant="link"
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
           >
             trailing icon {color}
           </Button>
@@ -192,28 +170,28 @@ storiesOf('Button', module)
     <>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} size="sm" key={color}>
+          <Button color={color} key={color} size="sm">
             solid {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} size="sm" key={color} variant="subtle">
+          <Button color={color} key={color} variant="subtle" size="sm">
             subtle {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} size="sm" key={color} variant="outline">
+          <Button color={color} key={color} variant="outline" size="sm">
             outline {color}
           </Button>
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} size="sm" key={color} iconLeft="Close">
+          <Button color={color} key={color} icon="Close" size="sm">
             leading icon {color}
           </Button>
         ))}
@@ -222,10 +200,10 @@ storiesOf('Button', module)
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
             variant="subtle"
-            iconLeft="Close"
+            icon="Close"
+            size="sm"
           >
             leading icon {color}
           </Button>
@@ -235,10 +213,10 @@ storiesOf('Button', module)
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
             variant="outline"
-            iconLeft="Close"
+            icon="Close"
+            size="sm"
           >
             leading icon {color}
           </Button>
@@ -248,9 +226,9 @@ storiesOf('Button', module)
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            size="sm"
           >
             trailing icon {color}
           </Button>
@@ -260,10 +238,10 @@ storiesOf('Button', module)
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
             variant="subtle"
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            size="sm"
           >
             trailing icon {color}
           </Button>
@@ -273,10 +251,10 @@ storiesOf('Button', module)
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
             variant="outline"
-            iconRight="SimpleArrowDown"
+            icon={{ icon: 'SimpleArrowDown', position: 'right' }}
+            size="sm"
           >
             trailing icon {color}
           </Button>
@@ -284,17 +262,17 @@ storiesOf('Button', module)
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
-          <Button color={color} size="sm" key={color} icon="Danger" />
+          <Button color={color} key={color} icon="Danger" size="sm" />
         ))}
       </ButtonWrapper>
       <ButtonWrapper>
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
             variant="subtle"
             icon="Danger"
+            size="sm"
           />
         ))}
       </ButtonWrapper>
@@ -302,29 +280,11 @@ storiesOf('Button', module)
         {colors.map(color => (
           <Button
             color={color}
-            size="sm"
             key={color}
             variant="outline"
             icon="Danger"
+            size="sm"
           />
-        ))}
-      </ButtonWrapper>
-    </>
-  ))
-  .add('big & small', () => (
-    <>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button color={color} key={color}>
-            {color}
-          </Button>
-        ))}
-      </ButtonWrapper>
-      <ButtonWrapper>
-        {colors.map(color => (
-          <Button color={color} key={`${color}-sm`} size="sm">
-            {color}
-          </Button>
         ))}
       </ButtonWrapper>
     </>

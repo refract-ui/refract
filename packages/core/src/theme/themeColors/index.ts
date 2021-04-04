@@ -13,6 +13,17 @@ export type ThemeColors = {
   dark: string;
 };
 
+export const themeColorNames: Array<string> = [
+  'primary',
+  'secondary',
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'light',
+  'dark'
+];
+
 export interface ThemeColorOverrideProps {
   colors: Colors;
   colorShades: ColorShades;
@@ -33,9 +44,9 @@ export default function themeColors({
   overrides = {}
 }: ThemeColorProps): ThemeColors {
   const defaultThemeColors: ThemeColors = {
-    primary: '#3978EC',
-    secondary: '#B0B9C9',
-    success: '#6AD193',
+    primary: colors.blue,
+    secondary: colors.gray,
+    success: colors.green,
     info: colors.cyan,
     warning: '#EFC174',
     danger: '#DE7283',
