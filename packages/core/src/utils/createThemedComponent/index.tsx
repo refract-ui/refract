@@ -20,10 +20,6 @@ import applyBreakpointStyles, {
 } from '../../utils/applyBreakpointStyles';
 import { ContainerPropStyleMap } from '../../theme/containers';
 
-export type WithTheme = {
-  theme: Theme;
-};
-
 type VariantMapProps<TVariants> = {
   [P in keyof TVariants]: TVariants[P];
 };

@@ -182,7 +182,7 @@ const propAbbrev = {
   mb: ['marginBottom'],
   ml: ['marginLeft'],
   mr: ['marginRight'],
-  mx: ['paddingLeft', 'paddingRight'],
+  mx: ['marginLeft', 'marginRight'],
   my: ['marginTop', 'marginBottom'],
   p: ['padding'],
   pt: ['paddingTop'],

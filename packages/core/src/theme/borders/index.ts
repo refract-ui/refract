@@ -25,7 +25,7 @@ export interface BorderOverrideProps {
   defaults: Borders;
 }
 
-interface BorderProps {
+export interface BorderProps {
   colors: Colors;
   colorShades: ColorShades;
   overrides: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
@@ -88,10 +88,10 @@ export default function borders({
       borderWidth: '1px',
       borderStyle: 'solid',
       borderColor: colorShades.gray300,
-      borderStyle: 'solid',
       borderRadius: '0.2rem'
     },
     md: {
+      borderWidth: '2px',
       borderStyle: 'solid',
       borderRadius: '0.5rem'
     },
