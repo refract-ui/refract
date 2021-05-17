@@ -3,11 +3,32 @@ import { storiesOf } from '@storybook/react';
 import { theme, GlobalStyles } from '@refract-ui/core';
 import StyleGuide from '../components/StyleGuide';
 
-console.log('theme():', theme());
+console.log(
+  'theme():',
+  theme({
+    globalStyles: {
+      xs: {
+        heading: {
+          mb: '0rem'
+        }
+      }
+    }
+  })
+);
 
 storiesOf('components/GlobalStyles', module)
   .add('default', () => (
-    <StyleGuide theme={theme()}>
+    <StyleGuide
+      theme={theme({
+        globalStyles: {
+          xs: {
+            heading: {
+              mb: '0rem'
+            }
+          }
+        }
+      })}
+    >
       <GlobalStyles />
     </StyleGuide>
   ))
