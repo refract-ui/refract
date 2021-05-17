@@ -4,8 +4,6 @@ describe('theme', () => {
   test('default theme', () => {
     const theme = genTheme();
 
-    // console.log('@-->theme', theme);
-
     expect(theme).toEqual({
       // basic colors
       white: '#ffffff',
@@ -26,10 +24,10 @@ describe('theme', () => {
       primary: '#3978EC',
       secondary: '#B0B9C9',
       success: '#6AD193',
-      info: colors.cyan,
+      info: '#17a2b8',
       warning: '#EFC174',
       danger: '#DE7283',
-      light: colorShades.gray100,
+      light: theme.gray100,
       dark: '#575C64',
 
       // color shades

@@ -1,6 +1,8 @@
 import { defaults, isFunction } from 'lodash';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
+import { ThemeColors } from '../themeColors';
+import { ThemeColorShades } from '../themeColorShades';
 
 export type SubtleColors = {
   primary: string;
@@ -14,37 +16,51 @@ export type SubtleColors = {
 };
 
 export interface SubtleColorOverrideProps {
-  colors: Colors;
-  colorShades: ColorShades;
+  colors?: Colors;
+  colorShades?: ColorShades;
+  themeColors?: ThemeColors;
+  themeColorShades?: ThemeColorShades;
   defaults: SubtleColors;
 }
+
+export type SubtleColorSettings =
+  | ((props: SubtleColorOverrideProps) => SubtleColors)
+  | Partial<SubtleColors>;
 
 export interface SubtleColorsProps {
   colors: Colors;
   colorShades: ColorShades;
-  overrides:
-    | ((props: SubtleColorOverrideProps) => SubtleColors)
-    | Partial<SubtleColors>;
+  themeColors: ThemeColors;
+  themeColorShades: ThemeColorShades;
+  overrides: SubtleColorSettings;
 }
 
 export default function subtleColors({
   colors,
   colorShades,
+  themeColors,
+  themeColorShades,
   overrides = {}
 }: SubtleColorsProps): SubtleColors {
   const defaultColors: SubtleColors = {
-    primary: '#CBDEFF',
-    secondary: '#E1E4EB',
-    success: '#E5FBEE',
-    info: colors.cyan,
-    warning: '#FFF2DC',
-    danger: '#FBD4DB',
-    light: '#F6F6F6',
-    dark: '#575C64'
+    primary: themeColorShades.primary300,
+    secondary: themeColorShades.secondary300,
+    success: themeColorShades.success300,
+    info: themeColorShades.info300,
+    warning: themeColorShades.warning300,
+    danger: themeColorShades.danger300,
+    light: themeColorShades.light600,
+    dark: themeColorShades.dark300
   };
 
   if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: defaultColors });
+    return overrides({
+      themeColors,
+      themeColorShades,
+      colors,
+      colorShades,
+      defaults: defaultColors
+    });
   }
 
   return defaults(overrides, defaultColors);

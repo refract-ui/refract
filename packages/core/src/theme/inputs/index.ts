@@ -1,5 +1,4 @@
 import { defaults, isFunction } from 'lodash';
-import { BorderBreakpointStyle } from '../borders';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 import { ThemeColors } from '../themeColors';
@@ -11,11 +10,10 @@ type ColorValues =
   | ValueOf<ColorShades>;
 
 export type InputBase = {
-  borders?: BorderBreakpointStyle;
-  bg: ColorValues;
+  activeColor?: ColorValues;
 };
 
-interface InputBorderProps {
+interface InputProps {
   colors?: Colors;
   colorShades?: ColorShades;
   themeColors?: ThemeColors;
@@ -34,15 +32,9 @@ export default function genInputProps({
   colorShades,
   themeColors,
   overrides = {}
-}: InputBorderProps): InputBase {
+}: InputProps): InputBase {
   const defaultInputProps: InputBase = {
-    borders: {
-      borderColor: themeColors.secondary,
-      borderWidth: '2px',
-      borderStyle: 'solid',
-      borderRadius: '0.5rem'
-    },
-    bg: 'none'
+    activeColor: themeColors.primary
   };
 
   if (isFunction(overrides)) {

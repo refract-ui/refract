@@ -1,4 +1,4 @@
-import { defaultsDeep, isFunction, reduce, clone } from 'lodash';
+import { defaultsDeep, isFunction, reduce } from 'lodash';
 import { Colors } from '../colors';
 import { ThemeColors } from '../themeColors';
 import { ColorShades } from '../colorShades';
@@ -93,9 +93,9 @@ export default function blockElementMappings({
     py: spacing[2]
   };
 
-  defaultBlockElementMappings.dd.ml = 0;
+  defaultBlockElementMappings.dd.ml = spacing[0];
   defaultBlockElementMappings.dd.mb = spacing[2];
-  defaultBlockElementMappings.figure.mx = 0;
+  defaultBlockElementMappings.figure.mx = spacing[0];
 
   if (isFunction(overrides)) {
     return overrides({

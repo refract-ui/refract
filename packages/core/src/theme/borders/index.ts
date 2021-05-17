@@ -1,5 +1,6 @@
 import { defaults, isFunction } from 'lodash';
-import { css, FlattenSimpleInterpolation } from 'styled-components';
+import type { FlattenSimpleInterpolation } from 'styled-components';
+import { css } from 'styled-components';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 
@@ -37,8 +38,6 @@ export function applyBorderStyle(
   if (!border) {
     return undefined;
   }
-
-  console.log('border', border);
 
   return css`
     ${

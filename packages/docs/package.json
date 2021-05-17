@@ -1,0 +1,28 @@
+{
+  "name": "@refract-ui/docs",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "author": "dispatch@graveflex.com",
+  "license": "MIT",
+  "peerDependencies": {
+    "@types/styled-components": "^5.1.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.1.1"
+  },
+  "dependencies": {
+    "@refract-ui/core": "workspace:*",
+    "@types/faker": "^4.1.12",
+    "faker": "^4.1.0",
+    "lodash": "^4.17.15",
+    "react-flow-renderer": "^9.5.3",
+    "react-syntax-highlighter": "^15.4.3",
+    "ts-enum-util": "^4.0.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.7"
+  },
+  "scripts": {
+    "test": "jest"
+  }
+}

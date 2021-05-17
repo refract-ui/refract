@@ -1,24 +1,11 @@
 import React from 'react';
 import { css, createGlobalStyle } from 'styled-components';
 import { ThemeComponent } from '../../theme';
-import { Tags as TypographyTags } from '../../theme/fontTagMappings';
 import reset from '../../theme/reset';
 import createThemedComponent from '../../utils/createThemedComponent';
-import mapTypographyStyles, {
-  TypographyThemeMapping
-} from '../../utils/mapTypographyStyles';
-import { BlockElements } from '../../theme/globalBlockElements';
-import { Container, mapBlockElementStyles } from '../../theme/containers';
-
-type TypeTagNames = keyof typeof TypographyTags;
-type BlockTagNames = keyof typeof BlockElements;
-
-type GlobalTheme = {
-  [tagName in TypeTagNames]: TypographyThemeMapping;
-} &
-  {
-    [tagName in BlockTagNames]: Partial<Container>;
-  };
+import mapTypographyStyles from '../../utils/mapTypographyStyles';
+import { mapBlockElementStyles } from '../../theme/containers';
+import { GlobalStyleTheme } from '../../theme/globalStyles';
 
 const GlobalStylesComponent = createGlobalStyle<ThemeComponent>`
   ${({ componentCss }) => css`
@@ -31,7 +18,7 @@ const GlobalStylesFC: React.FC<ThemeComponent> = ({ componentCss }) => (
   <GlobalStylesComponent componentCss={componentCss} />
 );
 
-const GlobalStyles = createThemedComponent<GlobalTheme>({
+const GlobalStyles = createThemedComponent<GlobalStyleTheme>({
   compose: ({ theme }) => {
     return {
       Component: GlobalStylesFC,

@@ -120,9 +120,9 @@ storiesOf('Icon', module)
       {icons.map(icon => (
         <>
           <Row>
-            <Icon name={icon} size="sm" key={`${icon}-sm`} />
+            <Icon name={icon} enormity="sm" key={`${icon}-sm`} />
             <Icon name={icon} key={`${icon}-md`} />
-            <Icon name={icon} size="lg" key={`${icon}-lg`} />
+            <Icon name={icon} enormity="lg" key={`${icon}-lg`} />
           </Row>
           <p>{icon}</p>
         </>
@@ -132,9 +132,9 @@ storiesOf('Icon', module)
   .add('sizes', () => (
     <IconWrapper>
       <h1>test</h1>
-      <Icon name="CloseRound" size={72} />
-      <Icon name="CloseRound" size="lg" />
-      <Icon name="CloseRound" size={10} />
+      <Icon name="CloseRound" enormity={72} />
+      <Icon name="CloseRound" enormity="lg" />
+      <Icon name="CloseRound" enormity={10} />
       <Icon name="Add" />
     </IconWrapper>
   ))
@@ -144,7 +144,7 @@ storiesOf('Icon', module)
         <>
           <Row>
             <Icon name={icon} key={`${icon}-md`} useFill />
-            <Icon name={icon} size="lg" key={`${icon}-lg`} useFill />
+            <Icon name={icon} enormity="lg" key={`${icon}-lg`} useFill />
           </Row>
           <p>{icon}</p>
         </>
@@ -156,12 +156,12 @@ storiesOf('Icon', module)
       <Row>
         <Icon
           name="Add"
-          size="sm"
+          enormity="sm"
           color="primary"
           mdOnly={{ iconColor: 'red' }}
         />
-        <Icon name="Back" iconColor="green" size={50} />
-        <Icon name="DOC" useFill size="lg" iconColor="red" />
+        <Icon name="Back" iconColor="green" enormity={50} />
+        <Icon name="DOC" useFill enormity="lg" iconColor="red" />
       </Row>
     </IconWrapper>
   ));

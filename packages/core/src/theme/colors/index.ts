@@ -50,10 +50,21 @@ export interface ColorOverrideProps {
   defaults: Colors;
 }
 
+export type ColorSettings =
+  | ((props: ColorOverrideProps) => Colors)
+  | Partial<Colors>;
+
 export interface ColorsProps {
-  overrides?: ((props: ColorOverrideProps) => Colors) | Partial<Colors>;
+  overrides?: ColorSettings;
 }
 
+/**
+ * colors
+ *
+ * @param {ColorsProps} [props] - color settings
+ * @param {ColorSettings} [props.overrides] - color definitions
+ * @return {Colors} colors used as the basis for all theme colors
+ */
 export default function colors({ overrides = {} }: ColorsProps = {}): Colors {
   if (isFunction(overrides)) {
     return overrides({ defaults: defaultColors });

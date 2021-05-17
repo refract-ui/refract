@@ -11,5 +11,5 @@ export default function contrastColor({
   theme
 }: ContrastColorProps): string {
   const c = tc(color);
-  return c.isDark() ? theme.light : theme.dark;
+  return c.isDark() ? theme.themeColors.light : theme.themeColors.dark;
 }

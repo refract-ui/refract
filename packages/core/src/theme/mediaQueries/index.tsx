@@ -1,10 +1,10 @@
 import { reduce, upperFirst } from 'lodash';
-import {
-  css,
+import type {
   CSSObject,
   SimpleInterpolation,
   FlattenSimpleInterpolation
 } from 'styled-components';
+import { css } from 'styled-components';
 import { Breakpoints } from '../breakpoints';
 
 export const sizeKeys = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
-import { ValuesType, PickByValue } from 'utility-types';
+import { PickByValue } from 'utility-types';
 import contrastColor from '../../utils/contrastColor';
 import { Theme, ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
@@ -30,17 +30,30 @@ type VariantMap<TVariants, TTheme> = {
   ) => Partial<TTheme>;
 };
 
+type GenVariantFn<TVariants, TTheme> = (
+  props: VariantMapProps<TVariants>
+) => Partial<TTheme>;
+
 // TODO: figure out how to do this without generic Function
-type SansFunctions<T> = {
+export type SansFunctions<T> = {
   /* eslint-disable @typescript-eslint/ban-types */
   [P in keyof T]: Exclude<T[P], Function>;
   /* eslint-enable @typescript-eslint/ban-types */
 };
 
-interface ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps> {
-  Component: React.FC<ThemeComponent & TProps>;
+interface ComponentGeneratorProps<
+  TTheme,
+  TVariants,
+  TThemeBreakpoint,
+  TProps,
+  TBaseElementProps
+> {
+  Component: React.FC<Partial<TBaseElementProps> & ThemeComponent & TProps>;
   defaultStyleMapping: ThemeBreakpoints<TThemeBreakpoint>;
-  mapPropsToStyle: ThemePropStyleMapping<TThemeBreakpoint, TProps>;
+  mapPropsToStyle: ThemePropStyleMapping<
+    TThemeBreakpoint,
+    TBaseElementProps & TProps
+  >;
   cascadeStateProps?: CascadeStateSettings<
     TThemeBreakpoint,
     ThemeExtension<TThemeBreakpoint>
@@ -53,7 +66,8 @@ type CreateThemedComponentProps<
   TVariants,
   TThemeBreakpoint,
   TProps,
-  TExtends
+  TExtends,
+  BaseElementProps
 > = {
   defaultVariants?: TVariants;
   states?: Array<keyof PickByValue<TThemeBreakpoint, PseudoClass<TTheme>>>;
@@ -66,7 +80,13 @@ type CreateThemedComponentProps<
     variant
   }: ThemeExtensionHelperMethods & {
     variant: TVariants;
-  }) => ComponentGeneratorProps<TTheme, TVariants, TThemeBreakpoint, TProps>;
+  }) => ComponentGeneratorProps<
+    TTheme,
+    TVariants,
+    TThemeBreakpoint,
+    TProps,
+    BaseElementProps
+  >;
 };
 
 export default function createThemedComponent<
@@ -75,6 +95,8 @@ export default function createThemedComponent<
   TStates extends string = '',
   TProps = unknown,
   TExtends = unknown,
+  TBaseElement = unknown,
+  TBaseElementProps = TBaseElement,
   TThemeBreakpoint = ComponentThemeBreakpoint<
     TTheme & Partial<SansFunctions<TExtends>>,
     TStates
@@ -93,15 +115,18 @@ export default function createThemedComponent<
   TVariants,
   TThemeBreakpoint,
   TProps,
-  TExtends
->): React.FC<TComponentProps & TProps> {
-  const ThemedComponent: React.FC<TComponentProps & TProps> = props => {
+  TExtends,
+  TBaseElementProps
+>): React.FC<TBaseElementProps & TComponentProps & TProps> {
+  const ThemedComponent: React.FC<
+    TBaseElementProps & TComponentProps & TProps
+  > = props => {
     const theme = get(props, 'theme', useContext(ThemeContext)) as Theme;
     const variantPropKeys = Object.keys(defaultVariants || {});
     let variant = defaultsDeep(
       pick(props, variantPropKeys) as TVariants,
       defaultVariants
-    );
+    ) as TVariants;
 
     // define convenience methods passed along to each prop / style mapping
     const helperMethods = {
@@ -117,7 +142,7 @@ export default function createThemedComponent<
       variantMapping = {}
     } = compose({ ...helperMethods, variant });
 
-    variant = defaultsDeep(variant, defaultVariants);
+    variant = defaultsDeep(variant, defaultVariants) as TVariants;
 
     const extendThemePropKeys = [
       ...Object.keys(defaultStyleMapping.xs),
@@ -129,21 +154,9 @@ export default function createThemedComponent<
 
     // apply variants to extended theme
     // TODO: make this happen at every breakpoint
-    for (const [variantKey, variantMap] of Object.entries(variantMapping)) {
-      const variantMapArgs = {
-        // previously:
-        // [variantKey]: variant[variantKey as keyof typeof variant]
-
-        // revision:
-        // i think we want access to all variant values for these functions
-        ...variant
-      };
-
-      const genVariant = variantMap as ValuesType<
-        VariantMap<TVariants, TTheme>
-      >;
-      const variantVal = genVariant(variantMapArgs);
-
+    for (const [, variantMap] of Object.entries(variantMapping)) {
+      const genVariant = variantMap as GenVariantFn<TVariants, TTheme>;
+      const variantVal = genVariant(variant);
       defaultStyleMapping.xs = defaultsDeep(variantVal, defaultStyleMapping.xs);
     }
 
@@ -170,10 +183,7 @@ export default function createThemedComponent<
       applyThemeBreakpoint
     });
 
-    // the logic of the component might need information about the variant
-    return (
-      <Component componentCss={componentCss} {...variant} {...componentProps} />
-    );
+    return <Component componentCss={componentCss} {...componentProps} />;
   };
 
   return ThemedComponent;

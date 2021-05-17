@@ -1,7 +1,8 @@
 {
-  "name": "@gfx-components/core",
-  "version": "0.0.0",
-  "main": "index.js",
+  "name": "@refract-ui/core",
+  "version": "0.0.1",
+  "main": "src/index.ts",
+  "author": "dispatch@graveflex.com",
   "license": "MIT",
   "peerDependencies": {
     "@storybook/addon-actions": "^5.3.19",
@@ -9,15 +10,15 @@
     "@types/styled-components": "^5.1.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-components": "^5.1.1",
-    "styled-system": "^5.1.5",
-    "theme-ui": "^0.3.1"
+    "styled-components": "^5.1.1"
   },
   "dependencies": {
+    "@popperjs/core": "^2.6.0",
     "@types/lodash": "^4.14.157",
     "@types/tinycolor2": "^1.4.2",
     "lodash": "^4.17.15",
     "react-icons": "^3.10.0",
+    "react-popper": "^2.2.4",
     "tinycolor2": "^1.4.1",
     "utility-types": "^3.10.0"
   },

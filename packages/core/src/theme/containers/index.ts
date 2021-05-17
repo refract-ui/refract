@@ -1,8 +1,9 @@
 import { CSSProperties } from 'react';
-import { css, FlattenSimpleInterpolation } from 'styled-components';
+import type { FlattenSimpleInterpolation } from 'styled-components';
+import { css } from 'styled-components';
 import { reduce, kebabCase, isFunction } from 'lodash';
 import { ThemeExtensionHelperMethods } from '../../utils/componentThemeBreakpoints';
-import { BlockElementMappings, BlockTagNames } from '../globalBlockElements';
+import { BorderBreakpointStyle } from '../borders';
 
 type CSSWideKeyword = 'initial' | 'inherit' | 'unset';
 
@@ -49,7 +50,6 @@ export type Container = {
   textAlign: ContainerPropVal<'textAlign'>;
   w: ContainerPropVal<'width'>;
   h: ContainerPropVal<'height'>;
-  // size: ContainerPropVal['width'];
   minW: ContainerPropVal<'minWidth'>;
   minH: ContainerPropVal<'minHeight'>;
   minSize: ContainerPropVal<'minWidth'>;
@@ -63,9 +63,10 @@ export type Container = {
   bgRepeat: ContainerPropVal<'bgRepeat'>;
   bgAttachment: ContainerPropVal<'bgAttachment'>;
   area: ContainerPropVal<'gridArea'>;
+  border: Partial<BorderBreakpointStyle>;
 };
 
-const ContainerProps = [
+export const ContainerProps = [
   'm',
   'mt',
   'mb',
@@ -84,7 +85,6 @@ const ContainerProps = [
   'textAlign',
   'w',
   'h',
-  // 'size',
   'minW',
   'minH',
   'minSize',
@@ -97,7 +97,8 @@ const ContainerProps = [
   'bgPos',
   'bgRepeat',
   'bgAttachment',
-  'area'
+  'area',
+  'border'
 ] as Array<keyof Container>;
 
 export type AlignedContainer = Container & {
@@ -109,7 +110,7 @@ export type AlignedContainer = Container & {
   justifySelf: ContainerPropVal<'justifySelf'>;
 };
 
-const AlignedContainerProps = [
+export const AlignedContainerProps = [
   ...ContainerProps,
   'alignItems',
   'alignContent',
@@ -128,7 +129,7 @@ export type FlexContainer = AlignedContainer & {
   order: ContainerPropVal<'order'>;
 };
 
-const FlexContainerProps = [
+export const FlexContainerProps = [
   ...AlignedContainerProps,
   'wrap',
   'flex',
@@ -152,7 +153,7 @@ export type GridContainer = AlignedContainer & {
   templateAreas: ContainerPropVal<'gridTemplateAreas'>;
 };
 
-const GridContainerProps = [
+export const GridContainerProps = [
   ...AlignedContainerProps,
   'gap',
   'rowGap',
@@ -230,7 +231,9 @@ export function mapContainerPropsToStyles<T>(
   helperArgs: ThemeExtensionHelperMethods,
   props: Array<keyof T>
 ): ContainerPropStyleMap<T> {
-  return reduce(
+  //const basicProps = reject(props, 'border');
+
+  const styles = reduce(
     props,
     (memo, key: keyof T) => {
       const styleAttrs = (propAbbrev[key as keyof PropAbbrev] || [
@@ -265,6 +268,8 @@ export function mapContainerPropsToStyles<T>(
     },
     {} as ContainerPropStyleMap<T>
   );
+
+  return styles;
 }
 
 export function mapDivContainerPropsToStyles(

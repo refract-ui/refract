@@ -1,6 +1,7 @@
 import { reduce } from 'lodash';
 import { FontVariant } from '../../theme/fontVariants';
-import { css, FlattenSimpleInterpolation } from 'styled-components';
+import type { FlattenSimpleInterpolation } from 'styled-components';
+import { css } from 'styled-components';
 
 export type TypographyThemeMapping = FontVariant & {
   size: string;

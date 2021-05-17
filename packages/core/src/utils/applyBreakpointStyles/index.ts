@@ -10,11 +10,11 @@ import {
   values,
   flatten
 } from 'lodash';
-import {
-  css,
+import type {
   SimpleInterpolation,
   FlattenSimpleInterpolation
 } from 'styled-components';
+import { css } from 'styled-components';
 import { OmitByValue, PickByValue } from 'utility-types';
 import {
   PseudoClass,

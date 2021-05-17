@@ -119,13 +119,23 @@ export interface ColorShadeOverrideProps {
   defaults: ColorShades;
 }
 
+export type ColorShadeSettings =
+  | ((props: ColorShadeOverrideProps) => ColorShades)
+  | Partial<ColorShades>;
+
 export interface ColorShadeProps {
   colors: Colors;
-  overrides:
-    | ((props: ColorShadeOverrideProps) => ColorShades)
-    | Partial<ColorShades>;
+  overrides: ColorShadeSettings;
 }
 
+/**
+ * colorShades
+ *
+ * @param {ColorShadeProps} colors - colors created in the theme.colors phase
+ * @param {Colors} props.colors - colors created in the theme.colors phaes
+ * @param {ColorShadeSettings} props.overrides - override settings for this theme object
+ * @return {ColorShades} a list of the gradient shades of each of the theme.colors attributes
+ */
 export default function colorShades({
   colors,
   overrides
