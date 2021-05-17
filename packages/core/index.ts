@@ -18,10 +18,10 @@
 //export { default as Checkbox } from './components/Checkbox';
 
 // theme
-export { default as theme, Theme } from './theme';
+export { default as theme, Theme } from './src/theme';
 
 // global styles
-export { default as GlobalStyles } from './components/GlobalStyles';
+export { default as GlobalStyles } from './src/components/GlobalStyles';
 
 // types
 export {
@@ -33,10 +33,10 @@ export {
   FlexContainerProps,
   GridContainer,
   GridContainerProps
-} from './theme/containers';
+} from './src/theme/containers';
 
-export { GlobalStyleBreakpoint } from './theme/globalStyles';
-export { TypographyThemeMapping } from './utils/mapTypographyStyles';
-export { FontVariant } from './theme/fontVariants';
-export { BlockElements } from './theme/globalBlockElements';
-export { Tags as TypographyTags } from './theme/fontTagMappings';
+export { GlobalStyleBreakpoint } from './src/theme/globalStyles';
+export { TypographyThemeMapping } from './src/utils/mapTypographyStyles';
+export { FontVariant } from './src/theme/fontVariants';
+export { BlockElements } from './src/theme/globalBlockElements';
+export { Tags as TypographyTags } from './src/theme/fontTagMappings';

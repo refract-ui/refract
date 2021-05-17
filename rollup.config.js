@@ -7,7 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 
 export default [
   {
-    input: 'packages/core/src/index.ts',
+    input: 'packages/core/index.ts',
     output: [
       {
         file: `packages/core/${corePkg.module}`,
@@ -45,7 +45,7 @@ export default [
     external: ['lodash', 'tinycolor2', 'styled-components', 'react']
   },
   {
-    input: 'packages/core/dist/.dts/packages/core/src/index.d.ts',
+    input: 'packages/core/dist/.dts/packages/core/index.d.ts',
     plugins: [dts()],
     output: { file: 'packages/core/dist/index.d.ts', format: 'es' }
   }
