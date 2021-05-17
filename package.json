@@ -55,7 +55,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --use-workspaces",
     "stories": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "mkdir -p public && build-storybook",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   }
 }

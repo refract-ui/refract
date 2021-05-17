@@ -5,6 +5,8 @@ tsconfig.tsbuildinfo
 .vscode
 .DS_Store
 
+storybook-static
+
 .yarn/*
 !.yarn/releases
 !.yarn/plugins
