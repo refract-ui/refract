@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { theme, GlobalStyles } from '@refract-ui/core';
 import StyleGuide from '../components/StyleGuide';
@@ -36,4 +36,3 @@ export default {
   title: 'components/GlobalStyles',
   component: GlobalStyles
 };
- */

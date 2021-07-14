@@ -1,4 +1,4 @@
-/* import React from 'react';
+import React from 'react';
 import { pick, reduce, forEach, isArray, has } from 'lodash';
 import { storiesOf } from '@storybook/react';
 import { theme, BlockElements } from '@refract-ui/core';
@@ -113,4 +113,3 @@ export default {
   title: 'docs/global styles',
   component: ThemePropList
 };
- */
