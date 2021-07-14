@@ -1,6 +1,8 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { theme, GlobalStyles } from '@refract-ui/core';
+import styled from 'styled-components';
 import Button from './../../../../core/src/components/Button';
+import ModalScene from './../../components/ModalScene.tsx';
 
 <Meta title="core/theme/gettingStarted" />
 
@@ -61,18 +63,32 @@ Breakpoint specific styles can be achieved by passing in a style object into one
 
 ## Scene Example
 
-Updating the theme in a scene
+Updating the theme in a scene:
 
 export const Template = args => {
   const { theme } = args;
-  return <div>{console.log('theme', theme)}</div>;
+  console.log('In Template, this is theme: ', theme);
+  return <ModalScene theme={theme} />;
 };
 
 <Canvas>
   <Story
-    name="basic scene"
+    name="basic modal scene"
     args={{
       theme: theme({})
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+With primary color updated:
+
+<Canvas>
+  <Story
+    name="modal scene with primary bg updated to green"
+    args={{
+      theme: theme({ themeColors: { primary: '#6AD193' } })
     }}
   >
     {Template.bind({})}
