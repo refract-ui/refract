@@ -1,4 +1,5 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { theme, GlobalStyles } from '@refract-ui/core';
 import Button from './../../../../core/src/components/Button';
 
 <Meta title="core/theme/gettingStarted" />
@@ -13,7 +14,7 @@ Install refract
 
 ## Button Example
 
-Import the Refract Button component.
+Import the Refract Button component:
 
 ```js
 import React from 'react';
@@ -28,22 +29,52 @@ function HomePage() {
 }
 ```
 
----
-
 <Canvas>
   <Story name="basic button">
     <Button>Enter</Button>
   </Story>
 </Canvas>
 
-Updating the `Button` background color will cascade through the component and update its text color with a contrasted color.
+Update the `Button` background color by passing in the `bg` prop:
 
-```
-<Button bg="red">Red Button</Button>
+```js
+<Button bg="green">Green Button</Button>
 ```
 
 <Canvas>
-  <Story name="yellow button">
-    <Button bg="yellow">Yellow Button</Button>
+  <Story name="green button">
+    <Button bg="green">Green Button</Button>
+  </Story>
+</Canvas>
+
+Breakpoint specific styles can be achieved by passing in a style object into one of the media query props, like `ltSm`:
+
+```js
+<Button ltSm={{ bg: 'orange', py: '40px' }}>Orange at Sm</Button>
+```
+
+<Canvas>
+  <Story name="breakpoint sizes">
+    <Button ltSm={{ bg: 'orange', py: '40px' }}>Orange at Sm</Button>
+  </Story>
+</Canvas>
+
+## Scene Example
+
+Updating the theme in a scene
+
+export const Template = args => {
+  const { theme } = args;
+  return <div>{console.log('theme', theme)}</div>;
+};
+
+<Canvas>
+  <Story
+    name="basic scene"
+    args={{
+      theme: theme({})
+    }}
+  >
+    {Template.bind({})}
   </Story>
 </Canvas>
