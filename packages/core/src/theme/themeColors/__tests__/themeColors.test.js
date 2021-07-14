@@ -1,7 +1,5 @@
 describe('themeColors', () => {
-  test.skip('return the default theme', () => {
-  });
+  test.skip('return the default theme', () => {});
 
-  test.skip('overrids specified theme values', () => {
-  });
-})
+  test.skip('overrids specified theme values', () => {});
+});

@@ -1,7 +1,70 @@
-import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import { theme } from '@refract-ui/core';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import ColorPalette from '../../components/ColorPalette';
 
-<Meta title="core/theme/colors" />
+<Meta
+  title="core/theme/colors"
+  component={ColorPalette}
+/>
 
-# theme.colors
+export const Template = (args) => {
+  const { theme: { colors } } = args;
+  console.log({ colors });
+  return <ColorPalette colors={colors} />
+}
+
+# Colors
+
+<Canvas showCode>
+  <Story name="colors" args={{
+    theme: theme({})
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+Colors
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { colors } = theme({});
+```
+
+## Theme Configuration
+
+Colors can be configured by extending the global styles via function or with static values. In each example, we replace the `colors.primary`
+
+### Using Function Values
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const appTheme = theme({
+  globalStyles: (config) => ({
+    colors: {
+      primary: '#333'
+    }
+  })
+});
+```
+
+### Using Static Values
+
+``` js
+import { theme } from '@refract/core';
+
+const appTheme = theme({
+  globalStyles: {
+    colors: {
+      primary: '#333'
+    }
+  }
+});
+```
+
+## All Configurable Props
 
 - base color configuration

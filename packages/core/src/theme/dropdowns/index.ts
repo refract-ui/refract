@@ -46,7 +46,12 @@ export default function genDropdownProps({
   };
 
   if (isFunction(overrides)) {
-    return overrides({ inputs, colors, colorShades, defaults: defaultDropdownProps });
+    return overrides({
+      inputs,
+      colors,
+      colorShades,
+      defaults: defaultDropdownProps
+    });
   }
 
   return defaults(overrides, defaultDropdownProps);
