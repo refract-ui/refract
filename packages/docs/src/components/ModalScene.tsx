@@ -1,4 +1,6 @@
 import React from 'react';
+import { theme as genTheme } from '@refract-ui/core';
+
 import styled, { css, ThemeProvider } from 'styled-components';
 import Button from './../../../core/src/components/Button';
 
@@ -63,8 +65,9 @@ const StyledLabel = styled.label`
   `}
 `;
 
-const ModalScene = ({ theme }) => {
-  console.log('In ModalScene.tsx, this is theme: ', theme);
+const ModalScene = ({ primary: primaryColor }) => {
+  const theme = genTheme({ themeColors: { primary: primaryColor } });
+  console.log('In ModalScene.tsx, this is genTheme: ', theme);
 
   return (
     <ThemeProvider theme={theme}>

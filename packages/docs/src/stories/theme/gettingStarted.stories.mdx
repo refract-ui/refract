@@ -1,6 +1,7 @@
 import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
 import { theme, GlobalStyles } from '@refract-ui/core';
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+import SyntaxHighlighter from 'react-syntax-highlighter';
 import Button from './../../../../core/src/components/Button';
 import ModalScene from './../../components/ModalScene.tsx';
 
@@ -73,37 +74,58 @@ screens:
 A basic modal scene built with Refract:
 
 export const Template = args => {
-  const { theme } = args;
-  console.log('In Template, this is theme: ', theme);
-  return <ModalScene theme={theme} />;
+  const { primary } = args;
+  return <ModalScene />;
 };
 
 <Canvas>
-  <Story
-    name="basic modal scene"
-    args={{
-      theme: theme({})
-    }}
-  >
-    {Template.bind({})}
-  </Story>
+  <Story name="basic modal scene">{ControllableTemplate.bind({})}</Story>
 </Canvas>
 
 The same modal scene with the primary color updated to green, `#6AD193`:
 
-```
+```js
 import { theme } from '@refract-ui/core';
 
 theme: theme({ themeColors: { primary: '#6AD193' } })
+
+<ThemeProvider theme={theme}>
+  <Modal />
+</ThemeProvider>
 ```
 
 <Canvas>
   <Story
     name="modal scene with primary bg updated to green"
     args={{
-      theme: theme({ themeColors: { primary: '#6AD193' } })
+      primary: '#6AD193'
     }}
   >
-    {Template.bind({})}
+    {ControllableTemplate.bind({})}
+  </Story>
+</Canvas>
+
+Updateable colors in Storybook Controls:
+
+export const ControllableTemplate = args => {
+  const { primary } = args;
+  return <ModalScene primary={primary} />;
+};
+
+<Canvas>
+  <Story
+    name="controllable modal scene"
+    argTypes={{
+      primary: {
+        control: {
+          type: 'color'
+        }
+      }
+    }}
+    args={{
+      primary: '#000000'
+    }}
+  >
+    {ControllableTemplate.bind({})}
   </Story>
 </Canvas>
