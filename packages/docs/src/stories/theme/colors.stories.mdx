@@ -1,4 +1,4 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs/blocks';
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { theme } from '@refract-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import ColorPalette from '../../components/ColorPalette';
@@ -71,7 +71,7 @@ assert(colors).isEqual({
 
 ## Theme Configuration
 
-Colors can be configured by extending the global styles via function or with static values. In each example, we replace the `colors.primary` with a new color and extend the colors object with a new key-value pair.
+`colors` can be configured by extending the global styles via function or with static values. In each example, we replace the `colors.primary` with a new color and extend the `colors` object with a new key-value pair.
 
 ### Using Function Values
 

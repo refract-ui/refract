@@ -1,0 +1,141 @@
+import { Canvas, Meta, Story } from '@storybook/addon-docs';
+import { theme } from '@refract-ui/core';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import ColorPalette from '../../components/ColorPalette';
+
+<Meta
+  title="core/theme/subtleColors"
+  component={ColorPalette}
+/>
+
+export const Template = (args) => {
+  const { theme: { subtleColors } } = args;
+  return <ColorPalette colors={subtleColors} />;
+}
+
+export const FunctionTemplate = () => {
+  const { subtleColors } = theme({
+    subtleColors: ({ defaults }) => ({
+      ...defaults,
+      white: '#fefefe',
+      primary: 'purple'
+    })
+  });
+  return <ColorPalette colors={subtleColors} />;
+}
+
+export const StaticTemplate = () => {
+  const { subtleColors } = theme({
+    subtleColors: {
+      white: '#fefefe',
+      primary: 'purple'
+    }
+  });
+  return <ColorPalette colors={subtleColors} />;
+}
+
+export const DeriveTemplate = () => {
+  const { subtleColors } = theme({
+    themeColors: {
+      primary: 'purple'
+    }
+  });
+  return <ColorPalette colors={subtleColors} />;
+}
+
+# Theme Colors
+
+<Canvas>
+  <Story name="subtleColors" args={{
+    theme: theme({})
+  }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+DESCRIPTION OF THEME COLORS GOES HERE
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { subtleColors } = theme({});
+
+assert(subtleColors).isEqual({
+  danger: 'rgb(245, 213, 218)',
+  dark: 'rgb(148, 153, 162)',
+  info: 'rgb(94, 216, 235)',
+  light: 'rgb(235, 235, 235)',
+  primary: 'rgb(169, 196, 247)',
+  secondary: 'rgb(249, 249, 251)',
+  success: 'rgb(200, 238, 215)',
+  warning: 'rgb(252, 242, 226)'
+});
+```
+
+## Theme Configuration
+
+`subtleColors` can be configured by extending the global styles via function or with static values. In each example, we replace the `subtleColors.primary` with a new color and extend the `subtleColors` object with a new key-value pair.
+
+### Using Function Values
+
+<Canvas showCode>
+  <Story name="colorsFunction">
+    {FunctionTemplate.bind({})}
+  </Story>
+</Canvas>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { subtleColors } = theme({
+  subtleColors: ({ defaults }) => ({
+    ...defaults,
+    white: '#fefefe',
+    primary: 'purple'
+  })
+});
+```
+
+### Using Static Values
+
+<Canvas showCode>
+  <Story name="colorsStatic">
+    {StaticTemplate.bind({})}
+  </Story>
+</Canvas>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { subtleColors } = theme({
+  subtleColors: {
+    white: '#fefefe',
+    primary: 'purple'
+  }
+});
+```
+
+### Derived from `themeColors`
+
+`subtleColors` are derived from the `themeColors`. Passing different colors to the `themeColors` object also cascades into the `subtleColors`. In this example, we've updated the `themeColors.primary` value, which gives us a different `subtleColor.primary` value.
+
+<Canvas showCode>
+  <Story name="colorsDerive">
+    {DeriveTemplate.bind({})}
+  </Story>
+</Canvas>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { subtleColors } = theme({
+  themeColors: {
+    primary: 'purple'
+  }
+});
+```
+
+## All Configurable Props
+
+- base color configuration
