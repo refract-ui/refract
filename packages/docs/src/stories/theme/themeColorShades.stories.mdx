@@ -4,41 +4,50 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import ColorPalette from '../../components/ColorPalette';
 
 <Meta
-  title="core/theme/themeColors"
+  title="core/theme/themeColorShades"
 />
 
 export const Template = (args) => {
-  const { themeColors } = theme({
+  const { themeColorShades } = theme({
     themeColors: ({ defaults }) => ({
       ...defaults,
       ...args
     })
   });
-  return <ColorPalette colors={themeColors} />;
+  return <ColorPalette colors={themeColorShades} />;
 }
 
 export const FunctionTemplate = () => {
-  const { themeColors } = theme({
-    themeColors: ({ defaults }) => ({
+  const { themeColorShades } = theme({
+    themeColorShades: ({ defaults }) => ({
       ...defaults,
       white: '#fefefe',
-      primary: 'purple'
+      primary100: 'purple'
     })
   });
-  return <ColorPalette colors={themeColors} />;
+  return <ColorPalette colors={themeColorShades} />;
 }
 
 export const StaticTemplate = () => {
-  const { themeColors } = theme({
-    themeColors: {
+  const { themeColorShades } = theme({
+    themeColorShades: {
       white: '#fefefe',
-      primary: 'purple'
+      primary100: 'purple'
     }
   });
-  return <ColorPalette colors={themeColors} />;
+  return <ColorPalette colors={themeColorShades} />;
 }
 
-# Theme Colors
+export const DeriveTemplate = () => {
+  const { themeColorShades } = theme({
+    themeColors: {
+      primary: 'tomato'
+    }
+  });
+  return <ColorPalette colors={themeColorShades} />;
+}
+
+# Theme Color Shades
 
 <Canvas>
   <Story
@@ -100,7 +109,7 @@ export const StaticTemplate = () => {
   </Story>
 </Canvas>
 
-DESCRIPTION OF THEME COLORS GOES HERE
+DESCRIPTION OF THEME COLOR SHADES GOES HERE
 
 ## Default Props
 
@@ -122,7 +131,7 @@ assert(themeColors).isEqual({
 
 ## Theme Configuration
 
-`themeColors` can be configured by extending the global styles via function or with static values. In each example, we replace the `themeColors.primary` with a new color and extend the `themeColors` object with a new key-value pair.
+`themeColorShades` can be configured by extending the global styles via function or with static values. In each example, we replace the `themeColorShades.primary` with a new color and extend the `themeColorShades` object with a new key-value pair.
 
 ### Using Function Values
 
@@ -136,10 +145,10 @@ assert(themeColors).isEqual({
 import { theme } from '@refract-ui/core';
 
 const { themeColors } = theme({
-  themeColors: ({ defaults }) => ({
+  themeColorShades: ({ defaults }) => ({
     ...defaults,
     white: '#fefefe',
-    primary: 'purple'
+    primary100: 'purple'
   })
 });
 ```
@@ -158,6 +167,26 @@ import { theme } from '@refract-ui/core';
 const { themeColors } = theme({
   themeColors: {
     white: '#fefefe',
+    primary100: 'purple'
+  }
+});
+```
+
+### Derived from `themeColors`
+
+`themeColorShades` are derived from the `themeColors`. Passing different colors to the `themeColors` object also cascades into the `themeColorShades`. In this example, we've updated the `themeColors.primary` value, which gives us a different set of `themeColorShades.primaryXXX` values.
+
+<Canvas showCode>
+  <Story name="colorsDerive">
+    {DeriveTemplate.bind({})}
+  </Story>
+</Canvas>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { themeColorShades } = theme({
+  themeColors: {
     primary: 'purple'
   }
 });
