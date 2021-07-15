@@ -1,6 +1,5 @@
 import React from 'react';
-import { theme as genTheme } from '@refract-ui/core';
-
+import { theme as genTheme, GlobalStyles } from '@refract-ui/core';
 import styled, { css, ThemeProvider } from 'styled-components';
 import Button from './../../../core/src/components/Button';
 
@@ -8,21 +7,7 @@ const ButtonWrapper = styled.div`
   display: flex;
 `;
 
-const Heading = styled.h1`
-  ${({
-    theme: {
-      fontTagMappings: { h3 },
-      blockElementMappings: { heading }
-    }
-  }) => css`
-    font-size: ${h3.size};
-    font-weight: ${h3.weight};
-    letter-spacing: ${h3.letterSpacing};
-    line-height: ${h3.lineHeight};
-    margin-bottom: ${heading.mb};
-    margin-top: ${heading.mt};
-  `};
-`;
+const Heading = styled.h3``;
 
 const ModalWrapper = styled.div`
   border-radius: 8px;
@@ -39,31 +24,13 @@ const OuterContainer = styled.div`
   justify-content: center;
 `;
 
-const P = styled.p`
-  ${({
-    theme: {
-      fontTagMappings: { default: paragraph }
-    }
-  }) => css`
-    font-size: ${paragraph.size};
-    line-height: ${paragraph.lineHeight};
-  `}
-`;
+const P = styled.p``;
 
 const StyledInput = styled.input`
   margin-bottom: 10px;
 `;
 
-const StyledLabel = styled.label`
-  ${({
-    theme: {
-      blockElementMappings: { label }
-    }
-  }) => css`
-    margin-bottom: ${label.mb};
-    margin-top: ${label.mt};
-  `}
-`;
+const StyledLabel = styled.label``;
 
 const ModalScene = ({ primary: primaryColor }) => {
   const theme = genTheme({ themeColors: { primary: primaryColor } });
@@ -71,6 +38,7 @@ const ModalScene = ({ primary: primaryColor }) => {
 
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <OuterContainer>
         <ModalWrapper>
           <Heading>Modal Title</Heading>
