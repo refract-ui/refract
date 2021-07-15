@@ -8,7 +8,7 @@ import ModalScene from './../../components/ModalScene.tsx';
 
 # Getting Started
 
-Install refract
+Install refract:
 
 `npm i @refract-ui/core`
 
@@ -37,6 +37,8 @@ function HomePage() {
   </Story>
 </Canvas>
 
+#### Button Style Props
+
 Update the `Button` background color by passing in the `bg` prop:
 
 ```js
@@ -49,7 +51,12 @@ Update the `Button` background color by passing in the `bg` prop:
   </Story>
 </Canvas>
 
-Breakpoint specific styles can be achieved by passing in a style object into one of the media query props, like `ltSm`:
+#### Breakpoint Specific Styles
+
+Styling a Refract component by screen size/breakpoint is easily done by passing in a style object into one of the media query props like, in this example below, the `ltSm` prop.
+
+This button below will have an orange background and more vertical padding on small
+screens:
 
 ```js
 <Button ltSm={{ bg: 'orange', py: '40px' }}>Orange at Sm</Button>
@@ -63,7 +70,7 @@ Breakpoint specific styles can be achieved by passing in a style object into one
 
 ## Scene Example
 
-Updating the theme in a scene:
+A basic modal scene built with Refract:
 
 export const Template = args => {
   const { theme } = args;
@@ -82,7 +89,13 @@ export const Template = args => {
   </Story>
 </Canvas>
 
-With primary color updated:
+The same modal scene with the primary color updated to green, `#6AD193`:
+
+```
+import { theme } from '@refract-ui/core';
+
+theme: theme({ themeColors: { primary: '#6AD193' } })
+```
 
 <Canvas>
   <Story
