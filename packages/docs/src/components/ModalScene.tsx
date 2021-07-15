@@ -32,8 +32,13 @@ const StyledInput = styled.input`
 
 const StyledLabel = styled.label``;
 
-const ModalScene = ({ primary: primaryColor }) => {
-  const theme = genTheme({ themeColors: { primary: primaryColor } });
+const ModalScene = ({ primary: primaryColor, spacing: spacingUpdate }) => {
+  const spacingFourSetting = spacingUpdate ? `${spacingUpdate}px` : '24px';
+
+  const theme = genTheme({
+    themeColors: { primary: primaryColor },
+    spacing: { 4: spacingFourSetting }
+  });
   console.log('In ModalScene.tsx, this is genTheme: ', theme);
 
   return (

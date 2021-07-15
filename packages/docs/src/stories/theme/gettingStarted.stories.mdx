@@ -105,11 +105,11 @@ theme: theme({ themeColors: { primary: '#6AD193' } })
   </Story>
 </Canvas>
 
-Updateable colors in Storybook Controls:
+Open the "Controllable Modal Scene" in Storybook Canvas to see how updating the `primary` color affects the scene:
 
 export const ControllableTemplate = args => {
-  const { primary } = args;
-  return <ModalScene primary={primary} />;
+  const { primary, spacing } = args;
+  return <ModalScene primary={primary} spacing={spacing} />;
 };
 
 <Canvas>
@@ -120,10 +120,16 @@ export const ControllableTemplate = args => {
         control: {
           type: 'color'
         }
+      },
+      spacing: {
+        control: {
+          type: 'range'
+        }
       }
     }}
     args={{
-      primary: '#000000'
+      primary: '#000000',
+      spacing: 24
     }}
   >
     {ControllableTemplate.bind({})}
