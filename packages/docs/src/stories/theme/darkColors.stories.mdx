@@ -1,6 +1,7 @@
 import { Canvas, Meta, Story } from '@storybook/addon-docs';
 import { theme } from '@refract-ui/core';
 import SyntaxHighlighter from 'react-syntax-highlighter';
+import BreadCrumb from '../../components/BreadCrumb';
 import ColorPalette from '../../components/ColorPalette';
 
 <Meta
@@ -48,6 +49,8 @@ export const DeriveTemplate = () => {
   });
   return <ColorPalette colors={darkColors} />;
 }
+
+<BreadCrumb token="darkColors" />
 
 # Dark Colors
 

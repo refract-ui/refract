@@ -5110,6 +5110,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@storybook/addon-links@npm:^6.3.4":
+  version: 6.3.4
+  resolution: "@storybook/addon-links@npm:6.3.4"
+  dependencies:
+    "@storybook/addons": 6.3.4
+    "@storybook/client-logger": 6.3.4
+    "@storybook/core-events": 6.3.4
+    "@storybook/csf": 0.0.1
+    "@storybook/router": 6.3.4
+    "@types/qs": ^6.9.5
+    core-js: ^3.8.2
+    global: ^4.4.0
+    prop-types: ^15.7.2
+    qs: ^6.10.0
+    regenerator-runtime: ^0.13.7
+    ts-dedent: ^2.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0
+    react-dom: ^16.8.0 || ^17.0.0
+  peerDependenciesMeta:
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: f8111ae683cd76b4ebbc51194c0d1a8a82d817bbf484419e96abae8f647c24929dcb45fa1641e30432befe71dbdf88410171758dade868b0c0136b0664d50e7f
+  languageName: node
+  linkType: hard
+
 "@storybook/addon-measure@npm:^2.0.0":
   version: 2.0.0
   resolution: "@storybook/addon-measure@npm:2.0.0"
@@ -21568,6 +21596,7 @@ fsevents@~2.3.1:
     "@storybook/addon-docs": ^6.3.4
     "@storybook/addon-essentials": ^6.3.4
     "@storybook/addon-info": ^5.3.21
+    "@storybook/addon-links": ^6.3.4
     "@storybook/addon-toolbars": ^6.3.4
     "@storybook/preset-typescript": ^3.0.0
     "@storybook/react": ^6.3.4

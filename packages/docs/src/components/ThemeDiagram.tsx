@@ -20,7 +20,7 @@ function pos({
   };
 }
 
-const elements = [
+export const elements = [
   {
     id: 'colors',
     data: { label: 'Colors' },
