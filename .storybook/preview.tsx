@@ -62,7 +62,10 @@ export const parameters = {
             'subtleColors',
             'darkColors',
             'colorShades',
-            'themeColorShades'
+            'themeColorShades',
+            'spacing',
+            'borders',
+            'breakpoints'
           ]
         ]
       ]
