@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import map from 'lodash/map';
-import { Borders } from '@refract-ui/core/src/theme/borders';
+import { Borders, applyBorderStyle } from '@refract-ui/core/src/theme/borders';
 
 const Box = styled.div`
   width: 100px;
@@ -20,11 +20,13 @@ const Wrapper = styled.div`
 
 const BorderComponent: React.FC<Borders> = ({ borders }) => (
   <Wrapper>
-    {map(borders, (v, k) => (
-      <Box key={k} style={{ ...v }}>
-        <span>{k}</span>
-      </Box>
-    ))}
+    {map(borders, (v, k) => {
+      return (
+        <Box key={k} style={{ ...v }}>
+          <span>{k}</span>
+        </Box>
+      );
+    })}
   </Wrapper>
 );
 

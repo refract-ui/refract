@@ -1,0 +1,85 @@
+# Theme Colors
+
+import { Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { Template, FunctionTemplate, StaticTemplate } from './themeColors.stories';
+
+<BreadCrumb
+  token="themeColors"
+/>
+
+The `themeColors` attributes set is used to define the foundational color palette used throughout the theme. Tints and shades of these colors will be generated and used for things like borders, hover states, text colors and accents throughout the component library. By default these colors are based on the `colors` attribute set but can be overridden with any arbitrary color values.
+
+<Story
+  name="themeColors"
+  id="core-theme-themecolors--template"
+>
+  {Template.bind({})}
+</Story>
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { themeColors } = theme({});
+
+assert(themeColors).isEqual({
+  danger: '#DE7283',
+  dark: '#575C64',
+  info: '#17a2b8',
+  light: 'rgb(255, 255, 255)',
+  primary: '#3978EC',
+  secondary: '#B0B9C9',
+  success: '#6AD193',
+  warning: '#EFC174'
+});
+```
+
+## Theme Configuration
+
+`themeColors` can be configured by extending the global styles via function or with static values. In each example, we replace the `themeColors.primary` with a new color and extend the `themeColors` object with a new key-value pair.
+
+### Using Function Values
+
+<Story
+  name="colorsFunction"
+  id="core-theme-themecolors--function-template"
+>
+  {FunctionTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { themeColors } = theme({
+  themeColors: ({ defaults }) => ({
+    ...defaults,
+    white: '#fefefe',
+    primary: 'purple'
+  })
+});
+```
+
+### Using Static Values
+
+<Story
+  name="colorsStatic"
+  id="core-theme-themecolors--static-template"
+>
+  {StaticTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { themeColors } = theme({
+  themeColors: {
+    white: '#fefefe',
+    primary: 'purple'
+  }
+});
+```
+
+## All Configurable Props
+
+- base color configuration

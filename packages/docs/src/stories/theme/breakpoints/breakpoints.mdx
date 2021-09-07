@@ -1,0 +1,83 @@
+# Breakpoints
+
+import { Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { Template, FunctionTemplate, StaticTemplate } from './breakpoints.stories';
+
+<BreadCrumb
+  token="breakpoints"
+/>
+
+The `breakpoints` object defines the breakpoints at various screensizes. These are used to generate the media query functions.
+
+<Story
+  name="Example"
+  id="core-theme-breakpoints--template"
+>
+  {Template.bind({})}
+</Story>
+
+## Description
+
+`breakpoints` are pixel widths where content might change or shift based on css. If your are on a phone with a screen width of `320px`, you would be using the `xs` breakpoint. On the other hand, if you were on a tablet with a screen width of `800px`, you would be on the `md` breakpoint. You are on the breakpoint that is the largest number *below* your screen width.
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { breakpoints } = theme({});
+
+assert(breakpoints).isEqual({
+  lg: 992,
+  md: 768,
+  sm: 576,
+  xl: 1200,
+  xs: 0,
+  xxl: 1400
+});
+```
+
+## Theme Configuration
+
+`breakpoints` can be configured by extending the global styles via function or with static values. In each example, we replace the `md` with a new value and extend the `breakpoints` object with a new key-value pair.
+
+### Using Function Values
+
+<Story
+  name="Breakpoints Function"
+  id="core-theme-breakpoints--function-template"
+>
+  {FunctionTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { breakpoints } = theme({
+  breakpoints: ({ defaults }) => ({
+    ...defaults,
+    md: 600,
+    notQuiteXL: 1080
+  })
+});
+```
+
+### Using Static Values
+
+<Story
+  name="Breakpoints Static"
+  id="core-theme-breakpoints--static-template"
+>
+  {StaticTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { breakpoints } = theme({
+  breakpoints: {
+    md: 600,
+    notQuiteXL: 1080
+  }
+});
+```

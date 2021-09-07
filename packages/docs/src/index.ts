@@ -1,2 +1,1 @@
-export { default as ColorPalette } from './components/ColorPalette';
-export { default as ColorShadesPalette } from './components/ColorShadesPalette';
+export { default as BorderStories } from './stories/theme/borders/borders.stories';

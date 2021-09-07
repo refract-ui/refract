@@ -1,147 +1,103 @@
-import { Canvas, Meta, Story } from '@storybook/addon-docs';
-import { theme } from '@refract-ui/core';
-import BreadCrumb from '../../components/BreadCrumb';
-import ColorPalette from '../../components/ColorPalette';
-
-<Meta
-  title="core/theme/colorShades"
-/>
-
-export const Template = (args) => {
-  const { colorShades } = theme({
-    colors: ({ defaults }) => ({
-      ...defaults,
-      ...args
-    })
-  });
-  return <ColorPalette colors={colorShades} />;
-}
-
-export const FunctionTemplate = () => {
-  const { colorShades } = theme({
-    colorShades: ({ defaults }) => ({
-      ...defaults,
-      gray100: '#fefefe',
-      primary: 'purple'
-    })
-  });
-  return <ColorPalette colors={colorShades} />;
-}
-
-export const StaticTemplate = () => {
-  const { colorShades } = theme({
-    colorShades: {
-      gray100: '#fefefe',
-      primary: 'purple'
-    }
-  });
-  return <ColorPalette colors={colorShades} />;
-}
-
-export const DeriveTemplate = () => {
-  const { colorShades } = theme({
-    colors: {
-      red: 'tomato'
-    }
-  });
-  return <ColorPalette colors={colorShades} />;
-}
-
-<BreadCrumb token="colorShades" />
-
 # Color Shades
+
+import { Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { Template, FunctionTemplate, StaticTemplate, DeriveTemplate } from './colorShades.stories';
+
+<BreadCrumb
+  token="colorShades"
+/>
 
 The `colorShades` attribute set is a collection of shades and tints of the colors defined in the `colors` attribute set. A ramping function is applied so that 9 variants of each color are generated from lightest to darkest. These shades are used throughout the theme for things like hover states and border colors.
 
-<Canvas>
-  <Story
-    name="colorShades"
-    argTypes={{
-      black: {
-        control: {
-          type: 'color'
-        }
-      },
-      blue: {
-        control: {
-          type: 'color'
-        }
-      },
-      cyan: {
-        control: {
-          type: 'color'
-        }
-      },
-      gray: {
-        control: {
-          type: 'color'
-        }
-      },
-      green: {
-        control: {
-          type: 'color'
-        }
-      },
-      indigo: {
-        control: {
-          type: 'color'
-        }
-      },
-      orange: {
-        control: {
-          type: 'color'
-        }
-      },
-      pink: {
-        control: {
-          type: 'color'
-        }
-      },
-      purple: {
-        control: {
-          type: 'color'
-        }
-      },
-      red: {
-        control: {
-          type: 'color'
-        }
-      },
-      teal: {
-        control: {
-          type: 'color'
-        }
-      },
-      white: {
-        control: {
-          type: 'color'
-        }
-      },
-      yellow: {
-        control: {
-          type: 'color'
-        }
+<Story
+  name="Example"
+  id="core-theme-colorshades--template"
+  argTypes={{
+    black: {
+      control: {
+        type: 'color'
       }
-    }}
-    args={{
-      black: '#000000',
-      blue: '#3978EC',
-      cyan: '#17a2b8',
-      gray: '#B0B9C9',
-      green: '#6AD193',
-      indigo: '#6610f2',
-      orange: '#fd7e14',
-      pink: '#d63384',
-      purple: '#6f42c1',
-      red: '#DE7283',
-      teal: '#20c997',
-      white: '#ffffff',
-      yellow: '#EFC174'
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
+    },
+    blue: {
+      control: {
+        type: 'color'
+      }
+    },
+    cyan: {
+      control: {
+        type: 'color'
+      }
+    },
+    gray: {
+      control: {
+        type: 'color'
+      }
+    },
+    green: {
+      control: {
+        type: 'color'
+      }
+    },
+    indigo: {
+      control: {
+        type: 'color'
+      }
+    },
+    orange: {
+      control: {
+        type: 'color'
+      }
+    },
+    pink: {
+      control: {
+        type: 'color'
+      }
+    },
+    purple: {
+      control: {
+        type: 'color'
+      }
+    },
+    red: {
+      control: {
+        type: 'color'
+      }
+    },
+    teal: {
+      control: {
+        type: 'color'
+      }
+    },
+    white: {
+      control: {
+        type: 'color'
+      }
+    },
+    yellow: {
+      control: {
+        type: 'color'
+      }
+    }
+  }}
+  args={{
+    black: '#000000',
+    blue: '#3978EC',
+    cyan: '#17a2b8',
+    gray: '#B0B9C9',
+    green: '#6AD193',
+    indigo: '#6610f2',
+    orange: '#fd7e14',
+    pink: '#d63384',
+    purple: '#6f42c1',
+    red: '#DE7283',
+    teal: '#20c997',
+    white: '#ffffff',
+    yellow: '#EFC174'
+  }}
+>
+  {Template.bind({})}
+</Story>
 
 ## Default Props
 
@@ -258,11 +214,12 @@ assert(colorShades).isEqual({
 
 ### Using Function Values
 
-<Canvas showCode>
-  <Story name="colorsFunction">
-    {FunctionTemplate.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="colorsFunction"
+  id="core-theme-colorshades--function-template"
+>
+  {FunctionTemplate.bind({})}
+</Story>
 
 ``` js
 import { theme } from '@refract-ui/core';
@@ -278,11 +235,12 @@ const { colorShades } = theme({
 
 ### Using Static Values
 
-<Canvas showCode>
-  <Story name="colorsStatic">
-    {StaticTemplate.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="colorsStatic"
+  id="core-theme-colorshades--static-template"
+>
+  {StaticTemplate.bind({})}
+</Story>
 
 ``` js
 import { theme } from '@refract-ui/core';
@@ -299,11 +257,12 @@ const { colorShades } = theme({
 
 `colorShades` are derived from the `colors`. Passing different values to the `colors` object also cascades into the `colorShades`. In this example, we've updated the `themeColors.red` value, which gives us a different set of `colorShades.redXXX` values.
 
-<Canvas showCode>
-  <Story name="colorsDerive">
-    {DeriveTemplate.bind({})}
-  </Story>
-</Canvas>
+<Story
+  name="colorsDerive"
+  id="core-theme-colorshades--derive-template"
+>
+  {DeriveTemplate.bind({})}
+</Story>
 
 ``` js
 import { theme } from '@refract-ui/core';

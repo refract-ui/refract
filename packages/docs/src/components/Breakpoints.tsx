@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styled, { css } from 'styled-components';
-import map from 'lodash/map';
+import styled from 'styled-components';
 import { Breakpoints } from '@refract-ui/core/src/theme/breakpoints';
 
 const Box = styled.div`
@@ -35,7 +34,6 @@ function BreakpointComponent({ breakpoints }): React.FC<Breakpoints> {
   const sortedBreakPoints = Object.entries(breakpoints).sort(
     ([k, v], [bk, bv]) => v - bv
   );
-  console.log({ sortedBreakPoints })
   const currentBP = Object.entries(breakpoints)
     .sort(([k, v], [bk, bv]) => bv - v)
     .find(([k, v]) => windowWidth > v);
