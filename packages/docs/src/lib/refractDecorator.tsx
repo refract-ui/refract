@@ -24,7 +24,6 @@ function refractDecorator(
       ? decoratorThemes.find(({ name }) => name === c.globals.theme)
       : decoratorThemes[0];
 
-  console.log(theme?.themeColors?.primary);
   return (
     <ThemeProvider theme={theme}>
       <Story {...c} />

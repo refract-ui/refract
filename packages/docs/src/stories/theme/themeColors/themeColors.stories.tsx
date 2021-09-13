@@ -1,20 +1,39 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
+import { useArgs, useGlobals, useStoryContext } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
 import themeColorDocs from './themeColors.mdx';
+
+const { themeColors: defaultThemeColors } = theme();
 
 export default {
   title: 'core/theme/themeColors',
   parameters: {
     docs: {
       page: themeColorDocs
+    },
+    controls: {
+      expanded: true,
+      hideNoControlsWarning: true
     }
-  }
+  },
+  argTypes: Object.fromEntries(
+    Object.keys(defaultThemeColors).map(k => [
+      k,
+      { control: { type: 'color' } }
+    ])
+  ),
+  args: defaultThemeColors
 };
 
-export function Template(args: unknown): React.FC {
+export function Template(): React.FC {
+  const [args, updateArgs] = useArgs();
   const { themeColors: currentThemeColors } = useContext(ThemeContext);
+  useEffect(() => {
+    updateArgs({ ...currentThemeColors });
+  }, [currentThemeColors]);
+
   const { themeColors } = theme({
     themeColors: {
       ...currentThemeColors,

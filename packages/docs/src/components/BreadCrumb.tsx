@@ -44,8 +44,6 @@ function BreadCrumb({
   const prevTokens: FlowElement[] = elements.filter(e => e?.target === token);
   const nextTokens: FlowElement[] = elements.filter(e => e?.source === token);
 
-  // console.log({ token, elements, nextTokens, prevTokens });
-
   return (
     <>
       <BreadCrumbNav>

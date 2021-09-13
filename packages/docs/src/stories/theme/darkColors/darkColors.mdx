@@ -1,0 +1,106 @@
+# Dark Colors
+
+import { Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { Template, FunctionTemplate, StaticTemplate, DeriveTemplate } from './darkColors.stories';
+
+<BreadCrumb
+  token="darkColors"
+/>
+
+The `darkColors` attribute set is derived from the `themeColors` attributes by ramping down the brightness of the colors by a few shades. These attributes are useful for things like borders and text colors of elements that use the `themeColor` attributes. 
+
+<Story
+  name="darkColors"
+  id="core-theme-darkcolors--template"
+>
+  {Template.bind({})}
+</Story>
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { darkColors } = theme({});
+
+assert(darkColors).isEqual({
+  danger: 'rgb(245, 213, 218)',
+  dark: 'rgb(148, 153, 162)',
+  info: 'rgb(94, 216, 235)',
+  light: 'rgb(235, 235, 235)',
+  primary: 'rgb(169, 196, 247)',
+  secondary: 'rgb(249, 249, 251)',
+  success: 'rgb(200, 238, 215)',
+  warning: 'rgb(252, 242, 226)'
+});
+```
+
+## Theme Configuration
+
+`darkColors` can be configured by extending the global styles via function or with static values. In each example, we replace the `darkColors.primary` with a new color and extend the `darkColors` object with a new key-value pair.
+
+### Using Function Values
+
+<Story
+  name="colorsFunction"
+  id="core-theme-darkcolors--function-template"
+>
+  {FunctionTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { darkColors } = theme({
+  darkColors: ({ defaults }) => ({
+    ...defaults,
+    white: '#fefefe',
+    primary: 'purple'
+  })
+});
+```
+
+### Using Static Values
+
+<Story
+  name="colorsStatic"
+  id="core-theme-darkcolors--static-template"
+>
+  {StaticTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { darkColors } = theme({
+  darkColors: {
+    white: '#fefefe',
+    primary: 'purple'
+  }
+});
+```
+
+### Derived from `themeColors`
+
+`darkColors` are derived from the `themeColors`. Passing different colors to the `themeColors` object also cascades into the `darkColors`. In this example, we've updated the `themeColors.primary` value, which gives us a different `darkColors.primary` value.
+
+<Story
+  name="colorsDerive"
+  id="core-theme-darkcolors--derive-template"
+>
+  {DeriveTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { darkColors } = theme({
+  themeColors: {
+    primary: 'purple'
+  }
+});
+```
+
+## All Configurable Props
+
+- base color configuration

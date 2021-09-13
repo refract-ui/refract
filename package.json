@@ -20,6 +20,7 @@
     "@storybook/addon-info": "^5.3.21",
     "@storybook/addon-links": "^6.3.4",
     "@storybook/addon-toolbars": "^6.3.4",
+    "@storybook/api": "^6.3.8",
     "@storybook/preset-typescript": "^3.0.0",
     "@storybook/react": "^6.3.4",
     "@types/storybook__react": "^5.2.1",
