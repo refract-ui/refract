@@ -1,21 +1,19 @@
 import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
-import { useArgs, useGlobals, useStoryContext } from '@storybook/client-api';
+import { useArgs } from '@storybook/client-api';
+import isEqual from 'lodash/isEqual';
 import ColorPalette from '../../../components/ColorPalette';
 import themeColorDocs from './themeColors.mdx';
 
 const { themeColors: defaultThemeColors } = theme();
+console.log(defaultThemeColors);
 
 export default {
   title: 'core/theme/themeColors',
   parameters: {
     docs: {
       page: themeColorDocs
-    },
-    controls: {
-      expanded: true,
-      hideNoControlsWarning: true
     }
   },
   argTypes: Object.fromEntries(
@@ -27,19 +25,32 @@ export default {
   args: defaultThemeColors
 };
 
-export function Template(): React.FC {
+export function Template(initArgs): React.FC {
   const [args, updateArgs] = useArgs();
   const { themeColors: currentThemeColors } = useContext(ThemeContext);
-  useEffect(() => {
-    updateArgs({ ...currentThemeColors });
-  }, [currentThemeColors]);
+
+  const changeArgs = isEqual(args, currentThemeColors);
+  console.log({ changeArgs });
+
+  /* useEffect(() => {
+    console.log('mounting');
+    console.log({ args, initArgs, currentThemeColors });
+    updateArgs(currentThemeColors);
+    return () => {
+      console.log('unmounting');
+    };
+  }, [currentThemeColors]); */
 
   const { themeColors } = theme({
     themeColors: {
-      ...currentThemeColors,
-      ...args
+      ...currentThemeColors
     }
   });
+  return <ColorPalette colors={themeColors} />;
+}
+
+export function DefaultTemplate(): React.FC {
+  const { themeColors } = theme();
   return <ColorPalette colors={themeColors} />;
 }
 
