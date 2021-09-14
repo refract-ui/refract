@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@refract-ui/core": "workspace:*",
-    "@storybook/api": "^6.3.8",
     "@storybook/client-api": "^6.3.8",
     "@types/faker": "^4.1.12",
     "faker": "^4.1.0",

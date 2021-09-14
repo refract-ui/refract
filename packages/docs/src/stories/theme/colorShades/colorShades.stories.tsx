@@ -1,25 +1,50 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
+import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import colorShadeDocs from './colorShades.mdx';
+import page from './colorShades.mdx';
+
+const { colorShades: defaultColorShades } = theme();
 
 export default {
   title: 'core/theme/colorShades',
   parameters: {
     docs: {
-      page: colorShadeDocs
-    }
+      page
+    },
+    controls: { hideNoControlsWarning: true }
   }
 };
 
-export const Template = (args: unknown): React.FC => {
+export const Template = (): React.FC => {
+  const [args, updateArgs, resetArgs] = useArgs();
+  const { colorShades: currentThemeValue } = useContext(ThemeContext);
+
+  useEffect(() => {
+    updateArgs(currentThemeValue);
+    return () => {
+      resetArgs();
+    };
+  }, [currentThemeValue]);
+
   const { colorShades } = theme({
-    colors: ({ defaults }) => ({
-      ...defaults,
+    colorShades: {
+      ...currentThemeValue,
       ...args
-    })
+    }
   });
+
   return <ColorPalette colors={colorShades} />;
+};
+Template.args = defaultColorShades;
+Template.argTypes = Object.fromEntries(
+  Object.keys(defaultColorShades).map(k => [k, { control: { type: 'color' } }])
+);
+
+export const DefaultTemplate = (): React.FC => {
+  const { colorShades: currentThemeValue } = useContext(ThemeContext);
+  return <ColorPalette colors={currentThemeValue} />;
 };
 
 export const FunctionTemplate = (): React.FC => {

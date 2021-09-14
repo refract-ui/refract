@@ -1,30 +1,49 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
-import { defaultColors } from '@refract-ui/core/src/theme/colors';
+import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import colorDocs from './colors.mdx';
+import page from './colors.mdx';
+
+const { colors: defaultColors } = theme();
 
 export default {
   title: 'core/theme/colors',
   parameters: {
     docs: {
-      page: colorDocs
-    }
-  },
-  argTypes: Object.fromEntries(
-    Object.keys(defaultColors).map(k => [k, { control: { type: 'color' } }])
-  ),
-  args: defaultColors
+      page
+    },
+    controls: { hideNoControlsWarning: true }
+  }
 };
 
-export const Template = (args: unknown): React.FC => {
+export const Template = (): React.FC => {
+  const [args, updateArgs, resetArgs] = useArgs();
+  const { colors: currentThemeValue } = useContext(ThemeContext);
+
+  useEffect(() => {
+    updateArgs(currentThemeValue);
+    return () => {
+      resetArgs();
+    };
+  }, [currentThemeValue]);
+
   const { colors } = theme({
-    colors: ({ defaults }) => ({
-      ...defaults,
+    colors: {
+      ...currentThemeValue,
       ...args
-    })
+    }
   });
   return <ColorPalette colors={colors} />;
+};
+Template.args = defaultColors;
+Template.argTypes = Object.fromEntries(
+  Object.keys(defaultColors).map(k => [k, { control: { type: 'color' } }])
+);
+
+export const DefaultTemplate = (): React.FC => {
+  const { colors: currentThemeValue } = useContext(ThemeContext);
+  return <ColorPalette colors={currentThemeValue} />;
 };
 
 export const FunctionTemplate = (): React.FC => {

@@ -3,12 +3,12 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import page from './themeColors.mdx';
+import page from './themeColorShades.mdx';
 
-const { themeColors: defaultThemeColors } = theme();
+const { themeColorShades: defaultThemeColors } = theme();
 
 export default {
-  title: 'core/theme/themeColors',
+  title: 'core/theme/themeColorShades',
   parameters: {
     docs: {
       page
@@ -19,7 +19,7 @@ export default {
 
 export function Template(): React.FC {
   const [args, updateArgs, resetArgs] = useArgs();
-  const { themeColors: currentThemeValues } = useContext(ThemeContext);
+  const { themeColorShades: currentThemeValues } = useContext(ThemeContext);
 
   useEffect(() => {
     updateArgs(currentThemeValues);
@@ -28,13 +28,13 @@ export function Template(): React.FC {
     };
   }, [currentThemeValues]);
 
-  const { themeColors } = theme({
-    themeColors: {
+  const { themeColorShades } = theme({
+    themeColorShades: {
       ...currentThemeValues,
       ...args
     }
   });
-  return <ColorPalette colors={themeColors} />;
+  return <ColorPalette colors={themeColorShades} />;
 }
 Template.args = defaultThemeColors;
 Template.argTypes = Object.fromEntries(
@@ -42,27 +42,38 @@ Template.argTypes = Object.fromEntries(
 );
 
 export function DefaultTemplate(): React.FC {
-  const { themeColors: currentThemeValues } = useContext(ThemeContext);
+  const { themeColorShades: currentThemeValues } = useContext(ThemeContext);
   return <ColorPalette colors={currentThemeValues} />;
 }
 
 export const FunctionTemplate = (): React.FC => {
-  const { themeColors } = theme({
-    themeColors: ({ defaults }) => ({
+  const { themeColorShades } = theme({
+    themeColorShades: ({ defaults }) => ({
       ...defaults,
       white: '#fefefe',
       primary: 'purple'
     })
   });
-  return <ColorPalette colors={themeColors} />;
+
+  console.log({ themeColorShades });
+  return <ColorPalette colors={themeColorShades} />;
 };
 
 export const StaticTemplate = (): React.FC => {
-  const { themeColors } = theme({
-    themeColors: {
+  const { themeColorShades } = theme({
+    themeColorShades: {
       white: '#fefefe',
       primary: 'purple'
     }
   });
-  return <ColorPalette colors={themeColors} />;
+  return <ColorPalette colors={themeColorShades} />;
+};
+
+export const DeriveTemplate = (): React.FC => {
+  const { themeColorShades } = theme({
+    themeColors: {
+      primary: 'purple'
+    }
+  });
+  return <ColorPalette colors={themeColorShades} />;
 };

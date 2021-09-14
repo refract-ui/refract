@@ -2,24 +2,13 @@
 
 import { Story, Source } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { Template, DefaultTemplate, FunctionTemplate, StaticTemplate } from './themeColors.stories';
+import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './themeColors.stories';
 
 <BreadCrumb
   token="themeColors"
 />
 
 The `themeColors` attributes set is used to define the foundational color palette used throughout the theme. Tints and shades of these colors will be generated and used for things like borders, hover states, text colors and accents throughout the component library. By default these colors are based on the `colors` attribute set but can be overridden with any arbitrary color values.
-
-<Story
-  name="themeColors"
-  id="core-theme-themecolors--template"
->
-  {Template.bind({})}
-</Story>
-<Source
-  id="core-theme-themecolors--template"
-  language="tsx"
-/>
 
 ## Default Props
 

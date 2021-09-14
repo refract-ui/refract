@@ -14,6 +14,7 @@ const ColorGridItem = styled.div`
   background-color: ${({ color }) => color};
   color: ${({ color, theme }) => theme.contrastColor({ color })};
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border-radius: 4px;
@@ -30,7 +31,9 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ colors }) => (
   <ColorGrid>
     {map(colors, (v: string, k: string) => (
       <ColorGridItem key={k} color={v}>
-        {k}
+        <span>{k}</span>
+        <br />
+        <span>{v}</span>
       </ColorGridItem>
     ))}
   </ColorGrid>

@@ -2,7 +2,7 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { Template, FunctionTemplate, StaticTemplate } from './borders.stories';
+import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './borders.stories';
 
 <BreadCrumb
   token="borders"
@@ -12,19 +12,9 @@ The `borders` object includes a set of attributes for constructing borders at va
 
 <Story
   name="Example"
-  id="core-theme-borders--template"
-  argTypes={{
-    basis: {
-      control: {
-        type: 'number'
-      }
-    }
-  }}
-  args={{
-    basis: 1
-  }}
+  id="core-theme-borders--default-template"
 >
-  {Template.bind({})}
+  {DefaultTemplate.bind({})}
 </Story>
 
 ## Description

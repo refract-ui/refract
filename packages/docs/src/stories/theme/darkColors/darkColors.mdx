@@ -2,7 +2,7 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { Template, FunctionTemplate, StaticTemplate, DeriveTemplate } from './darkColors.stories';
+import { DefaultTemplate, FunctionTemplate, StaticTemplate, DeriveTemplate } from './darkColors.stories';
 
 <BreadCrumb
   token="darkColors"
@@ -12,9 +12,9 @@ The `darkColors` attribute set is derived from the `themeColors` attributes by r
 
 <Story
   name="darkColors"
-  id="core-theme-darkcolors--template"
+  id="core-theme-darkcolors--default-template"
 >
-  {Template.bind({})}
+  {DefaultTemplate.bind({})}
 </Story>
 
 ## Default Props

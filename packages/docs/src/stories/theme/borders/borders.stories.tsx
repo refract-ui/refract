@@ -1,24 +1,49 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
+import { useArgs } from '@storybook/client-api';
 import BorderComponent from '../../../components/Borders';
-import bordersDocs from './borders.mdx';
+import page from './borders.mdx';
 
 export default {
   title: 'core/theme/borders',
   parameters: {
     docs: {
-      page: bordersDocs
-    }
+      page
+    },
+    controls: { hideNoControlsWarning: true }
   }
 };
 
-export const Template = (args: unknown): React.FC => {
+const { borders: defaultBorders } = theme();
+
+// todo: interactive borders
+export const Template = (): React.FC => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [args, updateArgs, resetArgs] = useArgs();
+  const { borders: currentThemeValue } = useContext(ThemeContext);
+
+  useEffect(() => {
+    updateArgs(currentThemeValue);
+    return () => {
+      resetArgs();
+    };
+  }, [currentThemeValue]);
+
   const { borders } = theme({
-    spacing: ({ defaults }) => ({
-      ...defaults,
-      ...args
-    })
+    borders: {
+      ...currentThemeValue
+    }
   });
+  return <BorderComponent borders={borders} />;
+};
+Template.args = defaultBorders;
+Template.argTypes = Object.fromEntries(
+  Object.keys(defaultBorders).map(k => [k, { control: { type: 'string' } }])
+);
+
+export const DefaultTemplate = (): React.FC => {
+  const { borders } = useContext(ThemeContext);
   return <BorderComponent borders={borders} />;
 };
 

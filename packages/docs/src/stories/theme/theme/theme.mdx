@@ -1,8 +1,6 @@
-import { Meta, Story } from '@storybook/addon-docs';
-
-<Meta title="core/theme/intro" />
-
 # Introduction
+
+import { Story } from '@storybook/addon-docs';
 
 The theme function generates an object that is used as the cental point of
 shared [design tokens](https://css-tricks.com/what-are-design-tokens/) for your website.
@@ -53,7 +51,7 @@ const appTheme = theme({ colors: { primary: '#FF0000' }});
 
 The change in the example above will propogate to the following values:
 
-```
+``` js
 theme.themeColors.primary
 theme.themeColorShades.primary100 - 900
 theme.subtleColors.primary
@@ -69,7 +67,7 @@ if we want the `subtleColors.primary` value to be different from the
 automatically generated value, we can extend the theme configuration as
 follows:
 
-```
+``` js
 import { theme } from '@refract-ui/core';
 
 // change the primary color to red, but set the `subtleColors` value to green
@@ -86,7 +84,7 @@ const appTheme = theme({
 Values from previous steps in the cascade can also be used to set the design
 tokens using functions as follows:
 
-```
+``` js
 const appTheme = theme({
   colors: { 
     primary: '#FF0000'
@@ -99,12 +97,11 @@ const appTheme = theme({
 
 The relationship of each theme value is visualized in the following diagram.
 
-<br />
-<Story id="docs-themediagram--overview" />
-<br />
+<Story
+  id="docs-themediagram--overview"
+/>
 
-
-# Helper Methods
+## Helper Methods
 
 The theme will also provide the following helper methods:
 

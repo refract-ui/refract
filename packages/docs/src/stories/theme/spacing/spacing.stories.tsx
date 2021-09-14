@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
+import { useArgs } from '@storybook/client-api';
 import Spacing from '../../../components/Spacing';
 import page from './spacing.mdx';
 
@@ -11,21 +13,36 @@ export default {
     docs: {
       page
     }
-  },
-  argTypes: Object.fromEntries(
-    Object.keys(defaultSpacing).map(k => [k, { control: { type: 'text' } }])
-  ),
-  args: defaultSpacing
+  }
 };
 
-export function Template(args: unknown): React.FC {
+export function Template(): React.FC {
+  const [args, updateArgs, resetArgs] = useArgs();
+  const { spacing: currentThemeValue } = useContext(ThemeContext);
+
+  useEffect(() => {
+    updateArgs(currentThemeValue);
+    return () => {
+      resetArgs();
+    };
+  }, [currentThemeValue]);
+
   const { spacing } = theme({
-    spacing: ({ defaults }) => ({
-      ...defaults,
+    spacing: {
+      ...currentThemeValue,
       ...args
-    })
+    }
   });
   return <Spacing spacing={spacing} />;
+}
+Template.args = defaultSpacing;
+Template.argTypes = Object.fromEntries(
+  Object.keys(defaultSpacing).map(k => [k, { control: { type: 'text' } }])
+);
+
+export function DefaultTemplate(): React.FC {
+  const { spacing: currentThemeValue } = useContext(ThemeContext);
+  return <Spacing spacing={currentThemeValue} />;
 }
 
 export function FunctionTemplate(): React.FC {
