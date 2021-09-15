@@ -1,1 +1,1 @@
-export * from './lib/withRefract';
+export * from './preset';
