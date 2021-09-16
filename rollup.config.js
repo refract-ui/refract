@@ -1,11 +1,12 @@
-import typescript from 'rollup-plugin-typescript2';
 import resolve from '@rollup/plugin-node-resolve';
+import typescript from 'rollup-plugin-typescript2';
 import babel from '@rollup/plugin-babel';
 import dts from 'rollup-plugin-dts';
 import corePkg from './packages/core/package.json';
+import docsPkg from './packages/docs/package.json';
 import { terser } from 'rollup-plugin-terser';
 
-export default [
+/* export default [
   {
     input: 'packages/core/index.ts',
     output: [
@@ -48,5 +49,67 @@ export default [
     input: 'packages/core/dist/.dts/packages/core/index.d.ts',
     plugins: [dts()],
     output: { file: 'packages/core/dist/index.d.ts', format: 'es' }
+  }
+]; */
+
+export default [
+  {
+    input: [
+      'packages/docs/src/index.ts',
+      'packages/docs/src/preset/manager.ts',
+      'packages/docs/src/preset/preview.ts',
+      'packages/docs/src/preset/tool.tsx',
+      'packages/docs/src/preset/decorators/withRefract.tsx'
+    ],
+    output: [
+      {
+        dir: 'packages/docs/dist/esm',
+        format: 'es',
+        preserveModules: true,
+        preserveModulesRoot: 'packages/docs/src',
+        exports: 'named'
+      },
+      {
+        dir: 'packages/docs/dist/cjs',
+        format: 'cjs',
+        preserveModules: true,
+        preserveModulesRoot: 'packages/docs/src',
+        exports: 'named'
+      }
+    ],
+    plugins: [
+      typescript({
+        useTsconfigDeclarationDir: true
+        /* tsconfigOverride: {
+          compilerOptions: {
+            declarationDir: 'packages/docs/dist/.dts'
+          }
+        } */
+      }),
+      resolve({
+        // pass custom options to the resolve plugin
+        customResolveOptions: {
+          moduleDirectories: [
+            'node_modules',
+            'packages/core/node_modules',
+            'packages/docs/node_modules'
+          ]
+        }
+      }),
+      babel({ babelHelpers: 'bundled' }),
+      terser()
+    ],
+    external: [
+      '@refract-ui/core',
+      '@storybook/addons',
+      '@storybook/api',
+      '@storybook/client-api',
+      '@storybook/components',
+      '@storybook/react',
+      'lodash',
+      'react',
+      'styled-components',
+      'tinycolor2'
+    ]
   }
 ];

@@ -1,6 +1,5 @@
 import React, { useCallback } from 'react';
 import { useGlobals, useParameter } from '@storybook/api';
-import { addons, types } from '@storybook/addons';
 import {
   IconButton,
   Icons,
@@ -8,32 +7,51 @@ import {
   WithTooltip
 } from '@storybook/components';
 
-const ADDON_ID = 'refract';
-const TOOL_ID = `${ADDON_ID}/refractToggle`;
-const REFRACT_PARAM_KEY = 'refractTheme';
+import { defaultRefractTheme, RefractDecoratorTheme } from './decorators/withRefract';
 
-function getTooltipLinks(themes, selectedTheme, toggle) {
+export const ADDON_ID = 'refract';
+export const TOOL_ID = `${ADDON_ID}/refractToggle`;
+export const REFRACT_PARAM_KEY = 'refractTheme';
+
+type TooltipLink = {
+  id: string;
+  title: string;
+  selectedTheme: unknown;
+  onClick: () => void;
+  active: boolean;
+};
+
+function getTooltipLinks(
+  themes: RefractDecoratorTheme[],
+  selectedTheme: string,
+  toggle: (args: { selected: string; name: string }) => void
+): TooltipLink[] {
   const tooltipLinks = themes?.map(({ name }, i) => ({
-    id: i + 1,
+    id: `${i + 1}`,
     title: name,
     selectedTheme,
     onClick: () => toggle({ selected: name, name }),
     active: selectedTheme === name
   }));
 
-  const clearSelection = {
-    id: themes.length + 1,
+  const clearSelection: TooltipLink = {
+    id: `${themes.length + 1}`,
     title: 'Reset Theme',
     selectedTheme: null,
     onClick: () => toggle({ selected: null, name: 'Reset Theme' }),
     active: false
   };
+
   return [...tooltipLinks, clearSelection];
 }
 
-const Tool = () => {
+type RefractParams = {
+  themes?: RefractDecoratorTheme[];
+};
+
+const Tool = (): any => {
   const [globals, updateGlobals] = useGlobals();
-  const refractParams = useParameter('refract');
+  const refractParams: RefractParams = useParameter('refract');
   const activeTheme = globals[REFRACT_PARAM_KEY];
 
   const paramThemes = refractParams?.themes || [];
@@ -42,19 +60,18 @@ const Tool = () => {
     updateGlobals({
       [REFRACT_PARAM_KEY]: value
     });
-  });
+  }, []);
 
   return (
     <WithTooltip
       placement="top"
       trigger="click"
       closeOnClick
-      tooltip={props => {
-        const { onHide } = props;
+      tooltip={({ onHide }) => {
         return (
           <TooltipLinkList
             links={getTooltipLinks(
-              [{ name: 'refract' }, ...paramThemes],
+              [defaultRefractTheme, ...paramThemes],
               activeTheme,
               ({ selected }) => {
                 if (activeTheme !== selected) {
@@ -78,11 +95,4 @@ const Tool = () => {
   );
 };
 
-addons.register(ADDON_ID, () => {
-  addons.add(TOOL_ID, {
-    type: types.TOOL,
-    title: 'My addon',
-    match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(story|docs)$/)),
-    render: Tool
-  });
-});
+export default Tool;

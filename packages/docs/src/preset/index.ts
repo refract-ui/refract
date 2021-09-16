@@ -1,12 +1,12 @@
-function config(entry = []): [] {
+function config(entry: any = []): any[] {
   return [...entry, require.resolve('./preview')];
 }
 
-function managerEntries(entry = []): [] {
-  return [...entry, require.resolve('./manager.tsx')];
+function managerEntries(entry: any = []): any[] {
+  return [...entry, require.resolve('./manager')];
 }
 
-module.exports = {
+export default {
   config,
   managerEntries
 };

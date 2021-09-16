@@ -1,23 +1,20 @@
 import * as React from 'react';
-import { StoryFn, StoryContext } from '@storybook/addons';
+import { StoryContext } from '@storybook/addons';
+// import { ComponentStory, Story } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
-import { Theme } from '@refract-ui/core';
-import genTheme from '@refract-ui/core/src/theme';
+import { Theme, theme as genTheme } from '@refract-ui/core';
 
 export type RefractDecoratorTheme = {
   theme: Theme;
   name: string;
 };
 
-const defaultRefractTheme: RefractDecoratorTheme = {
+export const defaultRefractTheme: RefractDecoratorTheme = {
   theme: genTheme(),
   name: 'refract'
 };
 
-export function withRefract(
-  Story: StoryFn<JSX.Element>,
-  c: StoryContext
-): React.FC {
+export function withRefract(Story: any, c: StoryContext): any {
   const themes = c.parameters?.refract?.themes || [];
 
   const decoratorThemes = [defaultRefractTheme, ...themes];

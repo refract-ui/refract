@@ -4768,7 +4768,7 @@ __metadata:
     "@storybook/api": ^6.3.8
     "@storybook/client-api": ^6.3.8
     "@storybook/components": ^6.3.8
-    "@storybook/core-events": ^6.3.8
+    "@storybook/react": ^6.4.0-alpha.34
     "@types/faker": ^4.1.12
     babel-plugin-styled-components: ^1.10.7
     faker: ^4.1.0
@@ -5970,7 +5970,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@storybook/core-events@npm:6.3.8, @storybook/core-events@npm:^6.3.8":
+"@storybook/core-events@npm:6.3.8":
   version: 6.3.8
   resolution: "@storybook/core-events@npm:6.3.8"
   dependencies:
