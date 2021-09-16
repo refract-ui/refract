@@ -7,6 +7,9 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-docs',
     '@storybook/addon-links',
-    '../packages/docs/src/preset'
+    // local version of plugin
+    // '../packages/docs/src/preset'
+    // dist version of plugin
+    '../packages/docs/preset'
   ],
 };

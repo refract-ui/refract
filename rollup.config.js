@@ -58,15 +58,16 @@ export default [
       'packages/docs/src/preset/decorators/withRefract.tsx'
     ],
     output: [
-      {
+      /* {
         dir: 'packages/docs/dist/esm',
         format: 'es',
         preserveModules: true,
         preserveModulesRoot: 'packages/docs/src',
         exports: 'named'
-      },
+      }, */
+      // storybook only really wants to consume cjs
       {
-        dir: 'packages/docs/dist/cjs',
+        dir: 'packages/docs/dist',
         format: 'cjs',
         preserveModules: true,
         preserveModulesRoot: 'packages/docs/src',
@@ -75,12 +76,8 @@ export default [
     ],
     plugins: [
       typescript({
+        target: 'es2019',
         useTsconfigDeclarationDir: true
-        /* tsconfigOverride: {
-          compilerOptions: {
-            declarationDir: 'packages/docs/dist/.dts'
-          }
-        } */
       }),
       resolve({
         // pass custom options to the resolve plugin

@@ -7,7 +7,10 @@ import {
   WithTooltip
 } from '@storybook/components';
 
-import { defaultRefractTheme, RefractDecoratorTheme } from './decorators/withRefract';
+import {
+  defaultRefractTheme,
+  RefractDecoratorTheme
+} from './decorators/withRefract';
 
 export const ADDON_ID = 'refract';
 export const TOOL_ID = `${ADDON_ID}/refractToggle`;
@@ -26,7 +29,7 @@ function getTooltipLinks(
   selectedTheme: string,
   toggle: (args: { selected: string; name: string }) => void
 ): TooltipLink[] {
-  const tooltipLinks = themes?.map(({ name }, i) => ({
+  const tooltipLinks = themes.map(({ name }, i) => ({
     id: `${i + 1}`,
     title: name,
     selectedTheme,
