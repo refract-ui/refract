@@ -7,6 +7,6 @@ module.exports = {
     '@storybook/addon-essentials',
     '@storybook/addon-docs',
     '@storybook/addon-links',
-    '../packages/docs/src/preset/index.ts'
+    '../packages/docs/src/preset'
   ],
 };

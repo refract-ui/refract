@@ -3,10 +3,9 @@ import typescript from 'rollup-plugin-typescript2';
 import babel from '@rollup/plugin-babel';
 import dts from 'rollup-plugin-dts';
 import corePkg from './packages/core/package.json';
-import docsPkg from './packages/docs/package.json';
 import { terser } from 'rollup-plugin-terser';
 
-/* export default [
+export default [
   {
     input: 'packages/core/index.ts',
     output: [
@@ -49,10 +48,7 @@ import { terser } from 'rollup-plugin-terser';
     input: 'packages/core/dist/.dts/packages/core/index.d.ts',
     plugins: [dts()],
     output: { file: 'packages/core/dist/index.d.ts', format: 'es' }
-  }
-]; */
-
-export default [
+  },
   {
     input: [
       'packages/docs/src/index.ts',
