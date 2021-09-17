@@ -3,17 +3,17 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import * as page from './themeColors.mdx';
+import * as MDXContent from './themeColors.mdx';
 
 const { themeColors: defaultThemeColors } = theme();
 
-const { default: MDXContent } = page;
+const { default: page } = MDXContent;
 
 export default {
   title: 'core/theme/themeColors',
   parameters: {
     docs: {
-      page: MDXContent
+      page
     },
     controls: { hideNoControlsWarning: true }
   }

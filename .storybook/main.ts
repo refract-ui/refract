@@ -9,8 +9,8 @@ module.exports = {
     '@storybook/addon-docs',
     '@storybook/addon-links',
     // local version of plugin
-    '../packages/docs/src/preset'
+    // '../packages/docs/src/preset'
     // dist version of plugin
-    // '../packages/docs/preset'
+    '../packages/docs/preset'
   ],
 };
