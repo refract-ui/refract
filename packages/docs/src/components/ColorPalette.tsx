@@ -12,7 +12,7 @@ const ColorGrid = styled.div`
 const ColorGridItem = styled.div`
   height: 120px;
   background-color: ${({ color }) => color};
-  color: ${({ color, theme }) => theme.contrastColor({ color })};
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;

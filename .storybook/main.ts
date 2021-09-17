@@ -1,15 +1,16 @@
 module.exports = {
   stories: [
-    '../packages/docs/src/**/*.stories.tsx',
-    '../packages/docs/src/**/*.stories.mdx'
+    // '../packages/docs/src/**/*.stories.tsx',
+    // '../packages/docs/src/**/*.stories.mdx'
+    '../packages/docs/dist/**/*.stories.js'
   ],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-docs',
     '@storybook/addon-links',
     // local version of plugin
-    // '../packages/docs/src/preset'
+    '../packages/docs/src/preset'
     // dist version of plugin
-    '../packages/docs/preset'
+    // '../packages/docs/preset'
   ],
 };
