@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-const BorderComponent: React.FC<Borders> = ({ borders }) => (
+const BorderComponent: React.FC<{ borders: Borders }> = ({ borders }) => (
   <Wrapper>
     {map(borders, (v, k) => {
       return (

@@ -7,7 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 import mdx from 'rollup-plugin-mdx';
 
 export default [
-  {
+  /* {
     input: 'packages/core/index.ts',
     output: [
       {
@@ -100,13 +100,20 @@ export default [
       'styled-components',
       'tinycolor2'
     ]
-  },
+  }, */
   {
     input: [
       // stories
-      'packages/docs/src/stories/theme/themeColors/themeColors.stories.tsx',
+      'packages/docs/src/stories/theme/borders/borders.stories.tsx',
       'packages/docs/src/stories/theme/breakpoints/breakpoints.stories.tsx',
       'packages/docs/src/stories/theme/colors/colors.stories.tsx',
+      'packages/docs/src/stories/theme/colorShades/colorShades.stories.tsx',
+      'packages/docs/src/stories/theme/darkColors/darkColors.stories.tsx',
+      'packages/docs/src/stories/theme/spacing/spacing.stories.tsx',
+      'packages/docs/src/stories/theme/subtleColors/subtleColors.stories.tsx',
+      'packages/docs/src/stories/theme/theme/theme.stories.tsx',
+      'packages/docs/src/stories/theme/themeColors/themeColors.stories.tsx',
+      'packages/docs/src/stories/theme/themeColorShades/themeColorShades.stories.tsx',
       // components
       'packages/docs/src/components/BreadCrumb.tsx'
     ],

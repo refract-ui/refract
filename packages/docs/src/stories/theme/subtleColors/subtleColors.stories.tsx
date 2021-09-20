@@ -3,9 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import page from './subtleColors.mdx';
+import * as MDXContent from './subtleColors.mdx';
 
 const { subtleColors: defaultSubtleColors } = theme();
+
+const { default: page } = MDXContent;
 
 export default {
   title: 'core/theme/subtleColors',
@@ -17,7 +19,7 @@ export default {
   }
 };
 
-export function Template(): React.FC {
+export function Template(): React.ReactElement {
   const [args, updateArgs, resetArgs] = useArgs();
   const { subtleColors: currentThemeValues } = useContext(ThemeContext);
 
@@ -41,33 +43,31 @@ Template.argTypes = Object.fromEntries(
   Object.keys(defaultSubtleColors).map(k => [k, { control: { type: 'color' } }])
 );
 
-export function DefaultTemplate(): React.FC {
+export function DefaultTemplate(): React.ReactElement {
   const { subtleColors: currentThemeValues } = useContext(ThemeContext);
   return <ColorPalette colors={currentThemeValues} />;
 }
 
-export const FunctionTemplate = (): React.FC => {
+export const FunctionTemplate = (): React.ReactElement => {
   const { subtleColors } = theme({
     subtleColors: ({ defaults }) => ({
       ...defaults,
-      white: '#fefefe',
       primary: 'purple'
     })
   });
   return <ColorPalette colors={subtleColors} />;
 };
 
-export const StaticTemplate = (): React.FC => {
+export const StaticTemplate = (): React.ReactElement => {
   const { subtleColors } = theme({
     subtleColors: {
-      white: '#fefefe',
       primary: 'purple'
     }
   });
   return <ColorPalette colors={subtleColors} />;
 };
 
-export const DeriveTemplate = (): React.FC => {
+export const DeriveTemplate = (): React.ReactElement => {
   const { subtleColors } = theme({
     themeColors: {
       primary: 'purple'

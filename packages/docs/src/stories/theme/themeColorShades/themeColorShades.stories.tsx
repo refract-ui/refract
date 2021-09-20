@@ -3,9 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import page from './themeColorShades.mdx';
+import * as MDXContent from './themeColorShades.mdx';
 
 const { themeColorShades: defaultThemeColors } = theme();
+
+const { default: page } = MDXContent;
 
 export default {
   title: 'core/theme/themeColorShades',
@@ -17,7 +19,7 @@ export default {
   }
 };
 
-export function Template(): React.FC {
+export function Template(): React.ReactElement {
   const [args, updateArgs, resetArgs] = useArgs();
   const { themeColorShades: currentThemeValues } = useContext(ThemeContext);
 
@@ -41,35 +43,31 @@ Template.argTypes = Object.fromEntries(
   Object.keys(defaultThemeColors).map(k => [k, { control: { type: 'color' } }])
 );
 
-export function DefaultTemplate(): React.FC {
+export function DefaultTemplate(): React.ReactElement {
   const { themeColorShades: currentThemeValues } = useContext(ThemeContext);
   return <ColorPalette colors={currentThemeValues} />;
 }
 
-export const FunctionTemplate = (): React.FC => {
+export const FunctionTemplate = (): React.ReactElement => {
   const { themeColorShades } = theme({
     themeColorShades: ({ defaults }) => ({
       ...defaults,
-      white: '#fefefe',
-      primary: 'purple'
+      primary100: '#fefefe'
     })
   });
-
-  console.log({ themeColorShades });
   return <ColorPalette colors={themeColorShades} />;
 };
 
-export const StaticTemplate = (): React.FC => {
+export const StaticTemplate = (): React.ReactElement => {
   const { themeColorShades } = theme({
     themeColorShades: {
-      white: '#fefefe',
-      primary: 'purple'
+      primary100: '#fefefe'
     }
   });
   return <ColorPalette colors={themeColorShades} />;
 };
 
-export const DeriveTemplate = (): React.FC => {
+export const DeriveTemplate = (): React.ReactElement => {
   const { themeColorShades } = theme({
     themeColors: {
       primary: 'purple'
