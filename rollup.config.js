@@ -7,7 +7,7 @@ import { terser } from 'rollup-plugin-terser';
 import mdx from 'rollup-plugin-mdx';
 
 export default [
-  /* {
+  {
     input: 'packages/core/index.ts',
     output: [
       {
@@ -100,7 +100,7 @@ export default [
       'styled-components',
       'tinycolor2'
     ]
-  }, */
+  },
   {
     input: [
       // stories

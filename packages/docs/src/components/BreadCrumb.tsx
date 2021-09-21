@@ -47,14 +47,8 @@ function BreadCrumb({
   token: string;
   storyPath: string;
 }): React.ReactElement {
-  const prevTokens: any = elements.filter(
-    (e: any) => e?.target === token
-  );
-  const nextTokens: any = elements.filter(
-    (e: any) => e?.source === token
-  );
-
-  console.log({ prevTokens, nextTokens });
+  const prevTokens: any = elements.filter((e: any) => e?.target === token);
+  const nextTokens: any = elements.filter((e: any) => e?.source === token);
 
   return (
     <>

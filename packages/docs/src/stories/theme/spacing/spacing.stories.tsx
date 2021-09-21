@@ -36,7 +36,6 @@ export function Template(): React.ReactElement {
       ...args
     }
   });
-  console.log({ spacing });
   return <Spacing spacing={spacing} />;
 }
 Template.args = defaultSpacing;

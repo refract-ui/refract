@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { map, isUndefined } from 'lodash';
 import styled from 'styled-components';
 import { ThemePropDefinition } from '../lib/themeProps';
