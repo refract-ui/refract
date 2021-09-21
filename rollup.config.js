@@ -104,7 +104,7 @@ export default [
   {
     input: [
       // stories
-      'packages/docs/src/stories/theme/borders/borders.stories.tsx',
+      /* 'packages/docs/src/stories/theme/borders/borders.stories.tsx',
       'packages/docs/src/stories/theme/breakpoints/breakpoints.stories.tsx',
       'packages/docs/src/stories/theme/colors/colors.stories.tsx',
       'packages/docs/src/stories/theme/colorShades/colorShades.stories.tsx',
@@ -113,7 +113,11 @@ export default [
       'packages/docs/src/stories/theme/subtleColors/subtleColors.stories.tsx',
       'packages/docs/src/stories/theme/theme/theme.stories.tsx',
       'packages/docs/src/stories/theme/themeColors/themeColors.stories.tsx',
-      'packages/docs/src/stories/theme/themeColorShades/themeColorShades.stories.tsx',
+      'packages/docs/src/stories/theme/themeColorShades/themeColorShades.stories.tsx', */
+      // globals
+      'packages/docs/src/stories/GlobalStyles.stories.tsx',
+      // these compile
+      // 'packages/docs/src/stories/nativeElements.stories.tsx',
       // components
       'packages/docs/src/components/BreadCrumb.tsx'
     ],
@@ -168,6 +172,7 @@ export default [
       'lodash/map',
       'react',
       'react-flow-renderer',
+      'react-syntax-highlighter',
       'styled-components',
       'tinycolor2'
     ]

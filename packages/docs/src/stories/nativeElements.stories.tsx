@@ -3,7 +3,11 @@ import { pick, reduce, forEach, isArray, has } from 'lodash';
 import { storiesOf } from '@storybook/react';
 import { theme, BlockElements } from '@refract-ui/core';
 import ThemePropList from '../components/ThemePropList';
-import { nativeElementPropDefinitions } from '../lib/nativeElements';
+import {
+  nativeElementPropDefinitions,
+  NativeElementProps as ExportNativeElementProps,
+  NativeElementPropDefinitions
+} from '../lib/nativeElements';
 import {
   ThemePropDefinition,
   TypographyContainerPropDefinitions,
@@ -18,28 +22,37 @@ const defaultTheme = theme();
 const nativeElementStyles = defaultTheme.components.globalStyles.xs;
 const stories = storiesOf('docs/global styles', module);
 
-const propDefKeys = {
+type PropDefKeyTypes = TypographyContainerPropDefinitions &
+  ContainerPropDefinitions;
+
+type DefinitionType = {
+  [p in keyof PropDefKeyTypes]: ThemePropDefinition;
+};
+
+const propDefKeys: {
+  [key: string]: ThemePropDefinition;
+} = {
   ...typograhyContainerPropDefinitions,
   ...containerPropDefinitions
-} as TypographyContainerPropDefinitions & ContainerPropDefinitions;
+};
 
 type NativeElementProps = {
   [p: string]: string;
 };
 
 forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
-  const definitions = reduce(
+  const definitions: Partial<DefinitionType> = reduce(
     props,
-    (memo, val: any, key: any) => {
+    (memo: any, val: any, key: keyof PropDefKeyTypes) => {
       if (isArray(val)) {
         val = val.join(', ');
       }
 
-      if (propDefKeys[key]) {
+      if (propDefKeys[key as string] as ThemePropDefinition) {
         memo[key] = {
           ...propDefKeys[key],
           defaultValue: val
-        } as Partial<ThemePropDefinition>;
+        } as any;
       }
 
       return memo;
@@ -47,11 +60,17 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
     {}
   );
 
-  const { definition, link } = nativeElementPropDefinitions[tagName] || {};
+  console.log({ tagName });
+
+  console.log(nativeElementPropDefinitions);
+
+  const { definition, link } =
+    (nativeElementPropDefinitions[tagName as string] as ThemePropDefinition) ||
+    {};
 
   const defaultPropConfig = reduce(
     globalStyleSettings,
-    (memo, prop, key) => {
+    (memo: any, prop: any, key: any) => {
       const [setting, path] = key.split('.');
       if (path) {
         if (!memo[setting]) {

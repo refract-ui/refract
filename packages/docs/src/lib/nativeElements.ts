@@ -6,7 +6,7 @@ export type NativeElementProps =
   | keyof typeof TypographyTags;
 
 export type NativeElementPropDefinitions = {
-  [p in NativeElementProps]: ThemePropDefinition;
+  [key: string]: ThemePropDefinition;
 };
 
 export const nativeElementPropDefinitions: NativeElementPropDefinitions = {
