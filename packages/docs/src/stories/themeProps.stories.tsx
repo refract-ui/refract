@@ -1,6 +1,4 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { theme, ContainerProps } from '@refract-ui/core';
 import ThemePropList from '../components/ThemePropList';
 import {
   containerPropDefinitions,
@@ -10,39 +8,42 @@ import {
   gridContainerPropDefinitions
 } from '../lib/themeProps';
 
-storiesOf('docs/containers', module)
-  .add('All Containers', () => (
-    <ThemePropList
-      title="All Containers"
-      definitions={containerPropDefinitions}
-    />
-  ))
-  .add('Aligned Containers', () => (
-    <ThemePropList
-      title="Aligned Containers"
-      definitions={alignedContainerPropDefinitions}
-    />
-  ))
-  .add('Flex Containers', () => (
-    <ThemePropList
-      title="Flex Containers"
-      definitions={flexContainerPropDefinitions}
-    />
-  ))
-  .add('Grid Containers', () => (
-    <ThemePropList
-      title="Grid Containers"
-      definitions={gridContainerPropDefinitions}
-    />
-  ))
-  .add('Typography Containers', () => (
-    <ThemePropList
-      title="Typography Containers"
-      definitions={typograhyContainerPropDefinitions}
-    />
-  ));
-
 export default {
-  title: 'docs/containers',
+  title: 'docs/Containers',
   component: ThemePropList
 };
+
+export const AllContainers = (): React.ReactElement => (
+  <ThemePropList
+    title="All Containers"
+    definitions={containerPropDefinitions}
+  />
+);
+
+export const AlignedContainers = (): React.ReactElement => (
+  <ThemePropList
+    title="Aligned Containers"
+    definitions={alignedContainerPropDefinitions}
+  />
+);
+
+export const FlexContainers = (): React.ReactElement => (
+  <ThemePropList
+    title="Flex Containers"
+    definitions={flexContainerPropDefinitions}
+  />
+);
+
+export const GridContainers = (): React.ReactElement => (
+  <ThemePropList
+    title="Grid Containers"
+    definitions={gridContainerPropDefinitions}
+  />
+);
+
+export const TypographyContainers = (): React.ReactElement => (
+  <ThemePropList
+    title="Typography Containers"
+    definitions={typograhyContainerPropDefinitions}
+  />
+);

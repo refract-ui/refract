@@ -5,8 +5,8 @@ module.exports = {
     '../packages/docs/dist/**/*.stories.js'
   ],
   addons: [
-    '@storybook/addon-essentials',
     '@storybook/addon-docs',
+    '@storybook/addon-essentials',
     '@storybook/addon-links',
     // local version of plugin
     // '../packages/docs/src/preset'

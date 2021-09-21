@@ -5,12 +5,12 @@ import { Theme } from '@refract-ui/core';
 import faker from 'faker';
 import Section from './Section';
 
-interface StyleGuideProps {
+export interface StyleGuideProps {
   theme?: Theme;
+  children?: any;
 }
 
 const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => {
-  console.log({ theme });
   return (
     <ThemeProvider theme={theme}>
       {children}

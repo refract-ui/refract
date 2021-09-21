@@ -1,38 +1,31 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
 import { theme, GlobalStyles } from '@refract-ui/core';
 import StyleGuide from '../components/StyleGuide';
 
-storiesOf('components/GlobalStyles', module)
-  .add('default', () => (
-    <StyleGuide
-      theme={theme({
-        globalStyles: {
-          xs: {
-            h1: {
-              mb: '0rem'
-            }
-          }
-        }
-      })}
-    >
+export default {
+  title: 'docs/Global Typography Styles',
+  component: StyleGuide
+};
+
+export const Template = (): React.ReactElement => {
+  return (
+    <StyleGuide theme={theme()}>
       <GlobalStyles />
     </StyleGuide>
-  ))
-  .add('overrides', () => (
+  );
+};
+
+export const MDOnlyTomato = (): React.ReactElement => {
+  return (
     <StyleGuide theme={theme()}>
       <GlobalStyles
         mdOnly={{
           h1: props => ({
             ...props.h1,
-            color: props.theme.colorShades.red300
+            color: 'tomato'
           })
         }}
       />
     </StyleGuide>
-  ));
-
-export default {
-  title: 'components/GlobalStyles',
-  component: GlobalStyles
+  );
 };

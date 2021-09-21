@@ -20,7 +20,7 @@ import ThemeConfigExample from '../components/ThemeConfigExample';
 
 const defaultTheme = theme();
 const nativeElementStyles = defaultTheme.components.globalStyles.xs;
-const stories = storiesOf('docs/global styles', module);
+const stories = storiesOf('docs/Global Styles', module);
 
 type PropDefKeyTypes = TypographyContainerPropDefinitions &
   ContainerPropDefinitions;
@@ -59,10 +59,6 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
     },
     {}
   );
-
-  console.log({ tagName });
-
-  console.log(nativeElementPropDefinitions);
 
   const { definition, link } =
     (nativeElementPropDefinitions[tagName as string] as ThemePropDefinition) ||
@@ -129,6 +125,6 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
 });
 
 export default {
-  title: 'docs/global styles',
+  title: 'docs/Global Styles',
   component: ThemePropList
 };
