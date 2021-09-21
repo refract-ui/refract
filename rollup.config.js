@@ -117,7 +117,7 @@ export default [
       // globals
       'packages/docs/src/stories/themeProps.stories.tsx',
       'packages/docs/src/stories/globalStyles.stories.tsx',
-      'packages/docs/src/stories/nativeElements.stories.tsx',
+      'packages/docs/src/stories/semanticElements.stories.tsx',
       // components -- needed for mdx
       'packages/docs/src/components/BreadCrumb.tsx'
     ],

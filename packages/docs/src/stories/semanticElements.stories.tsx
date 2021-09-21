@@ -1,13 +1,10 @@
 import React from 'react';
-import { pick, reduce, forEach, isArray, has } from 'lodash';
-import { storiesOf } from '@storybook/react';
 import { theme, BlockElements } from '@refract-ui/core';
+import { pick, reduce, isArray, has } from 'lodash';
 import ThemePropList from '../components/ThemePropList';
-import {
-  nativeElementPropDefinitions,
-  NativeElementProps as ExportNativeElementProps,
-  NativeElementPropDefinitions
-} from '../lib/nativeElements';
+import ThemeConfigExample from '../components/ThemeConfigExample';
+import { nativeElementPropDefinitions } from '../lib/nativeElements';
+import { globalStyleSettings } from '../lib/themeDefaultSettings';
 import {
   ThemePropDefinition,
   TypographyContainerPropDefinitions,
@@ -15,12 +12,14 @@ import {
   typograhyContainerPropDefinitions,
   containerPropDefinitions
 } from '../lib/themeProps';
-import { globalStyleSettings } from '../lib/themeDefaultSettings';
-import ThemeConfigExample from '../components/ThemeConfigExample';
+
+export default {
+  title: 'docs/Semantic Elements',
+  component: ThemePropList
+};
 
 const defaultTheme = theme();
-const nativeElementStyles = defaultTheme.components.globalStyles.xs;
-const stories = storiesOf('docs/Global Styles', module);
+const nativeElementStyles: any = defaultTheme.components.globalStyles.xs;
 
 type PropDefKeyTypes = TypographyContainerPropDefinitions &
   ContainerPropDefinitions;
@@ -40,7 +39,12 @@ type NativeElementProps = {
   [p: string]: string;
 };
 
-forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
+export const SelectSemanticElement = ({
+  tagName
+}: {
+  tagName: string;
+}): React.ReactElement => {
+  const props = nativeElementStyles[tagName] as any;
   const definitions: Partial<DefinitionType> = reduce(
     props,
     (memo: any, val: any, key: keyof PropDefKeyTypes) => {
@@ -83,7 +87,7 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
     {}
   );
 
-  stories.add(tagName, () => (
+  return (
     <>
       <ThemePropList title={tagName} definitions={definitions}>
         {link && (
@@ -121,10 +125,13 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
         </ThemePropList>
       )}
     </>
-  ));
-});
-
-export default {
-  title: 'docs/Global Styles',
-  component: ThemePropList
+  );
+};
+SelectSemanticElement.args = { tagName: 'h1' };
+SelectSemanticElement.argTypes = {
+  tagName: {
+    name: 'Tag Name',
+    control: { type: 'select' },
+    options: Object.keys(nativeElementStyles).map(i => i)
+  }
 };
