@@ -2,6 +2,7 @@ module.exports = {
   stories: [
     // '../packages/docs/src/**/*.stories.tsx',
     // '../packages/docs/src/**/*.stories.mdx'
+    // dist version
     '../packages/docs/dist/**/*.stories.js'
   ],
   addons: [
