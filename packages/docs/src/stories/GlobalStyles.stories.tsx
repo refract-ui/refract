@@ -25,7 +25,14 @@ export const DefaultStyles = (): React.ReactElement => {
 
   const ThemeStyle = activeTheme?.ThemeStyle || null;
 
-  return <StyleGuide theme={theme}>{ThemeStyle && <ThemeStyle />}</StyleGuide>;
+  console.log('currentTheme Globals', ThemeStyle);
+
+  return (
+    <StyleGuide theme={theme}>
+      <GlobalStyles />
+      {ThemeStyle && <ThemeStyle />}
+    </StyleGuide>
+  );
 };
 
 export const Template = (): React.ReactElement => {
