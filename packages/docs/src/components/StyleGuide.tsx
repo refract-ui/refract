@@ -12,7 +12,7 @@ export interface StyleGuideProps {
 
 const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => {
   return (
-    <ThemeProvider theme={theme}>
+    <>
       {children}
 
       <Section title="headings">
@@ -76,7 +76,7 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => {
           Press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd>
         </p>
       </Section>
-    </ThemeProvider>
+    </>
   );
 };
 
