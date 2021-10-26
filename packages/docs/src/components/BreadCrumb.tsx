@@ -10,7 +10,7 @@ const BreadCrumbNav = styled.nav`
   grid-template-columns: repeat(3, 1fr);
 `;
 
-const UnorderedList = styled.ul`
+const UnorderedList = styled('ul')<{ next?: boolean }>`
   margin: 0;
   padding: 0;
   list-style: none;
@@ -34,26 +34,32 @@ const LinkButton = styled.button`
   }
 `;
 
+type TokenElement = {
+  id: string;
+  target?: string;
+  source?: string;
+};
+
 function BreadCrumb({
   token,
   storyPath = 'core/theme'
 }: {
   token: string;
-  path: string;
-}): React.FC {
-  const prevTokens: FlowElement[] = elements.filter(e => e?.target === token);
-  const nextTokens: FlowElement[] = elements.filter(e => e?.source === token);
+  storyPath: string;
+}): React.ReactElement {
+  const prevTokens: any = elements.filter((e: any) => e?.target === token);
+  const nextTokens: any = elements.filter((e: any) => e?.source === token);
 
   return (
     <>
       <BreadCrumbNav>
         <UnorderedList>
           {prevTokens &&
-            prevTokens.map(t => (
-              <li key={t?.id}>
+            prevTokens.map((t: TokenElement) => (
+              <li key={t.id}>
                 {' < '}
-                <LinkButton onClick={linkTo(`${storyPath}/${t?.source}`)}>
-                  {t?.source}
+                <LinkButton onClick={linkTo(`${storyPath}/${t.source}`)}>
+                  {t.source}
                 </LinkButton>
               </li>
             ))}
@@ -61,10 +67,10 @@ function BreadCrumb({
         <CurrentToken>{token}</CurrentToken>
         <UnorderedList next>
           {nextTokens &&
-            nextTokens.map(t => (
-              <li key={t?.id}>
-                <LinkButton onClick={linkTo(`${storyPath}/${t?.target}`)}>
-                  {t?.target}
+            nextTokens.map((t: TokenElement) => (
+              <li key={t.id}>
+                <LinkButton onClick={linkTo(`${storyPath}/${t.target}`)}>
+                  {t.target}
                 </LinkButton>
                 {' > '}
               </li>

@@ -1,9 +1,7 @@
 import { withRefract } from './decorators/withRefract';
 
 export const decorators = [withRefract];
-/* export const globalTypes = {
-  test: refractGlobalTypes()
-}; */
+
 export const parameters = {
   options: {
     storySort: {
@@ -24,6 +22,13 @@ export const parameters = {
             'borders',
             'breakpoints'
           ]
+        ],
+        'docs',
+        [
+          'Global Styles',
+          'Global Typography Styles',
+          ['Template', 'MDOnlyTomato'],
+          'Containers'
         ]
       ]
     }

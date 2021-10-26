@@ -3,9 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import ColorPalette from '../../../components/ColorPalette';
-import page from './themeColors.mdx';
+import * as MDXContent from './themeColors.mdx';
 
 const { themeColors: defaultThemeColors } = theme();
+
+const { default: page } = MDXContent;
 
 export default {
   title: 'core/theme/themeColors',
@@ -17,7 +19,7 @@ export default {
   }
 };
 
-export function Template(): React.FC {
+export function Template(): React.ReactElement {
   const [args, updateArgs, resetArgs] = useArgs();
   const { themeColors: currentThemeValues } = useContext(ThemeContext);
 
@@ -41,26 +43,24 @@ Template.argTypes = Object.fromEntries(
   Object.keys(defaultThemeColors).map(k => [k, { control: { type: 'color' } }])
 );
 
-export function DefaultTemplate(): React.FC {
+export function DefaultTemplate(): React.ReactElement {
   const { themeColors: currentThemeValues } = useContext(ThemeContext);
   return <ColorPalette colors={currentThemeValues} />;
 }
 
-export const FunctionTemplate = (): React.FC => {
+export const FunctionTemplate = (): React.ReactElement => {
   const { themeColors } = theme({
     themeColors: ({ defaults }) => ({
       ...defaults,
-      white: '#fefefe',
       primary: 'purple'
     })
   });
   return <ColorPalette colors={themeColors} />;
 };
 
-export const StaticTemplate = (): React.FC => {
+export const StaticTemplate = (): React.ReactElement => {
   const { themeColors } = theme({
     themeColors: {
-      white: '#fefefe',
       primary: 'purple'
     }
   });

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Breakpoints } from '@refract-ui/core/src/theme/breakpoints';
 
-const Box = styled.div`
+const Box = styled('div')<{ maxWidth?: number }>`
   width: ${({ maxWidth }) => `${maxWidth}px`};
   max-width: 100%;
   min-width: 100px;
@@ -20,7 +20,11 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-function BreakpointComponent({ breakpoints }): React.FC<Breakpoints> {
+function BreakpointComponent({
+  breakpoints
+}: {
+  breakpoints: Breakpoints;
+}): React.ReactElement {
   const [windowWidth, setWindowWidth] = useState(undefined);
 
   const handleResize = () => setWindowWidth(window.innerWidth);
@@ -39,7 +43,7 @@ function BreakpointComponent({ breakpoints }): React.FC<Breakpoints> {
     .find(([k, v]) => windowWidth > v);
 
   return (
-    <>
+    <div>
       <p>Window Width: {windowWidth && `${windowWidth}px`}</p>
       <p>Current Breakpoint: {currentBP && `${currentBP[0]}`}</p>
       <Wrapper>
@@ -51,7 +55,7 @@ function BreakpointComponent({ breakpoints }): React.FC<Breakpoints> {
           </Box>
         ))}
       </Wrapper>
-    </>
+    </div>
   );
 }
 

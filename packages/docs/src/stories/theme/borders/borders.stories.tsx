@@ -3,7 +3,9 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import BorderComponent from '../../../components/Borders';
-import page from './borders.mdx';
+import * as MDXContent from './borders.mdx';
+
+const { default: page } = MDXContent;
 
 export default {
   title: 'core/theme/borders',
@@ -18,7 +20,7 @@ export default {
 const { borders: defaultBorders } = theme();
 
 // todo: interactive borders
-export const Template = (): React.FC => {
+export function Template(): React.ReactElement {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [args, updateArgs, resetArgs] = useArgs();
   const { borders: currentThemeValue } = useContext(ThemeContext);
@@ -36,18 +38,18 @@ export const Template = (): React.FC => {
     }
   });
   return <BorderComponent borders={borders} />;
-};
+}
 Template.args = defaultBorders;
 Template.argTypes = Object.fromEntries(
   Object.keys(defaultBorders).map(k => [k, { control: { type: 'string' } }])
 );
 
-export const DefaultTemplate = (): React.FC => {
+export const DefaultTemplate = (): React.ReactElement => {
   const { borders } = useContext(ThemeContext);
   return <BorderComponent borders={borders} />;
 };
 
-export const FunctionTemplate = (): React.FC => {
+export const FunctionTemplate = (): React.ReactElement => {
   const { borders } = theme({
     borders: ({ defaults }) => ({
       ...defaults,
@@ -65,7 +67,7 @@ export const FunctionTemplate = (): React.FC => {
   return <BorderComponent borders={borders} />;
 };
 
-export const StaticTemplate = (): React.FC => {
+export const StaticTemplate = (): React.ReactElement => {
   const { borders } = theme({
     borders: {
       md: {

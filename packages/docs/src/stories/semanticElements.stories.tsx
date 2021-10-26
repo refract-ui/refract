@@ -1,9 +1,10 @@
 import React from 'react';
-import { pick, reduce, forEach, isArray, has } from 'lodash';
-import { storiesOf } from '@storybook/react';
 import { theme, BlockElements } from '@refract-ui/core';
+import { pick, reduce, isArray, has } from 'lodash';
 import ThemePropList from '../components/ThemePropList';
+import ThemeConfigExample from '../components/ThemeConfigExample';
 import { nativeElementPropDefinitions } from '../lib/nativeElements';
+import { globalStyleSettings } from '../lib/themeDefaultSettings';
 import {
   ThemePropDefinition,
   TypographyContainerPropDefinitions,
@@ -11,35 +12,51 @@ import {
   typograhyContainerPropDefinitions,
   containerPropDefinitions
 } from '../lib/themeProps';
-import { globalStyleSettings } from '../lib/themeDefaultSettings';
-import ThemeConfigExample from '../components/ThemeConfigExample';
+
+export default {
+  title: 'docs/Semantic Elements',
+  component: ThemePropList
+};
 
 const defaultTheme = theme();
-const nativeElementStyles = defaultTheme.components.globalStyles.xs;
-const stories = storiesOf('docs/global styles', module);
+const nativeElementStyles: any = defaultTheme.components.globalStyles.xs;
 
-const propDefKeys = {
+type PropDefKeyTypes = TypographyContainerPropDefinitions &
+  ContainerPropDefinitions;
+
+type DefinitionType = {
+  [p in keyof PropDefKeyTypes]: ThemePropDefinition;
+};
+
+const propDefKeys: {
+  [key: string]: ThemePropDefinition;
+} = {
   ...typograhyContainerPropDefinitions,
   ...containerPropDefinitions
-} as TypographyContainerPropDefinitions & ContainerPropDefinitions;
+};
 
 type NativeElementProps = {
   [p: string]: string;
 };
 
-forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
-  const definitions = reduce(
+export const SelectSemanticElement = ({
+  tagName
+}: {
+  tagName: string;
+}): React.ReactElement => {
+  const props = nativeElementStyles[tagName] as any;
+  const definitions: Partial<DefinitionType> = reduce(
     props,
-    (memo, val: any, key: any) => {
+    (memo: any, val: any, key: keyof PropDefKeyTypes) => {
       if (isArray(val)) {
         val = val.join(', ');
       }
 
-      if (propDefKeys[key]) {
+      if (propDefKeys[key as string] as ThemePropDefinition) {
         memo[key] = {
           ...propDefKeys[key],
           defaultValue: val
-        } as Partial<ThemePropDefinition>;
+        } as any;
       }
 
       return memo;
@@ -47,11 +64,13 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
     {}
   );
 
-  const { definition, link } = nativeElementPropDefinitions[tagName] || {};
+  const { definition, link } =
+    (nativeElementPropDefinitions[tagName as string] as ThemePropDefinition) ||
+    {};
 
   const defaultPropConfig = reduce(
     globalStyleSettings,
-    (memo, prop, key) => {
+    (memo: any, prop: any, key: any) => {
       const [setting, path] = key.split('.');
       if (path) {
         if (!memo[setting]) {
@@ -68,7 +87,7 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
     {}
   );
 
-  stories.add(tagName, () => (
+  return (
     <>
       <ThemePropList title={tagName} definitions={definitions}>
         {link && (
@@ -106,10 +125,13 @@ forEach(nativeElementStyles, (props: NativeElementProps, tagName: string) => {
         </ThemePropList>
       )}
     </>
-  ));
-});
-
-export default {
-  title: 'docs/global styles',
-  component: ThemePropList
+  );
+};
+SelectSemanticElement.args = { tagName: 'h1' };
+SelectSemanticElement.argTypes = {
+  tagName: {
+    name: 'Tag Name',
+    control: { type: 'select' },
+    options: Object.keys(nativeElementStyles).map(i => i)
+  }
 };

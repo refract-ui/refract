@@ -3,9 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import BreakpointComponent from '../../../components/Breakpoints';
-import page from './breakpoints.mdx';
+import * as MDXContent from './breakpoints.mdx';
 
 const { breakpoints: defaultBreakpoints } = theme();
+
+const { default: page } = MDXContent;
 
 export default {
   title: 'core/theme/breakpoints',
@@ -17,7 +19,7 @@ export default {
   }
 };
 
-export const Template = (): React.FC => {
+export const Template = (): React.ReactElement => {
   const [args, updateArgs, resetArgs] = useArgs();
   const { breakpoints: currentThemeValue } = useContext(ThemeContext);
 
@@ -42,27 +44,25 @@ Template.argTypes = Object.fromEntries(
   Object.keys(defaultBreakpoints).map(k => [k, { control: { type: 'number' } }])
 );
 
-export const DefaultTemplate = (): React.FC => {
+export const DefaultTemplate = (): React.ReactElement => {
   const { breakpoints: currentThemeValue } = useContext(ThemeContext);
   return <BreakpointComponent breakpoints={currentThemeValue} />;
 };
 
-export const FunctionTemplate = (): React.FC => {
+export const FunctionTemplate = (): React.ReactElement => {
   const { breakpoints } = theme({
     breakpoints: ({ defaults }) => ({
       ...defaults,
-      md: 600,
-      notQuiteXL: 1080
+      md: 600
     })
   });
   return <BreakpointComponent breakpoints={breakpoints} />;
 };
 
-export const StaticTemplate = (): React.FC => {
+export const StaticTemplate = (): React.ReactElement => {
   const { breakpoints } = theme({
     breakpoints: {
-      md: 600,
-      notQuiteXL: 1080
+      md: 600
     }
   });
   return <BreakpointComponent breakpoints={breakpoints} />;

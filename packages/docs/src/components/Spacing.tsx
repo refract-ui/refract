@@ -1,8 +1,9 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { Spacing } from '@refract-ui/core/src/theme/spacing';
 import map from 'lodash/map';
 
-const Spacer = styled.div`
+const Spacer = styled('div')<{ width?: number | string }>`
   height: 14px;
   width: ${({ width }) => width};
   ${({ theme: { themeColorShades } }) => css`
@@ -41,17 +42,14 @@ const TR = styled.tr``;
 
 function convertRemToPx(rem: string): string {
   if (typeof rem === 'string' && rem.includes('rem')) {
-    const val = rem.replace('rem', '');
+    const val = parseFloat(rem);
     return `${val * 16}px`;
   }
   return rem;
 }
 
 export interface SpacingProps {
-  spacing: {
-    [k: number]: string;
-  };
-  color: string;
+  spacing: Spacing;
 }
 
 const SpacingComponent: React.FC<SpacingProps> = ({ spacing }) => (
@@ -66,7 +64,7 @@ const SpacingComponent: React.FC<SpacingProps> = ({ spacing }) => (
     </THead>
     <tbody>
       {map(spacing, (v: string, k: number) => (
-        <TR key={k} width={v}>
+        <TR key={k}>
           <TD>{k}</TD>
           <TD>{v}</TD>
           <TD>{convertRemToPx(v)}</TD>
