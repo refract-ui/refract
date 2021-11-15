@@ -63,6 +63,7 @@
     "build-storybook": "mkdir -p public && build-storybook",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "rollup": "rollup -c",
-    "release": "changeset publish"
+    "release": "changeset publish",
+    "version": "changeset version"
   }
 }
