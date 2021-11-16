@@ -1,4 +1,0 @@
-#!/bin/sh
-
-rollup -c
-cd packages/core && npm publish --access public
