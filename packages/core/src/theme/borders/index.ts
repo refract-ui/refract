@@ -40,40 +40,30 @@ export function applyBorderStyle(
   }
 
   return css`
-    ${
-      border.borderWidth &&
-      css`
-        border-width: ${border.borderWidth};
-      `
-    }
+    ${border.borderWidth &&
+    css`
+      border-width: ${border.borderWidth};
+    `}
 
-    ${
-      border.borderStyle &&
-      css`
-        border-style: ${border.borderStyle};
-      `
-    }
+    ${border.borderStyle &&
+    css`
+      border-style: ${border.borderStyle};
+    `}
 
-    ${
-      border.borderColor &&
-      css`
-        border-color: ${border.borderColor};
-      `
-    }
+    ${border.borderColor &&
+    css`
+      border-color: ${border.borderColor};
+    `}
 
-    ${
-      border.borderRadius &&
-      css`
-        border-radius: ${border.borderRadius};
-      `
-    }
+    ${border.borderRadius &&
+    css`
+      border-radius: ${border.borderRadius};
+    `}
 
-    ${
-      border.borderStyle &&
-      css`
-        border-style: ${border.borderStyle};
-      `
-    }
+    ${border.borderStyle &&
+    css`
+      border-style: ${border.borderStyle};
+    `}
   `;
 }
 

@@ -31,10 +31,13 @@ export default function applyComponentTheme<T>({
     indexOf(breakpointKeys, key)
   );
 
-  return map(sortedBreakpoints, ([breakpoint, val]) => () =>
-    theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
-      theme,
-      val as T
-    )}`
+  return map(
+    sortedBreakpoints,
+    ([breakpoint, val]) =>
+      () =>
+        theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
+          theme,
+          val as T
+        )}`
   );
 }

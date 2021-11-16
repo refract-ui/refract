@@ -25,10 +25,9 @@ type BlockTagNames = keyof typeof BlockElements;
 
 export type GlobalStyleTheme = {
   [tagName in TypeTagNames]: TypographyThemeMapping;
-} &
-  {
-    [tagName in BlockTagNames]: Partial<Container>;
-  };
+} & {
+  [tagName in BlockTagNames]: Partial<Container>;
+};
 
 export type GlobalStyleBreakpoint = ComponentThemeBreakpoint<
   GlobalStyleTheme,

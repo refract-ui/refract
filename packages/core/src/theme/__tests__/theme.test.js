@@ -134,12 +134,12 @@ describe('theme', () => {
       // spacing
       spacing: {
         basis: 1,
-        '0': '0rem',
-        '0.25': '1rem',
-        '0.5': '2rem',
-        '1': '3rem',
-        '1.5': '4rem',
-        '3': '5rem'
+        0: '0rem',
+        0.25: '1rem',
+        0.5: '2rem',
+        1: '3rem',
+        1.5: '4rem',
+        3: '5rem'
       },
 
       // breakpoints
