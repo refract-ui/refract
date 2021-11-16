@@ -68,7 +68,7 @@ jspm_packages/
 .yarn-integrity
 
 # TernJS port file
-.tern-porte
+.tern-port
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
