@@ -5,12 +5,6 @@ tsconfig.tsbuildinfo
 
 storybook-static
 
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-
 # Logs
 logs
 *.log
