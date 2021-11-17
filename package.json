@@ -60,7 +60,7 @@
     "bootstrap": "lerna bootstrap --use-workspaces",
     "stories": "start-storybook -p 9009 -s public",
     "build-storybook": "mkdir -p public && build-storybook",
-    "lint": "eslint '**/*.{js,ts,tsx}'",
+    "lint": "eslint '{.storybook,packages}/**/*.{js,ts,tsx}'",
     "test": "lerna run test --stream",
     "build": "rollup -c",
     "release": "cross-env SKIP_HUSKY=true lerna publish"
