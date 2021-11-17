@@ -11,6 +11,8 @@
   ],
   "devDependencies": {
     "@babel/core": "^7.10.2",
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-node-resolve": "^11.2.1",
     "@rollup/plugin-typescript": "^8.2.1",
@@ -64,5 +66,10 @@
     "test": "lerna run test --stream",
     "build": "rollup -c",
     "release": "cross-env SKIP_HUSKY=true lerna publish"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   }
 }
