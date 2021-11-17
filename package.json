@@ -29,6 +29,7 @@
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.3",
     "babel-loader": "^8.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
@@ -62,6 +63,6 @@
     "lint": "eslint '**/*.{js,ts,tsx}'",
     "test": "lerna run test --stream",
     "build": "rollup -c",
-    "release": "lerna publish"
+    "release": "cross-env SKIP_HUSKY=true lerna publish"
   }
 }
