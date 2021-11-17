@@ -14,3 +14,4 @@ jobs:
       # TODO: remove this once TS errors are resolved from before
       # - run: yarn lint
       - run: yarn build
+      - run: yarn build:storybook
