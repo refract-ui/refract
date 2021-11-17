@@ -13,26 +13,24 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@master
         with:
-          # This makes Actions fetch all Git history so that Changesets can generate changelogs with the correct commits
           fetch-depth: 0
 
       - uses: actions/setup-node@master
         with:
           node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
           cache: yarn
+
+      - name: Configure Git User
+        run: |
+          git config --global user.email "ci@graveflex.com"
+          git config --global user.name "@$GITHUB_ACTOR"
 
       - name: Install Dependencies
         run: yarn install
 
-      - name: Build Packages
-        run: yarn build
-
-      - name: Publish to NPM
-        id: changesets
-        uses: changesets/action@master
-        with:
-          version: yarn version
-          publish: yarn release
+      - name: Release Packages
+        run: yarn release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -61,6 +61,7 @@
     "build-storybook": "mkdir -p public && build-storybook",
     "lint": "eslint '**/*.{js,ts,tsx}'",
     "test": "lerna run test --stream",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "release": "lerna publish"
   }
 }
