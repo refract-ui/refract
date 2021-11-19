@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@refract-ui/core": "^0.0.10",
+    "@storybook/addon-links": "^6.3.12",
     "@storybook/addons": "^6.3.8",
     "@storybook/api": "^6.3.8",
     "@storybook/client-api": "^6.3.8",
@@ -26,9 +27,10 @@
     "ts-enum-util": "^4.0.2"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^1.10.7",
+    "jest": "^27.3.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --config ../../jest.config.js"
   }
 }

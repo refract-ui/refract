@@ -24,6 +24,9 @@ module.exports = {
     'plugin:import/warnings'
   ],
   rules: {
+    '@typescript-eslint/explicit-module-boundary-types': 0, // TODO: remove and use strict typing
+    '@typescript-eslint/no-explicit-any': 0, // TODO: remove and use strict typing
+    '@typescript-eslint/no-empty-interface': 0,
     'prettier/prettier': ['error'],
     'import/no-extraneous-dependencies': [
       'error',

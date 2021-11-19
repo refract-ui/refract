@@ -47,7 +47,6 @@ function getSize(enormity: IconVariants['enormity']): number {
 
 const IconComponent: React.FC<ThemeComponent & IconProps> = ({
   name,
-  componentCss,
   ...props
 }) => {
   const data = getIconData({ name });

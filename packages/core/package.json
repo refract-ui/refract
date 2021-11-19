@@ -9,10 +9,10 @@
   "peerDependencies": {
     "@storybook/addon-actions": "^5.3.19",
     "@storybook/react": "^5.3.19",
-    "@types/styled-components": "^5.1.0",
+    "@types/styled-components": "^5.1.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.3.3"
   },
   "dependencies": {
     "@popperjs/core": "^2.6.0",
@@ -29,9 +29,9 @@
     "@types/faker": "^4.1.12",
     "babel-plugin-styled-components": "^1.10.7",
     "faker": "^4.1.0",
-    "jest": "^26.1.0"
+    "jest": "^27.3.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --config ../../jest.config.js"
   }
 }

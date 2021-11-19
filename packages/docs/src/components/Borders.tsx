@@ -1,7 +1,7 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import map from 'lodash/map';
-import { Borders, applyBorderStyle } from '@refract-ui/core/src/theme/borders';
+import { Borders } from '@refract-ui/core/src/theme/borders';
 
 const Box = styled.div`
   width: 100px;

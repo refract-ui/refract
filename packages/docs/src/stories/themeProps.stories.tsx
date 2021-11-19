@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { theme, ContainerProps } from '@refract-ui/core';
 import ThemePropList from '../components/ThemePropList';
 import {
   containerPropDefinitions,
