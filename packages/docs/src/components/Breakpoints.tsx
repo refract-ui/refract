@@ -32,11 +32,11 @@ function BreakpointComponent({ breakpoints }: any): React.FC<Breakpoints> {
   }, []);
 
   const sortedBreakPoints = Object.entries(breakpoints).sort(
-    ([_, v], [_, bv]) => v - bv // eslint-disable-line
+    ([k, v], [bk, bv]) => v - bv // eslint-disable-line
   );
   const currentBP = Object.entries(breakpoints)
-    .sort(([_, v], [_, bv]) => bv - v) // eslint-disable-line
-    .find(([_, v]) => windowWidth > v); // eslint-disable-line
+    .sort(([k, v], [bk, bv]) => bv - v) // eslint-disable-line
+    .find(([k, v]) => windowWidth > v); // eslint-disable-line
 
   return (
     <>
