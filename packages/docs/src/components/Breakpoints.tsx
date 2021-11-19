@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Breakpoints } from '@refract-ui/core/src/theme/breakpoints';
 
 const Box = styled.div`
-  width: ${({ maxWidth }) => `${maxWidth}px`};
+  width: ${({ maxWidth }: any) => `${maxWidth}px`};
   max-width: 100%;
   min-width: 100px;
   background-color: ${({ theme }) => theme.themeColorShades.primary400};
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-function BreakpointComponent({ breakpoints }): React.FC<Breakpoints> {
+function BreakpointComponent({ breakpoints }: any): React.FC<Breakpoints> {
   const [windowWidth, setWindowWidth] = useState(undefined);
 
   const handleResize = () => setWindowWidth(window.innerWidth);
@@ -32,11 +32,11 @@ function BreakpointComponent({ breakpoints }): React.FC<Breakpoints> {
   }, []);
 
   const sortedBreakPoints = Object.entries(breakpoints).sort(
-    ([k, v], [bk, bv]) => v - bv
+    ([_, v], [_, bv]) => v - bv // eslint-disable-line
   );
   const currentBP = Object.entries(breakpoints)
-    .sort(([k, v], [bk, bv]) => bv - v)
-    .find(([k, v]) => windowWidth > v);
+    .sort(([_, v], [_, bv]) => bv - v) // eslint-disable-line
+    .find(([_, v]) => windowWidth > v); // eslint-disable-line
 
   return (
     <>

@@ -14,7 +14,7 @@ const UnorderedList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
-  ${({ next }) =>
+  ${({ next }: any) =>
     next &&
     css`
       text-align: right;
@@ -39,7 +39,7 @@ function BreadCrumb({
   storyPath = 'core/theme'
 }: {
   token: string;
-  path: string;
+  storyPath: string;
 }): React.FC {
   const prevTokens: FlowElement[] = elements.filter(e => e?.target === token);
   const nextTokens: FlowElement[] = elements.filter(e => e?.source === token);

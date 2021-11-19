@@ -1,5 +1,5 @@
 import { map, sortBy, indexOf, toPairs } from 'lodash';
-import { FlattenSimpleInterpolation } from 'styled-components';
+import { FlattenSimpleInterpolation } from 'styled-components'; // eslint-disable-line
 import {
   extendComponentTheme,
   ThemeBreakpoints,

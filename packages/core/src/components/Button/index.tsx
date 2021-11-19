@@ -8,7 +8,7 @@ import {
   Container,
   mapDivContainerPropsToStyles
 } from '../../theme/containers';
-import { BorderBreakpointStyle, applyBorderStyle } from '../../theme/borders';
+import { BorderBreakpointStyle } from '../../theme/borders';
 import createThemedComponent from '../../utils/createThemedComponent';
 import lightenOrDarken from '../../utils/lightenOrDarken';
 import { Icons } from '../Icons/icons';
@@ -41,7 +41,6 @@ type ButtonProps = {
 
 const ButtonComponent: React.FC<ThemeComponent & ButtonProps> = ({
   icon,
-  componentCss,
   children,
   ...props
 }) => {

@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@refract-ui/core": "^0.0.10",
+    "@storybook/addon-links": "^6.3.12",
     "@storybook/addons": "^6.3.8",
     "@storybook/api": "^6.3.8",
     "@storybook/client-api": "^6.3.8",
