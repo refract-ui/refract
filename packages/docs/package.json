@@ -26,9 +26,10 @@
     "ts-enum-util": "^4.0.2"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.7"
+    "babel-plugin-styled-components": "^1.10.7",
+    "jest": "^27.3.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --config ../../jest.config.js"
   }
 }

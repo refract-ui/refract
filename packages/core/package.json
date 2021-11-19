@@ -29,9 +29,9 @@
     "@types/faker": "^4.1.12",
     "babel-plugin-styled-components": "^1.10.7",
     "faker": "^4.1.0",
-    "jest": "^26.1.0"
+    "jest": "^27.3.1"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --config ../../jest.config.js"
   }
 }
