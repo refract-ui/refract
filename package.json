@@ -51,7 +51,7 @@
     "rollup": "2.45.2",
     "rollup-plugin-dts": "3.0.1",
     "rollup-plugin-terser": "7.0.2",
-    "rollup-plugin-typescript2": "0.30.0",
+    "rollup-plugin-typescript2": "0.31.1",
     "styled-components": "5.3.3",
     "styled-system": "5.1.5",
     "theme-ui": "0.3.1",
