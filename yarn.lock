@@ -9298,12 +9298,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-system@npm:5.1.9":
-  version: 5.1.9
-  resolution: "@types/styled-system@npm:5.1.9"
+"@types/styled-system@npm:5.1.13":
+  version: 5.1.13
+  resolution: "@types/styled-system@npm:5.1.13"
   dependencies:
-    csstype: ^2.6.9
-  checksum: e0b6361dfd8f4cca4ff101187f975499fc8cbc300c8c5338fc748fca934d481765a2c6b6b6b52160b5e5e367b8f5df5bad7d625dd4b5ed05abfea221b1298bd1
+    csstype: ^3.0.2
+  checksum: 139019dbcaf9afa0fe4fdd4b1b121e18ebe605b3ca3706c87efabd734878748ad511c87edfe8fb2bd54f60909e8bfa02992aea39c25f8e151ed75f39cdf430f8
   languageName: node
   linkType: hard
 
@@ -13284,7 +13284,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"csstype@npm:^2.2.0, csstype@npm:^2.5.7, csstype@npm:^2.6.9":
+"csstype@npm:^2.2.0, csstype@npm:^2.5.7":
   version: 2.6.10
   resolution: "csstype@npm:2.6.10"
   checksum: c2803b8f0b1c6fe935101435e72360afebf4f77044dea22af2e9574c61a51f2ba58c3c211d61b72013964a0ac1a84533e70dc62e6ef4934d391c0a6ca32311eb
@@ -23469,7 +23469,7 @@ fsevents@^1.2.7:
     "@types/jest": 27.0.3
     "@types/storybook__react": 5.2.1
     "@types/styled-components": 5.1.15
-    "@types/styled-system": 5.1.9
+    "@types/styled-system": 5.1.13
     "@typescript-eslint/eslint-plugin": 4.28.3
     "@typescript-eslint/parser": 4.28.3
     babel-loader: 8.1.0
