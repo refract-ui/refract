@@ -5390,9 +5390,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/plugin-typescript@npm:8.2.1":
-  version: 8.2.1
-  resolution: "@rollup/plugin-typescript@npm:8.2.1"
+"@rollup/plugin-typescript@npm:8.3.0":
+  version: 8.3.0
+  resolution: "@rollup/plugin-typescript@npm:8.3.0"
   dependencies:
     "@rollup/pluginutils": ^3.1.0
     resolve: ^1.17.0
@@ -5400,7 +5400,7 @@ __metadata:
     rollup: ^2.14.0
     tslib: "*"
     typescript: ">=3.7.0"
-  checksum: a9dbd2000ec0190742322c445e403b43db65c21f7f548279473e4f512a17f482b28f1b98b2a58373e63b24611c31aa193037043c6aea159756c67ea49658dff2
+  checksum: f8253a775389f29feadf639c2e04d87bddb4c30126b0d95b9e17bfffa2addad1b6275cb8dead40604348ea7ac0128fe4394413bc3b2129c4a545f93eb4585149
   languageName: node
   linkType: hard
 
@@ -23455,7 +23455,7 @@ fsevents@^1.2.7:
     "@commitlint/config-conventional": 15.0.0
     "@rollup/plugin-babel": 5.3.0
     "@rollup/plugin-node-resolve": 11.2.1
-    "@rollup/plugin-typescript": 8.2.1
+    "@rollup/plugin-typescript": 8.3.0
     "@storybook/addon-actions": 6.4.0-rc.6
     "@storybook/addon-docs": 6.4.0-rc.6
     "@storybook/addon-essentials": 6.4.0-rc.6
@@ -26508,16 +26508,6 @@ fsevents@^1.2.7:
     watchpack-chokidar2:
       optional: true
   checksum: 8b7cb8c8df8f4dd0e8ac47693c0141c4f020a4b031411247d600eca31522fde6f1f9a3a6f6518b46e71f7971b0ed5734c08c60d7fdd2530e7262776286f69236
-  languageName: node
-  linkType: hard
-
-"watchpack@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "watchpack@npm:2.2.0"
-  dependencies:
-    glob-to-regexp: ^0.4.1
-    graceful-fs: ^4.1.2
-  checksum: e275f48fae29edee3195c51a8312b609581b9be5ce323d3102ffd082cb124f48d7a393ce05e4110239e4354379e04d78a97ceb26ae367746e7e218bf258135c8
   languageName: node
   linkType: hard
 
