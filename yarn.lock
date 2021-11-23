@@ -5256,7 +5256,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@^0.0.11, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@^0.0.12, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -5287,7 +5287,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": ^0.0.11
+    "@refract-ui/core": ^0.0.12
     "@storybook/addon-links": ^6.3.12
     "@storybook/addons": ^6.3.8
     "@storybook/api": ^6.3.8
@@ -11175,7 +11175,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:2.4.2, chalk@npm:^2.0.0, chalk@npm:^2.0.1, chalk@npm:^2.1.0, chalk@npm:^2.3.0, chalk@npm:^2.3.2, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
+"chalk@npm:2.4.2, chalk@npm:^2.0.0, chalk@npm:^2.0.1, chalk@npm:^2.1.0, chalk@npm:^2.3.2, chalk@npm:^2.4.1, chalk@npm:^2.4.2":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
   dependencies:
@@ -17987,7 +17987,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"loader-utils@npm:^1.0.2, loader-utils@npm:^1.1.0, loader-utils@npm:^1.2.3, loader-utils@npm:^1.4.0":
+"loader-utils@npm:^1.1.0, loader-utils@npm:^1.2.3, loader-utils@npm:^1.4.0":
   version: 1.4.0
   resolution: "loader-utils@npm:1.4.0"
   dependencies:
@@ -22548,7 +22548,7 @@ fsevents@^1.2.7:
     styled-system: 5.1.5
     theme-ui: 0.3.1
     ts-jest: 27.0.7
-    ts-loader: 8.0.1
+    ts-loader: 8.3.0
     typescript: 4.2.4
     webpack: 5.37.0
     webpack-cli: 4.7.0
@@ -24499,18 +24499,19 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"ts-loader@npm:8.0.1":
-  version: 8.0.1
-  resolution: "ts-loader@npm:8.0.1"
+"ts-loader@npm:8.3.0":
+  version: 8.3.0
+  resolution: "ts-loader@npm:8.3.0"
   dependencies:
-    chalk: ^2.3.0
+    chalk: ^4.1.0
     enhanced-resolve: ^4.0.0
-    loader-utils: ^1.0.2
+    loader-utils: ^2.0.0
     micromatch: ^4.0.0
-    semver: ^6.0.0
+    semver: ^7.3.4
   peerDependencies:
     typescript: "*"
-  checksum: 07bcfdd40889eca23ec491b8fdc7961d78457c8808c51fecdc2f3b5390b88078b438f6f0e92c17d628b515b3f775f8b0ae662db4bfbc124f6d8d463a16f82938
+    webpack: "*"
+  checksum: 93dd15b553a2621f969c4c834e7eb085b9b079adb702cba68a7ee516bcd2c67620e62cc5a8c57345e90c644ff6b689ee5a09f0702e440284fdfe872e9aaeefd8
   languageName: node
   linkType: hard
 
