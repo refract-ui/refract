@@ -5256,7 +5256,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@^0.0.11, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@^0.0.12, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -5287,7 +5287,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": ^0.0.11
+    "@refract-ui/core": ^0.0.12
     "@storybook/addon-links": ^6.3.12
     "@storybook/addons": ^6.3.8
     "@storybook/api": ^6.3.8
@@ -22438,19 +22438,19 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"rollup-plugin-dts@npm:3.0.1":
-  version: 3.0.1
-  resolution: "rollup-plugin-dts@npm:3.0.1"
+"rollup-plugin-dts@npm:3.0.2":
+  version: 3.0.2
+  resolution: "rollup-plugin-dts@npm:3.0.2"
   dependencies:
     "@babel/code-frame": ^7.12.13
     magic-string: ^0.25.7
   peerDependencies:
-    rollup: ^2.40.0
-    typescript: ^4.2.3
+    rollup: ^2.48.0
+    typescript: ^4.2.4
   dependenciesMeta:
     "@babel/code-frame":
       optional: true
-  checksum: 7499d931482d2dace4a583c238f8dee7955e46c646c1df7649aa51d73488ea8cd5e875c16bae3ea8f4e9caa81fc0f337f3d940bf7d31324622594d05c478eaf2
+  checksum: c37acf3744fd0a8b8b6fa9dd2be67b05412ad55f6133e98a1fdb5d44beda5a94a32582c622c35af70d0787713c85ecbbb2c06070845b0f93e4705c32289fc48a
   languageName: node
   linkType: hard
 
@@ -22541,7 +22541,7 @@ fsevents@^1.2.7:
     react-docgen-typescript-loader: 3.7.2
     react-dom: 16.13.1
     rollup: 2.45.2
-    rollup-plugin-dts: 3.0.1
+    rollup-plugin-dts: 3.0.2
     rollup-plugin-terser: 7.0.2
     rollup-plugin-typescript2: 0.30.0
     styled-components: 5.3.3
