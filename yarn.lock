@@ -5321,7 +5321,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@^0.0.12, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@^0.0.13, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -5352,7 +5352,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": ^0.0.12
+    "@refract-ui/core": ^0.0.13
     "@storybook/addon-links": ^6.3.12
     "@storybook/addons": ^6.3.8
     "@storybook/api": ^6.3.8
@@ -21844,12 +21844,12 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"prettier@npm:2.0.5":
-  version: 2.0.5
-  resolution: "prettier@npm:2.0.5"
+"prettier@npm:2.5.1":
+  version: 2.5.1
+  resolution: "prettier@npm:2.5.1"
   bin:
     prettier: bin-prettier.js
-  checksum: 7f89d2f5d1a1a15a7bf200556b8c5395913d0119fe52a3fba51ab116695d584652d37fdb7d86e0919bfe36b22649afcf222eaca00a1065eb486b7b4cf3062eff
+  checksum: 21b9408476ea1c544b0e45d51ceb94a84789ff92095abb710942d780c862d0daebdb29972d47f6b4d0f7ebbfb0ffbf56cc2cfa3e3e9d1cca54864af185b15b66
   languageName: node
   linkType: hard
 
@@ -23760,7 +23760,7 @@ fsevents@^1.2.7:
     husky: 7.0.4
     jest: 27.3.1
     lerna: 4.0.0
-    prettier: 2.0.5
+    prettier: 2.5.1
     react: 16.14.0
     react-docgen-typescript-loader: 3.7.2
     react-dom: 16.14.0
