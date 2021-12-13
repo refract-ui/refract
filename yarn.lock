@@ -5321,7 +5321,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@^0.0.12, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@^0.0.13, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -5352,7 +5352,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": ^0.0.12
+    "@refract-ui/core": ^0.0.13
     "@storybook/addon-links": ^6.3.12
     "@storybook/addons": ^6.3.8
     "@storybook/api": ^6.3.8
@@ -23773,7 +23773,7 @@ fsevents@^1.2.7:
     theme-ui: 0.3.1
     ts-jest: 27.0.7
     ts-loader: 8.3.0
-    typescript: 4.2.4
+    typescript: 4.5.4
     webpack: 5.64.2
     webpack-cli: 4.7.0
     webpack-node-externals: 3.0.0
@@ -26067,13 +26067,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.2.4":
-  version: 4.2.4
-  resolution: "typescript@npm:4.2.4"
+"typescript@npm:4.5.4":
+  version: 4.5.4
+  resolution: "typescript@npm:4.5.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 89c397df192f239359ad798b96d8e8d552e12c0c189ac5676cec4c20c410d6eec636b8e59a88f2aef0a56d961a9678d99c400099be9b7cae2f7b062eb4b7b171
+  checksum: 59f3243f9cd6fe3161e6150ff6bf795fc843b4234a655dbd938a310515e0d61afd1ac942799e7415e4334255e41c2c49b7dd5d9fd38a17acd25a6779ca7e0961
   languageName: node
   linkType: hard
 
@@ -26087,13 +26087,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.2.4#~builtin<compat/typescript>":
-  version: 4.2.4
-  resolution: "typescript@patch:typescript@npm%3A4.2.4#~builtin<compat/typescript>::version=4.2.4&hash=ddd1e8"
+"typescript@patch:typescript@4.5.4#~builtin<compat/typescript>":
+  version: 4.5.4
+  resolution: "typescript@patch:typescript@npm%3A4.5.4#~builtin<compat/typescript>::version=4.5.4&hash=ddd1e8"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: bafcad6990f5d8ea9ccff09e440ce42630b2e42a5752dde5455b55c806ae43f8726a03770577d4fc6c2aa624597f796725cc6fe2c173f558a753a2f23a5198a4
+  checksum: 270255355c3236076dbbd0900ff0b7b159fac7e6a95f9ed8c59f57361c7dace9f1fbffd3b5eb21377c7f636027382ad89eb64b2acfbcd9e08574f04cfc75ca3d
   languageName: node
   linkType: hard
 
