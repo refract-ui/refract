@@ -9323,14 +9323,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-components@npm:5.1.15":
-  version: 5.1.15
-  resolution: "@types/styled-components@npm:5.1.15"
+"@types/styled-components@npm:5.1.18":
+  version: 5.1.18
+  resolution: "@types/styled-components@npm:5.1.18"
   dependencies:
     "@types/hoist-non-react-statics": "*"
     "@types/react": "*"
     csstype: ^3.0.2
-  checksum: d565e0a3cf3fdb79aab73c0aa2d69d93152afe2661b3ec546592b64e0781f05d21d2a9715a15acaa8422b6d6a2b1250d9ba8c96ea656776051351393bada7a82
+  checksum: f4d99353e53781283549f5988fda3b3d4cf8fc1bca6624a215883851148db0d5c65c0d0b04ff0a9de43cbce54219a46fe5272278391051e7a4164b4b5e5bd125
   languageName: node
   linkType: hard
 
@@ -23744,7 +23744,7 @@ fsevents@^1.2.7:
     "@storybook/react": 6.4.0-rc.6
     "@types/jest": 27.0.3
     "@types/storybook__react": 5.2.1
-    "@types/styled-components": 5.1.15
+    "@types/styled-components": 5.1.18
     "@types/styled-system": 5.1.13
     "@typescript-eslint/eslint-plugin": 4.28.3
     "@typescript-eslint/parser": 4.28.3

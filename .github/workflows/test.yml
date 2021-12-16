@@ -12,5 +12,6 @@ jobs:
           cache: yarn
       - run: yarn install
       - run: yarn lint
+      - run: yarn test:ci
       - run: yarn build
       - run: yarn build:storybook
