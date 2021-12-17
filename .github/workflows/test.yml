@@ -10,7 +10,8 @@ jobs:
         with:
           node-version: '16'
           cache: yarn
-      - run: yarn install
+      - run: yarn install --immutable
       - run: yarn lint
+      - run: yarn test:ci
       - run: yarn build
       - run: yarn build:storybook
