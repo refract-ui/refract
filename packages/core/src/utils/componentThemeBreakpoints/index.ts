@@ -1,11 +1,11 @@
 import { omit, pick, defaults, defaultsDeep } from 'lodash';
 import { PickByValue, OmitByValue } from 'utility-types';
-import { Theme } from '../../theme';
+import { CoreTheme } from '../../theme/setup';
 import { breakpointKeys } from '../../theme/mediaQueries';
 
 export type ThemeExtensionHelperMethods = {
   contrastColor: (color: string) => string;
-  theme: Theme;
+  theme: CoreTheme;
 };
 
 export type PseudoClass<T> = Partial<T>;

@@ -8,13 +8,24 @@ interface ContrastColorProps {
 
 export type ContrastColor = (props: { color: string }) => string;
 
+export default function contrastColor({
+  themeColors,
+  color
+}: {
+  themeColors: ThemeColors;
+  color: string;
+}): string {
+  const c = tc(color);
+  return c.isDark() ? themeColors.light : themeColors.dark;
+}
+
 export const extension: ThemeExtension<ContrastColor> = {
   name: 'contrastColor',
   deps: ['themeColors'],
-  defaults: ({ themeColors }: { themeColors: ThemeColors }) => {
+  defaults: (props: { themeColors: ThemeColors }) => {
     return ({ color }: ContrastColorProps): string => {
       const c = tc(color);
-      return c.isDark() ? themeColors.light : themeColors.dark;
+      return c.isDark() ? props.themeColors.light : props.themeColors.dark;
     };
   },
   apply: applyThemeSettings

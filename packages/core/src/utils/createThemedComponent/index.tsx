@@ -132,7 +132,8 @@ export default function createThemedComponent<
     // define convenience methods passed along to each prop / style mapping
     const helperMethods = {
       theme,
-      contrastColor: (color: string) => contrastColor({ color, theme })
+      contrastColor: (color: string) =>
+        contrastColor({ color, themeColors: theme.themeColors })
     } as ThemeExtensionHelperMethods;
 
     const {
