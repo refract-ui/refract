@@ -35,4 +35,4 @@ Takes the above types.
     1. variantMapping: takes variant values and maps them into `IconTheme` variables/types
     1. defaultStyleMapping: Object with keys that correspond to breakpoint size(s) (i.e. 'xs', 'sm', etc). Define default values for ComponentTheme
     1. cascadeStateProps: Object that can be empty, but otherwise takes available states as keys and cascades styles.
-    mapPropsToStyle: Takes ComponentProps and maps them to css styles
+    1. mapPropsToStyle: Takes ComponentProps and maps them to css styles

@@ -1,4 +1,5 @@
 import { reduce, upperFirst } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import type {
   CSSObject,
   SimpleInterpolation,
@@ -43,45 +44,46 @@ export type MediaQueries = MobileFirstMediaQueries & {
   ltXxl?: StyledCssInterpolator;
 };
 
-export default function mq({
-  breakpoints
-}: {
-  breakpoints: Breakpoints;
-}): MediaQueries {
-  let lastSize: keyof MobileFirstMediaQueries;
+export const extension: ThemeExtension<MediaQueries> = {
+  name: 'mq',
+  deps: ['breakpoints'],
+  defaults: ({ breakpoints }: { breakpoints: Breakpoints }) => {
+    let lastSize: keyof MobileFirstMediaQueries;
 
-  return reduce(
-    sizeKeys,
-    (memo, size: keyof MobileFirstMediaQueries) => {
-      memo[size] = ((...args) =>
-        css`
-          @media (min-width: ${breakpoints[size]}px) {
-            ${css(...args)}
-          }
-        `) as StyledCssInterpolator;
+    return reduce(
+      sizeKeys,
+      (memo, size: keyof MobileFirstMediaQueries) => {
+        memo[size] = ((...args) =>
+          css`
+            @media (min-width: ${breakpoints[size]}px) {
+              ${css(...args)}
+            }
+          `) as StyledCssInterpolator;
 
-      if (lastSize) {
-        const ltKey = `lt${upperFirst(size)}` as keyof MediaQueries;
-        const onlyKey = `${lastSize}Only` as keyof MediaQueries;
-        const ltSize = breakpoints[size] - 1;
-        const gtSize = breakpoints[lastSize];
-        memo[ltKey] = ((...args) => css`
-          @media (max-width: ${ltSize}px) {
-            ${css(...args)}
-          }
-        `) as StyledCssInterpolator;
+        if (lastSize) {
+          const ltKey = `lt${upperFirst(size)}` as keyof MediaQueries;
+          const onlyKey = `${lastSize}Only` as keyof MediaQueries;
+          const ltSize = breakpoints[size] - 1;
+          const gtSize = breakpoints[lastSize];
+          memo[ltKey] = ((...args) => css`
+            @media (max-width: ${ltSize}px) {
+              ${css(...args)}
+            }
+          `) as StyledCssInterpolator;
 
-        memo[onlyKey] = ((...args) => css`
-          @media (min-width: ${gtSize}px) and (max-width: ${ltSize}px) {
-            ${css(...args)}
-          }
-        `) as StyledCssInterpolator;
-      }
+          memo[onlyKey] = ((...args) => css`
+            @media (min-width: ${gtSize}px) and (max-width: ${ltSize}px) {
+              ${css(...args)}
+            }
+          `) as StyledCssInterpolator;
+        }
 
-      lastSize = size;
+        lastSize = size;
 
-      return memo;
-    },
-    {} as MediaQueries
-  );
-}
+        return memo;
+      },
+      {} as MediaQueries
+    );
+  },
+  apply: applyThemeSettings
+};

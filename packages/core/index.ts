@@ -18,7 +18,7 @@
 //export { default as Checkbox } from './components/Checkbox';
 
 // theme
-export { default as theme, Theme } from './src/theme';
+export { default as theme, CoreTheme as Theme } from './src/theme/setup';
 
 // global styles
 export { default as GlobalStyles } from './src/components/GlobalStyles';

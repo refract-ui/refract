@@ -1,15 +1,21 @@
 import tc from 'tinycolor2';
-import { Theme } from '../../theme';
+import { ThemeExtension, applyThemeSettings } from '../../theme/cascade';
+import { ThemeColors } from '../../theme/themeColors';
 
 interface ContrastColorProps {
   color: string;
-  theme: Theme;
 }
 
-export default function contrastColor({
-  color,
-  theme
-}: ContrastColorProps): string {
-  const c = tc(color);
-  return c.isDark() ? theme.themeColors.light : theme.themeColors.dark;
-}
+export type ContrastColor = (props: { color: string }) => string;
+
+export const extension: ThemeExtension<ContrastColor> = {
+  name: 'contrastColor',
+  deps: ['themeColors'],
+  defaults: ({ themeColors }: { themeColors: ThemeColors }) => {
+    return ({ color }: ContrastColorProps): string => {
+      const c = tc(color);
+      return c.isDark() ? themeColors.light : themeColors.dark;
+    };
+  },
+  apply: applyThemeSettings
+};

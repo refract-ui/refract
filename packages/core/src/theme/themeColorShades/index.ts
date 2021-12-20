@@ -1,4 +1,5 @@
 import { defaults, isFunction, reduce } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { themeColorNames, ThemeColors } from '../themeColors';
 import rampColor from '../../utils/rampColor';
 
@@ -84,36 +85,19 @@ export type ThemeColorShades = {
   dark900: string;
 };
 
-export interface ThemeColorShadeOverrideProps {
-  themeColors: ThemeColors;
-  defaults: ThemeColorShades;
-}
-
-export interface ThemeColorShadeProps {
-  themeColors: ThemeColors;
-  overrides:
-    | ((props: ThemeColorShadeOverrideProps) => ThemeColorShades)
-    | Partial<ThemeColorShades>;
-}
-
-export default function themeColorShades({
-  themeColors,
-  overrides
-}: ThemeColorShadeProps): ThemeColorShades {
-  const defaultThemeColorShades: ThemeColorShades = reduce(
-    themeColorNames,
-    (memo: ThemeColorShades, c: keyof ThemeColors) => {
-      return {
-        ...memo,
-        ...rampColor({ name: c, startColor: themeColors[c] })
-      };
-    },
-    {} as ThemeColorShades
-  );
-
-  if (isFunction(overrides)) {
-    return overrides({ themeColors, defaults: defaultThemeColorShades });
-  }
-
-  return defaults(overrides, defaultThemeColorShades);
-}
+export const extension: ThemeExtension<ThemeColorShades> = {
+  name: 'themeColorShades',
+  deps: ['colors', 'colorShades', 'themeColors'],
+  defaults: ({ themeColors }: { themeColors: ThemeColors }) =>
+    reduce(
+      themeColorNames,
+      (memo: ThemeColorShades, c: keyof ThemeColors) => {
+        return {
+          ...memo,
+          ...rampColor({ name: c, startColor: themeColors[c] })
+        };
+      },
+      {} as ThemeColorShades
+    ),
+  apply: applyThemeSettings
+};

@@ -1,4 +1,5 @@
 import { defaults, isFunction } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { ColorShades } from '../colorShades';
 import { Colors } from '../colors';
 
@@ -24,26 +25,16 @@ export const themeColorNames: Array<string> = [
   'dark'
 ];
 
-export interface ThemeColorOverrideProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  defaults: ThemeColors;
-}
-
-interface ThemeColorProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  overrides:
-    | ((props: ThemeColorOverrideProps) => ThemeColors)
-    | Partial<ThemeColors>;
-}
-
-export default function themeColors({
-  colors,
-  colorShades,
-  overrides = {}
-}: ThemeColorProps): ThemeColors {
-  const defaultThemeColors: ThemeColors = {
+export const extension: ThemeExtension<ThemeColors> = {
+  name: 'themeColors',
+  deps: ['colors', 'colorShades'],
+  defaults: ({
+    colors,
+    colorShades
+  }: {
+    colors: Colors;
+    colorShades: ColorShades;
+  }) => ({
     primary: colors.blue,
     secondary: colors.gray,
     success: colors.green,
@@ -52,11 +43,6 @@ export default function themeColors({
     danger: '#DE7283',
     light: colorShades.gray100,
     dark: '#575C64'
-  };
-
-  if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: defaultThemeColors });
-  }
-
-  return defaults(overrides, defaultThemeColors);
-}
+  }),
+  apply: applyThemeSettings
+};

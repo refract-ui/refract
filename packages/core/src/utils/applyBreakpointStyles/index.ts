@@ -21,7 +21,7 @@ import {
   PseudoClassExtension,
   ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
-import { Theme } from '../../theme';
+import { CoreTheme } from '../../theme/setup';
 
 function isPseudoSelector(key: string): boolean {
   return /^_/.test(key);
@@ -75,7 +75,7 @@ export type ThemePropStyleMapping<T, TProps> = {
 };
 
 interface ApplyStyleProps<O, T, TProps> {
-  theme: Theme;
+  theme: CoreTheme;
   computedProps: Partial<T>;
   props: Partial<T>;
   apply: ThemePropStyleMapping<O, TProps>;
@@ -131,7 +131,7 @@ export type CascadeStateSettings<O, T> = {
 };
 
 interface ApplyBreakpointStyleProps<O, T, TProps> {
-  theme: Theme;
+  theme: CoreTheme;
   props: Partial<T>;
   apply: ThemePropStyleMapping<O, TProps>;
   cascade: CascadeStateSettings<O, T>;
@@ -180,9 +180,8 @@ export default function applyBreakpointStyles<O, T, TProps>({
       const existingPropDef = get(props, [stateKey, prop]);
 
       if (!existingPropDef) {
-        const existingStates = (props[stateKey] || {}) as PseudoClassExtension<
-          T
-        >;
+        const existingStates = (props[stateKey] ||
+          {}) as PseudoClassExtension<T>;
         existingStates[prop as keyof typeof existingStates] = cascadeVal;
       }
     }

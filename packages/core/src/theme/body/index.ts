@@ -1,14 +1,12 @@
-import { defaults, isFunction } from 'lodash';
-import { Colors } from '../colors';
-import { ColorShades } from '../colorShades';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
+import { ThemeColors } from '../themeColors';
 
 type BodyBreakpointStyle = {
-  bodyBg: string;
-  bodyColor: string;
-  bodyTextAlign: string;
+  bg: string;
+  color: string;
 };
 
-type Body = {
+export type Body = {
   xs: BodyBreakpointStyle;
   sm?: Partial<BodyBreakpointStyle>;
   md?: Partial<BodyBreakpointStyle>;
@@ -17,34 +15,21 @@ type Body = {
   xxl?: Partial<BodyBreakpointStyle>;
 };
 
-export interface BodyOverrideProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  defaults: Body;
-}
-
-interface BodyProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  overrides: ((props: BodyOverrideProps) => Body) | Partial<Body>;
-}
-
-export default function body({
-  colors,
-  colorShades,
-  overrides = {}
-}: BodyProps): Body {
-  const bodyDefaults: Body = {
+export const extension: ThemeExtension<Body> = {
+  name: 'body',
+  deps: [
+    'colors',
+    'colorShades',
+    'themeColors',
+    'themeColorShades',
+    'subtleColors',
+    'darkColors'
+  ],
+  defaults: ({ themeColors }: { themeColors: ThemeColors }) => ({
     xs: {
-      bodyBg: colors.white,
-      bodyColor: colorShades.gray900,
-      bodyTextAlign: null
+      bg: themeColors.light,
+      color: themeColors.dark
     }
-  };
-
-  if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: bodyDefaults });
-  }
-
-  return defaults(overrides, bodyDefaults);
-}
+  }),
+  apply: applyThemeSettings
+};

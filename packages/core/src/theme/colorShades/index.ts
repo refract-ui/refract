@@ -1,4 +1,5 @@
 import { defaults, isFunction, reduce } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { colorNames, Colors } from '../colors';
 import rampColor from '../../utils/rampColor';
 
@@ -114,46 +115,20 @@ export type ColorShades = {
   cyan900: string;
 };
 
-export interface ColorShadeOverrideProps {
-  colors: Colors;
-  defaults: ColorShades;
-}
-
-export type ColorShadeSettings =
-  | ((props: ColorShadeOverrideProps) => ColorShades)
-  | Partial<ColorShades>;
-
-export interface ColorShadeProps {
-  colors: Colors;
-  overrides: ColorShadeSettings;
-}
-
-/**
- * colorShades
- *
- * @param {ColorShadeProps} colors - colors created in the theme.colors phase
- * @param {Colors} props.colors - colors created in the theme.colors phaes
- * @param {ColorShadeSettings} props.overrides - override settings for this theme object
- * @return {ColorShades} a list of the gradient shades of each of the theme.colors attributes
- */
-export default function colorShades({
-  colors,
-  overrides
-}: ColorShadeProps): ColorShades {
-  const defaultColorShades: ColorShades = reduce(
-    colorNames,
-    (memo: ColorShades, c: keyof Colors) => {
-      return {
-        ...memo,
-        ...rampColor({ name: c, startColor: colors[c] })
-      };
-    },
-    {} as ColorShades
-  );
-
-  if (isFunction(overrides)) {
-    return overrides({ colors, defaults: defaultColorShades });
-  }
-
-  return defaults(overrides, defaultColorShades);
-}
+export const extension: ThemeExtension<ColorShades> = {
+  name: 'colorShades',
+  deps: ['colors'],
+  defaults: ({ colors }: { colors: Colors }) => {
+    return reduce(
+      colorNames,
+      (memo: ColorShades, c: keyof Colors) => {
+        return {
+          ...memo,
+          ...rampColor({ name: c, startColor: colors[c] })
+        };
+      },
+      {} as ColorShades
+    );
+  },
+  apply: applyThemeSettings
+};

@@ -1,7 +1,4 @@
-import { defaults, isFunction } from 'lodash';
-import { ColorShades } from '../colorShades';
-import { Colors } from '../colors';
-import { ThemeColors } from '../themeColors';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { ThemeColorShades } from '../themeColorShades';
 
 export type DarkColors = {
@@ -15,32 +12,10 @@ export type DarkColors = {
   dark: string;
 };
 
-export interface DarkColorOverrideProps {
-  colors?: Colors;
-  colorShades?: ColorShades;
-  themeColors?: ThemeColors;
-  themeColorShades?: ThemeColorShades;
-  defaults: DarkColors;
-}
-
-export interface DarkColorsProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  themeColors: ThemeColors;
-  themeColorShades: ThemeColorShades;
-  overrides:
-    | ((props: DarkColorOverrideProps) => DarkColors)
-    | Partial<DarkColors>;
-}
-
-export default function darkColors({
-  colors,
-  colorShades,
-  themeColors,
-  themeColorShades,
-  overrides = {}
-}: DarkColorsProps): DarkColors {
-  const defaultColors: DarkColors = {
+export const extension: ThemeExtension<DarkColors> = {
+  name: 'darkColors',
+  deps: ['colors', 'colorShades', 'themeColors', 'themeColorShades'],
+  defaults: ({ themeColorShades }: { themeColorShades: ThemeColorShades }) => ({
     primary: themeColorShades.primary700,
     secondary: themeColorShades.secondary700,
     success: themeColorShades.success700,
@@ -49,17 +24,6 @@ export default function darkColors({
     danger: themeColorShades.danger700,
     light: themeColorShades.light100,
     dark: themeColorShades.dark900
-  };
-
-  if (isFunction(overrides)) {
-    return overrides({
-      themeColors,
-      themeColorShades,
-      colors,
-      colorShades,
-      defaults: defaultColors
-    });
-  }
-
-  return defaults(overrides, defaultColors);
-}
+  }),
+  apply: applyThemeSettings
+};

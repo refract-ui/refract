@@ -1,9 +1,4 @@
-import { defaultsDeep, isFunction } from 'lodash';
-import { FontFaces } from '../fontFaces';
-import { FontStacks } from '../fontStacks';
-import { Colors } from '../colors';
-import { ThemeColors } from '../themeColors';
-import { ColorShades } from '../colorShades';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { FontVariants } from '../fontVariants';
 import { TypographyThemeMapping } from '../../utils/mapTypographyStyles';
 
@@ -31,38 +26,10 @@ export type FontTagMappings = {
   [tagName in keyof typeof Tags]: TypographyThemeMapping;
 };
 
-export interface FontTagMappingOverrideProps {
-  fontFaces: FontFaces;
-  fontStacks: FontStacks;
-  fontVariants: FontVariants;
-  colors: Colors;
-  themeColors: ThemeColors;
-  colorShades: ColorShades;
-  defaults: FontTagMappings;
-}
-
-interface FontTagMappingProps {
-  fontFaces: FontFaces;
-  fontStacks: FontStacks;
-  fontVariants: FontVariants;
-  colors: Colors;
-  themeColors: ThemeColors;
-  colorShades: ColorShades;
-  overrides:
-    | ((props: FontTagMappingOverrideProps) => FontTagMappings)
-    | Partial<FontTagMappings>;
-}
-
-export default function fontTagMappings({
-  fontFaces,
-  fontStacks,
-  fontVariants,
-  colors,
-  themeColors,
-  colorShades,
-  overrides = {}
-}: FontTagMappingProps): FontTagMappings {
-  const defaultFontTagMappings = {
+export const extension: ThemeExtension<FontTagMappings> = {
+  name: 'fontTags',
+  deps: ['fontVariants'],
+  defaults: ({ fontVariants }: { fontVariants: FontVariants }) => ({
     h1: {
       ...fontVariants.heading,
       size: '3rem'
@@ -131,19 +98,6 @@ export default function fontTagMappings({
       ...fontVariants.code,
       size: '1rem'
     }
-  } as FontTagMappings;
-
-  if (isFunction(overrides)) {
-    return overrides({
-      colors,
-      themeColors,
-      colorShades,
-      fontFaces,
-      fontStacks,
-      fontVariants,
-      defaults: defaultFontTagMappings
-    });
-  }
-
-  return defaultsDeep(overrides, defaultFontTagMappings);
-}
+  }),
+  apply: applyThemeSettings
+};

@@ -1,4 +1,4 @@
-import { defaults, isFunction } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 
 export type Breakpoints = {
   xs: number;
@@ -18,22 +18,9 @@ const defaultBreakpoints: Breakpoints = {
   xxl: 1400
 };
 
-export interface BreakpointOverrideProps {
-  defaults: Breakpoints;
-}
-
-interface BreakpointProps {
-  overrides:
-    | ((props: BreakpointOverrideProps) => Breakpoints)
-    | Partial<Breakpoints>;
-}
-
-export default function breakpoints({
-  overrides = {}
-}: BreakpointProps): Breakpoints {
-  if (isFunction(overrides)) {
-    return overrides({ defaults: defaultBreakpoints });
-  }
-
-  return defaults(overrides, defaultBreakpoints);
-}
+export const extension: ThemeExtension<Breakpoints> = {
+  name: 'breakpoints',
+  deps: [],
+  defaults: defaultBreakpoints,
+  apply: applyThemeSettings
+};

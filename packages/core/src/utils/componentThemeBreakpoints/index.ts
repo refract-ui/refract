@@ -20,15 +20,13 @@ export type PseudoClassExtension<T> = {
 
 export type ThemeExtension<T> = {
   [P in keyof OmitByValue<T, PseudoClass<T>>]: ThemeStyleDirective<T, P>;
-} &
-  {
-    [P in keyof PickByValue<T, PseudoClass<T>>]: PseudoClassExtension<T>;
-  };
+} & {
+  [P in keyof PickByValue<T, PseudoClass<T>>]: PseudoClassExtension<T>;
+};
 
-export type ComponentThemeBreakpoint<T, PC extends string> = T &
-  {
-    [P in PC]?: PseudoClass<T>;
-  };
+export type ComponentThemeBreakpoint<T, PC extends string> = T & {
+  [P in PC]?: PseudoClass<T>;
+};
 
 export type ThemeBreakpoints<T> = {
   xs: ThemeExtension<T>;

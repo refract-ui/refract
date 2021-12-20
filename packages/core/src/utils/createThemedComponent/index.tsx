@@ -3,7 +3,8 @@ import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
 import { PickByValue } from 'utility-types';
 import contrastColor from '../../utils/contrastColor';
-import { Theme, ThemeComponent } from '../../theme';
+import { CoreTheme } from '../../theme/setup';
+import { ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
 import {
@@ -121,7 +122,7 @@ export default function createThemedComponent<
   const ThemedComponent: React.FC<
     TBaseElementProps & TComponentProps & TProps
   > = props => {
-    const theme = get(props, 'theme', useContext(ThemeContext)) as Theme;
+    const theme = get(props, 'theme', useContext(ThemeContext)) as CoreTheme;
     const variantPropKeys = Object.keys(defaultVariants || {});
     let variant = defaultsDeep(
       pick(props, variantPropKeys) as TVariants,
@@ -166,7 +167,7 @@ export default function createThemedComponent<
     ]) as Array<keyof TProps>;
     const componentProps = pick(props, componentPropKeys) as TProps;
 
-    const applyThemeBreakpoint = (theme: Theme, props: TThemeBreakpoint) =>
+    const applyThemeBreakpoint = (theme: CoreTheme, props: TThemeBreakpoint) =>
       applyBreakpointStyles<TThemeBreakpoint, TExtends, TProps>({
         theme,
         props,
