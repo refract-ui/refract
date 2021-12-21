@@ -74,6 +74,16 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => (
         Press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd>
       </p>
     </Section>
+
+    <Section title="description lists">
+      <label>dl, dd, dt</label>
+      <dl>
+        <dt>{faker.lorem.word()}</dt>
+        <dd>{faker.lorem.word()}</dd>
+        <dt>{faker.lorem.word()}</dt>
+        <dd>{faker.lorem.word()}</dd>
+      </dl>
+    </Section>
   </ThemeProvider>
 );
 

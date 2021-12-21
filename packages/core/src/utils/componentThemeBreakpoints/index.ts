@@ -1,6 +1,6 @@
 import { omit, pick, defaults, defaultsDeep } from 'lodash';
 import { PickByValue, OmitByValue } from 'utility-types';
-import { CoreTheme } from '../../theme/setup';
+import { CoreTheme } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 
 export type ThemeExtensionHelperMethods = {
@@ -20,13 +20,15 @@ export type PseudoClassExtension<T> = {
 
 export type ThemeExtension<T> = {
   [P in keyof OmitByValue<T, PseudoClass<T>>]: ThemeStyleDirective<T, P>;
-} & {
-  [P in keyof PickByValue<T, PseudoClass<T>>]: PseudoClassExtension<T>;
-};
+} &
+  {
+    [P in keyof PickByValue<T, PseudoClass<T>>]: PseudoClassExtension<T>;
+  };
 
-export type ComponentThemeBreakpoint<T, PC extends string> = T & {
-  [P in PC]?: PseudoClass<T>;
-};
+export type ComponentThemeBreakpoint<T, PC extends string> = T &
+  {
+    [P in PC]?: PseudoClass<T>;
+  };
 
 export type ThemeBreakpoints<T> = {
   xs: ThemeExtension<T>;

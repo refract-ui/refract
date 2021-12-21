@@ -23,10 +23,16 @@ const GlobalStyles = createThemedComponent<GlobalStyleTheme>({
     return {
       Component: GlobalStylesFC,
 
-      defaultStyleMapping: theme.components.globalStyles,
+      defaultStyleMapping: theme.globalStyles,
 
       mapPropsToStyle: {
         // block-only style mappings
+        container: ({ container }) =>
+          mapBlockElementStyles({
+            tagMapping: container,
+            tagName: 'html,body'
+          }),
+
         heading: ({ heading }) =>
           mapBlockElementStyles({
             tagMapping: heading,

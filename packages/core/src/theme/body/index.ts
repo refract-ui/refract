@@ -3,7 +3,7 @@ import { ThemeColors } from '../themeColors';
 
 type BodyBreakpointStyle = {
   bg: string;
-  color: string;
+  textColor: string;
 };
 
 export type Body = {
@@ -28,7 +28,7 @@ export const extension: ThemeExtension<Body> = {
   defaults: ({ themeColors }: { themeColors: ThemeColors }) => ({
     xs: {
       bg: themeColors.light,
-      color: themeColors.dark
+      textColor: themeColors.dark
     }
   }),
   apply: applyThemeSettings

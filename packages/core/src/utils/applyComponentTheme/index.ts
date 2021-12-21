@@ -6,7 +6,7 @@ import {
   ExtendTheme
 } from '../../utils/componentThemeBreakpoints';
 import { MediaQueries, breakpointKeys } from '../../theme/mediaQueries';
-import { CoreTheme } from '../../theme/setup';
+import { CoreTheme } from '../../theme';
 
 interface ApplyComponentThemeProps<T> {
   theme: CoreTheme;
@@ -34,13 +34,10 @@ export default function applyComponentTheme<T>({
     indexOf(breakpointKeys, key)
   );
 
-  return map(
-    sortedBreakpoints,
-    ([breakpoint, val]) =>
-      () =>
-        theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
-          theme,
-          val as T
-        )}`
+  return map(sortedBreakpoints, ([breakpoint, val]) => () =>
+    theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
+      theme,
+      val as T
+    )}`
   );
 }

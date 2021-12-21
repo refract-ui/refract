@@ -21,7 +21,7 @@ import {
   PseudoClassExtension,
   ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
-import { CoreTheme } from '../../theme/setup';
+import { CoreTheme } from '../../theme';
 
 function isPseudoSelector(key: string): boolean {
   return /^_/.test(key);
@@ -180,8 +180,9 @@ export default function applyBreakpointStyles<O, T, TProps>({
       const existingPropDef = get(props, [stateKey, prop]);
 
       if (!existingPropDef) {
-        const existingStates = (props[stateKey] ||
-          {}) as PseudoClassExtension<T>;
+        const existingStates = (props[stateKey] || {}) as PseudoClassExtension<
+          T
+        >;
         existingStates[prop as keyof typeof existingStates] = cascadeVal;
       }
     }

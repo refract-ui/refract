@@ -1,5 +1,5 @@
 import { generateTheme } from '../cascade';
-import { default as init, defaultExtensions, CoreTheme } from '../setup';
+import { default as init, defaultExtensions, CoreTheme } from '..';
 
 describe('theme', () => {
   test('init', () => {

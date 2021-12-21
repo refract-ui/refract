@@ -3,8 +3,7 @@ import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
 import { PickByValue } from 'utility-types';
 import contrastColor from '../../utils/contrastColor';
-import { CoreTheme } from '../../theme/setup';
-import { ThemeComponent } from '../../theme';
+import { CoreTheme, ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
 import {

@@ -13,6 +13,7 @@ import {
   BlockElementMappings
 } from '../../theme/globalBlockElements';
 import { Container } from '../../theme/containers';
+import { Body } from '../../theme/body';
 
 type TypeTagNames = keyof typeof TypographyTags;
 type BlockTagNames = keyof typeof BlockElements;
@@ -49,10 +50,12 @@ export const extension: ThemeExtension<GlobalStyleConfig> = {
   }: {
     blockElements: BlockElementMappings;
     fontTags: FontTagMappings;
+    body: Body;
   }) => {
     return {
       xs: {
         // block elements
+        container: blockElements.container,
         heading: blockElements.heading,
         p: blockElements.p,
         pre: blockElements.pre,

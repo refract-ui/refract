@@ -1,0 +1,20 @@
+# Global styles
+
+import { Meta, Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { DefaultTemplate } from './globalStyles.stories';
+
+<BreadCrumb
+  token="globalStyles"
+/>
+
+The `globalStyles` attribute is used to define the default styles for all the native html tags. The values defined here are derived from the previously defined higher-level theme settings;
+
+<Story
+  name="globalStyles"
+  id="core-theme-global-styles--default-template"
+>
+  {DefaultTemplate.bind({})}
+</Story>
+
+## Default Props

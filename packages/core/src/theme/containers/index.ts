@@ -63,6 +63,7 @@ export type Container = {
   bgRepeat: ContainerPropVal<'bgRepeat'>;
   bgAttachment: ContainerPropVal<'bgAttachment'>;
   area: ContainerPropVal<'gridArea'>;
+  textColor: ContainerPropVal<'color'>;
   border: Partial<BorderBreakpointStyle>;
 };
 
@@ -98,6 +99,7 @@ export const ContainerProps = [
   'bgRepeat',
   'bgAttachment',
   'area',
+  'textColor',
   'border'
 ] as Array<keyof Container>;
 

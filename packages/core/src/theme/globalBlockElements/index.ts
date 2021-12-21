@@ -5,6 +5,7 @@ import { Spacing } from '../spacing';
 import { Container } from '../containers';
 
 export enum BlockElements {
+  container,
   heading,
   p,
   pre,
@@ -56,6 +57,8 @@ export const extension: ThemeExtension<BlockElementMappings> = {
       },
       {} as BlockElementMappings
     );
+
+    defaultBlockElementMappings.container.mb = spacing[0];
 
     defaultBlockElementMappings.ul.pl = spacing[4];
     defaultBlockElementMappings.ol.pl = spacing[4];
