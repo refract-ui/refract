@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { ThemeContext, ThemeProvider } from 'styled-components';
-import { theme, Theme, GlobalStyles } from '@refract-ui/core';
+import { theme, Theme, GlobalStyles, SubTheme, test } from '@refract-ui/core';
 import { useArgs } from '@storybook/client-api';
 import StyleGuide from '../../../components/StyleGuide';
 import page from './globalStyles.mdx';
@@ -43,10 +43,35 @@ Template.argTypes = Object.fromEntries(
 
 export function DefaultTemplate(): React.FC {
   const currentTheme = useContext(ThemeContext);
+  console.log('@-->current theme', currentTheme);
+  console.log('@-->test', test);
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <StyleGuide theme={currentTheme} />
+    </ThemeProvider>
+  );
+}
+
+export function WithSubTheme(): React.FC {
+  const currentTheme = useContext(ThemeContext);
+  const nestedInvertedTheme: Theme = theme({
+    body: {
+      xs: {
+        textColor: currentTheme.body.xs.bg,
+        bg: currentTheme.body.xs.textColor,
+      }
+    }
+  });
+
+  return (
+    <ThemeProvider theme={currentTheme}>
+      <GlobalStyles />
+      <StyleGuide theme={currentTheme}>
+        <SubTheme theme={nestedInvertedTheme}>
+          <StyleGuide />
+        </SubTheme>
+      </StyleGuide>
     </ThemeProvider>
   );
 }

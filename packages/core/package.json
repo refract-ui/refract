@@ -7,8 +7,6 @@
   "author": "dispatch@graveflex.com",
   "license": "MIT",
   "peerDependencies": {
-    "@storybook/addon-actions": "^5.3.19",
-    "@storybook/react": "^5.3.19",
     "@types/styled-components": "^5.1.15",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -27,7 +25,6 @@
   "devDependencies": {
     "@babel/preset-typescript": "7.16.5",
     "@types/faker": "4.1.12",
-    "babel-plugin-styled-components": "1.13.3",
     "faker": "4.1.0",
     "jest": "27.3.1"
   },

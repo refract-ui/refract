@@ -1,5 +1,4 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import { range } from 'lodash';
 import { Theme } from '@refract-ui/core';
 import faker from 'faker';
@@ -9,8 +8,8 @@ interface StyleGuideProps {
   theme?: Theme;
 }
 
-const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => (
-  <ThemeProvider theme={theme}>
+const StyleGuide: React.FC<StyleGuideProps> = ({ children }) => (
+  <>
     {children}
 
     <Section title="headings">
@@ -84,7 +83,7 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => (
         <dd>{faker.lorem.word()}</dd>
       </dl>
     </Section>
-  </ThemeProvider>
+  </>
 );
 
 export default StyleGuide;

@@ -3,6 +3,7 @@ import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { ColorShades } from '../colorShades';
 import { Spacing } from '../spacing';
 import { Container } from '../containers';
+import { Body } from '../body';
 
 export enum BlockElements {
   container,
@@ -37,10 +38,12 @@ export const extension: ThemeExtension<BlockElementMappings> = {
   deps: ['colors', 'themeColors', 'themeColorShades', 'spacing', 'body'],
   defaults: ({
     spacing,
-    colorShades
+    colorShades,
+    body
   }: {
     spacing: Spacing;
     colorShades: ColorShades;
+    body: Body;
   }) => {
     const defaultContainerProps = {
       mt: spacing[0],
@@ -59,6 +62,8 @@ export const extension: ThemeExtension<BlockElementMappings> = {
     );
 
     defaultBlockElementMappings.container.mb = spacing[0];
+    defaultBlockElementMappings.container.textColor = body.xs.textColor;
+    defaultBlockElementMappings.container.bg = body.xs.bg;
 
     defaultBlockElementMappings.ul.pl = spacing[4];
     defaultBlockElementMappings.ol.pl = spacing[4];

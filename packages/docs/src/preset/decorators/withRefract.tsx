@@ -2,7 +2,7 @@ import * as React from 'react';
 import { StoryContext } from '@storybook/addons';
 // import { ComponentStory, Story } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
-import { Theme, theme as genTheme } from '@refract-ui/core';
+import { Theme, theme as genTheme, test } from '@refract-ui/core';
 
 export type RefractDecoratorTheme = {
   theme: Theme;
@@ -17,6 +17,7 @@ export const defaultRefractTheme: RefractDecoratorTheme = {
 export function withRefract(Story: any, c: StoryContext): any {
   const themes = c.parameters?.refract?.themes || [];
 
+  console.log('@-->test', test);
   console.log('@-->themes', themes);
 
   const decoratorThemes = [defaultRefractTheme, ...themes];

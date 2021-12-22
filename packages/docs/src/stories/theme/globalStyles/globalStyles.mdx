@@ -2,13 +2,15 @@
 
 import { Meta, Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate } from './globalStyles.stories';
+import { DefaultTemplate, WithSubTheme } from './globalStyles.stories';
 
 <BreadCrumb
   token="globalStyles"
 />
 
 The `globalStyles` attribute is used to define the default styles for all the native html tags. The values defined here are derived from the previously defined higher-level theme settings;
+
+## Default Props
 
 <Story
   name="globalStyles"
@@ -17,4 +19,11 @@ The `globalStyles` attribute is used to define the default styles for all the na
   {DefaultTemplate.bind({})}
 </Story>
 
-## Default Props
+### Theme Nesting
+
+<Story
+  name="subTheme"
+  id="core-theme-global-styles--with-sub-theme"
+>
+  {WithSubTheme.bind({})}
+</Story>

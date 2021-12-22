@@ -22,6 +22,9 @@ export { default as theme, CoreTheme as Theme } from './src/theme';
 
 // global styles
 export { default as GlobalStyles } from './src/components/GlobalStyles';
+export { default as SubTheme } from './src/components/SubTheme';
+
+export const test = 'test';
 
 // types
 export {
