@@ -12,6 +12,8 @@ export type ThemeColors = {
   danger: string;
   light: string;
   dark: string;
+  fg: string;
+  bg: string;
 };
 
 export const themeColorNames: Array<string> = [
@@ -22,7 +24,9 @@ export const themeColorNames: Array<string> = [
   'warning',
   'danger',
   'light',
-  'dark'
+  'dark',
+  'fg',
+  'bg'
 ];
 
 export const extension: ThemeExtension<ThemeColors> = {
@@ -39,10 +43,12 @@ export const extension: ThemeExtension<ThemeColors> = {
     secondary: colors.gray,
     success: colors.green,
     info: colors.cyan,
-    warning: '#EFC174',
-    danger: '#DE7283',
+    warning: colorShades.orange400,
+    danger: colorShades.red500,
     light: colorShades.gray100,
-    dark: '#575C64'
+    dark: colorShades.gray900,
+    bg: colorShades.gray900,
+    fg: colorShades.gray100
   }),
   apply: applyThemeSettings
 };

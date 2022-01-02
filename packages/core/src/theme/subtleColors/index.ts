@@ -1,15 +1,9 @@
 import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { ThemeColorShades } from '../themeColorShades';
+import { ThemeColors } from '../themeColors';
 
 export type SubtleColors = {
-  primary: string;
-  secondary: string;
-  success: string;
-  info: string;
-  warning: string;
-  danger: string;
-  light: string;
-  dark: string;
+  [Key in keyof ThemeColors]: string;
 };
 
 export const extension: ThemeExtension<SubtleColors> = {
@@ -23,7 +17,9 @@ export const extension: ThemeExtension<SubtleColors> = {
     warning: themeColorShades.warning300,
     danger: themeColorShades.danger300,
     light: themeColorShades.light600,
-    dark: themeColorShades.dark300
+    dark: themeColorShades.dark300,
+    bg: themeColorShades.bg600,
+    fg: themeColorShades.fg300
   }),
   apply: applyThemeSettings
 };
