@@ -8,7 +8,6 @@ import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
 import {
   ThemeBreakpoints,
-  ThemeExtension,
   ComponentThemeBreakpoint,
   ExtendTheme,
   PseudoClass,
@@ -54,10 +53,7 @@ interface ComponentGeneratorProps<
     TThemeBreakpoint,
     TBaseElementProps & TProps
   >;
-  cascadeStateProps?: CascadeStateSettings<
-    TThemeBreakpoint,
-    ThemeExtension<TThemeBreakpoint>
-  >;
+  cascadeStateProps?: CascadeStateSettings<TThemeBreakpoint>;
   variantMapping?: VariantMap<TVariants, TTheme>;
 }
 
