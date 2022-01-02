@@ -17,7 +17,6 @@ import type {
 import { css } from 'styled-components';
 import { OmitByValue, PickByValue } from 'utility-types';
 import {
-  PseudoClass,
   PseudoClassExtension,
   ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
@@ -123,28 +122,27 @@ function applyStyles<TThemeBreakpoint, TExtends, TProps>({
 
 type ThemeCascadeStateMapping<
   TThemeBreakpoint,
-  TExtends,
   P extends keyof TThemeBreakpoint
 > = {
-  [Q in keyof PickByValue<Partial<TExtends>, PseudoClassExtension<TExtends>>]:
+  [Q in keyof PickByValue<
+    Partial<TThemeBreakpoint>,
+    PseudoClassExtension<TThemeBreakpoint>
+  >]:
     | ((
-        args: Partial<TThemeBreakpoint> & ThemeExtensionHelperMethods
+        args: TThemeBreakpoint & ThemeExtensionHelperMethods
       ) => TThemeBreakpoint[P])
     | TThemeBreakpoint[P];
 };
 
-export type CascadeStateSettings<TThemeBreakpoint, TExtends> = {
-  [P in keyof OmitByValue<
-    Partial<TThemeBreakpoint>,
-    PseudoClass<TThemeBreakpoint>
-  >]?: ThemeCascadeStateMapping<TThemeBreakpoint, TExtends, P>;
+export type CascadeStateSettings<TThemeBreakpoint> = {
+  [P in keyof TThemeBreakpoint]?: ThemeCascadeStateMapping<TThemeBreakpoint, P>;
 };
 
-interface ApplyBreakpointStyleProps<TThemeBreakpoint, TExtends, TProps> {
+interface ApplyBreakpointStyleProps<TThemeBreakpoint, TProps> {
   theme: CoreTheme;
-  props: Partial<TExtends>;
+  props: TThemeBreakpoint;
   apply: ThemePropStyleMapping<TThemeBreakpoint, TProps>;
-  cascade: CascadeStateSettings<TThemeBreakpoint, TExtends>;
+  cascade: CascadeStateSettings<TThemeBreakpoint>;
   helperMethods: ThemeExtensionHelperMethods;
   componentProps: TProps;
 }
@@ -160,7 +158,7 @@ export default function applyBreakpointStyles<
   cascade = {},
   helperMethods,
   componentProps
-}: ApplyBreakpointStyleProps<TThemeBreakpoint, TExtends, TProps>): Array<
+}: ApplyBreakpointStyleProps<TThemeBreakpoint, TProps>): Array<
   FlattenSimpleInterpolation | SimpleInterpolation
 > {
   // used cloned instance of props so as not to mutate args
@@ -178,24 +176,23 @@ export default function applyBreakpointStyles<
     // iterate through each cascadable state to see if any props are missing
     for (const stateKey of Object.keys(
       cascade[prop as keyof typeof cascade]
-    ) as Array<keyof Partial<TExtends>>) {
-      const targetProp = props[prop as keyof typeof props];
+    ) as Array<keyof typeof cascade>) {
+      // const targetProp = props[prop as keyof typeof props];
 
       if (!props[stateKey]) {
-        props[stateKey as keyof typeof props] = {} as TExtends[keyof TExtends];
+        props[stateKey as keyof typeof props] =
+          {} as TThemeBreakpoint[keyof TThemeBreakpoint];
       }
 
       const cascadeState = cascade[prop as keyof typeof cascade];
 
-      const cascadeVal = cascadeState[
-        stateKey as keyof typeof cascadeState
-      ] as typeof targetProp;
+      const cascadeVal = cascadeState[stateKey as keyof typeof cascadeState];
 
       const existingPropDef = get(props, [stateKey, prop]);
 
       if (!existingPropDef) {
         const existingStates = (props[stateKey] ||
-          {}) as PseudoClassExtension<TExtends>;
+          {}) as PseudoClassExtension<TThemeBreakpoint>;
         existingStates[prop as keyof typeof existingStates] = cascadeVal;
       }
     }
