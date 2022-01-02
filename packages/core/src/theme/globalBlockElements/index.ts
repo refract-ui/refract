@@ -62,8 +62,8 @@ export const extension: ThemeExtension<BlockElementMappings> = {
     );
 
     defaultBlockElementMappings.container.mb = spacing[0];
-    defaultBlockElementMappings.container.textColor = body.xs.textColor;
-    defaultBlockElementMappings.container.bg = body.xs.bg;
+    defaultBlockElementMappings.container.textColor = body.textColor;
+    defaultBlockElementMappings.container.bg = body.bg;
 
     defaultBlockElementMappings.ul.pl = spacing[4];
     defaultBlockElementMappings.ol.pl = spacing[4];

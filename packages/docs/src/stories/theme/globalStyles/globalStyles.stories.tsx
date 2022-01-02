@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { ThemeContext, ThemeProvider } from 'styled-components';
-import { theme, Theme, GlobalStyles, SubTheme, test } from '@refract-ui/core';
+import { theme, Theme, GlobalStyles, SubTheme } from '@refract-ui/core';
+import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import StyleGuide from '../../../components/StyleGuide';
 import page from './globalStyles.mdx';
@@ -17,7 +18,7 @@ export default {
   }
 };
 
-export function Template(): React.FC {
+export const Template: Story = () => {
   const [args, updateArgs, resetArgs] = useArgs();
   const { themeColors: currentThemeValues } = useContext(ThemeContext);
 
@@ -35,32 +36,29 @@ export function Template(): React.FC {
     }
   });
   return <StyleGuide theme={currentTheme} />;
-}
+};
 Template.args = defaultThemeColors;
 Template.argTypes = Object.fromEntries(
   Object.keys(defaultThemeColors).map(k => [k, { control: { type: 'color' } }])
 );
 
-export function DefaultTemplate(): React.FC {
+export const DefaultTemplate: Story = () => {
   const currentTheme = useContext(ThemeContext);
   console.log('@-->current theme', currentTheme);
-  console.log('@-->test', test);
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <StyleGuide theme={currentTheme} />
     </ThemeProvider>
   );
-}
+};
 
-export function WithSubTheme(): React.FC {
+export const WithSubTheme: Story = () => {
   const currentTheme = useContext(ThemeContext);
   const nestedInvertedTheme: Theme = theme({
     body: {
-      xs: {
-        textColor: currentTheme.body.xs.bg,
-        bg: currentTheme.body.xs.textColor,
-      }
+      textColor: currentTheme.body.bg,
+      bg: currentTheme.body.textColor
     }
   });
 
@@ -74,7 +72,7 @@ export function WithSubTheme(): React.FC {
       </StyleGuide>
     </ThemeProvider>
   );
-}
+};
 
 /*
 export const FunctionTemplate = (): React.FC => {

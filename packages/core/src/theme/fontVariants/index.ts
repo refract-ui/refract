@@ -35,7 +35,7 @@ export const extension: ThemeExtension<FontVariants> = {
   defaults: ({ fontStacks, body }: { fontStacks: FontStacks; body: Body }) => {
     const defaultStack = fontStacks[fontStacks.fallbackFace];
     const defaultVariantProps = {
-      color: body.xs.color,
+      color: body.textColor,
       stack: defaultStack,
       weight: 500,
       style: 'normal',

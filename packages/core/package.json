@@ -1,9 +1,7 @@
 {
   "name": "@refract-ui/core",
   "version": "0.0.13",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "main": "index.ts",
   "author": "dispatch@graveflex.com",
   "license": "MIT",
   "peerDependencies": {

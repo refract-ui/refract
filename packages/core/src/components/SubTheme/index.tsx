@@ -10,6 +10,7 @@ type SubTheme = GlobalStyleTheme;
 
 type SubThemeComponent = ThemeComponent & {
   theme: CoreTheme;
+  children?: Element;
 };
 
 const Container = styled.div<ThemeComponent>`
@@ -19,9 +20,13 @@ const Container = styled.div<ThemeComponent>`
     `};
 `;
 
-const SubThemeFC: React.FC<SubThemeComponent> = ({ componentCss, theme }) => (
+const SubThemeFC: React.FC<SubThemeComponent> = ({
+  componentCss,
+  theme,
+  children
+}) => (
   <ThemeProvider theme={theme}>
-    <Container componentCss={componentCss} />
+    <Container componentCss={componentCss}>{children}</Container>
   </ThemeProvider>
 );
 
