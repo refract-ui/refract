@@ -12,9 +12,18 @@
     "lint": "turbo run lint",
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf node_modules",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "storybook": "start-storybook -p 6006",
+    "build:storybook": "build-storybook"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.7",
+    "@storybook/addon-actions": "^6.4.9",
+    "@storybook/addon-docs": "6.4.9",
+    "@storybook/addon-essentials": "^6.4.9",
+    "@storybook/addon-links": "^6.4.9",
+    "@storybook/react": "^6.4.9",
+    "babel-loader": "^8.2.3",
     "eslint": "7.32.0",
     "prettier": "^2.5.1",
     "turbo": "latest"
@@ -46,5 +55,6 @@
         "cache": false
       }
     }
-  }
+  },
+  "dependencies": {}
 }

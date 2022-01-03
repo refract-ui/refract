@@ -1,7 +1,7 @@
-import colors from './index';
+import { defaultColors } from './index';
 
 export default {
   title: 'theme/colors',
-  component: colors,
+  component: defaultColors,
   argTypes: {}
 };

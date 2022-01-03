@@ -4,14 +4,22 @@ import {
 } from '../../utils/componentThemeBreakpoints';
 import { isFunction, defaults } from 'lodash';
 import { SansFunctions } from '../../utils/createThemedComponent';
-import { Borders } from '../borders';
+import { BorderBreakpointStyle, Borders } from '../borders';
 import { Spacing } from '../spacing';
 import { FontVariants } from '../fontVariants';
 import { Colors } from '../colors';
 import { ColorShades } from '../colorShades';
 import { Container } from '../containers';
 import { ThemeColors } from '../themeColors';
-import { ButtonTheme, ButtonStates } from '../../components/Button';
+
+export type ButtonStates = '_hover' | '_active';
+
+export type ButtonTheme = {
+  border?: Partial<BorderBreakpointStyle>;
+  textColor?: string;
+  fontSize?: string;
+  width?: string;
+};
 
 export type ButtonThemeBreakpoint = ComponentThemeBreakpoint<
   ButtonTheme & Partial<SansFunctions<Container>>,
@@ -55,18 +63,19 @@ export default function genButtonTheme({
 }: ButtonThemeBase): ButtonThemeConfig {
   const defaultButtonTheme = {
     xs: {
-      bg: themeColors.primary,
-      textColor: ({ contrastColor, bg }) => contrastColor(bg as string),
-      border: borders.xs,
-      px: `${spacing['3']}`,
-      py: `${spacing['2']}`,
+      bg: themeColors?.primary,
+      textColor: ({ contrastColor, bg }) =>
+        contrastColor && contrastColor(bg as string),
+      border: borders?.xs,
+      px: `${spacing && spacing['3']}`,
+      py: `${spacing && spacing['2']}`,
       w: '100%'
     },
 
     md: {
-      border: borders.md,
-      px: `${spacing['4']}`,
-      py: `${spacing['3']}`,
+      border: borders?.md,
+      px: `${spacing && spacing['4']}`,
+      py: `${spacing && spacing['3']}`,
       w: 'auto'
     }
   } as ThemeBreakpoints<ButtonThemeBreakpoint>;

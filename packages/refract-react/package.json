@@ -16,6 +16,7 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "devDependencies": {
+    "@refract/core": "*",
     "@popperjs/core": "2.6.0",
     "@refract/tsconfig": "*",
     "@types/lodash": "4.14.157",

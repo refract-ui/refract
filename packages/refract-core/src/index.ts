@@ -1,17 +1,5 @@
-// theme
-export { default as theme, CoreTheme as Theme } from './theme';
-
-// types
-export {
-  Container,
-  ContainerProps,
-  AlignedContainer,
-  AlignedContainerProps,
-  FlexContainer,
-  FlexContainerProps,
-  GridContainer,
-  GridContainerProps
-} from './theme/containers';
+export * from './theme';
+export * from './theme/containers';
 
 export { GlobalStyleBreakpoint } from './theme/globalStyles';
 export { TypographyThemeMapping } from './utils/mapTypographyStyles';

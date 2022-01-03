@@ -1,16 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { get, isObject } from 'lodash';
-import { ThemeComponent } from '../../theme';
-import { ThemeColors } from '../../theme/themeColors';
-import { ThemeColorShades } from '../../theme/themeColorShades';
-import {
-  Container,
-  mapDivContainerPropsToStyles
-} from '../../theme/containers';
-import { BorderBreakpointStyle } from '../../theme/borders';
-import createThemedComponent from '../../utils/createThemedComponent';
-import lightenOrDarken from '../../utils/lightenOrDarken';
+import { ThemeComponent } from '@refract/core';
+import { ThemeColors } from '@refract/core';
+import { ThemeColorShades } from '@refract/core';
+import { Container, mapDivContainerPropsToStyles } from '@refract/core';
+import { BorderBreakpointStyle } from '@refract/core';
+import createThemedComponent from '@refract/core';
+import lightenOrDarken from '@refract/core';
 import { Icons } from '../Icons/icons';
 import Icon from '../Icons';
 

@@ -1,6 +1,5 @@
 import { reduce } from 'lodash';
 import { ThemeExtension, applyThemeSettings } from '../cascade';
-import { ColorShades } from '../colorShades';
 import { ThemeColorOpacities } from '../themeColorOpacities';
 import { Spacing } from '../spacing';
 import { Container } from '../containers';
