@@ -1,6 +1,7 @@
 import { reduce } from 'lodash';
 import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { ColorShades } from '../colorShades';
+import { ThemeColorOpacities } from '../themeColorOpacities';
 import { Spacing } from '../spacing';
 import { Container } from '../containers';
 import { Body } from '../body';
@@ -35,14 +36,21 @@ export type BlockElementMappings = {
 
 export const extension: ThemeExtension<BlockElementMappings> = {
   name: 'blockElements',
-  deps: ['colors', 'themeColors', 'themeColorShades', 'spacing', 'body'],
+  deps: [
+    'colors',
+    'themeColors',
+    'themeColorShades',
+    'spacing',
+    'body',
+    'themeColorOpacities'
+  ],
   defaults: ({
     spacing,
-    colorShades,
+    themeColorOpacities,
     body
   }: {
     spacing: Spacing;
-    colorShades: ColorShades;
+    themeColorOpacities: ThemeColorOpacities;
     body: Body;
   }) => {
     const defaultContainerProps = {
@@ -72,14 +80,14 @@ export const extension: ThemeExtension<BlockElementMappings> = {
 
     defaultBlockElementMappings.pre = {
       ...defaultContainerProps,
-      bg: colorShades.gray300,
+      bg: themeColorOpacities.bg50,
       px: spacing[4],
       py: spacing[4]
     };
 
     defaultBlockElementMappings.kbd = {
       ...defaultContainerProps,
-      bg: colorShades.gray300,
+      bg: themeColorOpacities.bg50,
       px: spacing[2],
       py: spacing[2]
     };

@@ -17,8 +17,8 @@ export const extension: ThemeExtension<Body> = {
     'darkColors'
   ],
   defaults: ({ themeColors }: { themeColors: ThemeColors }) => ({
-    bg: themeColors.light,
-    textColor: themeColors.dark
+    bg: themeColors.bg,
+    textColor: themeColors.fg
   }),
   apply: applyThemeSettings
 };

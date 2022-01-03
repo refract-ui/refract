@@ -1,4 +1,4 @@
-import { defaults, isFunction, reduce } from 'lodash';
+import { reduce } from 'lodash';
 import { ThemeExtension, applyThemeSettings } from '../cascade';
 import { themeColorNames, ThemeColors } from '../themeColors';
 import rampColor from '../../utils/rampColor';

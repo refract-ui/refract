@@ -21,7 +21,7 @@ export type Borders = {
 
 export const extension: ThemeExtension<Borders> = {
   name: 'borders',
-  deps: ['colorShades'],
+  deps: ['colorShades', 'themeColors'],
   defaults: ({ colorShades }: { colorShades: ColorShades }) => ({
     xs: {
       borderWidth: '1px',

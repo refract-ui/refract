@@ -7,6 +7,10 @@ import {
   extension as themeColorShades,
   ThemeColorShades
 } from './themeColorShades';
+import {
+  extension as themeColorOpacities,
+  ThemeColorOpacities
+} from './themeColorOpacities';
 import { extension as subtleColors, SubtleColors } from './subtleColors';
 import { extension as darkColors, DarkColors } from './darkColors';
 import { extension as body, Body } from './body';
@@ -31,6 +35,7 @@ export type CoreTheme = {
   colors: Colors;
   colorShades: ColorShades;
   themeColors: ThemeColors;
+  themeColorOpacities: ThemeColorOpacities;
   themeColorShades: ThemeColorShades;
   subtleColors: SubtleColors;
   darkColors: DarkColors;
@@ -52,6 +57,7 @@ export const defaultExtensions: ThemeExtensionArray<CoreTheme> = [
   colorShades,
   themeColors,
   themeColorShades,
+  themeColorOpacities,
   subtleColors,
   darkColors,
   body,
@@ -75,8 +81,7 @@ export type ThemeComponent = {
 export default function init<TTheme extends CoreTheme = CoreTheme>(
   settings: ThemeSettings<TTheme> = {}
 ): TTheme {
-  const extensions: ThemeExtensionArray<TTheme> = defaultExtensions as ThemeExtensionArray<
-    TTheme
-  >;
+  const extensions: ThemeExtensionArray<TTheme> =
+    defaultExtensions as ThemeExtensionArray<TTheme>;
   return generateTheme<TTheme>({ extensions, settings });
 }

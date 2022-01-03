@@ -20,7 +20,7 @@ export type FontVariant = {
   style: string;
   lineHeight: string;
   letterSpacing: string;
-  color: string;
+  color?: string;
 };
 
 export type FontVariants = {
@@ -35,7 +35,6 @@ export const extension: ThemeExtension<FontVariants> = {
   defaults: ({ fontStacks, body }: { fontStacks: FontStacks; body: Body }) => {
     const defaultStack = fontStacks[fontStacks.fallbackFace];
     const defaultVariantProps = {
-      color: body.textColor,
       stack: defaultStack,
       weight: 500,
       style: 'normal',

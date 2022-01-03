@@ -1,0 +1,188 @@
+# Theme Color Opacities
+
+import { Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { DefaultTemplate, FunctionTemplate, StaticTemplate, DeriveTemplate } from './themeColorOpacities.stories'
+
+<BreadCrumb
+  token="themeColorOpacities"
+/>
+
+The `themeColorOpacities` attribute set is a collection of opacities of the colors defined in the `themeColors` attribute set. A ramping function is applied so that 9 variants of each color are generated from lightest to darkest. These opacities are used throughout the theme for things like hover states and border colors of elements that use the `themeColors` values.
+
+<Story
+  name="themeColorOpacities"
+  id="core-theme-themecoloropacities--default-template"
+>
+  {DefaultTemplate.bind({})}
+</Story>
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { themeColors } = theme({});
+
+assert(themeColors).isEqual({
+  danger10: "rgb(255, 255, 255, 10)",
+  danger20: "rgb(253, 246, 247, 20)",
+  danger30: "rgb(245, 213, 218, 30)",
+  danger40: "rgb(237, 180, 189, 40)",
+  danger50: "rgb(222, 114, 131, 50)",
+  danger60: "rgb(214, 81, 102, 60)",
+  danger70: "rgb(206, 48, 73, 70)",
+  danger80: "rgb(173, 41, 61, 80)",
+  danger90: "rgb(140, 33, 50, 90)",
+  dark10: "rgb(191, 195, 200, 10)",
+  dark20: "rgb(170, 174, 181, 20)",
+  dark30: "rgb(148, 153, 162, 30)",
+  dark40: "rgb(126, 132, 143, 40)",
+  dark50: "rgb(87, 92, 100, 50)",
+  dark60: "rgb(68, 72, 78, 60)",
+  dark70: "rgb(49, 52, 56, 70)",
+  dark80: "rgb(30, 32, 35, 80)",
+  dark90: "rgb(11, 12, 13, 90)",
+  info10: "rgb(167, 233, 244, 10)",
+  info20: "rgb(131, 225, 239, 20)",
+  info30: "rgb(94, 216, 235, 30)",
+  info40: "rgb(58, 207, 230, 40)",
+  info50: "rgb(23, 162, 184, 50)",
+  info60: "rgb(18, 130, 148, 60)",
+  info70: "rgb(14, 98, 111, 70)",
+  info80: "rgb(9, 66, 75, 80)",
+  info90: "rgb(5, 34, 39, 90)",
+  light10: "rgb(255, 255, 255, 10)",
+  light20: "rgb(255, 255, 255, 20)",
+  light30: "rgb(255, 255, 255, 30)",
+  light40: "rgb(255, 255, 255, 40)",
+  light50: "rgb(255, 255, 255, 50)",
+  light60: "rgb(235, 235, 235, 60)",
+  light70: "rgb(214, 214, 214, 70)",
+  light80: "rgb(194, 194, 194, 80)",
+  light90: "rgb(173, 173, 173, 90)",
+  primary10: "rgb(243, 247, 254, 10)",
+  primary20: "rgb(206, 222, 250, 20)",
+  primary30: "rgb(169, 196, 247, 30)",
+  primary40: "rgb(131, 171, 243, 40)",
+  primary50: "rgb(57, 120, 236, 50)",
+  primary60: "rgb(22, 95, 230, 60)",
+  primary70: "rgb(19, 80, 193, 70)",
+  primary80: "rgb(15, 64, 156, 80)",
+  primary90: "rgb(11, 49, 118, 90)",
+  secondary10: "rgb(255, 255, 255, 10)",
+  secondary20: "rgb(255, 255, 255, 20)",
+  secondary30: "rgb(249, 249, 251, 30)",
+  secondary40: "rgb(224, 228, 234, 40)",
+  secondary50: "rgb(176, 185, 201, 50)",
+  secondary60: "rgb(152, 164, 184, 60)",
+  secondary70: "rgb(128, 142, 168, 70)",
+  secondary80: "rgb(103, 121, 151, 80)",
+  secondary90: "rgb(87, 101, 127, 90)",
+  success10: "rgb(255, 255, 255, 10)",
+  success20: "rgb(231, 247, 237, 20)",
+  success30: "rgb(200, 238, 215, 30)",
+  success40: "rgb(168, 228, 192, 40)",
+  success50: "rgb(106, 209, 147, 50)",
+  success60: "rgb(75, 199, 124, 60)",
+  success70: "rgb(55, 178, 104, 70)",
+  success80: "rgb(45, 147, 86, 80)",
+  success90: "rgb(36, 116, 68, 90)",
+  warning10: "rgb(255, 255, 255, 10)",
+  warning20: "rgb(255, 255, 255, 20)",
+  warning30: "rgb(252, 242, 226, 30)",
+  warning40: "rgb(247, 226, 189, 40)",
+  warning50: "rgb(239, 193, 116, 50)",
+  warning60: "rgb(235, 177, 79, 60)",
+  warning70: "rgb(231, 160, 43, 70)",
+  warning80: "rgb(209, 140, 24, 80)",
+  warning90: "rgb(172, 115, 20, 90)",
+  bg10: "rgb(255, 255, 255, 10)",
+  bg20: "rgb(255, 255, 255, 20)",
+  bg30: "rgb(255, 255, 255, 30)",
+  bg40: "rgb(255, 255, 255, 40)",
+  bg50: "rgb(255, 255, 255, 50)",
+  bg60: "rgb(235, 235, 235, 60)",
+  bg70: "rgb(214, 214, 214, 70)",
+  bg80: "rgb(194, 194, 194, 80)",
+  bg90: "rgb(173, 173, 173, 90)",
+  fg10: "rgb(191, 195, 200, 10)",
+  fg20: "rgb(170, 174, 181, 20)",
+  fg30: "rgb(148, 153, 162, 30)",
+  fg40: "rgb(126, 132, 143, 40)",
+  fg50: "rgb(87, 92, 100, 50)",
+  fg60: "rgb(68, 72, 78, 60)",
+  fg70: "rgb(49, 52, 56, 70)",
+  fg80: "rgb(30, 32, 35, 80)",
+  fg90: "rgb(11, 12, 13, 90)",
+});
+```
+
+## Theme Configuration
+
+`themeColorOpacities` can be configured by extending the global styles via function or with static values. In each example, we replace the `themeColorOpacities.primary` with a new color and extend the `themeColorOpacities` object with a new key-value pair.
+
+### Using Function Values
+
+<Story
+  name="colorsFunction"
+  id="core-theme-themecoloropacities--function-template"
+>
+  {FunctionTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { themeColors } = theme({
+  themeColorOpacities: ({ defaults }) => ({
+    ...defaults,
+    white: '#fefefe',
+    primary100: 'purple'
+  })
+});
+```
+
+### Using Static Values
+
+<Story
+  name="colorsStatic"
+  id="core-theme-themecoloropacities--static-template"
+>
+  {StaticTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { themeColors } = theme({
+  themeColors: {
+    white: '#fefefe',
+    primary100: 'purple'
+  }
+});
+```
+
+### Derived from `themeColors`
+
+`themeColorOpacities` are derived from the `themeColors`. Passing different colors to the `themeColors` object also cascades into the `themeColorOpacities`. In this example, we've updated the `themeColors.primary` value, which gives us a different set of `themeColorOpacities.primaryXX` values.
+
+<Story
+  name="colorsDerive"
+  id="core-theme-themecoloropacities--derive-template"
+>
+  {DeriveTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { themeColorOpacities } = theme({
+  themeColors: {
+    primary: 'purple'
+  }
+});
+```
+
+## All Configurable Props
+
+- base color configuration
