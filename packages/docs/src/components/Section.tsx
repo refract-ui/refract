@@ -10,7 +10,7 @@ const Container = styled.div`
   flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
-  border: solid rgba(0, 0, 0, 0.3) 1px;
+  border: solid ${({ theme }) => theme.themeColorOpacities.fg40} 1px;
   border-radius: 4px;
   margin: 1rem;
 `;
@@ -19,7 +19,7 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: rgba(0, 0, 0, 0.1);
+  background: ${({ theme }) => theme.themeColorOpacities.fg10};
   padding: 0.5rem 1rem;
 `;
 

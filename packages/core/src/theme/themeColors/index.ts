@@ -38,17 +38,21 @@ export const extension: ThemeExtension<ThemeColors> = {
   }: {
     colors: Colors;
     colorShades: ColorShades;
-  }) => ({
-    primary: colors.blue,
-    secondary: colors.gray,
-    success: colors.green,
-    info: colors.cyan,
-    warning: colorShades.orange400,
-    danger: colorShades.red500,
-    light: colorShades.gray100,
-    dark: colorShades.gray900,
-    bg: colorShades.gray900,
-    fg: colorShades.gray100
-  }),
+  }) => {
+    const light = colorShades.gray100;
+    const dark = colorShades.gray900;
+    return {
+      primary: colors.blue,
+      secondary: colors.gray,
+      success: colors.green,
+      info: colors.cyan,
+      warning: colorShades.orange400,
+      danger: colorShades.red500,
+      light,
+      dark,
+      bg: light,
+      fg: dark
+    };
+  },
   apply: applyThemeSettings
 };

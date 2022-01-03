@@ -43,7 +43,6 @@ Template.argTypes = Object.fromEntries(
 
 export function DefaultTemplate(): React.FC {
   const { themeColorOpacities: currentThemeValues } = useContext(ThemeContext);
-  console.log('@-->themeColorOpacities', currentThemeValues);
   return <ColorPalette colors={currentThemeValues} />;
 }
 

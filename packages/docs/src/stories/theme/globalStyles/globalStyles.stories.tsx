@@ -44,7 +44,6 @@ Template.argTypes = Object.fromEntries(
 
 export const DefaultTemplate: Story = () => {
   const currentTheme = useContext(ThemeContext);
-  console.log('@-->current theme', currentTheme);
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
@@ -56,17 +55,19 @@ export const DefaultTemplate: Story = () => {
 export const WithSubTheme: Story = () => {
   const currentTheme = useContext(ThemeContext);
   const nestedInvertedTheme: Theme = theme({
-    body: {
-      textColor: currentTheme.body.bg,
-      bg: currentTheme.body.textColor
+    themeColors: {
+      fg: currentTheme.themeColors.bg,
+      bg: currentTheme.themeColors.fg
     }
   });
 
   return (
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
-      <StyleGuide theme={currentTheme}>
-        <SubTheme theme={nestedInvertedTheme}>
+      <StyleGuide>
+        <SubTheme
+          theme={nestedInvertedTheme}
+        >
           <StyleGuide />
         </SubTheme>
       </StyleGuide>
