@@ -1,14 +1,14 @@
 import React from 'react';
 import { get } from 'lodash';
 import styled, { css } from 'styled-components';
-import createThemedComponent from '../../../../refract-core/src/utils/createThemedComponent';
+import createThemedComponent from '@refract/core/src/utils/createThemedComponent';
 import {
   Container,
   mapDivContainerPropsToStyles
-} from '../../../../refract-core/src/theme/containers';
+} from '@refract/core/src/theme/containers';
 
-import { ThemeColors } from '../../../../refract-core/src/theme/themeColors';
-import { ThemeComponent } from '../../../../refract-core/src/theme';
+import { ThemeColors } from '@refract/core/src/theme/themeColors';
+import { ThemeComponent } from '@refract/core/src/theme';
 import { Icons } from './icons';
 //import SmIcons from './icons/SmIcons';
 import MdIcons from './icons/MdIcons';
@@ -104,7 +104,8 @@ const Icon = createThemedComponent<
       },
 
       defaultStyleMapping: {
-        xs: { ...theme.components.icons }
+        // TODO: components isn't on theme
+        // xs: { ...theme.components.icons }
       },
 
       cascadeStateProps: {},

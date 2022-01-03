@@ -2,18 +2,18 @@ import { ThemeExtension, applyThemeSettings } from '../cascade';
 import {
   ThemeBreakpoints,
   ComponentThemeBreakpoint
-} from '../../utils/componentThemeBreakpoints';
+} from '@refract/core/src/utils/componentThemeBreakpoints';
 import {
   Tags as TypographyTags,
   FontTagMappings
-} from '../../theme/fontTagMappings';
-import { TypographyThemeMapping } from '../../utils/mapTypographyStyles';
+} from '@refract/core/src/theme/fontTagMappings';
+import { TypographyThemeMapping } from '@refract/core/src/utils/mapTypographyStyles';
 import {
   BlockElements,
   BlockElementMappings
-} from '../../theme/globalBlockElements';
-import { Container } from '../../theme/containers';
-import { Body } from '../../theme/body';
+} from '@refract/core/src/theme/globalBlockElements';
+import { Container } from '@refract/core/src/theme/containers';
+import { Body } from '@refract/core/src/theme/body';
 
 type TypeTagNames = keyof typeof TypographyTags;
 type BlockTagNames = keyof typeof BlockElements;

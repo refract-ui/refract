@@ -1,11 +1,11 @@
 import React from 'react';
 import { css, createGlobalStyle } from 'styled-components';
-import { ThemeComponent } from '../../theme';
-import reset from '../../theme/reset';
-import createThemedComponent from '../../utils/createThemedComponent';
-import mapTypographyStyles from '../../utils/mapTypographyStyles';
-import { mapBlockElementStyles } from '../../theme/containers';
-import { GlobalStyleTheme } from '../../theme/globalStyles';
+import { ThemeComponent } from '@refract/core/src/theme';
+import reset from '@refract/core/src/theme/reset';
+import createThemedComponent from '@refract/core/src/utils/createThemedComponent';
+import mapTypographyStyles from '@refract/core/src/utils/mapTypographyStyles';
+import { mapBlockElementStyles } from '@refract/core/src/theme/containers';
+import { GlobalStyleTheme } from '@refract/core/src/theme/globalStyles';
 
 const GlobalStylesComponent = createGlobalStyle<ThemeComponent>`
   ${({ componentCss }) => css`

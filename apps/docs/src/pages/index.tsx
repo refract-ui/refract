@@ -1,14 +1,10 @@
-import { Button } from '@refract/core';
-import { useIsomorphicLayoutEffect } from '@refract/utils';
+// import { Button } from '@refract/core';
 
 export default function Docs() {
-  useIsomorphicLayoutEffect(() => {
-    console.log('refract docs page');
-  }, []);
   return (
     <div>
       <h1>refract Documentation</h1>
-      <Button>Click me</Button>
+      <div>Click me</div>
     </div>
   );
 }

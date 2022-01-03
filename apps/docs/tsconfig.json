@@ -1,10 +1,16 @@
 {
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "extends": "@refract/tsconfig/nextjs.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "incremental": true
+    "incremental": true,
+    "strict": false
   },
-  "include": ["src", "next-env.d.ts"]
+  "include": [
+    "src",
+    "next-env.d.ts"
+  ]
 }

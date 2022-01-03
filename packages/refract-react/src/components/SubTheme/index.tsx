@@ -1,10 +1,10 @@
 import React from 'react';
-import { ThemeComponent, CoreTheme } from '../../theme';
-import { GlobalStyleTheme } from '../../theme/globalStyles';
+import { ThemeComponent, CoreTheme } from '@refract/core/src/theme';
+import { GlobalStyleTheme } from '@refract/core/src/theme/globalStyles';
 import styled, { css, ThemeProvider } from 'styled-components';
-import createThemedComponent from '../../utils/createThemedComponent';
-import mapTypographyStyles from '../../utils/mapTypographyStyles';
-import { mapBlockElementStyles } from '../../theme/containers';
+import createThemedComponent from '@refract/core/src/utils/createThemedComponent';
+import mapTypographyStyles from '@refract/core/src/utils/mapTypographyStyles';
+import { mapBlockElementStyles } from '@refract/core/src/theme/containers';
 
 type SubTheme = GlobalStyleTheme;
 
