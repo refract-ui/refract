@@ -2,7 +2,7 @@
   "exclude": [
     "node_modules"
   ],
-  "extends": "@refract/tsconfig/nextjs.json",
+  "extends": "@refract-ui/tsconfig/nextjs.json",
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",

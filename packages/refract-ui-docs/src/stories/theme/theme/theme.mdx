@@ -1,0 +1,120 @@
+# Introduction
+
+import { Story } from '@storybook/addon-docs';
+
+The theme function generates an object that is used as the cental point of
+shared [design tokens](https://css-tricks.com/what-are-design-tokens/) for your website.
+
+## Tokens
+
+Once generated, the theme will have the following structure:
+
+* colors
+* themeColors
+* subtleColors
+* darkColors
+* colorShades
+* themeColorShades
+* themeColorOpacities
+* spacing
+* breakpoints
+* borders
+* fontFaces
+* fontStacks
+* fontVariants
+* fontTagMappings
+* blockElementMappings
+* components
+  * buttons
+  * icons
+  * inputs
+  * textInputs
+  * dropdowns
+  * checkboxes
+  * radios
+  * tables
+
+## Cascading Values
+
+One of the goals of this project is to simplify theme definition. This library
+uses a system of cascading values so that complex design tokens can be
+generated from just a few simple values.
+
+For example, changing just the primary color will have a cascading effect
+throughout the theme.
+
+```js
+import { theme } from '@refract-ui/core';
+
+// change the primary color to red
+const appTheme = theme({ colors: { primary: '#FF0000' }});
+```
+
+The change in the example above will propogate to the following values:
+
+``` js
+theme.themeColors.primary
+theme.themeColorShades.primary100 - 900
+theme.themeColorOpacities.primary10 - 90
+theme.subtleColors.primary
+theme.darkColors.primary
+theme.components.buttons.xs.bg
+theme.components.buttons.xs.textColor
+theme.components.dropdowns.selectedItemBg
+theme.components.inputs.activeColor
+```
+
+The nested tokens can be overridden at any point in the cascade. For example,
+if we want the `subtleColors.primary` value to be different from the
+automatically generated value, we can extend the theme configuration as
+follows:
+
+``` js
+import { theme } from '@refract-ui/core';
+
+// change the primary color to red, but set the `subtleColors` value to green
+const appTheme = theme({ 
+  colors: { 
+    primary: '#FF0000'
+  },
+  subtleColors: {
+    primary: '#00FF00'
+  }
+});
+```
+
+Values from previous steps in the cascade can also be used to set the design
+tokens using functions as follows:
+
+``` js
+const appTheme = theme({
+  colors: { 
+    primary: '#FF0000'
+  },
+  subtleColors: {
+    primary: config => config.themeColors.primary100
+  }
+});
+```
+
+The relationship of each theme value is visualized in the following diagram.
+
+<Story
+  id="docs-themediagram--overview"
+/>
+
+## Helper Methods
+
+The theme will also provide the following helper methods:
+
+* mq
+* contrastColor
+
+## Overrides
+
+Each of the design tokens can be overridden using either of the following approaches:
+
+* static values
+* functions
+
+### static values

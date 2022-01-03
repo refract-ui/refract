@@ -1,4 +1,4 @@
-// import { Button } from '@refract/core';
+// import { Button } from '@refract-ui/core';
 
 export default function Docs() {
   return (

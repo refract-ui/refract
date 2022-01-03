@@ -1,0 +1,106 @@
+# Subtle Colors
+
+import { Story } from '@storybook/addon-docs';
+import BreadCrumb from '../../../components/BreadCrumb';
+import { DefaultTemplate, FunctionTemplate, StaticTemplate, DeriveTemplate } from './subtleColors.stories';
+
+<BreadCrumb
+  token="subtleColors"
+/>
+
+The `subtleColors` attribute set is derived from the `themeColors` attributes by ramping up the brightness of the colors by a few shades. These attributes are useful for things like disabled states or background accents of elements that use the `themeColor` attributes.
+
+<Story
+  name="subtleColors"
+  id="core-theme-subtlecolors--default-template"
+>
+  {DefaultTemplate.bind({})}
+</Story>
+
+## Default Props
+
+``` js
+import { theme } from '@refract-ui/core';
+const { subtleColors } = theme({});
+
+assert(subtleColors).isEqual({
+  danger: 'rgb(245, 213, 218)',
+  dark: 'rgb(148, 153, 162)',
+  info: 'rgb(94, 216, 235)',
+  light: 'rgb(235, 235, 235)',
+  primary: 'rgb(169, 196, 247)',
+  secondary: 'rgb(249, 249, 251)',
+  success: 'rgb(200, 238, 215)',
+  warning: 'rgb(252, 242, 226)'
+});
+```
+
+## Theme Configuration
+
+`subtleColors` can be configured by extending the global styles via function or with static values. In each example, we replace the `subtleColors.primary` with a new color and extend the `subtleColors` object with a new key-value pair.
+
+### Using Function Values
+
+<Story
+  name="colorsFunction"
+  id="core-theme-subtlecolors--function-template"
+>
+  {FunctionTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { subtleColors } = theme({
+  subtleColors: ({ defaults }) => ({
+    ...defaults,
+    white: '#fefefe',
+    primary: 'purple'
+  })
+});
+```
+
+### Using Static Values
+
+<Story
+  name="colorsStatic"
+  id="core-theme-subtlecolors--static-template"
+>
+  {StaticTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { subtleColors } = theme({
+  subtleColors: {
+    white: '#fefefe',
+    primary: 'purple'
+  }
+});
+```
+
+### Derived from `themeColors`
+
+`subtleColors` are derived from the `themeColors`. Passing different colors to the `themeColors` object also cascades into the `subtleColors`. In this example, we've updated the `themeColors.primary` value, which gives us a different `subtleColors.primary` value.
+
+<Story
+  name="colorsDerive"
+  id="core-theme-subtlecolors--derive-template"
+>
+  {DeriveTemplate.bind({})}
+</Story>
+
+``` js
+import { theme } from '@refract-ui/core';
+
+const { subtleColors } = theme({
+  themeColors: {
+    primary: 'purple'
+  }
+});
+```
+
+## All Configurable Props
+
+- base color configuration
