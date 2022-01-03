@@ -205,6 +205,7 @@ const propAbbrev = {
   bgAttachment: ['backgroundAttachment'],
   bgPos: ['backgroundPosition'],
   bgSize: ['backgroundSize'],
+  textColor: ['color'],
 
   // size: ['width', 'height'],
   maxSize: ['maxWidth', 'maxHeight'],

@@ -65,9 +65,7 @@ export const WithSubTheme: Story = () => {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <StyleGuide>
-        <SubTheme
-          theme={nestedInvertedTheme}
-        >
+        <SubTheme theme={nestedInvertedTheme}>
           <StyleGuide />
         </SubTheme>
       </StyleGuide>

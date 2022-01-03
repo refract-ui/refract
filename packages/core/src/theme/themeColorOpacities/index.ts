@@ -41,7 +41,6 @@ function rampAlpha(name: string, c: string): AlphaRamp {
       const key = `${name}${(
         idx + 1
       ).toString()}0` as keyof ThemeColorOpacities;
-      console.log('@-->val', val);
       memo[key] = val;
       return memo;
     },
