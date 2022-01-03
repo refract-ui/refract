@@ -2,29 +2,28 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './breakpoints.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate
+} from './breakpoints.stories';
 
-<BreadCrumb
-  token="breakpoints"
-/>
+<BreadCrumb token="breakpoints" />
 
 The `breakpoints` object defines the breakpoints at various screensizes. These are used to generate the media query functions.
 
-<Story
-  name="Example"
-  id="core-theme-breakpoints--default-template"
->
+<Story name="Example" id="core-theme-breakpoints--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
 ## Description
 
-`breakpoints` are pixel widths where content might change or shift based on css. If your are on a phone with a screen width of `320px`, you would be using the `xs` breakpoint. On the other hand, if you were on a tablet with a screen width of `800px`, you would be on the `md` breakpoint. You are on the breakpoint that is the largest number *below* your screen width.
+`breakpoints` are pixel widths where content might change or shift based on css. If your are on a phone with a screen width of `320px`, you would be using the `xs` breakpoint. On the other hand, if you were on a tablet with a screen width of `800px`, you would be on the `md` breakpoint. You are on the breakpoint that is the largest number _below_ your screen width.
 
 ## Default Props
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { breakpoints } = theme({});
 
 assert(breakpoints).isEqual({
@@ -50,8 +49,8 @@ assert(breakpoints).isEqual({
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { breakpoints } = theme({
   breakpoints: ({ defaults }) => ({
@@ -64,15 +63,12 @@ const { breakpoints } = theme({
 
 ### Using Static Values
 
-<Story
-  name="Breakpoints Static"
-  id="core-theme-breakpoints--static-template"
->
+<Story name="Breakpoints Static" id="core-theme-breakpoints--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { breakpoints } = theme({
   breakpoints: {

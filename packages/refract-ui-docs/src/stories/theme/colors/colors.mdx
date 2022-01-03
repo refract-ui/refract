@@ -2,25 +2,24 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './colors.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate
+} from './colors.stories';
 
-<BreadCrumb
-  token="colors"
-/>
+<BreadCrumb token="colors" />
 
 The `colors` attribute is used to control the underlying color definitions of the theme's color scheme. The values defined here will cascade into all of the other color attribute sets.
 
-<Story
-  name="colors"
-  id="core-theme-colors--default-template"
->
+<Story name="colors" id="core-theme-colors--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
 ## Default Props
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { colors } = theme({});
 
 assert(colors).isEqual({
@@ -46,15 +45,12 @@ assert(colors).isEqual({
 
 ### Using Function Values
 
-<Story
-  name="colorsFunction"
-  id="core-theme-colors--function-template"
->
+<Story name="colorsFunction" id="core-theme-colors--function-template">
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { colors } = theme({
   colors: ({ defaults }) => ({
@@ -67,15 +63,12 @@ const { colors } = theme({
 
 ### Using Static Values
 
-<Story
-  name="colorsStatic"
-  id="core-theme-colors--static-template"
->
+<Story name="colorsStatic" id="core-theme-colors--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { colors } = theme({
   colors: {

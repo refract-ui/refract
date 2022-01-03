@@ -2,25 +2,25 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate, DeriveTemplate } from './colorShades.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate,
+  DeriveTemplate
+} from './colorShades.stories';
 
-<BreadCrumb
-  token="colorShades"
-/>
+<BreadCrumb token="colorShades" />
 
 The `colorShades` attribute set is a collection of shades and tints of the colors defined in the `colors` attribute set. A ramping function is applied so that 9 variants of each color are generated from lightest to darkest. These shades are used throughout the theme for things like hover states and border colors.
 
-<Story
-  name="Example"
-  id="core-theme-colorshades--default-template"
->
+<Story name="Example" id="core-theme-colorshades--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
 ## Default Props
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { colorShades } = theme({});
 
 assert(colorShades).isEqual({
@@ -132,15 +132,12 @@ assert(colorShades).isEqual({
 
 ### Using Function Values
 
-<Story
-  name="colorsFunction"
-  id="core-theme-colorshades--function-template"
->
+<Story name="colorsFunction" id="core-theme-colorshades--function-template">
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { colorShades } = theme({
   colorShades: ({ defaults }) => ({
@@ -153,15 +150,12 @@ const { colorShades } = theme({
 
 ### Using Static Values
 
-<Story
-  name="colorsStatic"
-  id="core-theme-colorshades--static-template"
->
+<Story name="colorsStatic" id="core-theme-colorshades--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { colorShades } = theme({
   colorShades: {
@@ -175,15 +169,12 @@ const { colorShades } = theme({
 
 `colorShades` are derived from the `colors`. Passing different values to the `colors` object also cascades into the `colorShades`. In this example, we've updated the `themeColors.red` value, which gives us a different set of `colorShades.redXXX` values.
 
-<Story
-  name="colorsDerive"
-  id="core-theme-colorshades--derive-template"
->
+<Story name="colorsDerive" id="core-theme-colorshades--derive-template">
   {DeriveTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { colorShades } = theme({
   themeColors: {

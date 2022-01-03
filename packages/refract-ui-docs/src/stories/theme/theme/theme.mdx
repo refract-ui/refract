@@ -9,30 +9,30 @@ shared [design tokens](https://css-tricks.com/what-are-design-tokens/) for your 
 
 Once generated, the theme will have the following structure:
 
-* colors
-* themeColors
-* subtleColors
-* darkColors
-* colorShades
-* themeColorShades
-* themeColorOpacities
-* spacing
-* breakpoints
-* borders
-* fontFaces
-* fontStacks
-* fontVariants
-* fontTagMappings
-* blockElementMappings
-* components
-  * buttons
-  * icons
-  * inputs
-  * textInputs
-  * dropdowns
-  * checkboxes
-  * radios
-  * tables
+- colors
+- themeColors
+- subtleColors
+- darkColors
+- colorShades
+- themeColorShades
+- themeColorOpacities
+- spacing
+- breakpoints
+- borders
+- fontFaces
+- fontStacks
+- fontVariants
+- fontTagMappings
+- blockElementMappings
+- components
+  - buttons
+  - icons
+  - inputs
+  - textInputs
+  - dropdowns
+  - checkboxes
+  - radios
+  - tables
 
 ## Cascading Values
 
@@ -44,24 +44,24 @@ For example, changing just the primary color will have a cascading effect
 throughout the theme.
 
 ```js
-import { theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 
 // change the primary color to red
-const appTheme = theme({ colors: { primary: '#FF0000' }});
+const appTheme = theme({ colors: { primary: '#FF0000' } });
 ```
 
 The change in the example above will propogate to the following values:
 
-``` js
-theme.themeColors.primary
-theme.themeColorShades.primary100 - 900
-theme.themeColorOpacities.primary10 - 90
-theme.subtleColors.primary
-theme.darkColors.primary
-theme.components.buttons.xs.bg
-theme.components.buttons.xs.textColor
-theme.components.dropdowns.selectedItemBg
-theme.components.inputs.activeColor
+```js
+theme.themeColors.primary;
+theme.themeColorShades.primary100 - 900;
+theme.themeColorOpacities.primary10 - 90;
+theme.subtleColors.primary;
+theme.darkColors.primary;
+theme.components.buttons.xs.bg;
+theme.components.buttons.xs.textColor;
+theme.components.dropdowns.selectedItemBg;
+theme.components.inputs.activeColor;
 ```
 
 The nested tokens can be overridden at any point in the cascade. For example,
@@ -69,12 +69,12 @@ if we want the `subtleColors.primary` value to be different from the
 automatically generated value, we can extend the theme configuration as
 follows:
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 // change the primary color to red, but set the `subtleColors` value to green
-const appTheme = theme({ 
-  colors: { 
+const appTheme = theme({
+  colors: {
     primary: '#FF0000'
   },
   subtleColors: {
@@ -86,9 +86,9 @@ const appTheme = theme({
 Values from previous steps in the cascade can also be used to set the design
 tokens using functions as follows:
 
-``` js
+```js
 const appTheme = theme({
-  colors: { 
+  colors: {
     primary: '#FF0000'
   },
   subtleColors: {
@@ -99,22 +99,20 @@ const appTheme = theme({
 
 The relationship of each theme value is visualized in the following diagram.
 
-<Story
-  id="docs-themediagram--overview"
-/>
+<Story id="docs-themediagram--overview" />
 
 ## Helper Methods
 
 The theme will also provide the following helper methods:
 
-* mq
-* contrastColor
+- mq
+- contrastColor
 
 ## Overrides
 
 Each of the design tokens can be overridden using either of the following approaches:
 
-* static values
-* functions
+- static values
+- functions
 
 ### static values

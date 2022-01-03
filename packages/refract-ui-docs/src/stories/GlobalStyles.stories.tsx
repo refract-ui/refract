@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { theme, GlobalStyles } from '@refract-ui/core';
+import { theme, GlobalStyles } from '@refract-ui/react';
 import StyleGuide from '../components/StyleGuide';
 
 storiesOf('components/GlobalStyles', module)

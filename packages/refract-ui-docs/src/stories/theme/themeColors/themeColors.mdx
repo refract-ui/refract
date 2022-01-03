@@ -2,25 +2,24 @@
 
 import { Story, Source } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './themeColors.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate
+} from './themeColors.stories';
 
-<BreadCrumb
-  token="themeColors"
-/>
+<BreadCrumb token="themeColors" />
 
 The `themeColors` attributes set is used to define the foundational color palette used throughout the theme. Tints and shades of these colors will be generated and used for things like borders, hover states, text colors and accents throughout the component library. By default these colors are based on the `colors` attribute set but can be overridden with any arbitrary color values.
 
 ## Default Props
 
-<Story
-  name="themeColors"
-  id="core-theme-themecolors--default-template"
->
+<Story name="themeColors" id="core-theme-themecolors--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { themeColors } = theme({});
 
 assert(themeColors).isEqual({
@@ -41,15 +40,12 @@ assert(themeColors).isEqual({
 
 ### Using Function Values
 
-<Story
-  name="colorsFunction"
-  id="core-theme-themecolors--function-template"
->
+<Story name="colorsFunction" id="core-theme-themecolors--function-template">
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { themeColors } = theme({
   themeColors: ({ defaults }) => ({
@@ -62,15 +58,12 @@ const { themeColors } = theme({
 
 ### Using Static Values
 
-<Story
-  name="colorsStatic"
-  id="core-theme-themecolors--static-template"
->
+<Story name="colorsStatic" id="core-theme-themecolors--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { themeColors } = theme({
   themeColors: {

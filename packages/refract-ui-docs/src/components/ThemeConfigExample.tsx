@@ -1,4 +1,4 @@
-import { Theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 import { isArray, map, get, range } from 'lodash';
 import React from 'react';
 import styled from 'styled-components';
@@ -34,7 +34,7 @@ const functionConfigTemplate = (
   }
 ) => {
   return `
-import { theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 
 const appTheme = theme({
   ${componentName}: (config) => ({
@@ -71,7 +71,7 @@ const staticConfigTemplate = (
   }
 ) => {
   return `
-import { theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 
 const appTheme = theme({
   ${componentName}: {

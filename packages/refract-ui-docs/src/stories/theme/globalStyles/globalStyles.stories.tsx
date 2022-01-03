@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
-import { theme, Theme, GlobalStyles, SubTheme } from '@refract-ui/core';
+import { theme, Theme, GlobalStyles, SubTheme } from '@refract-ui/react';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import StyleGuide from '../../../components/StyleGuide';

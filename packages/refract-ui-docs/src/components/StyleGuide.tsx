@@ -1,6 +1,6 @@
 import React from 'react';
 import { range } from 'lodash';
-import { Theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 import faker from 'faker';
 import Section from './Section';
 

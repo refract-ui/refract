@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { Theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 import genTheme from '@refract-ui/core/src/theme';
 
 export type RefractDecoratorTheme = {

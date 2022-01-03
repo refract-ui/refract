@@ -104,8 +104,7 @@ const Icon = createThemedComponent<
       },
 
       defaultStyleMapping: {
-        // TODO: components isn't on theme
-        // xs: { ...theme.components.icons }
+        xs: { ...theme.components.icons }
       },
 
       cascadeStateProps: {},

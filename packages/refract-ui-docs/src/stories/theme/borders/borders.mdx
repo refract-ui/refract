@@ -2,18 +2,17 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './borders.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate
+} from './borders.stories';
 
-<BreadCrumb
-  token="borders"
-/>
+<BreadCrumb token="borders" />
 
 The `borders` object includes a set of attributes for constructing borders at various breakpoints. This includes things like `borderWidth`, `broderStyle`, `borderColor`, and `borderRadius`.
 
-<Story
-  name="Example"
-  id="core-theme-borders--default-template"
->
+<Story name="Example" id="core-theme-borders--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
@@ -23,24 +22,24 @@ DESCRIPTION OF EXAMPLE GOES HERE
 
 ## Default Props
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { borders } = theme({});
 
 assert(borders).isEqual({
   lg: {
-    borderRadius: "0.3rem"
+    borderRadius: '0.3rem'
   },
   md: {
-    borderRadius: "0.5rem",
-    borderStyle: "solid",
-    borderWidth: "2px"
+    borderRadius: '0.5rem',
+    borderStyle: 'solid',
+    borderWidth: '2px'
   },
   xs: {
-    borderColor: "rgb(249, 249, 251)",
-    borderRadius: "0.2rem",
-    borderStyle: "solid",
-    borderWidth: "1px"
+    borderColor: 'rgb(249, 249, 251)',
+    borderRadius: '0.2rem',
+    borderStyle: 'solid',
+    borderWidth: '1px'
   }
 });
 ```
@@ -51,15 +50,12 @@ assert(borders).isEqual({
 
 ### Using Function Values
 
-<Story
-  name="Borders Function"
-  id="core-theme-borders--function-template"
->
+<Story name="Borders Function" id="core-theme-borders--function-template">
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { borders } = theme({
   borders: ({ defaults }) => ({
@@ -71,7 +67,7 @@ const { borders } = theme({
     lg: {
       ...defaults.lg,
       borderWidth: '1px',
-      borderStyle: 'solid',
+      borderStyle: 'solid'
     }
   })
 });
@@ -79,15 +75,12 @@ const { borders } = theme({
 
 ### Using Static Values
 
-<Story
-  name="Borders Static"
-  id="core-theme-borders--static-template"
->
+<Story name="Borders Static" id="core-theme-borders--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { borders } = theme({
   borders: {

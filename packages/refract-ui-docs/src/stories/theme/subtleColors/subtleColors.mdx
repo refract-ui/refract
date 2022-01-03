@@ -2,25 +2,25 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate, DeriveTemplate } from './subtleColors.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate,
+  DeriveTemplate
+} from './subtleColors.stories';
 
-<BreadCrumb
-  token="subtleColors"
-/>
+<BreadCrumb token="subtleColors" />
 
 The `subtleColors` attribute set is derived from the `themeColors` attributes by ramping up the brightness of the colors by a few shades. These attributes are useful for things like disabled states or background accents of elements that use the `themeColor` attributes.
 
-<Story
-  name="subtleColors"
-  id="core-theme-subtlecolors--default-template"
->
+<Story name="subtleColors" id="core-theme-subtlecolors--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
 ## Default Props
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { subtleColors } = theme({});
 
 assert(subtleColors).isEqual({
@@ -41,15 +41,12 @@ assert(subtleColors).isEqual({
 
 ### Using Function Values
 
-<Story
-  name="colorsFunction"
-  id="core-theme-subtlecolors--function-template"
->
+<Story name="colorsFunction" id="core-theme-subtlecolors--function-template">
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { subtleColors } = theme({
   subtleColors: ({ defaults }) => ({
@@ -62,15 +59,12 @@ const { subtleColors } = theme({
 
 ### Using Static Values
 
-<Story
-  name="colorsStatic"
-  id="core-theme-subtlecolors--static-template"
->
+<Story name="colorsStatic" id="core-theme-subtlecolors--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { subtleColors } = theme({
   subtleColors: {
@@ -84,15 +78,12 @@ const { subtleColors } = theme({
 
 `subtleColors` are derived from the `themeColors`. Passing different colors to the `themeColors` object also cascades into the `subtleColors`. In this example, we've updated the `themeColors.primary` value, which gives us a different `subtleColors.primary` value.
 
-<Story
-  name="colorsDerive"
-  id="core-theme-subtlecolors--derive-template"
->
+<Story name="colorsDerive" id="core-theme-subtlecolors--derive-template">
   {DeriveTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { subtleColors } = theme({
   themeColors: {

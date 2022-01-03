@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { ThemeContext } from 'styled-components';
-import { theme } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 import { useArgs } from '@storybook/client-api';
 import BreakpointComponent from '../../../components/Breakpoints';
 import page from './breakpoints.mdx';

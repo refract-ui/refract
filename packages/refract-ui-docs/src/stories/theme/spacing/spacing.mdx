@@ -2,18 +2,17 @@
 
 import { Story } from '@storybook/addon-docs';
 import BreadCrumb from '../../../components/BreadCrumb';
-import { DefaultTemplate, FunctionTemplate, StaticTemplate } from './spacing.stories';
+import {
+  DefaultTemplate,
+  FunctionTemplate,
+  StaticTemplate
+} from './spacing.stories';
 
-<BreadCrumb
-  token="spacing"
-/>
+<BreadCrumb token="spacing" />
 
 The `spacing` attribute is a set of values that determines the spacing of various components including block elements, inputs, buttons, and tables.
 
-<Story
-  name="Example"
-  id="core-theme-spacing--default-template"  
->
+<Story name="Example" id="core-theme-spacing--default-template">
   {DefaultTemplate.bind({})}
 </Story>
 
@@ -23,17 +22,17 @@ DESCRIPTION OF EXAMPLE GOES HERE
 
 ## Default Props
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 const { spacing } = theme({});
 
 assert(spacing).isEqual({
-  0: "0rem",
-  1: "0.25rem",
-  2: "0.5rem",
-  3: "1rem",
-  4: "1.5rem",
-  5: "3rem",
+  0: '0rem',
+  1: '0.25rem',
+  2: '0.5rem',
+  3: '1rem',
+  4: '1.5rem',
+  5: '3rem',
   basis: 1
 });
 ```
@@ -44,15 +43,12 @@ assert(spacing).isEqual({
 
 ### Using Function Values
 
-<Story
-  name="Spacing Function"
-  id="core-theme-spacing--function-template"
->
+<Story name="Spacing Function" id="core-theme-spacing--function-template">
   {FunctionTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { spacing } = theme({
   spacing: ({ defaults }) => ({
@@ -65,15 +61,12 @@ const { spacing } = theme({
 
 ### Using Static Values
 
-<Story
-  name="Spacing Static"
-  id="core-theme-spacing--static-template"
->
+<Story name="Spacing Static" id="core-theme-spacing--static-template">
   {StaticTemplate.bind({})}
 </Story>
 
-``` js
-import { theme } from '@refract-ui/core';
+```js
+import { theme } from '@refract-ui/react';
 
 const { spacing } = theme({
   spacing: {

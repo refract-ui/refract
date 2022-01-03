@@ -1,7 +1,8 @@
 import React from 'react';
 import { pick, reduce, forEach, isArray, has } from 'lodash';
 import { storiesOf } from '@storybook/react';
-import { theme, BlockElements } from '@refract-ui/core';
+import { BlockElements } from '@refract-ui/core';
+import { theme } from '@refract-ui/react';
 import ThemePropList from '../components/ThemePropList';
 import { nativeElementPropDefinitions } from '../lib/nativeElements';
 import {
