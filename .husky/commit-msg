@@ -1,4 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-[[ -n $SKIP_HUSKY ]] || yarn commitlint --edit "$1"
