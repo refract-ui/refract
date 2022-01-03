@@ -9,7 +9,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  width: 100%;
   border: solid ${({ theme }) => theme.themeColorOpacities.fg40} 1px;
   border-radius: 4px;
   margin: 1rem;

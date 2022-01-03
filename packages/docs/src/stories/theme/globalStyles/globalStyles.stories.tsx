@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { ThemeContext, ThemeProvider } from 'styled-components';
+import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 import { theme, Theme, GlobalStyles, SubTheme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
@@ -7,6 +7,10 @@ import StyleGuide from '../../../components/StyleGuide';
 import page from './globalStyles.mdx';
 
 const { themeColors: defaultThemeColors } = theme();
+
+const SSubTheme = styled(SubTheme)`
+  padding: 0.5rem;
+`;
 
 export default {
   title: 'core/theme/globalStyles',
@@ -65,9 +69,9 @@ export const WithSubTheme: Story = () => {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <StyleGuide>
-        <SubTheme theme={nestedInvertedTheme}>
+        <SSubTheme theme={nestedInvertedTheme}>
           <StyleGuide />
-        </SubTheme>
+        </SSubTheme>
       </StyleGuide>
     </ThemeProvider>
   );
