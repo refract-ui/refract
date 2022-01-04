@@ -15,9 +15,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Yarn version
-        run: yarn --version
-
       - uses: actions/setup-node@master
         with:
           node-version: '16'

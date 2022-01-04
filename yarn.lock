@@ -3439,7 +3439,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@workspace:*, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@*, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -3466,7 +3466,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": "workspace:*"
+    "@refract-ui/core": "*"
     "@types/faker": ^4.1.12
     babel-plugin-styled-components: 2.0.2
     faker: ^4.1.0
