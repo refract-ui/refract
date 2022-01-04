@@ -3439,7 +3439,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@workspace:*, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@npm:latest":
+  version: 0.0.10
+  resolution: "@refract-ui/core@npm:0.0.10"
+  dependencies:
+    "@popperjs/core": ^2.6.0
+    "@types/lodash": ^4.14.157
+    "@types/tinycolor2": ^1.4.2
+    lodash: ^4.17.15
+    react-icons: ^3.10.0
+    react-popper: ^2.2.4
+    tinycolor2: ^1.4.1
+    utility-types: ^3.10.0
+  peerDependencies:
+    "@storybook/addon-actions": ^5.3.19
+    "@storybook/react": ^5.3.19
+    "@types/styled-components": ^5.1.0
+    react: ^16.13.1
+    react-dom: ^16.13.1
+    styled-components: ^5.1.1
+  checksum: dd5e6e7421e32b9e9378800b14041e3a61996c03b57e5e9ffd5f66db90ae0f1a893649c92022a8fd0af3b98264251a4264ff021f97e69c20caf77c0925215595
+  languageName: node
+  linkType: hard
+
+"@refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -3466,7 +3489,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": "workspace:*"
+    "@refract-ui/core": latest
     "@types/faker": ^4.1.12
     babel-plugin-styled-components: 2.0.2
     faker: ^4.1.0
