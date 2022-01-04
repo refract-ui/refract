@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import genTheme from '../packages/refract-core/src/theme';
+import genTheme from '../packages/refract-ui-core/src/theme';
 
 const darkTheme = {
   name: 'dark',

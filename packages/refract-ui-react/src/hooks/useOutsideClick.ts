@@ -8,9 +8,7 @@ import { useEffect } from 'react';
  * @param {(e: MouseEvent) => void} callback - function to be called on outside click
  */
 const useOutsideClick = (
-  /* eslint-disable  @typescript-eslint/no-explicit-any */
   ref: React.MutableRefObject<any>,
-  /* eslint-enable @typescript-eslint/no-explicit-any */
   isActive: boolean,
   callback: (e: MouseEvent) => void
 ): void => {

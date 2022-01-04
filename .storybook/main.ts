@@ -1,8 +1,9 @@
 module.exports = {
-  stories: ['../packages/**/*.stories.tsx'],
+  stories: ['../packages/refract-ui-docs/**/*.stories.@(tsx|mdx)'],
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-docs',
-    '@storybook/addon-links'
+    '@storybook/addon-links',
+    '../packages/refract-ui-docs/preset'
   ]
 };

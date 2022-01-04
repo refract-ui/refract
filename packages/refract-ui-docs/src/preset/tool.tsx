@@ -59,11 +59,14 @@ const Tool = (): any => {
 
   const paramThemes = refractParams?.themes || [];
 
-  const onThemeChange = useCallback(value => {
-    updateGlobals({
-      [REFRACT_PARAM_KEY]: value
-    });
-  }, []);
+  const onThemeChange = useCallback(
+    value => {
+      updateGlobals({
+        [REFRACT_PARAM_KEY]: value
+      });
+    },
+    [updateGlobals]
+  );
 
   return (
     <WithTooltip

@@ -1,3 +1,3 @@
-import config from './src/preset';
+import * as config from './src/preset';
 
 export default config;

@@ -17,7 +17,7 @@ export default {
   }
 };
 
-export function Template(): React.FC {
+export function Template(): React.ReactNode {
   const [args, updateArgs, resetArgs] = useArgs();
   const { themeColors: currentThemeValues } = useContext(ThemeContext);
 
@@ -41,12 +41,12 @@ Template.argTypes = Object.fromEntries(
   Object.keys(defaultThemeColors).map(k => [k, { control: { type: 'color' } }])
 );
 
-export function DefaultTemplate(): React.FC {
+export function DefaultTemplate(): React.ReactNode {
   const { themeColors: currentThemeValues } = useContext(ThemeContext);
   return <ColorPalette colors={currentThemeValues} />;
 }
 
-export const FunctionTemplate = (): React.FC => {
+export const FunctionTemplate = (): React.ReactNode => {
   const { themeColors } = theme({
     themeColors: ({ defaults }) => ({
       ...defaults,
@@ -57,7 +57,7 @@ export const FunctionTemplate = (): React.FC => {
   return <ColorPalette colors={themeColors} />;
 };
 
-export const StaticTemplate = (): React.FC => {
+export const StaticTemplate = (): React.ReactNode => {
   const { themeColors } = theme({
     themeColors: {
       white: '#fefefe',
