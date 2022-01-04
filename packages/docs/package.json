@@ -1,6 +1,6 @@
 {
   "name": "@refract-ui/docs",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "main": "src/index.ts",
   "author": "dispatch@graveflex.com",
   "license": "MIT",
@@ -27,5 +27,5 @@
   "scripts": {
     "test": "jest --config ../../jest.config.js"
   },
-  "gitHead": "b86810877c5db3dfeb55d961a6a15f2b29952e2c"
+  "gitHead": "b1c07d47790d59c74fbf73007b2ea078db5864cd"
 }
