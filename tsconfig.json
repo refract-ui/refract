@@ -6,7 +6,7 @@
     "declaration": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "module": "ES2015",
+    "module": "commonjs",
     "moduleResolution": "node",
     "target": "esnext",
     "lib": [ "esnext", "DOM" ],
