@@ -10,12 +10,12 @@ export default [
     input: 'packages/core/index.ts',
     output: [
       {
-        file: `packages/core/${corePkg.module}`,
+        file: `packages/core/dist/index.esm.js`,
         format: 'es',
         name: '@refract/core'
       },
       {
-        file: `packages/core/${corePkg.main}`,
+        file: `packages/core/dist/index.cjs.js`,
         format: 'cjs',
         name: '@refract/core'
       }
