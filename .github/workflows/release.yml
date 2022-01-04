@@ -15,9 +15,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Update yarn
-        run: yarn set version berry
-
       - name: Yarn version
         run: yarn --version
 
