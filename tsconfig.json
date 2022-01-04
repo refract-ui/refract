@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "composite": false,
+      "outDir": "./dist",
+      "rootDir": ".",
+      "declaration": true,
+      "noImplicitAny": true,
+      "esModuleInterop": true,
+      "module": "ES2015",
+      "moduleResolution": "node",
+      "target": "esnext",
+      "lib": [ "esnext", "DOM" ],
+      "jsx": "react",
+      "baseUrl": "./packages"
+    },
+    "include": ["packages/**/*", "babel.config.js"],
+    "exclude": [
+      "node_modules",
+      "dist"
+    ]
+  }
+  
