@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.9](https://github.com/refract-ui/refract/compare/@refract-ui/docs@0.1.0...@refract-ui/docs@0.0.9) (2022-01-04)
+
+
+### Bug Fixes
+
+* temp adding latest to docs resolution ([92871b7](https://github.com/refract-ui/refract/commit/92871b7d4916f1371110b2a0663787f8498ff9d9))
+* using workspace ([2a1f4c6](https://github.com/refract-ui/refract/commit/2a1f4c6d3f9498b60579f626e9b87fcc85a24d02))
+
+
+
+
+
 # [0.1.0](https://github.com/refract-ui/refract/compare/@refract-ui/docs@0.0.8...@refract-ui/docs@0.1.0) (2022-01-04)
 
 
