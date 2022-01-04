@@ -1,6 +1,6 @@
 {
   "name": "@refract-ui/core",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "index.ts",
   "author": "dispatch@graveflex.com",
   "license": "MIT",
