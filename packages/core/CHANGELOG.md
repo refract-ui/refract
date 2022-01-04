@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/refract-ui/refract/compare/@refract-ui/core@0.0.13...@refract-ui/core@0.1.0) (2022-01-04)
+
+
+### Features
+
+* cascade refactoring ([#53](https://github.com/refract-ui/refract/issues/53)) ([7da1cb7](https://github.com/refract-ui/refract/commit/7da1cb7e885fedaf7e04760d2d681094ee23c791))
+
+
+
+
+
 ## [0.0.13](https://github.com/refract-ui/refract/compare/@refract-ui/core@0.0.12...@refract-ui/core@0.0.13) (2021-11-23)
 
 **Note:** Version bump only for package @refract-ui/core
