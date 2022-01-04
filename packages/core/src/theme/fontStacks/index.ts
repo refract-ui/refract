@@ -1,15 +1,26 @@
-import { reduce, isFunction, defaults } from 'lodash';
-import { StandardFaces, FontFaces } from '../fontFaces';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
+import { reduce, isObject, isString } from 'lodash';
 
 export type FontStack = Array<string>;
 
-export type FontStacks = {
-  [K in keyof typeof StandardFaces]: FontStack;
+export enum StandardFaces {
+  sans,
+  serif,
+  mono
+}
+
+export type FontStackTypes = {
+  [K in keyof typeof StandardFaces]: string | FontStack;
 } & {
-  [name: string]: FontStack;
+  [name: string]: string | FontStack;
+};
+
+export type FontStacks = FontStackTypes & {
+  fallbackFace: keyof FontStackTypes;
 };
 
 const defaultFontStacks = {
+  fallbackFace: 'sans',
   sans: [
     '-apple-system',
     'BlinkMacSystemFont',
@@ -43,45 +54,28 @@ const defaultFontStacks = {
   ]
 } as FontStacks;
 
-export interface FontStackOverrideProps {
-  fontFaces: FontFaces;
-  defaults: FontStacks;
-}
+export const extension: ThemeExtension<FontStacks> = {
+  name: 'fontStacks',
+  deps: [],
+  defaults: defaultFontStacks,
+  apply: (props): FontStacks => {
+    if (isObject(props.override)) {
+      const override = reduce(
+        props.override,
+        (memo, val, key: keyof FontStacks) => {
+          if (isString(val)) {
+            memo[key] = [val];
+          } else {
+            memo[key] = val;
+          }
+          return memo;
+        },
+        {} as Partial<FontStacks>
+      ) as unknown;
 
-interface FontStackProps {
-  fallbackFace: keyof typeof StandardFaces;
-  fontFaces: FontFaces;
-  overrides:
-    | ((props: FontStackOverrideProps) => FontStacks)
-    | Partial<FontStacks>;
-}
+      props.override = override as Partial<typeof props.theme.fontStacks>;
+    }
 
-export default function fontStacks({
-  fallbackFace = 'sans',
-  fontFaces,
-  overrides = {}
-}: FontStackProps): FontStacks {
-  const defaultStacks = reduce(
-    fontFaces,
-    (memo, val, key) => {
-      const stack = (defaultFontStacks[key] ||
-        defaultFontStacks[fallbackFace]) as FontStack;
-
-      // prefer custom font if matching set is found in fontFaces config
-      if (val) {
-        stack.unshift(val.name);
-      }
-
-      memo[key] = stack;
-
-      return memo;
-    },
-    {} as FontStacks
-  );
-
-  if (isFunction(overrides)) {
-    return overrides({ fontFaces, defaults: defaultStacks });
+    return applyThemeSettings<Record<string, unknown>, FontStacks>(props);
   }
-
-  return defaults(overrides, defaultStacks);
-}
+};

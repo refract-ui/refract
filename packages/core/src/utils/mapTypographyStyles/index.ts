@@ -5,7 +5,7 @@ import { css } from 'styled-components';
 
 export type TypographyThemeMapping = FontVariant & {
   size: string;
-  color: string;
+  color?: string;
 };
 
 interface MapTypographyStyleProps {

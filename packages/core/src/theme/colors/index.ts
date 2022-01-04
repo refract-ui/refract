@@ -1,4 +1,4 @@
-import { defaults, isFunction } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 
 export type Colors = {
   white: string;
@@ -46,29 +46,9 @@ export const defaultColors: Colors = {
   cyan: '#17a2b8'
 };
 
-export interface ColorOverrideProps {
-  defaults: Colors;
-}
-
-export type ColorSettings =
-  | ((props: ColorOverrideProps) => Colors)
-  | Partial<Colors>;
-
-export interface ColorsProps {
-  overrides?: ColorSettings;
-}
-
-/**
- * colors
- *
- * @param {ColorsProps} [props] - color settings
- * @param {ColorSettings} [props.overrides] - color definitions
- * @return {Colors} colors used as the basis for all theme colors
- */
-export default function colors({ overrides = {} }: ColorsProps = {}): Colors {
-  if (isFunction(overrides)) {
-    return overrides({ defaults: defaultColors });
-  }
-
-  return defaults(overrides, defaultColors);
-}
+export const extension: ThemeExtension<Colors> = {
+  name: 'colors',
+  deps: [],
+  defaults: defaultColors,
+  apply: applyThemeSettings
+};

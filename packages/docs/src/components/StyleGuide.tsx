@@ -1,5 +1,4 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
 import { range } from 'lodash';
 import { Theme } from '@refract-ui/core';
 import faker from 'faker';
@@ -9,8 +8,8 @@ interface StyleGuideProps {
   theme?: Theme;
 }
 
-const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => (
-  <ThemeProvider theme={theme}>
+const StyleGuide: React.FC<StyleGuideProps> = ({ children }) => (
+  <>
     {children}
 
     <Section title="headings">
@@ -74,7 +73,17 @@ const StyleGuide: React.FC<StyleGuideProps> = ({ theme, children }) => (
         Press <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>Del</kbd>
       </p>
     </Section>
-  </ThemeProvider>
+
+    <Section title="description lists">
+      <label>dl, dd, dt</label>
+      <dl>
+        <dt>{faker.lorem.word()}</dt>
+        <dd>{faker.lorem.word()}</dd>
+        <dt>{faker.lorem.word()}</dt>
+        <dd>{faker.lorem.word()}</dd>
+      </dl>
+    </Section>
+  </>
 );
 
 export default StyleGuide;

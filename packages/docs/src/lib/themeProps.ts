@@ -35,49 +35,50 @@ type GridContainerPropDefinitions = {
   [p in keyof GridContainer]: ThemePropDefinition;
 };
 
-export const typograhyContainerPropDefinitions: TypographyContainerPropDefinitions = {
-  stack: {
-    alias: 'font-family',
-    link: 'https://drafts.csswg.org/css-fonts-3/#font-family-prop',
-    definition:
-      'The font-family CSS property specifies a prioritized list of one or more font family names and/or generic family names for the selected element. The stack property is a string array of fonts that will combine into the font-family CSS property.'
-  },
+export const typograhyContainerPropDefinitions: TypographyContainerPropDefinitions =
+  {
+    stack: {
+      alias: 'font-family',
+      link: 'https://drafts.csswg.org/css-fonts-3/#font-family-prop',
+      definition:
+        'The font-family CSS property specifies a prioritized list of one or more font family names and/or generic family names for the selected element. The stack property is a string array of fonts that will combine into the font-family CSS property.'
+    },
 
-  weight: {
-    alias: 'font-weight',
-    link: 'https://drafts.csswg.org/css-fonts-3/#font-weight-prop',
-    definition:
-      'The font-weight CSS property sets the weight (or boldness) of the font. The weights available depend on the font-family that is currently set.'
-  },
+    weight: {
+      alias: 'font-weight',
+      link: 'https://drafts.csswg.org/css-fonts-3/#font-weight-prop',
+      definition:
+        'The font-weight CSS property sets the weight (or boldness) of the font. The weights available depend on the font-family that is currently set.'
+    },
 
-  style: {
-    alias: 'font-style',
-    link: 'https://drafts.csswg.org/css-fonts-3/#font-style-prop',
-    definition:
-      'The font-style CSS property sets whether a font should be styled with a normal, italic, or oblique face from its font-family.'
-  },
+    style: {
+      alias: 'font-style',
+      link: 'https://drafts.csswg.org/css-fonts-3/#font-style-prop',
+      definition:
+        'The font-style CSS property sets whether a font should be styled with a normal, italic, or oblique face from its font-family.'
+    },
 
-  lineHeight: {
-    alias: 'line-height',
-    link: 'https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height',
-    definition:
-      "The line-height CSS property sets the height of a line box. It's commonly used to set the distance between lines of text. On block-level elements, it specifies the minimum height of line boxes within the element. On non-replaced inline elements, it specifies the height that is used to calculate line box height."
-  },
+    lineHeight: {
+      alias: 'line-height',
+      link: 'https://www.w3.org/TR/CSS2/visudet.html#propdef-line-height',
+      definition:
+        "The line-height CSS property sets the height of a line box. It's commonly used to set the distance between lines of text. On block-level elements, it specifies the minimum height of line boxes within the element. On non-replaced inline elements, it specifies the height that is used to calculate line box height."
+    },
 
-  letterSpacing: {
-    alias: 'letter-spacing',
-    link: 'https://drafts.csswg.org/css-text-3/#letter-spacing-property',
-    definition:
-      'The letter-spacing CSS property sets the horizontal spacing behavior between text characters. This value is added to the natural spacing between characters while rendering the text. Positive values of letter-spacing causes characters to spread farther apart, while negative values of letter-spacing bring characters closer together.'
-  },
+    letterSpacing: {
+      alias: 'letter-spacing',
+      link: 'https://drafts.csswg.org/css-text-3/#letter-spacing-property',
+      definition:
+        'The letter-spacing CSS property sets the horizontal spacing behavior between text characters. This value is added to the natural spacing between characters while rendering the text. Positive values of letter-spacing causes characters to spread farther apart, while negative values of letter-spacing bring characters closer together.'
+    },
 
-  color: {
-    alias: 'color',
-    link: 'https://drafts.csswg.org/css-color-3/#color',
-    definition:
-      "The color CSS property sets the foreground color value of an element's text and text decorations, and sets the <currentcolor> value. currentcolor may be used as an indirect value on other properties and is the default for other color properties, such as border-color."
-  }
-};
+    color: {
+      alias: 'color',
+      link: 'https://drafts.csswg.org/css-color-3/#color',
+      definition:
+        "The color CSS property sets the foreground color value of an element's text and text decorations, and sets the <currentcolor> value. currentcolor may be used as an indirect value on other properties and is the default for other color properties, such as border-color."
+    }
+  };
 
 export const containerPropDefinitions: ContainerPropDefinitions = {
   m: {
@@ -253,8 +254,7 @@ export const containerPropDefinitions: ContainerPropDefinitions = {
   },
   bgAttachment: {
     alias: 'background-attachment',
-    link:
-      'https://drafts.csswg.org/css-backgrounds-3/#the-background-attachment',
+    link: 'https://drafts.csswg.org/css-backgrounds-3/#the-background-attachment',
     definition:
       "The background-attachment CSS property sets whether a background image's position is fixed within the viewport, or scrolls with its containing block."
   },
@@ -269,45 +269,46 @@ export const containerPropDefinitions: ContainerPropDefinitions = {
   }
 };
 
-export const alignedContainerPropDefinitions: AlignedContainerPropDefinitions = {
-  ...containerPropDefinitions,
-  alignItems: {
-    alias: 'align-items',
-    definition:
-      'The CSS align-items property sets the align-self value on all direct children as a group. In Flexbox, it controls the alignment of items on the Cross Axis. In Grid Layout, it controls the alignment of items on the Block Axis within their grid area.',
-    link: 'https://drafts.csswg.org/css-flexbox-1/#propdef-align-items'
-  },
-  alignContent: {
-    alias: 'align-content',
-    definition:
-      "The CSS align-content property sets the distribution of space between and around content items along a flexbox's cross-axis or a grid's block axis.",
-    link: 'https://drafts.csswg.org/css-flexbox-1/#align-content-property'
-  },
-  alignSelf: {
-    alias: 'align-self',
-    definition:
-      "The align-self CSS property overrides a grid or flex item's align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.",
-    link: 'https://drafts.csswg.org/css-flexbox-1/#propdef-align-self'
-  },
-  justifyItems: {
-    alias: 'justify-items',
-    definition:
-      'The CSS justify-items property defines the default justify-self for all items of the box, giving them all a default way of justifying each box along the appropriate axis.',
-    link: 'https://drafts.csswg.org/css-align-3/#propdef-justify-items'
-  },
-  justifyContent: {
-    alias: 'justify-content',
-    definition:
-      'The CSS justify-content property defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.',
-    link: 'https://drafts.csswg.org/css-flexbox-1/#propdef-justify-content'
-  },
-  justifySelf: {
-    alias: 'justify-self',
-    definition:
-      'The CSS justify-self property sets the way a box is justified inside its alignment container along the appropriate axis.',
-    link: 'https://drafts.csswg.org/css-align-3/#propdef-justify-self'
-  }
-};
+export const alignedContainerPropDefinitions: AlignedContainerPropDefinitions =
+  {
+    ...containerPropDefinitions,
+    alignItems: {
+      alias: 'align-items',
+      definition:
+        'The CSS align-items property sets the align-self value on all direct children as a group. In Flexbox, it controls the alignment of items on the Cross Axis. In Grid Layout, it controls the alignment of items on the Block Axis within their grid area.',
+      link: 'https://drafts.csswg.org/css-flexbox-1/#propdef-align-items'
+    },
+    alignContent: {
+      alias: 'align-content',
+      definition:
+        "The CSS align-content property sets the distribution of space between and around content items along a flexbox's cross-axis or a grid's block axis.",
+      link: 'https://drafts.csswg.org/css-flexbox-1/#align-content-property'
+    },
+    alignSelf: {
+      alias: 'align-self',
+      definition:
+        "The align-self CSS property overrides a grid or flex item's align-items value. In Grid, it aligns the item inside the grid area. In Flexbox, it aligns the item on the cross axis.",
+      link: 'https://drafts.csswg.org/css-flexbox-1/#propdef-align-self'
+    },
+    justifyItems: {
+      alias: 'justify-items',
+      definition:
+        'The CSS justify-items property defines the default justify-self for all items of the box, giving them all a default way of justifying each box along the appropriate axis.',
+      link: 'https://drafts.csswg.org/css-align-3/#propdef-justify-items'
+    },
+    justifyContent: {
+      alias: 'justify-content',
+      definition:
+        'The CSS justify-content property defines how the browser distributes space between and around content items along the main-axis of a flex container, and the inline axis of a grid container.',
+      link: 'https://drafts.csswg.org/css-flexbox-1/#propdef-justify-content'
+    },
+    justifySelf: {
+      alias: 'justify-self',
+      definition:
+        'The CSS justify-self property sets the way a box is justified inside its alignment container along the appropriate axis.',
+      link: 'https://drafts.csswg.org/css-align-3/#propdef-justify-self'
+    }
+  };
 
 export const flexContainerPropDefinitions: FlexContainerPropDefinitions = {
   ...alignedContainerPropDefinitions,

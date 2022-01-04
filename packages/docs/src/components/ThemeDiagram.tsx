@@ -7,13 +7,10 @@ const Container = styled.div`
   height: 750px;
 `;
 
-function pos({
-  left,
-  top
-}: {
-  left: number;
-  top: number;
-}): { x: number; y: number } {
+function pos({ left, top }: { left: number; top: number }): {
+  x: number;
+  y: number;
+} {
   return {
     x: 5 + left * 190,
     y: 5 + top * 70

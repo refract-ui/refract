@@ -1,8 +1,7 @@
-import { defaults, isFunction } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 import type { FlattenSimpleInterpolation } from 'styled-components';
 import { css } from 'styled-components';
 import { ColorShades } from '../colorShades';
-import { Colors } from '../colors';
 
 export type BorderBreakpointStyle = {
   borderColor: string;
@@ -20,69 +19,10 @@ export type Borders = {
   xxl?: Partial<BorderBreakpointStyle>;
 };
 
-export interface BorderOverrideProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  defaults: Borders;
-}
-
-export interface BorderProps {
-  colors: Colors;
-  colorShades: ColorShades;
-  overrides: ((props: BorderOverrideProps) => Borders) | Partial<Borders>;
-}
-
-export function applyBorderStyle(
-  border: Partial<BorderBreakpointStyle>
-): FlattenSimpleInterpolation {
-  if (!border) {
-    return undefined;
-  }
-
-  return css`
-    ${
-      border.borderWidth &&
-      css`
-        border-width: ${border.borderWidth};
-      `
-    }
-
-    ${
-      border.borderStyle &&
-      css`
-        border-style: ${border.borderStyle};
-      `
-    }
-
-    ${
-      border.borderColor &&
-      css`
-        border-color: ${border.borderColor};
-      `
-    }
-
-    ${
-      border.borderRadius &&
-      css`
-        border-radius: ${border.borderRadius};
-      `
-    }
-
-    ${
-      border.borderStyle &&
-      css`
-        border-style: ${border.borderStyle};
-      `
-    }
-  `;
-}
-
-export default function borders({
-  colors,
-  colorShades,
-  overrides = {}
-}: BorderProps): Borders {
-  const defaultBorders: Borders = {
+export const extension: ThemeExtension<Borders> = {
+  name: 'borders',
+  deps: ['colorShades', 'themeColors'],
+  defaults: ({ colorShades }: { colorShades: ColorShades }) => ({
     xs: {
       borderWidth: '1px',
       borderStyle: 'solid',
@@ -97,11 +37,42 @@ export default function borders({
     lg: {
       borderRadius: '0.3rem'
     }
-  };
+  }),
 
-  if (isFunction(overrides)) {
-    return overrides({ colors, colorShades, defaults: defaultBorders });
+  apply: applyThemeSettings
+};
+
+export function applyBorderStyle(
+  border: Partial<BorderBreakpointStyle>
+): FlattenSimpleInterpolation {
+  if (!border) {
+    return undefined;
   }
 
-  return defaults(overrides, defaultBorders);
+  return css`
+    ${border.borderWidth &&
+    css`
+      border-width: ${border.borderWidth};
+    `}
+
+    ${border.borderStyle &&
+    css`
+      border-style: ${border.borderStyle};
+    `}
+
+    ${border.borderColor &&
+    css`
+      border-color: ${border.borderColor};
+    `}
+
+    ${border.borderRadius &&
+    css`
+      border-radius: ${border.borderRadius};
+    `}
+
+    ${border.borderStyle &&
+    css`
+      border-style: ${border.borderStyle};
+    `}
+  `;
 }

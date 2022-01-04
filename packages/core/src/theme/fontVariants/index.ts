@@ -1,6 +1,7 @@
-import { reduce, defaults, isFunction, defaultsDeep } from 'lodash';
-import { FontFaces } from '../fontFaces';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
+import { reduce, defaults } from 'lodash';
 import { FontStack, FontStacks } from '../fontStacks';
+import { Body } from '../body';
 
 enum RequiredVariants {
   heading,
@@ -19,78 +20,60 @@ export type FontVariant = {
   style: string;
   lineHeight: string;
   letterSpacing: string;
-  color: string;
+  color?: string;
 };
 
 export type FontVariants = {
-  [K in keyof typeof RequiredVariants]: Partial<FontVariant>;
+  [K in keyof typeof RequiredVariants]: FontVariant;
 } & {
   [name: string]: Partial<FontVariant>;
 };
 
-export interface FontVariantOverrideProps {
-  fontFaces: FontFaces;
-  fontStacks: FontStacks;
-  defaults: FontVariants;
-}
+export const extension: ThemeExtension<FontVariants> = {
+  name: 'fontVariants',
+  deps: ['fontStacks', 'body'],
+  defaults: ({ fontStacks, body }: { fontStacks: FontStacks; body: Body }) => {
+    const defaultStack = fontStacks[fontStacks.fallbackFace];
+    const defaultVariantProps = {
+      stack: defaultStack,
+      weight: 500,
+      style: 'normal',
+      lineHeight: '1.5',
+      letterSpacing: '0'
+    } as FontVariant;
 
-interface FontVariantProps {
-  fontFaces: FontFaces;
-  fontStacks: FontStacks;
-  overrides:
-    | ((props: FontVariantOverrideProps) => FontVariants)
-    | Partial<FontVariants>;
-}
+    const defaultFontVariants = {
+      heading: {
+        stack: defaultStack,
+        lineHeight: '1.3',
+        letterSpacing: '1.2px'
+      },
+      display: {
+        stack: defaultStack,
+        weight: 300,
+        lineHeight: '1.3',
+        letterSpacing: '1.2px'
+      },
+      default: {},
+      code: {
+        stack: fontStacks.mono
+      },
+      quote: {
+        stack: fontStacks.serif
+      },
+      button: {},
+      anchor: {},
+      link: {}
+    } as FontVariants;
 
-export default function fontVariants({
-  fontFaces,
-  fontStacks,
-  overrides = {}
-}: FontVariantProps): FontVariants {
-  const defaultVariantProps = {
-    stack: fontStacks.sans,
-    weight: 500,
-    style: 'normal',
-    lineHeight: '1.5',
-    letterSpacing: '0'
-  } as FontVariant;
-
-  const defaultFontVariants = {
-    heading: {
-      stack: fontStacks.sans,
-      lineHeight: '1.3',
-      letterSpacing: '1.2px'
-    },
-    display: {
-      stack: fontStacks.sans,
-      weight: 300,
-      lineHeight: '1.3',
-      letterSpacing: '1.2px'
-    },
-    default: {},
-    code: {
-      stack: fontStacks.mono
-    },
-    quote: {
-      stack: fontStacks.serif
-    },
-    button: {},
-    anchor: {},
-    link: {}
-  } as FontVariants;
-
-  const defaultVariants = reduce(
-    defaultFontVariants,
-    (memo, val, key) => {
-      memo[key] = defaults(val, defaultVariantProps);
-      return memo;
-    },
-    {} as FontVariants
-  );
-
-  if (isFunction(overrides)) {
-    return overrides({ fontFaces, fontStacks, defaults: defaultVariants });
-  }
-
-  return defaultsDeep(overrides, defaultVariants);
-}
+    return reduce(
+      defaultFontVariants,
+      (memo, val, key) => {
+        memo[key] = defaults(val, defaultVariantProps);
+        return memo;
+      },
+      {} as FontVariants
+    );
+  },
+  apply: applyThemeSettings
+};

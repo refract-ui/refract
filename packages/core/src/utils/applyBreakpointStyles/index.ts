@@ -17,11 +17,10 @@ import type {
 import { css } from 'styled-components';
 import { OmitByValue, PickByValue } from 'utility-types';
 import {
-  PseudoClass,
   PseudoClassExtension,
   ThemeExtensionHelperMethods
 } from '../../utils/componentThemeBreakpoints';
-import { Theme } from '../../theme';
+import { CoreTheme } from '../../theme';
 
 function isPseudoSelector(key: string): boolean {
   return /^_/.test(key);
@@ -74,27 +73,31 @@ export type ThemePropStyleMapping<T, TProps> = {
     | FlattenSimpleInterpolation;
 };
 
-interface ApplyStyleProps<O, T, TProps> {
-  theme: Theme;
+interface ApplyStyleProps<TThemeBreakpoint, T, TProps> {
+  theme: CoreTheme;
   computedProps: Partial<T>;
   props: Partial<T>;
-  apply: ThemePropStyleMapping<O, TProps>;
+  apply: ThemePropStyleMapping<TThemeBreakpoint, TProps>;
   helperMethods: ThemeExtensionHelperMethods;
   componentProps: TProps;
 }
 
-function applyStyles<O, T, TProps>({
+function applyStyles<TThemeBreakpoint, TExtends, TProps>({
   theme,
   computedProps,
   props,
   apply,
   helperMethods,
   componentProps
-}: ApplyStyleProps<O, T, TProps>): Array<FlattenSimpleInterpolation> {
+}: ApplyStyleProps<
+  TThemeBreakpoint,
+  TExtends,
+  TProps
+>): Array<FlattenSimpleInterpolation> {
   return reduce(
     apply,
     (memo, val, key) => {
-      const targetProp = props[key as keyof T];
+      const targetProp = props[key as keyof TExtends];
       if (!targetProp) {
         return memo;
       }
@@ -102,7 +105,7 @@ function applyStyles<O, T, TProps>({
       if (isFunction(val)) {
         const computedVal = val({
           ...computedProps,
-          ...props,
+          ...(props as TThemeBreakpoint),
           theme,
           componentProps,
           ...helperMethods
@@ -117,36 +120,45 @@ function applyStyles<O, T, TProps>({
   );
 }
 
-type ThemeCascadeStateMapping<O, T, P extends keyof O> = {
-  [Q in keyof PickByValue<Partial<T>, PseudoClassExtension<T>>]:
-    | ((args: Partial<O> & ThemeExtensionHelperMethods) => O[P])
-    | O[P];
+type ThemeCascadeStateMapping<
+  TThemeBreakpoint,
+  P extends keyof TThemeBreakpoint
+> = {
+  [Q in keyof PickByValue<
+    Partial<TThemeBreakpoint>,
+    PseudoClassExtension<TThemeBreakpoint>
+  >]:
+    | ((
+        args: TThemeBreakpoint & ThemeExtensionHelperMethods
+      ) => TThemeBreakpoint[P])
+    | TThemeBreakpoint[P];
 };
 
-export type CascadeStateSettings<O, T> = {
-  [P in keyof OmitByValue<
-    Partial<O>,
-    PseudoClass<O>
-  >]?: ThemeCascadeStateMapping<O, T, P>;
+export type CascadeStateSettings<TThemeBreakpoint> = {
+  [P in keyof TThemeBreakpoint]?: ThemeCascadeStateMapping<TThemeBreakpoint, P>;
 };
 
-interface ApplyBreakpointStyleProps<O, T, TProps> {
-  theme: Theme;
-  props: Partial<T>;
-  apply: ThemePropStyleMapping<O, TProps>;
-  cascade: CascadeStateSettings<O, T>;
+interface ApplyBreakpointStyleProps<TThemeBreakpoint, TProps> {
+  theme: CoreTheme;
+  props: TThemeBreakpoint;
+  apply: ThemePropStyleMapping<TThemeBreakpoint, TProps>;
+  cascade: CascadeStateSettings<TThemeBreakpoint>;
   helperMethods: ThemeExtensionHelperMethods;
   componentProps: TProps;
 }
 
-export default function applyBreakpointStyles<O, T, TProps>({
+export default function applyBreakpointStyles<
+  TThemeBreakpoint,
+  TExtends,
+  TProps
+>({
   theme,
   props: passedProps,
   apply,
   cascade = {},
   helperMethods,
   componentProps
-}: ApplyBreakpointStyleProps<O, T, TProps>): Array<
+}: ApplyBreakpointStyleProps<TThemeBreakpoint, TProps>): Array<
   FlattenSimpleInterpolation | SimpleInterpolation
 > {
   // used cloned instance of props so as not to mutate args
@@ -164,37 +176,35 @@ export default function applyBreakpointStyles<O, T, TProps>({
     // iterate through each cascadable state to see if any props are missing
     for (const stateKey of Object.keys(
       cascade[prop as keyof typeof cascade]
-    ) as Array<keyof Partial<T>>) {
-      const targetProp = props[prop as keyof typeof props];
+    ) as Array<keyof typeof cascade>) {
+      // const targetProp = props[prop as keyof typeof props];
 
       if (!props[stateKey]) {
-        props[stateKey as keyof typeof props] = {} as T[keyof T];
+        props[stateKey as keyof typeof props] =
+          {} as TThemeBreakpoint[keyof TThemeBreakpoint];
       }
 
       const cascadeState = cascade[prop as keyof typeof cascade];
 
-      const cascadeVal = cascadeState[
-        stateKey as keyof typeof cascadeState
-      ] as typeof targetProp;
+      const cascadeVal = cascadeState[stateKey as keyof typeof cascadeState];
 
       const existingPropDef = get(props, [stateKey, prop]);
 
       if (!existingPropDef) {
-        const existingStates = (props[stateKey] || {}) as PseudoClassExtension<
-          T
-        >;
+        const existingStates = (props[stateKey] ||
+          {}) as PseudoClassExtension<TThemeBreakpoint>;
         existingStates[prop as keyof typeof existingStates] = cascadeVal;
       }
     }
   }
 
-  const computedProps = computeProps<T>({ props, helperMethods });
+  const computedProps = computeProps<TExtends>({ props, helperMethods });
 
   const baseProps = omitBy(computedProps, (_, key) =>
     isPseudoSelector(key)
-  ) as Partial<T>;
+  ) as Partial<TExtends>;
 
-  const baseStyles = applyStyles<O, T, TProps>({
+  const baseStyles = applyStyles<TThemeBreakpoint, TExtends, TProps>({
     theme,
     props: baseProps,
     computedProps,
@@ -212,12 +222,15 @@ export default function applyBreakpointStyles<O, T, TProps>({
     pseudoSelectors,
     (
       memo,
-      selectorKey: keyof PickByValue<Partial<T>, PseudoClassExtension<T>>
+      selectorKey: keyof PickByValue<
+        Partial<TExtends>,
+        PseudoClassExtension<TExtends>
+      >
     ) => {
       const selector = (selectorKey as string).replace(/_/, ':');
-      const selectorProps = computedProps[selectorKey] as Partial<T>;
+      const selectorProps = computedProps[selectorKey] as Partial<TExtends>;
 
-      const pseudoStyles = applyStyles<O, T, TProps>({
+      const pseudoStyles = applyStyles<TThemeBreakpoint, TExtends, TProps>({
         theme,
         props: { ...selectorProps },
         computedProps,

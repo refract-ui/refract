@@ -1,28 +1,43 @@
 import React from 'react';
-import { css, createGlobalStyle } from 'styled-components';
-import { ThemeComponent } from '../../theme';
-import reset from '../../theme/reset';
+import { ThemeComponent, CoreTheme } from '../../theme';
+import { GlobalStyleTheme } from '../../theme/globalStyles';
+import styled, { css, ThemeProvider } from 'styled-components';
 import createThemedComponent from '../../utils/createThemedComponent';
 import mapTypographyStyles from '../../utils/mapTypographyStyles';
 import { mapBlockElementStyles } from '../../theme/containers';
-import { GlobalStyleTheme } from '../../theme/globalStyles';
 
-const GlobalStylesComponent = createGlobalStyle<ThemeComponent>`
-  ${({ componentCss }) => css`
-    ${reset};
-    ${componentCss};
-  `}
+type SubTheme = GlobalStyleTheme;
+
+type SubThemeComponent = ThemeComponent & {
+  theme: CoreTheme;
+  children?: Element;
+  className?: string;
+};
+
+const Container = styled.div<ThemeComponent>`
+  ${({ componentCss }) =>
+    css`
+      ${componentCss}
+    `};
 `;
 
-const GlobalStylesFC: React.FC<ThemeComponent> = ({ componentCss }) => (
-  <GlobalStylesComponent componentCss={componentCss} />
+const SubThemeFC: React.FC<SubThemeComponent> = ({
+  componentCss,
+  theme,
+  children,
+  ...props
+}) => (
+  <ThemeProvider theme={theme}>
+    <Container componentCss={componentCss} {...props}>
+      {children}
+    </Container>
+  </ThemeProvider>
 );
 
-const GlobalStyles = createThemedComponent<GlobalStyleTheme>({
+const SubTheme = createThemedComponent<SubTheme>({
   compose: ({ theme }) => {
     return {
-      Component: GlobalStylesFC,
-
+      Component: SubThemeFC,
       defaultStyleMapping: theme.globalStyles,
 
       mapPropsToStyle: {
@@ -30,7 +45,7 @@ const GlobalStyles = createThemedComponent<GlobalStyleTheme>({
         container: ({ container }) =>
           mapBlockElementStyles({
             tagMapping: container,
-            tagName: 'html,body'
+            tagName: '&'
           }),
 
         heading: ({ heading }) =>
@@ -105,4 +120,4 @@ const GlobalStyles = createThemedComponent<GlobalStyleTheme>({
   }
 });
 
-export default GlobalStyles;
+export default SubTheme;

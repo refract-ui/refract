@@ -19,6 +19,7 @@ export const parameters = {
             'subtleColors',
             'darkColors',
             'colorShades',
+            'themeColorOpacities',
             'themeColorShades',
             'spacing',
             'borders',

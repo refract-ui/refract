@@ -6,10 +6,15 @@ module.exports = {
   addons: [
     '@storybook/addon-essentials',
     '@storybook/addon-docs',
-    '@storybook/addon-links',
-    // local version of plugin
+    '@storybook/addon-links', // local version of plugin
     // '../packages/docs/src/preset'
     // dist version of plugin
     '../packages/docs/preset'
   ],
+  features: {
+    babelModeV7: true
+  },
+  core: {
+    builder: "webpack5"
+  }
 };

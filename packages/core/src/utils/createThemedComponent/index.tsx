@@ -3,12 +3,11 @@ import { get, pick, defaultsDeep, difference } from 'lodash';
 import { ThemeContext } from 'styled-components';
 import { PickByValue } from 'utility-types';
 import contrastColor from '../../utils/contrastColor';
-import { Theme, ThemeComponent } from '../../theme';
+import { CoreTheme, ThemeComponent } from '../../theme';
 import { breakpointKeys } from '../../theme/mediaQueries';
 import applyComponentTheme from '../../utils/applyComponentTheme';
 import {
   ThemeBreakpoints,
-  ThemeExtension,
   ComponentThemeBreakpoint,
   ExtendTheme,
   PseudoClass,
@@ -54,10 +53,7 @@ interface ComponentGeneratorProps<
     TThemeBreakpoint,
     TBaseElementProps & TProps
   >;
-  cascadeStateProps?: CascadeStateSettings<
-    TThemeBreakpoint,
-    ThemeExtension<TThemeBreakpoint>
-  >;
+  cascadeStateProps?: CascadeStateSettings<TThemeBreakpoint>;
   variantMapping?: VariantMap<TVariants, TTheme>;
 }
 
@@ -121,7 +117,7 @@ export default function createThemedComponent<
   const ThemedComponent: React.FC<
     TBaseElementProps & TComponentProps & TProps
   > = props => {
-    const theme = get(props, 'theme', useContext(ThemeContext)) as Theme;
+    const theme = get(props, 'theme', useContext(ThemeContext)) as CoreTheme;
     const variantPropKeys = Object.keys(defaultVariants || {});
     let variant = defaultsDeep(
       pick(props, variantPropKeys) as TVariants,
@@ -131,7 +127,8 @@ export default function createThemedComponent<
     // define convenience methods passed along to each prop / style mapping
     const helperMethods = {
       theme,
-      contrastColor: (color: string) => contrastColor({ color, theme })
+      contrastColor: (color: string) =>
+        contrastColor({ color, themeColors: theme.themeColors })
     } as ThemeExtensionHelperMethods;
 
     const {
@@ -166,7 +163,7 @@ export default function createThemedComponent<
     ]) as Array<keyof TProps>;
     const componentProps = pick(props, componentPropKeys) as TProps;
 
-    const applyThemeBreakpoint = (theme: Theme, props: TThemeBreakpoint) =>
+    const applyThemeBreakpoint = (theme: CoreTheme, props: TThemeBreakpoint) =>
       applyBreakpointStyles<TThemeBreakpoint, TExtends, TProps>({
         theme,
         props,

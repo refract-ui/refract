@@ -5,9 +5,10 @@ import genTheme from '@refract-ui/core/src/theme';
 const darkTheme = {
   name: 'dark',
   theme: genTheme({
-    themeColors: ({ defaults }) => ({
+    container: ({ defaults, themeColors }) => ({
       ...defaults,
-      primary: 'tomato'
+      bg: themeColors.dark,
+      textColor: themeColors.light,
     })
   })
 }

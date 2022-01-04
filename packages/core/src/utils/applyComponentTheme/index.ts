@@ -6,13 +6,16 @@ import {
   ExtendTheme
 } from '../../utils/componentThemeBreakpoints';
 import { MediaQueries, breakpointKeys } from '../../theme/mediaQueries';
-import { Theme } from '../../theme';
+import { CoreTheme } from '../../theme';
 
 interface ApplyComponentThemeProps<T> {
-  theme: Theme;
+  theme: CoreTheme;
   defaultComponentTheme: ThemeBreakpoints<T>;
   extendTheme?: ExtendTheme<T>;
-  applyThemeBreakpoint: (theme: Theme, props: T) => FlattenSimpleInterpolation;
+  applyThemeBreakpoint: (
+    theme: CoreTheme,
+    props: T
+  ) => FlattenSimpleInterpolation;
 }
 
 export default function applyComponentTheme<T>({
@@ -31,10 +34,13 @@ export default function applyComponentTheme<T>({
     indexOf(breakpointKeys, key)
   );
 
-  return map(sortedBreakpoints, ([breakpoint, val]) => () =>
-    theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
-      theme,
-      val as T
-    )}`
+  return map(
+    sortedBreakpoints,
+    ([breakpoint, val]) =>
+      () =>
+        theme.mq[breakpoint as keyof MediaQueries]`${applyThemeBreakpoint(
+          theme,
+          val as T
+        )}`
   );
 }

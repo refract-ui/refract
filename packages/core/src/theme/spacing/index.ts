@@ -1,4 +1,5 @@
-import { get, reduce, defaults, isFunction } from 'lodash';
+import { reduce } from 'lodash';
+import { ThemeExtension, applyThemeSettings } from '../cascade';
 
 export type Spacing = {
   basis: number;
@@ -9,15 +10,6 @@ export type Spacing = {
   4: number;
   5: number;
 };
-
-export interface SpacingOverrideProps {
-  defaults: Spacing;
-  calculateSpacing: (basis: number) => Spacing;
-}
-
-export interface SpacingProps {
-  overrides: ((props: SpacingOverrideProps) => Spacing) | Partial<Spacing>;
-}
 
 const defaultBasis = 1;
 
@@ -44,13 +36,9 @@ function calculateSpacing(basis: number): Spacing {
   };
 }
 
-export default function spacing({ overrides = {} }: SpacingProps): Spacing {
-  const basis = get(overrides, 'basis', defaultBasis);
-  const defaultSpacing = calculateSpacing(basis);
-
-  if (isFunction(overrides)) {
-    return overrides({ defaults: defaultSpacing, calculateSpacing });
-  }
-
-  return defaults(overrides, defaultSpacing);
-}
+export const extension: ThemeExtension<Spacing> = {
+  name: 'spacing',
+  deps: [],
+  defaults: calculateSpacing(defaultBasis),
+  apply: applyThemeSettings
+};

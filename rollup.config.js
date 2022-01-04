@@ -10,12 +10,12 @@ export default [
     input: 'packages/core/index.ts',
     output: [
       {
-        file: `packages/core/${corePkg.module}`,
+        file: `packages/core/dist/index.esm.js`,
         format: 'es',
         name: '@refract/core'
       },
       {
-        file: `packages/core/${corePkg.main}`,
+        file: `packages/core/dist/index.cjs.js`,
         format: 'cjs',
         name: '@refract/core'
       }
@@ -25,7 +25,8 @@ export default [
         useTsconfigDeclarationDir: true,
         tsconfigOverride: {
           compilerOptions: {
-            declarationDir: 'packages/core/dist/.dts'
+            declarationDir: 'packages/core/dist/.dts',
+            module: 'es2015'
           }
         }
       }),
@@ -77,7 +78,12 @@ export default [
     plugins: [
       typescript({
         target: 'es2019',
-        useTsconfigDeclarationDir: true
+        useTsconfigDeclarationDir: true,
+        tsconfigOverride: {
+          compilerOptions: {
+            module: 'es2015'
+          }
+        }
       }),
       resolve({
         // pass custom options to the resolve plugin
