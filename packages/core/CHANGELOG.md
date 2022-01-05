@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.10](https://github.com/refract-ui/refract/compare/@refract-ui/core@0.1.9...@refract-ui/core@0.1.10) (2022-01-05)
+
+
+### Bug Fixes
+
+* triggering build ([4bff296](https://github.com/refract-ui/refract/commit/4bff2968fd964f299c4a216b986e0b8d16c93304))
+
+
+
+
+
 ## [0.1.9](https://github.com/refract-ui/refract/compare/@refract-ui/core@0.1.8...@refract-ui/core@0.1.9) (2022-01-05)
 
 
