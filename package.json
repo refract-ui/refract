@@ -96,7 +96,7 @@
     "test": "lerna run test --stream",
     "build": "rollup -c",
     "build:storybook": "mkdir -p public && build-storybook",
-    "release": "cross-env SKIP_HUSKY=true lerna publish",
+    "release": "lerna publish",
     "prepare": "husky install"
   },
   "commitlint": {
