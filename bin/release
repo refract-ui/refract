@@ -1,4 +1,5 @@
 #!/bin/sh
 
-rollup -c
+yarn build
 cd packages/core && npm publish --access public
+cd ../docs && npm publish --access public

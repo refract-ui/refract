@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Breakpoints } from '@refract-ui/core/src/theme/breakpoints';
 
-const Box = styled.div`
+interface BoxProps {
+  maxWidth: number;
+}
+
+const Box = styled.div<BoxProps>`
   width: ${({ maxWidth }: any) => `${maxWidth}px`};
   max-width: 100%;
   min-width: 100px;
@@ -20,7 +24,13 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-function BreakpointComponent({ breakpoints }: any): React.FC<Breakpoints> {
+interface BreakpointComponentProps {
+  breakpoints: Breakpoints;
+}
+
+const BreakpointComponent: React.FC<BreakpointComponentProps> = ({
+  breakpoints
+}) => {
   const [windowWidth, setWindowWidth] = useState(undefined);
 
   const handleResize = () => setWindowWidth(window.innerWidth);
@@ -32,10 +42,10 @@ function BreakpointComponent({ breakpoints }: any): React.FC<Breakpoints> {
   }, []);
 
   const sortedBreakPoints = Object.entries(breakpoints).sort(
-    ([k, v], [bk, bv]) => v - bv // eslint-disable-line
+    ([k, v], [bk, bv]) => Number(v) - Number(bv) // eslint-disable-line
   );
   const currentBP = Object.entries(breakpoints)
-    .sort(([k, v], [bk, bv]) => bv - v) // eslint-disable-line
+    .sort(([k, v], [bk, bv]) => Number(bv) - Number(v)) // eslint-disable-line
     .find(([k, v]) => windowWidth > v); // eslint-disable-line
 
   return (
@@ -44,7 +54,7 @@ function BreakpointComponent({ breakpoints }: any): React.FC<Breakpoints> {
       <p>Current Breakpoint: {currentBP && `${currentBP[0]}`}</p>
       <Wrapper>
         {sortedBreakPoints.map(([k, v]) => (
-          <Box key={k} maxWidth={v}>
+          <Box key={k} maxWidth={Number(v)}>
             <span>
               {k} - {v}px
             </span>
@@ -53,6 +63,6 @@ function BreakpointComponent({ breakpoints }: any): React.FC<Breakpoints> {
       </Wrapper>
     </>
   );
-}
+};
 
 export default BreakpointComponent;

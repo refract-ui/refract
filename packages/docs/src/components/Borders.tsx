@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import map from 'lodash/map';
+import { map } from 'lodash';
 import { Borders } from '@refract-ui/core/src/theme/borders';
 
 const Box = styled.div`
@@ -18,11 +18,19 @@ const Wrapper = styled.div`
   gap: 10px;
 `;
 
-const BorderComponent: React.FC<Borders> = ({ borders }) => (
+interface Props {
+  borders: Borders;
+}
+
+const BorderComponent: React.FC<Props> = ({
+  borders: {
+    xs: { ...borders }
+  }
+}) => (
   <Wrapper>
     {map(borders, (v, k) => {
       return (
-        <Box key={k} style={{ ...v }}>
+        <Box key={k} style={{ ...(v as any) }}>
           <span>{k}</span>
         </Box>
       );

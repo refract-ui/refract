@@ -1,8 +1,13 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import map from 'lodash/map';
+import { Spacing } from '@refract-ui/core/src/theme/spacing';
+import { map } from 'lodash';
 
-const Spacer = styled.div`
+interface SpacerProps {
+  width: number;
+}
+
+const Spacer = styled.div<SpacerProps>`
   height: 14px;
   width: ${({ width }) => width};
   ${({ theme: { themeColorShades } }) => css`
@@ -37,21 +42,23 @@ const TH = styled.th`
   `}
 `;
 
-const TR = styled.tr``;
+interface TRProps {
+  width?: number;
+}
+
+const TR = styled.tr<TRProps>``;
 
 function convertRemToPx(rem: string): string {
   if (typeof rem === 'string' && rem.includes('rem')) {
-    const val = rem.replace('rem', '');
+    const val = parseInt(rem);
     return `${val * 16}px`;
   }
   return rem;
 }
 
 export interface SpacingProps {
-  spacing: {
-    [k: number]: string;
-  };
-  color: string;
+  spacing: Spacing;
+  color?: string;
 }
 
 const SpacingComponent: React.FC<SpacingProps> = ({ spacing }) => (
@@ -66,12 +73,12 @@ const SpacingComponent: React.FC<SpacingProps> = ({ spacing }) => (
     </THead>
     <tbody>
       {map(spacing, (v: string, k: number) => (
-        <TR key={k} width={v}>
+        <TR key={k} width={Number(v)}>
           <TD>{k}</TD>
           <TD>{v}</TD>
           <TD>{convertRemToPx(v)}</TD>
           <TD>
-            <Spacer width={v} />
+            <Spacer width={Number(v)} />
           </TD>
         </TR>
       ))}

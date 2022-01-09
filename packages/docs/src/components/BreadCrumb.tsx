@@ -1,5 +1,5 @@
 import React from 'react';
-import type { FlowElement } from 'react-flow-renderer';
+import type { FlowElement, ElementId, Edge } from 'react-flow-renderer';
 import { linkTo } from '@storybook/addon-links';
 import styled, { css } from 'styled-components';
 
@@ -10,7 +10,7 @@ const BreadCrumbNav = styled.nav`
   grid-template-columns: repeat(3, 1fr);
 `;
 
-const UnorderedList = styled.ul`
+const UnorderedList = styled.ul<{ next?: boolean }>`
   margin: 0;
   padding: 0;
   list-style: none;
@@ -34,46 +34,53 @@ const LinkButton = styled.button`
   }
 `;
 
-function BreadCrumb({
+interface BreadCrumbProps {
+  token: string;
+  storyPath?: string;
+}
+
+const BreadCrumb: React.FC<BreadCrumbProps> = ({
   token,
   storyPath = 'core/theme'
 }: {
   token: string;
   storyPath: string;
-}): React.FC {
-  const prevTokens: FlowElement[] = elements.filter(e => e?.target === token);
-  const nextTokens: FlowElement[] = elements.filter(e => e?.source === token);
+}) => {
+  const prevTokens: FlowElement[] = elements.filter(
+    (e: Edge) => (e?.target as ElementId) === token
+  );
+  const nextTokens: FlowElement[] = elements.filter(
+    (e: Edge) => e?.source === token
+  );
 
   return (
-    <>
+    <div>
       <BreadCrumbNav>
         <UnorderedList>
-          {prevTokens &&
-            prevTokens.map(t => (
-              <li key={t?.id}>
-                {' < '}
-                <LinkButton onClick={linkTo(`${storyPath}/${t?.source}`)}>
-                  {t?.source}
-                </LinkButton>
-              </li>
-            ))}
+          {prevTokens?.map((t: Edge) => (
+            <li key={t?.id}>
+              &lt;
+              <LinkButton onClick={linkTo(`${storyPath}/${t?.source}`)}>
+                {t?.source}
+              </LinkButton>
+            </li>
+          ))}
         </UnorderedList>
         <CurrentToken>{token}</CurrentToken>
-        <UnorderedList next>
-          {nextTokens &&
-            nextTokens.map(t => (
-              <li key={t?.id}>
-                <LinkButton onClick={linkTo(`${storyPath}/${t?.target}`)}>
-                  {t?.target}
-                </LinkButton>
-                {' > '}
-              </li>
-            ))}
+        <UnorderedList>
+          {nextTokens?.map((t: Edge) => (
+            <li key={t?.id}>
+              <LinkButton onClick={linkTo(`${storyPath}/${t?.target}`)}>
+                {t?.target}
+              </LinkButton>
+              {' > '}
+            </li>
+          ))}
         </UnorderedList>
       </BreadCrumbNav>
       <hr />
-    </>
+    </div>
   );
-}
+};
 
 export default BreadCrumb;

@@ -1,7 +1,8 @@
 {
   "name": "@refract-ui/docs",
-  "version": "0.1.10",
-  "main": "src/index.ts",
+  "version": "0.1.20",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
   "author": "dispatch@graveflex.com",
   "license": "MIT",
   "peerDependencies": {
@@ -11,7 +12,7 @@
     "styled-components": "^5.3.0"
   },
   "dependencies": {
-    "@refract-ui/core": "latest",
+    "@refract-ui/core": "workspace:*",
     "@types/faker": "^4.1.12",
     "faker": "^4.1.0",
     "highlight.js": "^11.3.1",

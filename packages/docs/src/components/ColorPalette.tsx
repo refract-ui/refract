@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import map from 'lodash/map';
+import { map } from 'lodash';
 
 const ColorGrid = styled.div`
   margin: 1rem;

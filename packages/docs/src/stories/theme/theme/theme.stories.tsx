@@ -1,6 +1,6 @@
-import React from 'react';
-import ThemeDiagram from '../../../components/ThemeDiagram';
-import page from './theme.mdx';
+import page from './page.mdx';
+
+export * from './examples.tsx';
 
 export default {
   title: 'core/theme/intro',
@@ -10,7 +10,3 @@ export default {
     }
   }
 };
-
-export function Template(): React.FC {
-  return <ThemeDiagram />;
-}

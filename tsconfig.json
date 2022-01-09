@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
     "composite": false,
-    "outDir": "./dist",
-    "rootDir": ".",
     "declaration": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
@@ -10,16 +8,17 @@
     "moduleResolution": "node",
     "target": "esnext",
     "lib": [ "esnext", "DOM" ],
-    "jsx": "react",
-    "baseUrl": "./packages",
-    "paths": {
-      "@refract-ui/core": ["core/src"],
-      "@refract-ui/docs": ["docs/src"]
-    }
+    "jsx": "react"
   },
-  "include": ["packages/**/*", "babel.config.js"],
+  "references": [
+    { "path": "./packages/core" },
+    { "path": "./packages/docs" }
+  ],
   "exclude": [
-    "node_modules",
-    "dist"
+    "**/node_modules"
+  ],
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx"
   ]
 }
