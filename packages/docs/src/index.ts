@@ -1,12 +1,1 @@
 export { default as config, default as managerEntries } from './preset';
-// export { default as Borders } from './components/Borders';
-// export { default as BreadCrumb } from './components/BreadCrumb';
-// export { default as Breakpoints } from './components/Breakpoints';
-// export { default as ColorPalette } from './components/ColorPalette';
-// export { default as ColorShadesPalette } from './components/ColorShadesPalette';
-// export { default as Section } from './components/Section';
-// export { default as Spacing } from './components/Spacing';
-// export { default as StyleGuide } from './components/StyleGuide';
-// export { default as ThemeConfigExample } from './components/ThemeConfigExample';
-// export { default as ThemePropList } from './components/ThemePropList';
-// export themeColors from './stories/theme/themeColors/themeColors.stories';

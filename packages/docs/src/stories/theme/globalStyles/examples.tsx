@@ -3,7 +3,7 @@ import styled, { ThemeContext, ThemeProvider } from 'styled-components';
 import { theme, Theme, GlobalStyles, SubTheme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
-import StyleGuide from 'components/StyleGuide';
+import StyleGuide from '../../../components/StyleGuide';
 
 const { themeColors: defaultThemeColors } = theme();
 
@@ -11,7 +11,7 @@ const SSubTheme = styled(SubTheme)`
   padding: 0.5rem;
 `;
 
-export const Template: Story = () => {
+const Template: Story = () => {
   const [args, updateArgs, resetArgs] = useArgs();
   const { themeColors: currentThemeValues } = useContext(ThemeContext);
 

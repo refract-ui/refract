@@ -3,11 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
-import Spacing from 'components/Spacing';
+import Spacing from '../../../components/Spacing';
 
 const { spacing: defaultSpacing } = theme();
 
-export const Template: Story = () => {
+const Template: Story = () => {
   const [args, updateArgs, resetArgs] = useArgs();
   const { spacing: currentThemeValue } = useContext(ThemeContext);
 

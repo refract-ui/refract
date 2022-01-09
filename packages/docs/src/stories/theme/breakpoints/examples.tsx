@@ -3,11 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
-import BreakpointComponent from 'components/Breakpoints';
+import BreakpointComponent from '../../../components/Breakpoints';
 
 const { breakpoints: defaultBreakpoints } = theme();
 
-export const Template: Story = () => {
+const Template: Story = () => {
   const [args, updateArgs, resetArgs] = useArgs();
   const { breakpoints: currentThemeValue } = useContext(ThemeContext);
 

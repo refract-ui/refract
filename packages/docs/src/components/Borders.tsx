@@ -22,15 +22,11 @@ interface Props {
   borders: Borders;
 }
 
-const BorderComponent: React.FC<Props> = ({
-  borders: {
-    xs: { ...borders }
-  }
-}) => (
+const BorderComponent: React.FC<Props> = ({ borders }) => (
   <Wrapper>
     {map(borders, (v, k) => {
       return (
-        <Box key={k} style={{ ...(v as any) }}>
+        <Box key={k} style={v}>
           <span>{k}</span>
         </Box>
       );

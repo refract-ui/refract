@@ -3,11 +3,11 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
-import ColorPalette from 'components/ColorPalette';
+import ColorPalette from '../../../components/ColorPalette';
 
 const { themeColorShades: defaultThemeColors } = theme();
 
-export const Template: Story = () => {
+const Template: Story = () => {
   const [args, updateArgs, resetArgs] = useArgs();
   const { themeColorShades: currentThemeValues } = useContext(ThemeContext);
 

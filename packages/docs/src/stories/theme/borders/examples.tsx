@@ -3,12 +3,12 @@ import { ThemeContext } from 'styled-components';
 import { theme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
-import BorderComponent from 'components/Borders';
+import BorderComponent from '../../../components/Borders';
 
 const { borders: defaultBorders } = theme();
 
 // todo: interactive borders
-export const Template: Story = () => {
+const Template: Story = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, updateArgs, resetArgs] = useArgs();
   const { borders: currentThemeValue } = useContext(ThemeContext);
