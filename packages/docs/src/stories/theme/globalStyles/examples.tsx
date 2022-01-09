@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled, { ThemeContext, ThemeProvider } from 'styled-components';
-import { theme, Theme, GlobalStyles, SubTheme } from '@refract-ui/core';
+import { theme, GlobalStyles, SubTheme } from '@refract-ui/core';
 import { Story } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import StyleGuide from '../../../components/StyleGuide';
@@ -22,7 +22,7 @@ const Template: Story = () => {
     };
   }, [currentThemeValues]);
 
-  const currentTheme: Theme = theme({
+  const currentTheme = theme({
     themeColors: {
       ...currentThemeValues,
       ...args
@@ -47,7 +47,7 @@ export const DefaultTemplate: Story = () => {
 
 export const WithSubTheme: Story = () => {
   const currentTheme = useContext(ThemeContext);
-  const nestedInvertedTheme: Theme = theme({
+  const nestedInvertedTheme = theme({
     themeColors: {
       fg: currentTheme.themeColors.bg,
       bg: currentTheme.themeColors.fg

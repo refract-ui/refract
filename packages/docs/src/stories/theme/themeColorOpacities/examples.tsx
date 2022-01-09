@@ -45,7 +45,6 @@ export const FunctionTemplate: React.FC = () => {
     })
   });
 
-  console.log({ themeColorOpacities });
   return <ColorPalette colors={themeColorOpacities} />;
 };
 

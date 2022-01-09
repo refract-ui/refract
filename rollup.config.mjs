@@ -28,11 +28,9 @@ export default [
     ],
     plugins: [
       typescript({
-        useTsconfigDeclarationDir: true,
-        tsconfig: './packages/docs/tsconfig.json',
+        tsconfig: './packages/core/tsconfig.json',
         tsconfigOverride: {
           compilerOptions: {
-            declarationDir: 'packages/core/dist/.dts',
             module: 'es2015'
           }
         }
@@ -55,7 +53,7 @@ export default [
 
   // compile @refract/core types
   {
-    input: 'packages/core/dist/.dts/packages/core/index.d.ts',
+    input: 'packages/core/dist/core/src/index.d.ts',
     plugins: [dts()],
     output: { file: 'packages/core/dist/index.d.ts', format: 'es' }
   },
@@ -105,7 +103,6 @@ export default [
       typescript({
         target: 'es2019',
         tsconfig: './packages/docs/tsconfig.json',
-        useTsconfigDeclarationDir: true,
         tsconfigOverride: {
           compilerOptions: {
             module: 'es2015'
