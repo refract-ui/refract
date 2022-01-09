@@ -57,7 +57,7 @@ const Tool = (): any => {
   const refractParams: RefractParams = useParameter('refract');
   const activeTheme = globals[REFRACT_PARAM_KEY];
 
-  const paramThemes = refractParams?.themes || [];
+  const paramThemes = refractParams?.themes || [defaultRefractTheme];
 
   const onThemeChange = useCallback(value => {
     updateGlobals({
@@ -73,16 +73,12 @@ const Tool = (): any => {
       tooltip={({ onHide }) => {
         return (
           <TooltipLinkList
-            links={getTooltipLinks(
-              [defaultRefractTheme, ...paramThemes],
-              activeTheme,
-              ({ selected }) => {
-                if (activeTheme !== selected) {
-                  onThemeChange(selected);
-                }
-                onHide();
+            links={getTooltipLinks(paramThemes, activeTheme, ({ selected }) => {
+              if (activeTheme !== selected) {
+                onThemeChange(selected);
               }
-            )}
+              onHide();
+            })}
           />
         );
       }}

@@ -15,9 +15,9 @@ export const defaultRefractTheme: RefractDecoratorTheme = {
 };
 
 export function withRefract(Story: any, c: StoryContext): any {
-  const themes = c.parameters?.refract?.themes || [];
+  const themes = c.parameters?.refract?.themes || [defaultRefractTheme];
 
-  const decoratorThemes = [defaultRefractTheme, ...themes];
+  const decoratorThemes = [...themes];
   const { theme } =
     themes.length > 0 && c.globals.refractTheme
       ? decoratorThemes.find(({ name }) => name === c.globals.refractTheme)

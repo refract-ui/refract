@@ -1,4 +1,5 @@
 import React from 'react';
+import { Story } from '@storybook/react';
 import { ThemeProvider } from 'styled-components';
 import { Theme } from '@refract-ui/core';
 import genTheme from '@refract-ui/core/src/theme';
@@ -8,17 +9,17 @@ export type RefractDecoratorTheme = {
   name: string;
 };
 
-const defaultRefractTheme: RefractDecoratorTheme = {
+export const defaultRefractTheme: RefractDecoratorTheme = {
   theme: genTheme(),
   name: 'refract'
 };
 
-function refractDecorator(
-  Story: func,
+const refractDecorator: React.FC = (
+  Story: Story,
   c: Record<string, unknown>,
-  themes?: RefractDecoratorTheme[] = []
-): React.FC {
-  const decoratorThemes = [defaultRefractTheme, ...themes];
+  themes?: RefractDecoratorTheme[] = [defaultRefractTheme]
+) => {
+  const decoratorThemes = [...themes];
   const { theme } =
     themes.length > 0 && c.globals.theme
       ? decoratorThemes.find(({ name }) => name === c.globals.theme)
@@ -29,14 +30,14 @@ function refractDecorator(
       <Story {...c} />
     </ThemeProvider>
   );
-}
+};
 
 export function refractGlobalTypes(
-  themes?: RefractDecoratorTheme[] = [],
+  themes?: RefractDecoratorTheme[] = [defaultRefractTheme],
   defaultValue? = 'refract',
   icon? = 'photo'
 ): Record<string, unknown> {
-  const decoratorThemes = [defaultRefractTheme, ...themes];
+  const decoratorThemes = [...themes];
   const theme = {
     name: 'Theme',
     description: 'Global theme for components',

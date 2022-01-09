@@ -1,6 +1,6 @@
 {
   "name": "@refract-ui/docs",
-  "version": "0.1.25",
+  "version": "0.1.28",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "author": "dispatch@graveflex.com",
@@ -12,7 +12,7 @@
     "styled-components": "^5.3.0"
   },
   "dependencies": {
-    "@refract-ui/core": "0.1.25",
+    "@refract-ui/core": "0.1.28",
     "@types/faker": "^4.1.12",
     "faker": "^4.1.0",
     "highlight.js": "^11.3.1",
