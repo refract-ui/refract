@@ -1,0 +1,137 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { theme, GlobalStyles } from '@refract-ui/core';
+import styled, { ThemeProvider } from 'styled-components';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import Button from './../../../../core/src/components/Button';
+import ModalScene from './../../components/ModalScene.tsx';
+
+<Meta title="core/theme/gettingStarted" />
+
+# Getting Started
+
+Install refract:
+
+`npm i @refract-ui/core`
+
+`yarn add @refract-ui/core`
+
+## Button Example
+
+Import the Refract Button component:
+
+```js
+import React from 'react';
+import { Button } from '@refract-ui/core';
+
+function HomePage() {
+  return (
+    <HomePage>
+      <Button>Enter</Button>
+    </HomePage>
+  );
+}
+```
+
+<Canvas>
+  <Story name="basic button">
+    <Button>Enter</Button>
+  </Story>
+</Canvas>
+
+#### Button Style Props
+
+Update the `Button` background color by passing in the `bg` prop:
+
+```js
+<Button bg="green">Green Button</Button>
+```
+
+<Canvas>
+  <Story name="green button">
+    <Button bg="green">Green Button</Button>
+  </Story>
+</Canvas>
+
+#### Breakpoint Specific Styles
+
+Styling a Refract component by screen size/breakpoint is easily done by passing in a style object into one of the media query props like, in this example below, the `ltSm` prop.
+
+This button below will have an orange background and more vertical padding on small
+screens:
+
+```js
+<Button ltSm={{ bg: 'orange', py: '40px' }}>Orange at Sm</Button>
+```
+
+<Canvas>
+  <Story name="breakpoint sizes">
+    <Button ltSm={{ bg: 'orange', py: '40px' }}>Orange at Sm</Button>
+  </Story>
+</Canvas>
+
+## Scene Example
+
+A basic modal scene built with Refract:
+
+export const Template = args => {
+  const { primary } = args;
+  return <ModalScene />;
+};
+
+<Canvas>
+  <Story name="basic modal scene">{ControllableTemplate.bind({})}</Story>
+</Canvas>
+
+The same modal scene with the `theme` primary color updated to green, `#6AD193`:
+
+```js
+import { theme } from '@refract-ui/core';
+
+theme: theme({ themeColors: { primary: '#6AD193' } })
+
+<ThemeProvider theme={theme}>
+  <Modal />
+</ThemeProvider>
+```
+
+<Canvas>
+  <Story
+    name="modal scene with primary bg updated to green"
+    args={{
+      primary: '#6AD193'
+    }}
+  >
+    {ControllableTemplate.bind({})}
+  </Story>
+</Canvas>
+
+Open the "Controllable Modal Scene" in Storybook Canvas to see how updating the `primary` color affects the scene:
+
+export const ControllableTemplate = args => {
+  const { primary, spacing } = args;
+  return <ModalScene primary={primary} spacing={spacing} />;
+};
+
+<Canvas>
+  <Story
+    name="controllable modal scene"
+    argTypes={{
+      primary: {
+        control: {
+          type: 'color'
+        }
+      },
+      spacing: {
+        control: {
+          type: 'range'
+        }
+      }
+    }}
+    args={{
+      primary: '#000000',
+      spacing: 24
+    }}
+  >
+    {ControllableTemplate.bind({})}
+  </Story>
+</Canvas>
