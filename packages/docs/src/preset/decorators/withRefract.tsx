@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { StoryContext } from '@storybook/addons';
-// import { ComponentStory, Story } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
-import { Theme, theme as genTheme } from '@refract-ui/core';
+import { Theme, SubTheme, theme as genTheme } from '@refract-ui/core';
 
 export type RefractDecoratorTheme = {
   theme: Theme;
@@ -24,8 +22,8 @@ export function withRefract(Story: any, c: StoryContext): any {
       : decoratorThemes[0];
 
   return (
-    <ThemeProvider theme={theme}>
+    <SubTheme theme={theme}>
       <Story {...c} />
-    </ThemeProvider>
+    </SubTheme>
   );
 }
