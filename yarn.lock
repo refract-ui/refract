@@ -3602,7 +3602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@workspace:*, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@0.1.28, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -3629,7 +3629,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": "workspace:*"
+    "@refract-ui/core": 0.1.28
     "@types/faker": ^4.1.12
     babel-plugin-styled-components: 2.0.2
     faker: ^4.1.0
@@ -6717,12 +6717,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-system@npm:5.1.13":
-  version: 5.1.13
-  resolution: "@types/styled-system@npm:5.1.13"
+"@types/styled-system@npm:5.1.22":
+  version: 5.1.22
+  resolution: "@types/styled-system@npm:5.1.22"
   dependencies:
     csstype: ^3.0.2
-  checksum: 139019dbcaf9afa0fe4fdd4b1b121e18ebe605b3ca3706c87efabd734878748ad511c87edfe8fb2bd54f60909e8bfa02992aea39c25f8e151ed75f39cdf430f8
+  checksum: 4fc51ec24590ab979bd0d8fa539c19a50fe8be0cfc2243e769caeb40a0aea50322b07e7cfe06149cbd56e0c2c4aed48cb7fbe35221529b880493b73e4b639036
   languageName: node
   linkType: hard
 
@@ -20580,7 +20580,7 @@ __metadata:
     "@types/react-test-renderer": ^17.0.1
     "@types/storybook__react": 5.2.1
     "@types/styled-components": 5.1.15
-    "@types/styled-system": 5.1.13
+    "@types/styled-system": 5.1.22
     "@typescript-eslint/eslint-plugin": 5.7.0
     "@typescript-eslint/parser": 5.7.0
     add: ^2.0.6
