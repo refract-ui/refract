@@ -23,7 +23,7 @@
     "utility-types": "^3.10.0"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "7.16.5",
+    "@babel/preset-typescript": "7.26.0",
     "@types/faker": "4.1.12",
     "faker": "4.1.0"
   },
