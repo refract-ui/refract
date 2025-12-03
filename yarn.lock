@@ -1963,12 +1963,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/is-prop-valid@npm:0.8.8, @emotion/is-prop-valid@npm:^0.8.1, @emotion/is-prop-valid@npm:^0.8.6, @emotion/is-prop-valid@npm:^0.8.8":
+"@emotion/is-prop-valid@npm:0.8.8, @emotion/is-prop-valid@npm:^0.8.1, @emotion/is-prop-valid@npm:^0.8.6":
   version: 0.8.8
   resolution: "@emotion/is-prop-valid@npm:0.8.8"
   dependencies:
     "@emotion/memoize": 0.7.4
   checksum: bb7ec6d48c572c540e24e47cc94fc2f8dec2d6a342ae97bc9c8b6388d9b8d283862672172a1bb62d335c02662afe6291e10c71e9b8642664a8b43416cdceffac
+  languageName: node
+  linkType: hard
+
+"@emotion/is-prop-valid@npm:^1.1.0":
+  version: 1.4.0
+  resolution: "@emotion/is-prop-valid@npm:1.4.0"
+  dependencies:
+    "@emotion/memoize": ^0.9.0
+  checksum: 6b003cdc62106c2d5d12207c2d1352d674339252a2d7ac8d96974781d7c639833f35d22e7e331411795daaafa62f126c2824a4983584292b431e08b42877d51e
   languageName: node
   linkType: hard
 
@@ -1983,6 +1992,13 @@ __metadata:
   version: 0.7.5
   resolution: "@emotion/memoize@npm:0.7.5"
   checksum: 83da8d4a7649a92c72f960817692bc6be13cc13e107b9f7e878d63766525ed4402881bfeb3cda61145c050281e7e260f114a0a2870515527346f2ef896b915b3
+  languageName: node
+  linkType: hard
+
+"@emotion/memoize@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "@emotion/memoize@npm:0.9.0"
+  checksum: 038132359397348e378c593a773b1148cd0cf0a2285ffd067a0f63447b945f5278860d9de718f906a74c7c940ba1783ac2ca18f1c06a307b01cc0e3944e783b1
   languageName: node
   linkType: hard
 
@@ -3602,7 +3618,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@workspace:*, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@0.1.28, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -3629,7 +3645,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": "workspace:*"
+    "@refract-ui/core": 0.1.28
     "@types/faker": ^4.1.12
     babel-plugin-styled-components: 2.0.2
     faker: ^4.1.0
@@ -6706,14 +6722,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-components@npm:5.1.15":
-  version: 5.1.15
-  resolution: "@types/styled-components@npm:5.1.15"
+"@types/styled-components@npm:5.1.36":
+  version: 5.1.36
+  resolution: "@types/styled-components@npm:5.1.36"
   dependencies:
     "@types/hoist-non-react-statics": "*"
     "@types/react": "*"
-    csstype: ^3.0.2
-  checksum: d565e0a3cf3fdb79aab73c0aa2d69d93152afe2661b3ec546592b64e0781f05d21d2a9715a15acaa8422b6d6a2b1250d9ba8c96ea656776051351393bada7a82
+    csstype: ^3.2.2
+  checksum: 5938ba298bc831d8ef30bec10fb3d30b9da9efc01f7cdaeb198f819ca4c579ac656e831d6d8f5b6c2572401fce18962078de16c49c94f1a6304d859e63352abb
   languageName: node
   linkType: hard
 
@@ -10189,6 +10205,13 @@ __metadata:
   version: 3.0.10
   resolution: "csstype@npm:3.0.10"
   checksum: 20a8fa324f2b33ddf94aa7507d1b6ab3daa6f3cc308888dc50126585d7952f2471de69b2dbe0635d1fdc31223fef8e070842691877e725caf456e2378685a631
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.2.2":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: cb882521b3398958a1ce6ca98c011aec0bde1c77ecaf8a1dd4db3b112a189939beae3b1308243b2fe50fc27eb3edeb0f73a5a4d91d928765dc6d5ecc7bda92ee
   languageName: node
   linkType: hard
 
@@ -20579,7 +20602,7 @@ __metadata:
     "@types/jest": 27.4.0
     "@types/react-test-renderer": ^17.0.1
     "@types/storybook__react": 5.2.1
-    "@types/styled-components": 5.1.15
+    "@types/styled-components": 5.1.36
     "@types/styled-system": 5.1.13
     "@typescript-eslint/eslint-plugin": 5.7.0
     "@typescript-eslint/parser": 5.7.0
@@ -20611,7 +20634,7 @@ __metadata:
     rollup-plugin-node-globals: ^1.4.0
     rollup-plugin-terser: 7.0.2
     rollup-plugin-typescript2: 0.31.1
-    styled-components: 5.3.0
+    styled-components: 5.3.11
     styled-system: 5.1.5
     theme-ui: 0.3.1
     ts-jest: 27.1.2
@@ -21773,13 +21796,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"styled-components@npm:5.3.0":
-  version: 5.3.0
-  resolution: "styled-components@npm:5.3.0"
+"styled-components@npm:5.3.11":
+  version: 5.3.11
+  resolution: "styled-components@npm:5.3.11"
   dependencies:
     "@babel/helper-module-imports": ^7.0.0
     "@babel/traverse": ^7.4.5
-    "@emotion/is-prop-valid": ^0.8.8
+    "@emotion/is-prop-valid": ^1.1.0
     "@emotion/stylis": ^0.8.4
     "@emotion/unitless": ^0.7.4
     babel-plugin-styled-components: ">= 1.12.0"
@@ -21791,7 +21814,7 @@ __metadata:
     react: ">= 16.8.0"
     react-dom: ">= 16.8.0"
     react-is: ">= 16.8.0"
-  checksum: 19792fc00da531a083963c3679429dc739e03cb1ca7af2adf0317b25fcaf23655b8f37f8595a210be26003aa5a143003c6dc66ef80c545da85447277a4985bd1
+  checksum: 10edd4dae3b0231ec02d86bdd09c88e894eedfa7e9d4f8e562b09fb69c67a27d586cbcf35c785002d59b3bf11e6c0940b0efce40d13ae9ed148b26b1dc8f3284
   languageName: node
   linkType: hard
 
