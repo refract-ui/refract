@@ -3602,7 +3602,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@refract-ui/core@workspace:*, @refract-ui/core@workspace:packages/core":
+"@refract-ui/core@0.1.28, @refract-ui/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@refract-ui/core@workspace:packages/core"
   dependencies:
@@ -3629,7 +3629,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@refract-ui/docs@workspace:packages/docs"
   dependencies:
-    "@refract-ui/core": "workspace:*"
+    "@refract-ui/core": 0.1.28
     "@types/faker": ^4.1.12
     babel-plugin-styled-components: 2.0.2
     faker: ^4.1.0
@@ -6717,12 +6717,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/styled-system@npm:5.1.13":
-  version: 5.1.13
-  resolution: "@types/styled-system@npm:5.1.13"
+"@types/styled-system@npm:5.1.25":
+  version: 5.1.25
+  resolution: "@types/styled-system@npm:5.1.25"
   dependencies:
-    csstype: ^3.0.2
-  checksum: 139019dbcaf9afa0fe4fdd4b1b121e18ebe605b3ca3706c87efabd734878748ad511c87edfe8fb2bd54f60909e8bfa02992aea39c25f8e151ed75f39cdf430f8
+    csstype: ^3.2.2
+  checksum: 79771e10267320a9546f8f04dbd5e7194ee85e37519189ea546d182f57c220506a623e7cc4fd1efbd0b17aa1ee8588971a4f06eea55996f252cd84a1e581029e
   languageName: node
   linkType: hard
 
@@ -10189,6 +10189,13 @@ __metadata:
   version: 3.0.10
   resolution: "csstype@npm:3.0.10"
   checksum: 20a8fa324f2b33ddf94aa7507d1b6ab3daa6f3cc308888dc50126585d7952f2471de69b2dbe0635d1fdc31223fef8e070842691877e725caf456e2378685a631
+  languageName: node
+  linkType: hard
+
+"csstype@npm:^3.2.2":
+  version: 3.2.3
+  resolution: "csstype@npm:3.2.3"
+  checksum: cb882521b3398958a1ce6ca98c011aec0bde1c77ecaf8a1dd4db3b112a189939beae3b1308243b2fe50fc27eb3edeb0f73a5a4d91d928765dc6d5ecc7bda92ee
   languageName: node
   linkType: hard
 
@@ -20580,7 +20587,7 @@ __metadata:
     "@types/react-test-renderer": ^17.0.1
     "@types/storybook__react": 5.2.1
     "@types/styled-components": 5.1.15
-    "@types/styled-system": 5.1.13
+    "@types/styled-system": 5.1.25
     "@typescript-eslint/eslint-plugin": 5.7.0
     "@typescript-eslint/parser": 5.7.0
     add: ^2.0.6
